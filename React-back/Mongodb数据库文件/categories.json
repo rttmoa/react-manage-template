@@ -1,0 +1,10 @@
+{"_id":{"$oid":"5e12b8bce31bb727e4b0e348"},"parentId":"0","name":"家用电器","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e130e60e31bb727e4b0e34b"},"parentId":"0","name":"电脑","__v":"0"}
+{"_id":{"$oid":"5e130ec7e31bb727e4b0e34c"},"parentId":"5e12b8bce31bb727e4b0e348","name":"洗衣机","_v":"0"}
+{"_id":{"$oid":"5e1346533ed02518b4db0cd7"},"parentId":"0","name":"图书","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e13467e3ed02518b4db0cd8"},"parentId":"0","name":"杯具","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e1346c83ed02518b4db0cd9"},"parentId":"0","name":"纸","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e144dc7297c1138787e96ab"},"parentId":"0","name":"方法付","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e144de1297c1138787e96ac"},"parentId":"5e12b8bce31bb727e4b0e348","name":"单独的","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e16e37e49dc6b38d018fe28"},"parentId":"0","name":"手机","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e16e38949dc6b38d018fe29"},"parentId":"5e16e37e49dc6b38d018fe28","name":"三星","__v":{"$numberInt":"0"}}

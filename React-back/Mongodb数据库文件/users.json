@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5e1092b1c7648c197899e6ed"},"username":"admin","password":"123456","phone":"12456789","email":"2331546","create_time":{"$numberLong":"1547381117891"},"role_id":"5e175a134bce5e36d48fb4db"}
+{"_id":{"$oid":"5e18649f3437d10584440fb3"},"username":"张三","password":"123","phone":"15975345623","email":"4512134564","role_id":"5e188bb874c89321209fedda","create_time":{"$numberLong":"1578656927920"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e188bf574c89321209feddb"},"username":"李四","phone":"1598945465","email":"1231654351","role_id":"5e188bb874c89321209fedda","password":"123","create_time":{"$numberLong":"1578666997184"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e188deb98215123941caa78"},"username":"李武","password":"123","phone":"1599784545","email":"456456464","role_id":"5e175a134bce5e36d48fb4db","create_time":{"$numberLong":"1578667499052"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e188e7398215123941caa79"},"username":"章久","password":"123","phone":"11111111","email":"11111111","role_id":"5e171d55d59eb648d4ed66a8","create_time":{"$numberLong":"1578667635240"},"__v":{"$numberInt":"0"}}
