@@ -22,7 +22,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-                if (location.pathname == '/customer') {
+                if (location.pathname === '/customer') {
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -130,11 +130,11 @@ export default {
         },
         modifySuccess(state, action){
             const updateCustomer = action.payload;
-            const newList = state.list.map(customer => customer._id == updateCustomer.id ? {...customer, ...updateCustomer} : customer);
+            const newList = state.list.map(customer => customer._id === updateCustomer.id ? {...customer, ...updateCustomer} : customer);
             return {...state, list: newList, loading: false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(customer => customer._id != action.payload);
+            const newList = state.list.filter(customer => customer._id !== action.payload);
             return {...state, list: newList, loading: false};
         },
         updateQueryKey(state, action){

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Menu, Icon} from 'antd';
 import NavLink from '../NavLink/NavLink';
-import {header, menuList, menuItem, activeItem} from './index.css';
+import {header, menuList} from './index.css';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -29,6 +29,9 @@ const billsChildMenus = [
 	['supplierBills', '/supplierBills', '供应商对账', 'usergroup-add']
 ];
 
+
+
+/***--- 左侧菜单栏 ---**/
 export default class Header extends Component {
 	constructor(props) {
 		super(props);
@@ -36,8 +39,9 @@ export default class Header extends Component {
 			activeIndex: 0
 		};
 	}
-
+    // 性能优化：如果点击的菜单还是原来的菜单，那么就不会渲染
 	componentWillReceiveProps(nextProps) {
+        // console.log(123)
 		this.setState({
 			activeIndex: nextProps.activeIndex
 		});
@@ -54,7 +58,7 @@ export default class Header extends Component {
 				>
 					{
 						menus.map(([key, path, text, icon], index) => {
-								if (key == 'manage') {
+								if (key === 'manage') {
 									return (
 										<SubMenu key={key} title={<span><Icon type="setting"/><span>{text}</span></span>}>
 											{
@@ -67,7 +71,7 @@ export default class Header extends Component {
 											}
 										</SubMenu>
 									)
-								} else if (key == 'bills') {
+								} else if (key === 'bills') {
 									return (
 										<SubMenu key={key} title={<span><Icon type="copy"/><span>{text}</span></span>}>
 											{

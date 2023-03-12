@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
+import {Table, Pagination} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
-import Spliter from '../../Spliter/Spliter';
+// import Spliter from '../../Spliter/Spliter';
 import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import {debtOrdersList, debtOrdersListTitle} from './index.css';

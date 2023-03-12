@@ -52,7 +52,7 @@ export default {
 	subscriptions: {
 		setup({dispatch, history}) {
 			history.listen(location=> {
-				if (location.pathname == '/storage') {
+				if (location.pathname === '/storage') {
 					dispatch({
 						type:'getSuppliers'
 					});
@@ -69,7 +69,7 @@ export default {
 					dispatch({
 						type: 'resetStorage'
 					});
-				} else if (location.pathname == '/storage/addstorage') {
+				} else if (location.pathname === '/storage/addstorage') {
 					dispatch({
 						type: 'showEditor'
 					});
@@ -96,7 +96,7 @@ export default {
 				}
 			});
 			let {page, timeRange, supplierId, noteNumber} = yield select(state=>state.storage);
-			supplierId = supplierId=='00000'?'':supplierId;
+			supplierId = supplierId === '00000' ? '' : supplierId;
 			const {data} = yield call(query, parse({page, timeRange, supplierId, noteNumber}));
 			if (data) {
 				yield put({

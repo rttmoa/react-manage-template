@@ -1,19 +1,21 @@
 /**
  * Created by wyf on 2017/3/5.
  */
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {Form, Button, Select} from 'antd';
 import styles  from './index.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
+
+
 function ResourceSearchForm({
 	onSearch,
 	products,
 	form: {
 		getFieldDecorator,
-		getFieldsValue,
+		// getFieldsValue,
 		validateFields
 	}
 }){
@@ -49,6 +51,6 @@ function ResourceSearchForm({
 	);
 }
 
-ResourceSearchForm.propTypes = {};
+// ResourceSearchForm.propTypes = {};
 
 export default Form.create()(ResourceSearchForm);

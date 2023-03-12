@@ -1,9 +1,11 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
+// import {routerRedux} from 'dva/router';
+// import {Search} from '../../components/SearchBar/SearchBar';
 import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
+
+
 
 class Bills extends Component{
     constructor(props) {
@@ -27,7 +29,7 @@ class Bills extends Component{
 }
 
 Bills.propTypes = {
-    orders:PropTypes.object,
+    orders: PropTypes.object,
 };
 
 function mapStateToProps({systemUser}) {

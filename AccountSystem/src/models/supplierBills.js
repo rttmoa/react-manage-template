@@ -26,7 +26,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-                if (location.pathname == '/supplierBills') {
+                if (location.pathname === '/supplierBills') {
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -51,7 +51,7 @@ export default {
                 }
             });
 			let {page, supplierId} = payload;
-			supplierId = supplierId=='00000'?'':supplierId;
+			supplierId = supplierId==='00000'?'':supplierId;
             const {data} = yield call(query, parse({page, supplierId}));
             if (data) {
                 yield put({

@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {Router, Route, IndexRoute, Link} from 'dva/router';
+import React from 'react';
+import {Router, Route, IndexRoute} from 'dva/router';
 import HomePage from './routes/HomePage/HomePage';
 import IndexPage from './routes/IndexPage/IndexPage';
 import Orders from './routes/Orders/Orders';
@@ -18,7 +18,7 @@ import Suppliers from './routes/Suppliers/Suppliers';
 import {requireAuth} from './utils/webSessionUtils';
 
 
-
+/**--- routerjs是所有路由 ---**/
 export default function ({history}) {
     return (
         <Router history={history}>
@@ -32,9 +32,9 @@ export default function ({history}) {
 
                 <Route path="/storage" onEnter={requireAuth} component={Storage}/>
 
-               {/* <Route path="/stock" component={Stock}/>
+               <Route path="/stock" component={Stock}/>
 
-                <Route path="/funds" component={Funds}/>*/}
+                <Route path="/funds" component={Funds}/>
 
                 <Route path="/resource" onEnter={requireAuth} component={Resource}/>
 

@@ -119,11 +119,11 @@ export default {
         },
         modifySuccess(state, action){
             const updateOrder = action.payload;
-            const newList = state.list.map(order=>order.id == updateOrder.id ? {...order, ...updateOrder} : order);
+            const newList = state.list.map(order=>order.id === updateOrder.id ? {...order, ...updateOrder} : order);
             return {...state, list: newList, loading: false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(order=> order.id != action.payload);
+            const newList = state.list.filter(order=> order.id !== action.payload);
             return {...state, list: newList, loading: false};
         },
         updateQueryKey(state, action){

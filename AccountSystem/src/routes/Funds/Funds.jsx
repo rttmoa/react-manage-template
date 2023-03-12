@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import FundsSearchForm from '../../components/Funds/FundsSearchForm/FundsSearchForm';
+// import {connect} from 'dva';
+// import {routerRedux} from 'dva/router';
+// import FundsSearchForm from '../../components/Funds/FundsSearchForm/FundsSearchForm';
 import FundsList from '../../components/Funds/FundsList/FundsList';
-import {redirect} from '../../utils/webSessionUtils';
+// import {redirect} from '../../utils/webSessionUtils';
 import styles from './index.css';
 
 function genFunds({dispatch, funds, loading}) {

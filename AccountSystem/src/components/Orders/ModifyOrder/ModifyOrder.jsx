@@ -14,7 +14,7 @@ const ModifyOrder = ({
 	orders
 }) => {
 	const {order, currentItem, customers, productList} = orders;
-	const disabled = editorType != 'modify';
+	const disabled = editorType !== 'modify';
 	const modifyOrderFormProps = {
 		customers,
 		customerId: currentItem.customerId,
@@ -45,14 +45,14 @@ const ModifyOrder = ({
 		 */
 		const {customerId, products, totalAmount} = order;
 		order['orderNumber'] = currentItem['orderNumber'];
-		if (customerId == null) {
+		if (customerId === null) {
 			order['customerId'] = currentItem['customerId'];
 		}
-		if (products.length == 0) {
+		if (products.length === 0) {
 			message.error('请至少添加一个商品条目！');
 			return null;
 		}
-		if (totalAmount == 0) {
+		if (totalAmount === 0) {
 			message.error('合计金额应大于0元！');
 			return null;
 		}
@@ -102,7 +102,7 @@ const ModifyOrder = ({
 			</div>
 			<div className={buttonGroup}>
 				{
-					editorType == 'modify' &&
+					editorType === 'modify' &&
 					<Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
 				}
 				<Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>

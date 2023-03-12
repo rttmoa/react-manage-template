@@ -1,12 +1,12 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import SearchBar from '../../components/SearchBar/SearchBar';
+// import SearchBar from '../../components/SearchBar/SearchBar';
 import CustomerBillsSearchForm from '../../components/CustomerBills/CustomerBillsSearchForm/CustomerBillsSearchForm';
 import DebtOrdersList from '../../components/CustomerBills/DebtOrdersList/DebtOrdersList';
 import CustomerBillsList from '../../components/CustomerBills/CustomerBillsList/CustomerBillsList';
 import ClearDebtOrdersModal from '../../components/CustomerBills/ClearDebtOrdersModal/ClearDebtOrdersModal';
 import ClearCustomerBillsModal from '../../components/CustomerBills/ClearCustomerBillsModal/ClearCustomerBillsModal';
-import {routerRedux} from 'dva/router';
+// import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import {redirect} from '../../utils/webSessionUtils';
 import {search, customerBillsClass, debtOrdersListContainer, customerBillsListContainer} from './index.css';
@@ -72,7 +72,7 @@ function genCustomerBills({dispatch, customerBillsSpace}){
 		currentItem,
 		onConfirm(values){
 			dispatch({
-				type: `customerBillsSpace/${editorType=='clearOrder'? 'doClearOrder':'doClearBill'}`,
+				type: `customerBillsSpace/${editorType === 'clearOrder' ? 'doClearOrder':'doClearBill'}`,
 				payload: {
 					...values
 				}

@@ -8,18 +8,12 @@ import Product from '../../components/Products/AddProduct/AddProduct';
 import {redirect} from '../../utils/webSessionUtils';
 import {productClass, productContainer, addProductContainer, modifyProductContainer} from './index.css';
 
+
+
+
 function genProducts({dispatch, products}) {
-    const {
-        list,
-        total,
-        productName,
-        loading,
-        current,
-        currentItem,
-        editorVisible,
-        editorType,
-        breadcrumbItems
-    } = products;
+
+    const {list,total,productName,loading,current,currentItem,editorVisible,editorType,breadcrumbItems} = products;
 
     const productListProps = {
         current,

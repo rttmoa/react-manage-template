@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
+import {Table, Pagination} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
-import Spliter from '../../Spliter/Spliter';
+// import Spliter from '../../Spliter/Spliter';
 import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import {settlementList} from './index.css';
@@ -55,7 +55,7 @@ class SettlementList extends Component {
 	onRowSelect = (record, index) => {
 		const {onSettlementSelect} = this.props;
 		const recordId = record._id;
-		if (recordId != this.state.selectId) {
+		if (recordId !== this.state.selectId) {
 			this.setState({
 				selectId: recordId
 			});
@@ -70,7 +70,7 @@ class SettlementList extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const {onSettlementSelect, settlementId} = nextProps;
-		if (settlementId != this.state.selectId) {
+		if (settlementId !== this.state.selectId) {
 			this.setState({
 				selectId: settlementId
 			}, () => onSettlementSelect(this.state.selectId));
@@ -93,7 +93,7 @@ class SettlementList extends Component {
 					rowKey={record => record._id}
 					pagination={false}
 					onRowClick={this.onRowSelect}
-					rowClassName={(record, index) => record._id == this.state.selectId ? 'ant-table-row-select' : ''}
+					rowClassName={(record, index) => record._id === this.state.selectId ? 'ant-table-row-select' : ''}
 				/>
 				<Pagination
 					className="ant-table-pagination"

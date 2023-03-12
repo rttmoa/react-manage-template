@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
+// import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import ResourceSearchForm from '../../components/Resource/ResourceSearchForm/ResourceSearchForm';
 import Stock from '../Stock/Stock';
@@ -9,15 +9,11 @@ import {Button} from 'antd';
 import {redirect} from '../../utils/webSessionUtils';
 import styles from './index.css';
 
+
+
 function genResource({dispatch, resource}) {
 
-	const {
-		breadcrumbItems,
-		products,
-		stocks,
-		funds,
-		loading
-	} = resource;
+	const {breadcrumbItems,	products,stocks,funds,loading} = resource;
 
 	const onSearch = (fieldValues) => {
 		dispatch({

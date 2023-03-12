@@ -1,15 +1,18 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import SearchBar from '../../components/SearchBar/SearchBar';
+// import SearchBar from '../../components/SearchBar/SearchBar';
 import SupplierBillsSearchForm from '../../components/SupplierBills/SupplierBillsSearchForm/SupplierBillsSearchForm';
 import DebtStorageList from '../../components/SupplierBills/DebtStorageList/DebtStorageList';
 import SupplierBillsList from '../../components/SupplierBills/SupplierBillsList/SupplierBillsList';
 import ClearDebtStorageModal from '../../components/SupplierBills/ClearDebtStorageModal/ClearDebtStorageModal';
 import ClearSupplierBillsModal from '../../components/SupplierBills/ClearSupplierBillsModal/ClearSupplierBillsModal';
-import {routerRedux} from 'dva/router';
+// import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import {redirect} from '../../utils/webSessionUtils';
 import {search, supplierBillsClass, debtStorageListContainer, supplierBillsListContainer} from './index.css';
+
+
+
 
 function genSupplierBills({dispatch, supplierBillsSpace}){
     const {
@@ -72,7 +75,7 @@ function genSupplierBills({dispatch, supplierBillsSpace}){
 		currentItem,
 		onConfirm(values){
 			dispatch({
-				type: `supplierBillsSpace/${editorType=='clearStorage'? 'doClearStorage':'doClearBill'}`,
+				type: `supplierBillsSpace/${editorType === 'clearStorage'? 'doClearStorage':'doClearBill'}`,
 				payload: {
 					...values
 				}
@@ -102,7 +105,7 @@ function genSupplierBills({dispatch, supplierBillsSpace}){
 				<SupplierBillsList {...supplierBillsListProps}/>
 			</div>
 			{
-				editorType=='clearStorage'?
+				editorType === 'clearStorage'?
 					<ClearDebtStorageModalGen />:
 					<ClearSupplierBillsModalGen />
 			}

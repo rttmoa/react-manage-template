@@ -5,13 +5,7 @@ import {supplierForm, formColumn, formTitle} from './index.css';
 
 const FormItem = Form.Item;
 
-const SupplierForm = ({
-    supplier,
-	disabled,
-    form: {
-        getFieldDecorator,
-    }
-}) => {
+const SupplierForm = ({ supplier,disabled, form: {getFieldDecorator} }) => {
 
     let {supplierName, contactPeople, contactPhone, address, payment, mem, accountName, accountBank, accountNo} = supplier;
 

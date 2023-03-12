@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button, Modal} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
+import React, {PropTypes} from 'react';
+import {Table, Pagination, Modal} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
 import {productList, productImg, productImgPreview} from './index.css';

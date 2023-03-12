@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
+// import {routerRedux} from 'dva/router';
+// import {Search} from '../../components/SearchBar/SearchBar';
 import {redirect} from '../../utils/webSessionUtils';
 require('./index.css');
 

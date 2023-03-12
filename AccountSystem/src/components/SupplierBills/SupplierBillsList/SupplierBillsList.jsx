@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
-import {PAGE_SIZE} from '../../../constants/constants';
-import Spliter from '../../Spliter/Spliter';
+import {Table} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
+// import {PAGE_SIZE} from '../../../constants/constants';
+// import Spliter from '../../Spliter/Spliter';
 import numberFormat from '../../../utils/numberFormat';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 import {supplierBillsList, supplierBillsListTitle} from './index.css';
 
 class SupplierBillsList extends Component {

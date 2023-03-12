@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { Form, Input } from 'antd';
 import { formItemLayout } from '../../../../constants/constants';
 import { customerForm, formColumn, formTitle } from './index.css';
@@ -19,7 +19,7 @@ const CustomerForm = ({
         <div className={customerForm}>
             <Form>
                 <span className={formColumn}>
-                    <h2 className='formTitle'>基础资料</h2>
+                    <h2 className={formTitle}>基础资料</h2>
                     <FormItem label="客户名称：" hasFeedback={!disabled} {...formItemLayout}>
                         {
                             getFieldDecorator('customerName', {

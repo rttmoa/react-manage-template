@@ -52,7 +52,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location=> {
-                if (location.pathname == '/orders') {
+                if (location.pathname === '/orders') {
                 	dispatch({
                 		type:'getCustomers'
 					});
@@ -69,7 +69,7 @@ export default {
                     dispatch({
                         type: 'resetOrder'
                     });
-                } else if (location.pathname == '/orders/addorder') {
+                } else if (location.pathname === '/orders/addorder') {
                     dispatch({
                         type: 'showEditor'
                     });
@@ -96,7 +96,7 @@ export default {
                 }
             });
             let {page, timeRange, customerId, orderNumber} = yield select(state=>state.orders);
-			customerId = customerId=='00000'?'':customerId;
+			customerId = customerId==='00000'?'':customerId;
             const {data} = yield call(query, parse({page, timeRange, customerId, orderNumber}));
             if (data) {
                 yield put({
@@ -114,7 +114,7 @@ export default {
             //保存之前清洗数据，对商品条目为空的商品记录进行删除
             const order = payload.order;
             const {products} = order;
-            const validProducts = products.filter(product=> product.productId!='');
+            const validProducts = products.filter(product=> product.productId !== '');
             order['products'] = validProducts;
             const {data} = yield call(create, order);
             if (data && data.success) {
@@ -136,7 +136,7 @@ export default {
             const newOrder = {...payload.order, id};
             //保存之前清洗数据，对商品条目为空的商品记录进行删除
             const {products} = newOrder;
-            const validProducts = products.filter(product=> product.productId!='');
+            const validProducts = products.filter(product=> product.productId !== '');
             newOrder['products'] = validProducts;
             const {data} = yield call(modify, newOrder);
             if (data && data.success) {
@@ -258,7 +258,7 @@ export default {
             return {...state, loading: false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(order=> order._id != action.payload);
+            const newList = state.list.filter(order=> order._id !== action.payload);
             return {...state, list: newList, loading: false};
         },
         updateQueryKey(state, action){

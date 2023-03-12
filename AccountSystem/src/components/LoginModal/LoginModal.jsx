@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Form, Input, Modal} from 'antd'
 import {modal} from './index.css';
 
@@ -11,36 +11,25 @@ const formItemLayout = {
         span: 14
     }
 };
-const LoginModal =({
-    visible,
-    onConfirm,
-    onCancel,
-    form: {
-        getFieldDecorator,
-        validateFields,
-        getFieldsValue
-    }
-})=>{
+
+/***--- 登陆模态框 ---**/
+const LoginModal =({ visible, onConfirm, onCancel, form: {getFieldDecorator,validateFields,getFieldsValue } })=>{
     function handleConfirm() {
         validateFields((errors)=>{
-            if(!!errors){
-                return;
-            }
+            if(Boolean(errors)){return;}
             let userData = {...getFieldsValue()};
             onConfirm(userData);
         })
     }
 
     function handleKeyDown(e){
-        if(e.keyCode == 13) {
-            handleConfirm();
-        }
+        if(e.keyCode == 13) { handleConfirm(); }
     }
 
     const modalOpts = {
         title: '系统用户登录',
         visible,
-        onOk:handleConfirm,
+        onOk: handleConfirm,
         onCancel
     };
     return (
@@ -49,12 +38,7 @@ const LoginModal =({
                 <FormItem label='用户名：' hasFeedback {...formItemLayout}>
                     {
                         getFieldDecorator('username',{
-                            rules:[
-                                {
-									required:true,
-									message:'请输入用户名！'
-                                }
-                            ]
+                            rules:[ {required:true,  message:'请输入用户名！'}]
                         })(
                             <Input type="text" onKeyDown={handleKeyDown}/>
                         )
@@ -63,12 +47,7 @@ const LoginModal =({
                 <FormItem label='密码：' hasFeedback {...formItemLayout}>
                     {
                         getFieldDecorator('password',{
-                            rules:[
-                                {
-									required:true,
-									message:'请输入密码！'
-                                }
-                            ]
+                            rules:[ {required:true,  message:'请输入密码！'}]
                         })(
                             <Input type="password" onKeyDown={handleKeyDown} />
                         )

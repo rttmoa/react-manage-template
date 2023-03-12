@@ -8,6 +8,7 @@ const BreadcrumbItem = Breadcrumb.Item;
 export default class BreadcrumbList extends Component {
     constructor(props) {
         super(props);
+        // this.state = props.breadcrumbItems;
     }
 
     render() {

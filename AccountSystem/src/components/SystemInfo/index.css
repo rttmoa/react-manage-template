@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
-    top:0;
+    top: 0;
     right: 0;
     left: 300px;
     z-index: 999;
@@ -18,7 +18,7 @@
     font-size: 18px;
 }
 .userInfo,
-.userName>span {
+.userName > span {
     display: flex;
     align-items: center;
 }

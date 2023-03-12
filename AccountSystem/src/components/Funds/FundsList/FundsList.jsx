@@ -1,15 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
-import {PAGE_SIZE} from '../../../constants/constants';
-import Spliter from '../../Spliter/Spliter';
+import React, { PropTypes} from 'react';
+import {Table} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
+// import {PAGE_SIZE} from '../../../constants/constants';
+// import Spliter from '../../Spliter/Spliter';
 import numberFormat from '../../../utils/numberFormat';
 import {fundsList} from './index.css';
 
-const FundsList = ({
-    loading,
-    dataSource
-}) => {
+
+const FundsList = ({  loading,  dataSource  }) => {
     const columns = [
         {
             title: '序号',

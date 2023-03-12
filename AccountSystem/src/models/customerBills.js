@@ -26,7 +26,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-                if (location.pathname == '/customerBills') {
+                if (location.pathname === '/customerBills') {
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -51,7 +51,7 @@ export default {
                 }
             });
 			let {page, customerId} = payload;
-			customerId = customerId=='00000'?'':customerId;
+			customerId = customerId === '00000' ? '' : customerId;
             const {data} = yield call(query, parse({page, customerId}));
             if (data) {
                 yield put({

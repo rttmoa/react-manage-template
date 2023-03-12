@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Form, Input, Modal} from 'antd'
 import {modal} from './index.css';
 
@@ -11,18 +11,9 @@ const formItemLayout = {
         span: 14
     }
 };
-const LogupModal =({
-    visible,
-    onConfirm,
-    onCancel,
-    form
-})=>{
 
-	const {
-		getFieldDecorator,
-		validateFields,
-		getFieldsValue
-	} = form;
+/***--- 注册模态框 ---**/
+const LogupModal =({visible,onConfirm,onCancel,form})=> {   const {getFieldDecorator,validateFields,getFieldsValue	} = form;
 
     function handleConfirm() {
         validateFields((errors)=>{
@@ -35,7 +26,7 @@ const LogupModal =({
     }
 
     function handleKeyDown(e){
-        if(e.keyCode == 13) {
+        if(e.keyCode === 13) {
             handleConfirm();
         }
     }

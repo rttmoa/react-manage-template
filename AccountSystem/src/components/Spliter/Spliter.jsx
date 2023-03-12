@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {spliter} from './index.css';
 
 const Spliter = ({spliterText})=>(

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Form, Input} from 'antd';
 import {orderRemarkForm} from './index.css';
 

@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import StockSearchForm from '../../components/Stocks/StockSearchForm/StockSearchForm';
+// import {connect} from 'dva';
+// import {routerRedux} from 'dva/router';
+// import StockSearchForm from '../../components/Stocks/StockSearchForm/StockSearchForm';
 import StockList from '../../components/Stocks/StockList/StockList';
-import {redirect} from '../../utils/webSessionUtils';
+// import {redirect} from '../../utils/webSessionUtils';
 import styles from './index.css';
 
 function genStock({dispatch, stocks, loading}) {

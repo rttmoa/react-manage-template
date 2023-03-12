@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 import {supplierTitle} from './index.css';
 
 const SupplierTitle = ({titleText}) => {

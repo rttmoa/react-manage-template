@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from '../../components/Header/Header';
 import {connect} from 'dva';
 import SystemInfo from '../../components/SystemInfo/SystemInfo';
 import {homePage, container} from './index.css';
 
+
+/***--- 主页面： 左侧菜单栏 && 顶部系统标题 || 用户登陆/注册 ---**/
 const HomePage = ({children, home})=> {
     const {activeIndex} = home;
     const height = window.innerHeight - 64;

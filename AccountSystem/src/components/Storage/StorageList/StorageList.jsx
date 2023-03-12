@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
+import React, {PropTypes} from 'react';
+import {Table, Pagination, Popconfirm} from 'antd';
+// import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import numberFormat from '../../../utils/numberFormat';
 import Spliter from '../../Spliter/Spliter';

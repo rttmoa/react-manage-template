@@ -22,7 +22,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-                if (location.pathname == '/product') {
+                if (location.pathname === '/product') {
                     dispatch({
                         type: 'query',
                         payload: location.query
@@ -134,11 +134,11 @@ export default {
         },
         modifySuccess(state, action){
             const updateProduct = action.payload;
-            const newList = state.list.map(product => product._id == updateProduct.id ? {...product, ...updateProduct} : product);
+            const newList = state.list.map(product => product._id === updateProduct.id ? {...product, ...updateProduct} : product);
             return {...state, list: newList, loading: false};
         },
         delSuccess(state, action){
-            const newList = state.list.filter(product => product._id != action.payload);
+            const newList = state.list.filter(product => product._id !== action.payload);
             return {...state, list: newList, loading: false};
         },
         updateQueryKey(state, action){

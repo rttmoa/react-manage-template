@@ -9,6 +9,7 @@ const AUTH_API = `/api/auth`;
 
 export function getCurrentUser() {
     let sessionStorage = window.sessionStorage;
+    // 如果有 解析 session 并返回
     if (sessionStorage['userInfo']) {
         return JSON.parse(sessionStorage['userInfo']);
     }
@@ -16,6 +17,7 @@ export function getCurrentUser() {
 }
 
 export async function fetchIsAuth(callback) {
+    // console.log(123)
     return request(`${AUTH_API}?authToken=${getCurrentUser()['authToken']}`)
         .then(data => callback(data.data.isAuth))
         .catch(e => console.log(e));
@@ -31,7 +33,8 @@ export function redirect() {
 /*授权验证*/
 export function requireAuth(nextState, replace) {
     const userInfo = sessionStorage.getItem('userInfo');
-    if(!userInfo || userInfo=='null'){
+    // console.log("userInfo", userInfo)
+    if(!userInfo || userInfo === null){
         message.error('请登录！');
         replace('/');
     }

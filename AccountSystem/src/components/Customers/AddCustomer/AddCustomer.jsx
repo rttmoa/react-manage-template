@@ -1,6 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {Button} from 'antd';
-import {message} from 'antd';
 import AddCustomerTitle from '../CustomerCommon/CustomerTitle/CustomerTitle';
 import AddCustomerForm from '../CustomerCommon/CustomerForm/CustomerForm';
 import {connect} from 'dva';

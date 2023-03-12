@@ -1,5 +1,7 @@
 import { doLogin, doLogup, doLogout } from '../services/systemUser';
-import { getCurrentUser, fetchIsAuth, redirect } from '../utils/webSessionUtils';
+// import { getCurrentUser, fetchIsAuth, redirect } from '../utils/webSessionUtils';
+
+
 export default {
 
     namespace: 'systemUser',
@@ -16,7 +18,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen(location => {
-                if (location.pathname == '/') {
+                if (location.pathname === '/') {
                     //权限验证通过
                     if(sessionStorage.getItem('userInfo')){
                         dispatch({

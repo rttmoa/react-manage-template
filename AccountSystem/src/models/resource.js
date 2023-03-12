@@ -1,6 +1,9 @@
 import {query, onSettlement} from '../services/resource';
 import * as products from '../services/products';
-import {parse} from 'qs';
+// import {parse} from 'qs';
+
+
+
 export default {
 
     namespace: 'resource',
@@ -19,7 +22,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(location => {
-				if(location.pathname=='/resource'){
+				if(location.pathname === '/resource'){
 					dispatch({
 						type: 'queryProducts'
 					});
@@ -40,7 +43,7 @@ export default {
     		yield put({
     			type: 'showLoading'
 			});
-			let productId = payload && payload.productId!='00000'?payload.productId:'';
+			let productId = payload && payload.productId !== '00000'?payload.productId:'';
 			const {data} = yield call(query, {productId});
 			if(data && data.success) {
 				yield put({

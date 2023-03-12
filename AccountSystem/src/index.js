@@ -1,9 +1,9 @@
 import './index.html';
 import './index.less';
 import dva from 'dva';
-import {browserHistory} from 'dva/router';
-import router from './router';
-import home from './models/home';
+import {browserHistory} from 'dva/router'; //--->  全局路由地址
+import router from './router';  //--->  路由
+import home from './models/home';  //--->  dvajs状态管理
 import orders from './models/orders';
 import storage from './models/storage';
 import manage from './models/manage';
@@ -17,9 +17,7 @@ import customerBills from './models/customerBills';
 import supplierBills from './models/supplierBills';
 
 // 1. Initialize
-const app = dva({
-	history: browserHistory
-});
+const app = dva({ history: browserHistory });
 
 // 2. Plugins
 //app.use({});
@@ -27,9 +25,9 @@ const app = dva({
 // 3. Model
 app.model(home);
 app.model(orders);
-/*app.model(require('./models/stocks'));*/
+// app.model(require('./models/stocks'));
 app.model(storage);
-/*app.model(require('./models/funds'));*/
+// app.model(require('./models/funds'));
 app.model(manage);
 app.model(systemUser);
 app.model(customers);

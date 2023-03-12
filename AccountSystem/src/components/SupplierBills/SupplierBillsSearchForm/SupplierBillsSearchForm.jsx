@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {Form, Input, Select, Button, DatePicker} from 'antd';
+import React, { PropTypes} from 'react';
+import {Form, Select, Button, /* DatePicker */} from 'antd';
 import {supplierBillsSearchForm} from './index.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const RangePicker = DatePicker.RangePicker;
+// const RangePicker = DatePicker.RangePicker;
 
 const SupplierBillsSearchForm = ({
     onSearch,

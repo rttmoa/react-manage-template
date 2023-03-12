@@ -3,7 +3,7 @@ import {connect} from 'dva';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import OrderSearchForm from '../../components/Orders/OrderSearchForm/OrderSearchForm';
 import OrderList from '../../components/Orders/OrderList/OrderList';
-import {routerRedux} from 'dva/router';
+// import {routerRedux} from 'dva/router';
 import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
 import AddOrder from '../../components/Orders/AddOrder/AddOrder';
 import ModifyOrder from '../../components/Orders/ModifyOrder/ModifyOrder';
@@ -63,7 +63,7 @@ function genOrders({dispatch, orders}){
         }
     };
     const orderEditor = {
-        item: editorType=='create'? {}:currentItem,
+        item: editorType==='create'? {}:currentItem,
         type: editorType,
         visible: editorVisible,
         onConfirm(data){
@@ -98,7 +98,7 @@ function genOrders({dispatch, orders}){
             {
                 editorVisible?
                     (
-                        editorType=='create'?
+                        editorType==='create'?
                             (
                                 <div className={addOrderContainer}>
                                     <AddOrder />

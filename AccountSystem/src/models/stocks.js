@@ -38,7 +38,7 @@ export default {
     subscriptions: {
 		setup({dispatch, history}) {
 			history.listen(location => {
-				if (location.pathname == '/resource') {
+				if (location.pathname === '/resource') {
 					dispatch({
 						type: 'query',
 						payload: location.query
@@ -141,7 +141,7 @@ export default {
         },
         modifySuccess(state, action){
             const updateOrder = action.payload;
-            const newList = state.list.map(order=>order.id == updateOrder.id ? {...order, ...updateOrder} : order);
+            const newList = state.list.map(order=>order.id === updateOrder.id ? {...order, ...updateOrder} : order);
             return {...state, list: newList, loading: false};
         },
         delSuccess(state, action){

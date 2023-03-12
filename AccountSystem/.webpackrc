@@ -13,13 +13,10 @@
   },
   "env": {
     "development": {
-      "extraBabelPlugins": [
-        "dva-hmr"
-      ]
+      "extraBabelPlugins": ["dva-hmr"]
     },
     "production": {
-      "extraBabelPlugins": [
-      ]
+      "extraBabelPlugins": []
     }
   }
 }

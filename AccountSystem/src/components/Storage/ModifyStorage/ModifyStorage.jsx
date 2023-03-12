@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Button} from 'antd';
 import {message} from 'antd';
 import ModifyStorageTitle from '../StorageCommon/StorageTitle/StorageTitle';
@@ -14,7 +14,7 @@ const ModifyStorage = ({
     storage
 }) => {
     const {storageData, currentItem, suppliers, productList} = storage;
-    const disabled = editorType != 'modify';
+    const disabled = editorType !== 'modify';
     const modifyStorageFormProps = {
 		suppliers,
         supplierId: currentItem.supplierId,
@@ -45,14 +45,14 @@ const ModifyStorage = ({
          */
         const {supplierId, products, totalAmount} = storageData;
 		storageData['noteNumber'] = currentItem['noteNumber'];
-        if (supplierId == null) {
+        if (supplierId === null) {
 			storageData['supplierId'] = currentItem['supplierId'];
         }
-        if (products.length == 0) {
+        if (products.length === 0) {
             message.error('请至少添加一个商品条目！');
             return null;
         }
-		if (totalAmount == 0) {
+		if (totalAmount === 0) {
 			message.error('合计金额应大于0元！');
 			return null;
 		}
@@ -102,7 +102,7 @@ const ModifyStorage = ({
             </div>
             <div className={buttonGroup}>
 				{
-					editorType=='modify' && <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
+					editorType==='modify' && <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
 				}
                 <Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>
             </div>

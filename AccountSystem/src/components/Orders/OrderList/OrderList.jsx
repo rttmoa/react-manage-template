@@ -1,11 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
+// import dateFormat from '../../../utils/dateFormat';
 import {PAGE_SIZE} from '../../../constants/constants';
 import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import Spliter from '../../Spliter/Spliter';
 import {orderList} from './index.css';
+
 
 const OrderList = ({
 	total,
