@@ -2,14 +2,20 @@
 
 ![img](https://camo.githubusercontent.com/4c82c2bade9204481be86bfdbc0b773be2c823dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4a6176617363726970742d79656c6c6f772e7376673f7374796c653d666c6174)  ![img](https://camo.githubusercontent.com/3a5d997143423893d291af21f6a10bddf6716fd1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4e6f64652d677265656e2e7376673f7374796c653d666c6174)  ![img](https://camo.githubusercontent.com/c55a47ce085cee081ab8038d88db04e3638fee48/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f44617461626173652d4d6f6e676f44422d677265656e2e7376673f7374796c653d666c6174)
 
+## 安装及启动
+
+**安装：`npm install & cd/service npm install`**
+
+**运行前台:**   **`npm start`**
+
+**运行后台：`cd service & npm start`**
+
 ## 项目注意点
 
 * [ ] 安装： 前台 /AccountSystem/npm install && /AccountSystem/service/npm install
 * [ ] 运行： 前台 /AccountSystem/npm start && /AccountSystem/service/npm start
 * [ ] 数据库名：accountSystem
 
-用户名：guest `<br>`
-密码：123456
 
 ## 如何安装
 
@@ -24,10 +30,6 @@
 7 `.` 如果以发布模式运行则执行以下命令：`<br>`
     * 前端资源打包 `npm run build<br>`
     * 启动node server部署服务 `npm run start:prod<br>`
-
-**运行后台：`cd service & npm start`**
-
-**运行前台:   `npm start`**
 
 ## 项目技术栈
 
