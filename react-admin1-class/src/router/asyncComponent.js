@@ -4,6 +4,7 @@ import NProgress from 'nprogress'
 
 
 export default loadComponent => (
+    
     class AsyncComponent extends React.Component {
         state = {
             Component: null,

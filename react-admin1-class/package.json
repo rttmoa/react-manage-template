@@ -10,7 +10,7 @@
     "dll": "webpack -p --progress --config build/webpack.dll.conf.js",
     "analyz": "cross-env analyz_npm_config_report=true npm run build"
   },
-  "author": "https://github.com/cd-dongzi/react-admin",
+  "author": "https://github.com/cd-dongzi/react-admin    博客园: https://dzblog.cn/article/5aa7ef0e4f85ad06d2346688   ",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
