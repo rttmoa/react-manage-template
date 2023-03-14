@@ -1,10 +1,13 @@
 //由于localStorage有些不兼容所以采用store，你也可以使用cookie
 import Cookie from 'js-cookie'
-const userKey = "user";
+const userKey = "react_admin_xiyan";
+
+
+
 
 //设置用户信息
 export function setUser(user) {
-    //失效时间是24小时
+    // 失效时间是24小时
     let time = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     Cookie.set(userKey, JSON.stringify(user), {expires: time})
 }

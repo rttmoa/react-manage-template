@@ -7,6 +7,7 @@ const service = axios.create({
     baseURL: process.env.REACT_APP_URL, // api的base_url
     timeout: 600000 // 请求超时时间
 })
+
 // request拦截器
 service.interceptors.request.use(config => {
     //获取登录成功后store中的token

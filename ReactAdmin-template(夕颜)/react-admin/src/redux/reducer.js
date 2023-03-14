@@ -8,11 +8,13 @@ import {RECEIVE_USER,LOGOUT_USER} from './action-types'
  */
 
 const initUser = getUser() === undefined ? "" : getUser();
+// console.log(initUser)
 
 //用来管理当前登录的用户
 function user(preState = initUser, action) {
     switch (action.type) {
         case RECEIVE_USER:
+            // console.log(action) // {type: 'receive_user', data:{ create_time, password, role:{menus:[]}, username, __v, _id }}
             return action.data
         case LOGOUT_USER:
             return action.data

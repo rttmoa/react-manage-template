@@ -5,8 +5,10 @@ import {SaveOutlined, ArrowRightOutlined} from "@ant-design/icons";
 import {list, add, update} from '../../api/category'
 import AddFrom from "../../components/Category/add-from";
 import UpdateFrom from "../../components/Category/update-from";
-
 const {Column} = Table;
+
+
+
 
 class Category extends Component {
 
@@ -118,11 +120,12 @@ class Category extends Component {
                       extra={<Button icon={<SaveOutlined/>} type="primary" onClick={this.showAdd}>添加</Button>}
                       style={{width: '100%', height: '100%'}}>
                     <Table bordered pagination={{
-                        pageSize: 5,
-                        showQuickJumper: true,
-                        showSizeChanger: true,
-                        pageSizeOptions: [5, 10, 15, 20]
-                    }} loading={loading} dataSource={categoryList} rowKey="_id">
+                            pageSize: 5,
+                            showQuickJumper: true,
+                            showSizeChanger: true,
+                            pageSizeOptions: [5, 10, 15, 20]
+                        }} loading={loading} dataSource={categoryList} rowKey="_id"
+                    >
                         <Column title="分类名称" dataIndex="name" key="_id"/>
                         <Column
                             width="300px"

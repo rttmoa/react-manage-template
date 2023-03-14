@@ -19,7 +19,7 @@ const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 // 声明使用路由器中间件
 const indexRouter = require('./routers')
-app.use('/', indexRouter)  //
+app.use('/', indexRouter) 
 
 const fs = require('fs')
 

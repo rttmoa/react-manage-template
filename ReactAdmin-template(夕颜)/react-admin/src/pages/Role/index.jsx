@@ -9,12 +9,12 @@ const { Column } = Table;
 
 
 
+/***--- 角色管理 ---**/
 class Role extends Component {
     state = {
         loading: false,
-        roleList: [],
-        // 选中一行的数据
-        rowRole: {},
+        roleList: [], // 所有角色 
+        rowRole: {}, // 选中一行的数据
         addIsModalVisible: false,
         authIsModalVisible: false
     }
@@ -30,7 +30,7 @@ class Role extends Component {
         // console.log('sel', rowRole) // 所有数据
         return {
             onClick: event => {
-                console.log(rowRole) // 选中的每一条数据
+                // console.log(rowRole) // 选中的每一条数据
                 this.setState({ rowRole })
             }
         }
@@ -40,14 +40,18 @@ class Role extends Component {
         this.init();
     }
 
-    //取消事件
+    // 取消事件 - 当关闭弹窗时
     handleCancel = () => {
         // console.log('触发 handleCancel 关闭')
         this.setState({addIsModalVisible: false, authIsModalVisible: false})
     }
 
+
+
+
     render() {
         const {loading, roleList, rowRole, addIsModalVisible, authIsModalVisible} = this.state;
+        // console.log(roleList)
         // console.log(!rowRole._id)
 
         const title = (
@@ -59,28 +63,29 @@ class Role extends Component {
         return (
             <div>
                 <Card title={title} style={{width: '100%', height: '100%'}}>
-                    <Table onRow={this.selectRow}
-                           rowSelection={{
-                                type: 'radio',
-                                onSelect: (rowRole)=>{
-                                    // console.log(rowRole)
-                                    return this.setState({rowRole})
-                                },
-                                selectedRowKeys: [rowRole._id]
-                            }}
-                           bordered
-                           pagination={{
-                               defaultPageSize: 3,
-                               // pageSize: 3,
-                               showQuickJumper: true,
-                               showSizeChanger: true,
-                               pageSizeOptions: [5, 10, 15, 20],
-                           }} loading={loading} dataSource={roleList} rowKey="_id"
-                        >
-                            <Column align={"center"} title="角色名称" dataIndex="name" key="name"/>
-                            <Column align={"center"} title="创建时间" dataIndex="create_time" key="create_time"/>
-                            <Column align={"center"} title="授权时间" dataIndex="auth_time" key="auth_time"/>
-                            <Column align={"center"} title="授权人" dataIndex="auth_name" key="auth_name"/>
+                    <Table 
+                        onRow={this.selectRow}
+                        rowSelection={{
+                            type: 'radio',
+                            onSelect: (rowRole)=>{ return this.setState({rowRole}) },
+                            selectedRowKeys: [rowRole._id]
+                        }}
+                        bordered
+                        loading={loading} 
+                        dataSource={roleList} 
+                        rowKey="_id"
+                        pagination={{
+                            defaultPageSize: 3,
+                            pageSize: 5,
+                            showQuickJumper: true,
+                            showSizeChanger: true,
+                            pageSizeOptions: [5, 10, 15, 20],
+                        }}  
+                    >
+                        <Column align={"center"} title="角色名称" dataIndex="name" key="name"/>
+                        <Column align={"center"} title="创建时间" dataIndex="create_time" key="create_time"/>
+                        <Column align={"center"} title="授权时间" dataIndex="auth_time" key="auth_time"/>
+                        <Column align={"center"} title="授权人" dataIndex="auth_name" key="auth_name"/>
                     </Table>
                 </Card>
 

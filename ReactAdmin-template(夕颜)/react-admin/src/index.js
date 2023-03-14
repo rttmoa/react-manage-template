@@ -10,6 +10,8 @@ import "./locale/en.json";
 //引入i18n.js
 import './i18n'
 
+
+
 ReactDOM.render(
     <ConfigProvider locale={zhCN}>
         <BrowserRouter>

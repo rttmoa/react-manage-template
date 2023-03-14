@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Button, Form, Input, message} from "antd";
 import {add} from '../../api/role'
 
+
+
+/***--- 添加角色表单 ---**/
 class AddFrom extends Component {
     
     save = (data) => {

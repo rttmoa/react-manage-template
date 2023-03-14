@@ -5,6 +5,8 @@ import Cookie from "js-cookie";
 // have a look at the Quick start guide
 // for passing in lng and translations on init
 
+
+
 i18n
     // load translation using xhr -> see /public/locales
     // learn more: https://github.com/i18next/i18next-xhr-backend

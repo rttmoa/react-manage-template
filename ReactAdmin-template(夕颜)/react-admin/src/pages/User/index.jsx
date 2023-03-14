@@ -8,15 +8,17 @@ import AddUpdate from '../../components/User/add-update'
 const {Column} = Table;
 const {confirm} = Modal;
 
+
+
+/***--- 用户管理 ---**/
 class User extends Component {
     state = {
         loading: false,
         userList: [],
         roleList: [],
         isModalVisible: false,
-        titleName: "",
-        //需要修改的数据
-        user: {}
+        titleName: "", 
+        user: {}  // 需要修改的数据
     }
 
     componentDidMount() {
@@ -45,9 +47,7 @@ class User extends Component {
             confirm({
                 icon: <ExclamationCircleOutlined/>,
                 content: '确定要删除？',
-                onOk: () => {
-                    // console.log(id)
-                    // return
+                onOk: () => { 
                     del({userId: id}).then(res => {
                         if (res.status === 0) {
                             message.success("删除成功")
@@ -60,15 +60,16 @@ class User extends Component {
     }
 
     //取消事件
-    handleCancel = () => {/* console.log(123);return; */ this.setState({isModalVisible: false}) }
+    handleCancel = () => {  this.setState({isModalVisible: false, user: {}}) }
+
+
+
+
 
     render() {
         const title = (
             <span>
-                <Button
-                    type="primary"   
-                    onClick={() => this.setState({isModalVisible: true, titleName: '添加用户'})}
-                >
+                <Button type="primary" onClick={() => this.setState({isModalVisible: true, titleName: '添加用户'})}> 
                     创建用户
                 </Button>
             </span>
@@ -80,11 +81,12 @@ class User extends Component {
             <div>
                 <Card title={title} style={{width: '100%', height: '100%'}}>
                     <Table bordered pagination={{
-                        defaultPageSize: 3,
-                        showQuickJumper: true,
-                        showSizeChanger: true,
-                        pageSizeOptions: [5, 10, 15, 20, 100],
-                    }} loading={loading} dataSource={userList} rowKey="_id">
+                            defaultPageSize: 3,
+                            showQuickJumper: true,
+                            showSizeChanger: true,
+                            pageSizeOptions: [5, 10, 15, 20, 100],
+                        }} loading={loading} dataSource={userList} rowKey="_id"
+                    >
                         <Column align={"center"} title="用户名" dataIndex="username" key="username"/>
                         <Column align={"center"} title="邮箱" dataIndex="email" key="email"/>
                         <Column align={"center"} title="电话" dataIndex="phone" key="phone"/>
@@ -99,17 +101,19 @@ class User extends Component {
                             key="action"
                             render={(user, record) => (
                                 <Space size="middle">
-                                    <Button type="link" onClick={() => this.setState({
-                                        isModalVisible: true,
-                                        titleName: '修改用户',
-                                        user
-                                    })}>修改</Button>
+                                    <Button 
+                                        type="link" 
+                                        onClick={() => this.setState({isModalVisible:true, titleName: '修改用户', user})}
+                                    >
+                                        修改
+                                    </Button>
                                     <Button onClick={this.del(user._id)} type="link">删除</Button>
                                 </Space>
                             )}
                         />
                     </Table>
                 </Card>
+
                 <Modal destroyOnClose title={titleName} footer={null} visible={isModalVisible}
                        onCancel={this.handleCancel}
                 >

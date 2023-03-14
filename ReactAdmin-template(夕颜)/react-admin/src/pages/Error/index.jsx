@@ -11,7 +11,7 @@ class Error extends Component {
     render() {
         return (
             <div>
-                <div class="app-container">
+                <div className="app-container">
                     <Row>
 
                         <Col span={12}>

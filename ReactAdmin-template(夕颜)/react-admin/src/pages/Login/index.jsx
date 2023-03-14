@@ -7,12 +7,17 @@ import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {connect} from 'react-redux'
 import {doLogin} from '../../redux/actions'
 
+
+
 class Login extends Component {
     onFinish = (user) => {
+        // console.log(user) // {。username: 'admin', password: 'admin'}
+        // return
         this.props.doLogin(user);
     }
 
     render() {
+        // console.log(this.props)
         //如果用户已经登录跳转到主页
         if (this.props.user) {
             return <Redirect to="/"></Redirect>
@@ -29,7 +34,7 @@ class Login extends Component {
                         <Form
                             name="normal_login"
                             className="login-form"
-                            initialValues={{remember: true}}
+                            initialValues={{ remember: true }}
                             onFinish={this.onFinish}
                         >
                             <Form.Item
@@ -71,9 +76,4 @@ class Login extends Component {
     }
 }
 
-export default connect(
-    state => ({
-        user: state.user,
-    }),
-    {doLogin}
-)(Login);
+export default connect( state => ({user: state.user }),{doLogin} )(Login);

@@ -8,13 +8,14 @@ class Pie extends Component {
         stores: [15, 12, 6, 20, 15, 20]
     }
     update = () => {
-        this.setState((state) => ({
-            sales: state.sales.map(sale => sale + 1),
-            stores: state.stores.map(store => store - 1)
-        }))
+        // this.setState((state) => ({
+        //     sales: state.sales.map(sale => sale + 1),
+        //     stores: state.stores.map(store => store - 1)
+        // }))
     }
     getOption = () => {
         return {
+            // 标题
             title: {
                 text: '某站点用户访问来源',
                 subtext: '纯属虚构',
@@ -40,6 +41,7 @@ class Pie extends Component {
                         {value: 300, name: '视频广告'}
                     ],
                     emphasis: {
+                        // item样式
                         itemStyle: {
                             shadowBlur: 10,
                             shadowOffsetX: 0,

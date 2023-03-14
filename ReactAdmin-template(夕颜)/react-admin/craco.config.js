@@ -1,4 +1,4 @@
-//antd的主题配置
+//antd 的主题配置
 const CracoLessPlugin = require('craco-less');
 
 module.exports = {

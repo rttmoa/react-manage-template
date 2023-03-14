@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import './index.less'
 
 class Home extends Component {
@@ -7,6 +8,7 @@ class Home extends Component {
         // console.log(new Date(new Date())); // Mon Nov 07 2022 13:22:25 GMT+0800 (中国标准时间)
         // let time  =new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
         // console.log(time)
+        // console.log(this)
         return (
             <div className="box">
                 <div className="title">
@@ -16,5 +18,10 @@ class Home extends Component {
         );
     }
 }
-
-export default Home;
+function mapStateToProps(state) {
+    return state
+}
+function mapDispatchToProps() {
+      return {}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
