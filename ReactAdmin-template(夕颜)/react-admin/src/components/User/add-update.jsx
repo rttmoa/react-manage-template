@@ -5,6 +5,7 @@ import {add, update} from '../../api/user'
 const {Option} = Select;
 
 class AddUpdate extends Component {
+    
     onFinish = (data) => {
         // console.log(data)
         // return
@@ -99,7 +100,7 @@ class AddUpdate extends Component {
                                     <Option key={role._id} value={role._id}>{role.name}</Option>
                                 )
                             })
-                        }
+                        }   
                     </Select>
                 </Form.Item>
                 <Form.Item wrapperCol={{offset: 4, span: 20}}>

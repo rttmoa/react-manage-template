@@ -7,6 +7,8 @@ import PicturesWall from "./pictures-wall";
 import PubSub from 'pubsub-js'
 import RichTextEditor from "./rich-text-editor";
 
+
+
 class ProductUpdate extends Component {
 
     state = {
@@ -20,7 +22,7 @@ class ProductUpdate extends Component {
         this.init();
     }
 
-    //初始化一级列表
+    // 初始化一级列表
     init = () => {
         list(0).then(res => {
             if (res.status === 0) {
