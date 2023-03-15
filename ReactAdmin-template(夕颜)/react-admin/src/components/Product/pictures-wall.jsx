@@ -18,7 +18,7 @@ class PicturesWall extends Component {
         super(props);
         //修改的时候显示图片
         let fileList = []
-        const {imgs} = this.props
+        const {imgs} = this.props;
         if (imgs && imgs.length > 0) {
             fileList = imgs.map(img => {
                 return {

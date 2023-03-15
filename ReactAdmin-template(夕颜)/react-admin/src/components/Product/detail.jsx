@@ -7,6 +7,10 @@ import './index.less'
 
 
 
+
+
+
+
 class ProductDetail extends Component {
     state = {
         categoryName: "",
@@ -17,7 +21,7 @@ class ProductDetail extends Component {
     constructor(props) {
         super(props);
         const {categoryId, pCategoryId} = this.props.location.state.category;
-        //后台查询分类名称   由于如果上级是一级就不需要查找了
+        // 后台查询分类名称   由于如果上级是一级就不需要查找了
         if (pCategoryId === "0") {
             info(categoryId).then(res => {
                 this.setState({categoryName: res.data.name})
@@ -32,6 +36,9 @@ class ProductDetail extends Component {
         }
     }
 
+
+
+
     render() {
         const {category} = this.props.location.state;
         const {categoryName, pCategoryName} = this.state;
@@ -45,8 +52,7 @@ class ProductDetail extends Component {
         )
         return (
             <Card title={title} className="product-detail">
-                <List
-                    bordered>
+                <List bordered>
                     <List.Item>
                         <span className="left">商品名称:</span>
                         <span>{category.name}</span>
@@ -68,14 +74,18 @@ class ProductDetail extends Component {
                         {
                             category.imgs.map(img => {
                                 return (
-                                    <span key={img}><img alt={img}
-                                                         style={{
-                                                             width: 150,
-                                                             height: 150,
-                                                             marginRight: 10,
-                                                             border: '1px solid #002140'
-                                                         }}
-                                                         src={`http://localhost:5000/upload/${img}`}/></span>
+                                    <span key={img}>
+                                        <img 
+                                            alt={img}
+                                            style={{
+                                                width: 150,
+                                                height: 150,
+                                                marginRight: 10,
+                                                border: '1px solid #002140'
+                                            }}
+                                            src={`http://localhost:5000/upload/${img}`}
+                                        />
+                                    </span>
                                 )
                             })
                         }
@@ -86,8 +96,7 @@ class ProductDetail extends Component {
                     </List.Item>
                 </List>
             </Card>
-        )
-            ;
+        );
     }
 }
 
