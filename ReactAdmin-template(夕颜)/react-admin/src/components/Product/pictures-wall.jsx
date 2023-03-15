@@ -3,6 +3,9 @@ import {Upload, message} from 'antd'
 import {upload, delUpload} from "../../api/upload";
 import PubSub from 'pubsub-js'
 
+
+
+
 /**
  * 图片上传
  */

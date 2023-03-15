@@ -64,7 +64,7 @@ class ProductHome extends Component {
             updateStatus({"productId": _id, "status": status}).then(res => {
                 if (res.status === 0) {
                     message.success("操作成功")
-                    this.init();
+                    this.init();    
                 }
             })
         }
