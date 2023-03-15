@@ -5,6 +5,13 @@ import {list, search, updateStatus} from '../../api/product'
 
 const {Column} = Table;
 
+
+
+
+/***--- 产品首页 包含功能  1、添加商品 2、修改商品 3、查看详情 4、上下架/搜索 ---**/
+// 跳转新增页
+// 跳转修改页
+// 跳转详情页
 class ProductHome extends Component {
     state = {
         loading: false,
@@ -35,8 +42,8 @@ class ProductHome extends Component {
     //搜索
     search = () => {
         setTimeout(() => {
-            this.setState({loading: true, productValue: this.productValueNode.state.value}, () => {
-                const {pageSize, pageNum, productType, productValue} = this.state
+            this.setState({loading: true, productValue: this.productValueNode.state.value}, () => { // setState先设置，回调中执行搜索接口
+                const {pageSize, pageNum, productType, productValue} = this.state;
                 search(pageNum, pageSize, productType, productValue).then(res => {
                     this.setState({productList: res.data.list, total: res.data.total})
                     this.setState({loading: false})
@@ -63,60 +70,69 @@ class ProductHome extends Component {
         }
     }
 
+
+
+
     render() {
-        const {loading, productList, total, productValue, pageSize, productType} = this.state
+        const {loading, productList, total, productValue, pageSize, productType} = this.state;
         const title = (
             <span>
-                 <Select defaultValue={productType} style={{width: 150}}
-                         onChange={value => this.setState({productType: value})}>
+                <Select defaultValue={productType} style={{width: 150}}
+                    onChange={value => this.setState({productType: value})}
+                >
                     <Select.Option value="productName">按名称搜索</Select.Option>
                     <Select.Option value="productDesc">按描述搜索</Select.Option>
-                 </Select>
-                 <Input ref={c => this.productValueNode = c} placeholder={"输入关键字"}
-                        style={{width: 150, margin: '0 15px'}}></Input>
+                </Select>
+                <Input ref={c => this.productValueNode = c} placeholder={"输入关键字"} style={{width: 150, margin: '0 15px'}}></Input>
                 <Button onClick={this.search} type="primary">搜索</Button>
             </span>
         )
         return (
             <div>
-                <Card title={title}
-                      extra={<Button icon={<SaveOutlined/>}
-                                     onClick={() => this.props.history.push("/product/addUpdate?title=添加")}
-                                     type="primary">添加商品</Button>}
-                      style={{width: '100%', height: '100%'}}>
-                    <Table bordered pagination={{
-                        defaultPageSize: pageSize,
-                        showQuickJumper: true,
-                        showSizeChanger: true,
-                        pageSizeOptions: [5, 10, 15, 20],
-                        total,
-                        /*
-                        * 页码或 pageSize 改变的回调，参数是改变后的页码及每页条数
-                         */
-                        onChange: (pageNum, pageSize) => {
-                            this.setState({pageNum}, () => {
-                                if (productValue !== "") {
-                                    this.search()
-                                } else {
-                                    this.init();
-                                }
-                            })
-                        }
-                    }} loading={loading} dataSource={productList} rowKey="_id">
+                <Card title={title} style={{width: '100%', height: '100%'}}
+                    extra={<Button icon={<SaveOutlined/>} type="primary"
+                                onClick={() => this.props.history.push("/product/addUpdate?title=添加")} >添加商品</Button> 
+                }>
+                    <Table 
+                        bordered 
+                        pagination={{
+                            defaultPageSize: pageSize,
+                            showQuickJumper: true,
+                            showSizeChanger: true,
+                            pageSizeOptions: [5, 10, 15, 20],
+                            total,
+                            /*
+                            * 页码或 pageSize 改变的回调，参数是改变后的页码及每页条数
+                            */
+                            onChange: (pageNum, pageSize) => {
+                                this.setState({pageNum}, () => {
+                                    if (productValue !== "") {
+                                        this.search()
+                                    } else {
+                                        this.init();
+                                    }
+                                })
+                            }
+                        }} 
+                        loading={loading}
+                        dataSource={productList} 
+                        rowKey="_id"
+                    >
                         <Column align={"center"} title="商品名称" dataIndex="name" key="name"/>
                         <Column align={"center"} title="商品描述" dataIndex="desc" key="desc"/>
                         <Column align={"center"} title="价格" dataIndex="price" key="price"
-                                render={(price) => '￥' + price}/>
+                            render={(price) => '￥' + price}/>
                         <Column align={"center"} width={100} title="状态" dataIndex="status" key="status"
-                                render={(status, product) => {
-                                    return (
-                                        <span>
-                                    <Button type="primary"
-                                            onClick={this.handUpdateStatus(product)}>{status === 1 ? '下架' : '上架'}</Button>
-                                    <span>{status === 1 ? '在售' : '已下架'}</span>
-                                </span>
-                                    )
-                                }}/>
+                            render={(status, product) => {
+                                return (
+                                    <span>
+                                        <Button type="primary" onClick={this.handUpdateStatus(product)} >
+                                                {status === 1 ? '下架' : '上架'}
+                                        </Button>
+                                        <span>{status === 1 ? '在售' : '已下架'}</span>
+                                    </span>
+                                )
+                            }}/>
                         <Column
                             align={"center"}
                             width="100px"
@@ -124,10 +140,8 @@ class ProductHome extends Component {
                             key="action"
                             render={(category, record) => (
                                 <Space size="middle">
-                                    <Button type="link"
-                                            onClick={() => this.props.history.replace("/product/detail", {category})}>详情</Button>
-                                    <Button type="link"
-                                            onClick={() => this.props.history.push("/product/addUpdate?title=修改", {category})}>修改</Button>
+                                    <Button type="link" onClick={() => this.props.history.replace("/product/detail", {category})}>详情</Button>
+                                    <Button type="link" onClick={() => this.props.history.push("/product/addUpdate?title=修改", {category})}>修改</Button>
                                 </Space>
                             )}
                         />

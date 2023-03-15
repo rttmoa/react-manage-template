@@ -135,6 +135,7 @@ class Category extends Component {
                         <Column
                             width="300px"
                             title="操作"
+                            align={"center"}
                             key="action"
                             render={(category, record) => (
                                 <Space size="middle">

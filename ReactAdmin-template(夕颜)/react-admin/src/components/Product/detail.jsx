@@ -4,6 +4,9 @@ import {ArrowLeftOutlined} from "@ant-design/icons";
 import {info} from '../../api/category'
 import './index.less'
 
+
+
+
 class ProductDetail extends Component {
     state = {
         categoryName: "",
