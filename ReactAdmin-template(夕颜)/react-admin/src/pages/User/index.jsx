@@ -103,7 +103,7 @@ class User extends Component {
                                 <Space size="middle">
                                     <Button 
                                         type="link" 
-                                        onClick={() => this.setState({isModalVisible:true, titleName: '修改用户', user})}
+                                        onClick={() => this.setState({isModalVisible: true, titleName: '修改用户', user})}
                                     >
                                         修改
                                     </Button>

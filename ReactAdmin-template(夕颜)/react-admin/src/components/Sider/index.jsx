@@ -12,6 +12,7 @@ const {SubMenu} = Menu;
 
 
 
+/***--- 侧边栏 ---**/
 class SiderNav extends Component {
     /**
      * 根据menu的数据数组生成对应的标签按钮
@@ -51,7 +52,7 @@ class SiderNav extends Component {
         })
     }
 
-    //判断当前登录用户是否有哪些显示权限菜单
+    // 判断当前登录用户是否有哪些显示权限菜单
     hasAuth = (item) => {
         //menuList里面的key
         const {isPublic, key} = item
@@ -84,7 +85,7 @@ class SiderNav extends Component {
 
     render() {
         //当前选择的路由路径
-        let pathname = this.props.location.pathname
+        let pathname = this.props.location.pathname;
         //得到需要展开的菜单项key
         const openKey = this.openKey;
 

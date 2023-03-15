@@ -1,15 +1,5 @@
-import {
-    HomeOutlined,
-    PieChartOutlined,
-    AreaChartOutlined,
-    SafetyOutlined,
-    AppstoreOutlined,
-    LineChartOutlined,
-    BarsOutlined,
-    ToolOutlined,
-    UserOutlined,
-    BarChartOutlined
-} from "@ant-design/icons";
+import {   HomeOutlined,    PieChartOutlined,    AreaChartOutlined,    SafetyOutlined,    AppstoreOutlined,    LineChartOutlined,
+    BarsOutlined,    ToolOutlined,    UserOutlined,    BarChartOutlined  } from "@ant-design/icons";
 
 /**
  * 路由列表

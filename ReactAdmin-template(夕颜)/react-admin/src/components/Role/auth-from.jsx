@@ -10,13 +10,7 @@ import {doLogout} from '../../redux/actions'
 
 
 /***--- 设置角色权限 树结构 ---**/
-class AuthFrom extends Component {
-
-    state = {
-        checkedKeys: [],
-        roleName: ""
-    }
-
+class AuthFrom extends Component { 
     // 初始化
     constructor(props) {// props 中可以从 Redux 中获取数据
         super(props);
@@ -25,7 +19,10 @@ class AuthFrom extends Component {
         this.state.checkedKeys = props.rowRole.menus;
         this.state.roleName = props.rowRole.name;
     }
-
+    state = {
+        checkedKeys: [],
+        roleName: ""
+    }
     // 修改事件
     auth = () => {
         // console.log(this.props.user,  this.props.rowRole._id)

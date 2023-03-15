@@ -30,6 +30,7 @@ export function update(data) {
 
 //删除
 export function del(data) {
+    // console.log(data) // {userId: '5fd09192efe9692bd0dd40de'}
     return request({
         url: '/manage/user/delete',
         method: 'post',
