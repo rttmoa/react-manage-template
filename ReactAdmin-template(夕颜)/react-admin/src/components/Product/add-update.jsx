@@ -9,6 +9,8 @@ import RichTextEditor from "./rich-text-editor";
 
 
 
+
+
 class ProductUpdate extends Component {
 
     state = {
@@ -82,7 +84,7 @@ class ProductUpdate extends Component {
             })
         }
     }
-    //异步加载二级数据
+    //异步加载二级数据 - 商品分类
     loadData = (selectedOptions) => {
         const targetOption = selectedOptions[selectedOptions.length - 1];
         targetOption.loading = true;
@@ -109,17 +111,25 @@ class ProductUpdate extends Component {
         }, 1000);
     }
 
+
+
+
+
+
     render() {
-        const {search} = this.props.location
-        const {title} = qs.parse(search.slice(1))
-        let {category} = this.props.location.state || {};
-        //处理添加的时候出现category是undefined
+        const {search} = this.props.location; // {hash:"", key:"pb43it", pathname:"/product/addUpdate", search: "?title=修改"} 
+        const {title} = qs.parse(search.slice(1)) // title="修改" - 变成对象格式 - {title: '修改'} 
+        let {category} = this.props.location.state || {}; // 路由传递的 通过state接收
+        
+        // 处理添加的时候出现category是undefined
         if (category === undefined) {
             category = {}
         }
+        // console.log(!!category)
         const categoryId = [];
         categoryId.push(category.pCategoryId)
         categoryId.push(category.categoryId)
+        // console.log(categoryId) // ['5e12b8bce31bb727e4b0e348', '5fc74b650dd9b10798413162']
         const titleMenu = (
             <span>
                 <Button onClick={() => this.props.history.replace("/product")} type="link">
@@ -139,37 +149,22 @@ class ProductUpdate extends Component {
                         name: category.name,
                         desc: category.desc,
                         price: category.price,
-                        categoryId: categoryId
+                        categoryId: categoryId,
                     }}
                     onFinish={this.onFinish}
                 >
-                    <Form.Item
-                        hidden
-                        name="_id"
-                    >
-                        <Input/>
+                    <Form.Item hidden name="_id" >
+                        <Input />
                     </Form.Item>
 
-                    <Form.Item
-                        label="商品名称"
-                        name="name"
-                        rules={[{required: true, message: '商品名称不能为空!'}]}
-                    >
+                    <Form.Item label="商品名称" name="name" rules={[{required: true, message: '商品名称不能为空!'}]} >
                         <Input placeholder={"请输入商品名称"}/>
                     </Form.Item>
 
-                    <Form.Item
-                        label="商品描述"
-                        name="desc"
-                        rules={[{required: true, message: '商品描述不能为空!'}]}
-                    >
+                    <Form.Item label="商品描述" name="desc" rules={[{required: true, message: '商品描述不能为空!'}]} >
                         <Input.TextArea autoSize={{minRows: 2, maxRows: 6}}/>
                     </Form.Item>
-                    <Form.Item
-                        label="商品价格"
-                        name="price"
-                        rules={[{required: true, message: '商品价格不能为空!'},
-                            {
+                    <Form.Item label="商品价格" name="price" rules={[{required: true, message: '商品价格不能为空!'}, {
                                 validator: (_, value, callback) => {
                                     if (value <= 0) {
                                         return Promise.reject(new Error('金额不能低于0元'));
@@ -181,29 +176,19 @@ class ProductUpdate extends Component {
                     >
                         <Input type="number" addonAfter="元"/>
                     </Form.Item>
-                    <Form.Item
-                        label="商品分类"
-                        name="categoryId"
-                        rules={[{required: true, message: '商品分类不能为空!'}]}
-                    >
+                    <Form.Item label="商品分类" name="categoryId" rules={[{required: true, message: '商品分类不能为空!'}]} >
                         <Cascader options={this.state.options} loadData={this.loadData}/>
                     </Form.Item>
-                    <Form.Item
-                        label="商品图片"
-                        name="imgs"
-                    >
+                    <Form.Item label="商品图片" name="imgs" >
+                        {/* 图片上传、预览、删除功能 */}
                         <PicturesWall imgs={category.imgs}/>
                     </Form.Item>
-                    <Form.Item wrapperCol={{span: 20}}
-                               label="商品详情"
-                               name="detail"
-                    >
+                    <Form.Item wrapperCol={{span: 20}} label="商品详情" name="detail" >
+                        {/* 富文本编辑器组件 */}
                         <RichTextEditor detail={category.detail}/>
                     </Form.Item>
                     <Form.Item wrapperCol={{offset: 2, span: 8}}>
-                        <Button type="primary" htmlType="submit">
-                            {title}
-                        </Button>
+                        <Button type="primary" htmlType="submit">{title}</Button>
                     </Form.Item>
                 </Form>
             </Card>
