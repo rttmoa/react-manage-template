@@ -9,7 +9,7 @@ const {Column} = Table;
 
 
 
-
+/***--- 商品 --> 品类管理 ---**/
 class Category extends Component {
 
     state = {
@@ -97,6 +97,9 @@ class Category extends Component {
         this.setState({addIsModalVisible: false, updateIsModalVisible: false})
     }
 
+
+
+    
     render() {
         const {
             categoryList,

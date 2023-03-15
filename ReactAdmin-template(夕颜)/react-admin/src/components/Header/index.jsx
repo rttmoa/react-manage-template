@@ -69,21 +69,24 @@ class HeaderNav extends Component {
         );
         return (
             <Header className="site-layout-background" style={{padding: 0}}>
-                {React.createElement(this.props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                    className: 'trigger',
-                    onClick: this.toggle,
-                })}
+                {/* 这是创建的发布订阅按钮 */}
+                {
+                    React.createElement(this.props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                        className: 'trigger',
+                        onClick: this.toggle,
+                    })
+                }
                 <div className="logout">
                     <span>
                         {i18next.t("welcome")}{this.props.user.username}
                         <Button onClick={this.logout} type="link">
-                        {i18next.t("logout")}
+                            {i18next.t("logout")}
                         </Button>
                         <Dropdown overlay={menu}>
-                        <Button type="link" className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                          {this.state.locale} <DownOutlined/>
-                        </Button>
-                      </Dropdown>
+                            <Button type="link" className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                {this.state.locale} <DownOutlined/>
+                            </Button>
+                        </Dropdown>
                     </span>
                 </div>
             </Header>

@@ -16,7 +16,7 @@ import User from "../User";
 import Bar from "../Charts/bar";
 import Line from "../Charts/line";
 import Pie from "../Charts/pie";
-import {getUser} from '../../utils/storaUtil'
+import {getUser} from '../../utils/storaUtil';
 import Error from "../Error";
 
 
@@ -81,9 +81,9 @@ class Admin extends Component {
                                 {/*配置404页面*/}
                                 <Route component={Error}></Route>
                             </Switch>
-                        </ContentNav>
+                        </ContentNav >
                         
-                        <FooterNav/>
+                        <FooterNav />
 
                     </Layout>
                 </Layout>

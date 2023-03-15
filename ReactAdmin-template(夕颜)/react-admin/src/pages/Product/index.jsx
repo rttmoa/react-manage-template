@@ -3,6 +3,10 @@ import {Route, Switch} from "react-router-dom";
 import ProductHome from "../../components/Product/home";
 import ProductAddUpdate from "../../components/Product/add-update";
 import ProductDetail from "../../components/Product/detail";
+
+
+
+/***--- 商品 --> 商品管理 ---**/
 class Product extends Component {
     render() {
         return (
