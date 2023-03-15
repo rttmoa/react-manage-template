@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Form, Input} from "antd";
 import PropTypes from 'prop-types'
 
+
+
+/***--- 修改分类 - 分类名称默认值是 表单的初始值 ---**/
 class UpdateFrom extends Component {
     static propTypes = {
         category: PropTypes.object.isRequired,
@@ -22,9 +25,11 @@ class UpdateFrom extends Component {
                     name='name'
                     rules={[{required: true, message: '请输入分类名称!'}]}
                 >
-                    {/*通过函数回调子给父传递数据*/}
-                    <Input onChange={event => getFromDate({categoryId: _id, categoryName: event.target.value})}
-                           placeholder="请输入分类名称"/>
+                    {/* 通过函数回调子给父传递数据 - 如果输入就回调 */}
+                    <Input
+                        onChange={event => getFromDate({categoryId: _id, categoryName: event.target.value})}
+                        placeholder="请输入分类名称"
+                    />
                 </Form.Item>
             </Form>
         );
