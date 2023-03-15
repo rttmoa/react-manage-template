@@ -11,6 +11,9 @@ import Cookie from "js-cookie";
 
 const {Header} = Layout;
 
+
+
+
 class HeaderNav extends Component {
     state = {
         locale: ""
@@ -88,7 +91,4 @@ class HeaderNav extends Component {
     }
 }
 
-export default connect(
-    state => ({user: state.user}),
-    {doLogout}
-)(withRouter(HeaderNav));
+export default connect(state => ({user: state.user}),{doLogout})(withRouter(HeaderNav));

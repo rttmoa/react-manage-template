@@ -19,7 +19,6 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 
 该项目采用前后端分离技术，前端使用React全家桶，项目整体框架使用dva，dva是一个将redux、redux-saga 和 react-router 等进行封装的前端框架，方便项目配置及代码管理；后端使用express + mongoose 进行后端业务处理及数据库操作。`<br>`
 
-
 ## 实现功能
 
 1、用户登录功能, Cookie, Redux
@@ -28,3 +27,7 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 4 `.` 物资管理功能 `<br>`
 5 `.` 结算管理功能 `<br>`
 6 `.` 账单管理功能，包括：客户对账管理、供应商对账管理 `<br>`
+
+7、每个角色查看页面的权限（Slide）
+
+8、头部使用发布订阅模式开启或关闭侧边栏+系统语言使用中英文版本（Header）

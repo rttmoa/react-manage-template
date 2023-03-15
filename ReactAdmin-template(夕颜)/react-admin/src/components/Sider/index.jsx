@@ -27,6 +27,7 @@ class SiderNav extends Component {
             if (this.hasAuth(item)) {
                 if (!item.children) {
                     return (
+                        // 一级菜单
                         <Menu.Item key={item.key} icon={item.icon}>
                             <Link to={item.key}>
                                 {item.title}
@@ -41,6 +42,7 @@ class SiderNav extends Component {
                         this.openKey = item.key;
                     }
                     return (
+                        // 二级菜单 - 子菜单
                         <SubMenu key={item.key} icon={item.icon} title={item.title}>
                             {
                                 this.getMenuNodes(item.children)
@@ -55,7 +57,7 @@ class SiderNav extends Component {
     // 判断当前登录用户是否有哪些显示权限菜单
     hasAuth = (item) => {
         //menuList里面的key
-        const {isPublic, key} = item
+        const {isPublic, key} = item;
         //获取登录用户的权限
         const menus = getUser().role.menus;
         const username = getUser().username;
@@ -79,7 +81,6 @@ class SiderNav extends Component {
      */
     constructor(props) {
         super(props);
-        // console.log()
         this.menuNodes = this.getMenuNodes(menuList);
     }
 
