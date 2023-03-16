@@ -45,6 +45,7 @@ class PicturesWall extends Component {
         let fd = new FormData();
         fd.append("image", file); //传文件
         upload(fd).then(res => {
+            // console.log(res)
             if (res.status === 0) {
                 this.setState({fileList: [res.data, ...this.state.fileList]}, () => {
                     //发布给form进行收集数据

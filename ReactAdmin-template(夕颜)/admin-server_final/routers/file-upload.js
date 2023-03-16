@@ -50,8 +50,7 @@ module.exports = function fileUpload(router) {
           name: file.filename,
           url: 'http://localhost:5000/upload/' + file.filename
         }
-      })
-
+      }) 
     })
   })
 
