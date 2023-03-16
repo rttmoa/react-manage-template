@@ -3,7 +3,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  mode:"production",
+  mode: 'production',
   entry: {
     vendor: [
       // '@babel/polyfill',
@@ -29,8 +29,8 @@ module.exports = {
   performance: false,
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns:[path.join(__dirname, '../app/resource/dll')],
-      verbose:true,
+      cleanOnceBeforeBuildPatterns: [path.join(__dirname, '../app/resource/dll')],
+      verbose: true,
     }),
     // 定义环境变量为开发环境
     new webpack.DefinePlugin({
@@ -43,9 +43,7 @@ module.exports = {
       path: path.join(__dirname, '../app/resource/dll', '[name].manifest.json'),
       // This must match the output.library option above
       name: '[name]_[hash]',
-      context: __dirname
+      context: __dirname,
     }),
-    
-
-  ]
+  ],
 };

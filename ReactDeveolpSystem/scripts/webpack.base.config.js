@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HappyPack = require('happypack')
 const os = require('os')
+
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 const devMode = process.env.NODE_ENV !== 'production'
 function resolve(relatedPath) {
@@ -49,7 +50,7 @@ const webpackConfigBase = {
       name: 'runtime'
     },
     splitChunks: {
-      chunks: "all", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
+      chunks: 'all', // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
       minSize: 30000, // 模块超过30k自动被抽离成公共模块
       minChunks: 1, // 模块被引用>=1次，便分割
       name: true, // 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function
@@ -93,7 +94,7 @@ const webpackConfigBase = {
           priority: 16,
           reuseExistingChunk: true,
         },
-        "draft-js": {
+        'draft-js': {
           test: /[\\/]node_modules[\\/]draft-js/,
           name: 'draft-js',
           priority: 18,
@@ -158,9 +159,9 @@ const webpackConfigBase = {
     }),
 
     new HappyPack({
-      //用id来标识 happypack处理那里类文件
+      // 用id来标识 happypack处理那里类文件
       id: 'happyBabel',
-      //如何处理  用法和loader 的配置一样
+      // 如何处理  用法和loader 的配置一样
       loaders: [{
         loader: 'babel-loader',
         options: {
@@ -168,15 +169,15 @@ const webpackConfigBase = {
           cacheDirectory: true // 启用缓存
         }
       }],
-      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      // 代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
       threadPool: happyThreadPool,
-      //允许 HappyPack 输出日志
+      // 允许 HappyPack 输出日志
       verbose: false,
     }),
     new HappyPack({
-      //用id来标识 happypack处理那里类文件
+      // 用id来标识 happypack处理那里类文件
       id: 'happyStyle',
-      //如何处理  用法和loader 的配置一样
+      // 如何处理  用法和loader 的配置一样
       loaders: [
         {
           loader: 'css-loader',

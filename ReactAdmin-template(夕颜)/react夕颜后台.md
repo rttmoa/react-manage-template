@@ -8,7 +8,7 @@
 
 ## 项目技术栈
 
-react + redux + react-router-dom + antd +cookie
+react + redux + react-router-dom + antd +cookie+publish
 
 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack `<br>`
 前端脚手架：[dva](https://github.com/dvajs/dva) `<br>`

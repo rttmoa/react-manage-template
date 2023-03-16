@@ -1,4 +1,3 @@
-
 const webpack = require('webpack')
 const path = require('path')
 const merge = require('webpack-merge')
@@ -7,13 +6,14 @@ const Copy = require('copy-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const TerserJSPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 function resolve(relatedPath) {
   return path.join(__dirname, relatedPath)
 }
 
+// 打包 && npm run build
 const webpackConfigProd = {
   mode: 'production',
   output: {
@@ -34,7 +34,7 @@ const webpackConfigProd = {
           },
         },
       }),
-    ]
+    ],
   },
   plugins: [
     // 定义环境变量为开发环境
@@ -42,7 +42,7 @@ const webpackConfigProd = {
       'process.env.NODE_ENV': JSON.stringify('production'),
       IS_DEVELOPMETN: false,
     }),
-    // 将打包后的资源注入到html文件内    
+    // 将打包后的资源注入到html文件内
     new HtmlWebpackPlugin({
       // inject: true, // will inject the main bundle to index.html
       template: resolve('../app/index.html'),

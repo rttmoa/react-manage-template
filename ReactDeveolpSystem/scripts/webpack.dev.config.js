@@ -14,7 +14,8 @@ try {
   selfIp = 'localhost'
 }
 
-const PORT = 8888
+const PORT = 3009;
+
 // 精确的获取本机ip地址
 function getIpAddress () {
   const interfaces = require('os').networkInterfaces
