@@ -20,7 +20,7 @@ class ProductDetail extends Component {
     //render之前执行的构造方法
     constructor(props) {
         super(props);
-        const {categoryId, pCategoryId} = this.props.location.state.category;
+        const {categoryId, pCategoryId} = this.props.location.state.category; // 通过 history.push("/product/detail", {category}) 传递过来的
         // 后台查询分类名称   由于如果上级是一级就不需要查找了
         if (pCategoryId === "0") {
             info(categoryId).then(res => {
@@ -41,7 +41,7 @@ class ProductDetail extends Component {
 
     render() {
         const {category} = this.props.location.state;
-        const {categoryName, pCategoryName} = this.state;
+        const {categoryName, pCategoryName} = this.state; // 一级分类  二级分类
         const title = (
             <span>
                 <Button onClick={() => this.props.history.replace("/product")} type="link">
@@ -60,7 +60,7 @@ class ProductDetail extends Component {
                     <List.Item>
                         <span className="left">商品描述:</span>
                         <span>{category.desc}</span>
-                    </List.Item>
+                    </List.Item>    
                     <List.Item>
                         <span className="left">商品价格:</span>
                         <span>{category.price}</span>
@@ -75,7 +75,7 @@ class ProductDetail extends Component {
                             category.imgs.map(img => {
                                 return (
                                     <span key={img}>
-                                        <img 
+                                        <img
                                             alt={img}
                                             style={{
                                                 width: 150,

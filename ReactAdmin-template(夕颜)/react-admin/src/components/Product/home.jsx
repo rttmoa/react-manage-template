@@ -53,7 +53,7 @@ class ProductHome extends Component {
     }
     //上下架
     handUpdateStatus = (product) => {
-        let {status, _id} = product
+        let {status, _id} = product;
         return () => {
             //判断如果是上架那么修改的状态就需要改成下架
             if (status === 1) {
