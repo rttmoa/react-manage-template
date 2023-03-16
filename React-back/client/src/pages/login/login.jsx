@@ -5,8 +5,13 @@ import storageUtils from '../../utils/storageUtils.js'
 import md5 from 'md5'
 import './login.less'
 import memoryUtils from '../../utils/memoryUtils'
+
+
+
+
 /* 登录的路由组件 */
 class Login extends Component {
+
     handleSubmit = (e)=>{
         e.preventDefault();
         this.props.form.validateFields(async (err, values) => {
@@ -26,7 +31,7 @@ class Login extends Component {
             }else{
                 console.log("校验失败!!");
             }
-          });
+        });
         // const form = this.props.form;
         // const value = form.getFieldsValue();
         // console.log(value);
@@ -95,7 +100,10 @@ class Login extends Component {
                         <Form.Item>
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 Log in
-                            </Button>                       
+                            </Button>  
+                            {/* <Button type="primary" htmlType="submit" className="login-form-button">
+                                注册个Admin
+                            </Button>                      */}
                         </Form.Item>
                     </Form>
                 </section>

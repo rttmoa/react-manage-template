@@ -4,7 +4,7 @@ import ajax from './ajax'
 
 const BASE = '';
 // 登录
-export const reqLogin = (username,password)=> ajax(BASE+'/login',{username,password},'POST');
+export const reqLogin = (username,password)=> ajax(BASE+'/login',{username, password},'POST');
 
 // 获取一级/二级分类的列表 
 export const reqCategorys = (parentId) =>ajax(BASE + '/manage/category/list',{parentId});
@@ -57,14 +57,14 @@ export const reqAddOrUpdateUser = (user)=> ajax(BASE+'/manage/user/'+(user._id?'
 
 // 更新用户
 // export const reqUpdateUser = (user)=> ajax(BASE+'/manage/user/update',user,'POST');
-/* 
-json请求的接口请求函数
-*/
+
+/*json请求的接口请求函数
+ */
 export const reqWeather = (city) =>{
     return new Promise((resolve,reject) =>{
         const url = `https://api.map.baidu.com/telematics/v3/weather?location=${city}&output=json&ak=3p49MVra6urFRGOT9s8UBWr2`;
         jsonp(url,{},(err,data)=>{
-            console.log('jsonp',err,data);
+            // console.log('jsonp',err,data);
             if(!err && data.status === 'success'){
                 const {dayPictureUrl,weather} = data.results[0].weather_data[0]
                 resolve({dayPictureUrl,weather});

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('../bin/dbConfig');
 
+// console.log(config)
+
 class DB {
     constructor(){
         this.connection;
@@ -37,7 +39,7 @@ class DB {
     schema:约束文档
     */
     find({tableName,conditions,projecttion = null,options = null,schema}){
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject)=>{
             try {
                 this.connect().then(()=>{
                     let models = mongoose.model(tableName,schema);
@@ -74,11 +76,11 @@ class DB {
         });
     }
     /* 
-    tableName:集合名
-    conditions:查询条件
-    doc:修改后的对象
-    options:查询选项{skip:Number,limit:Number}
-    schema:约束文档
+        tableName:集合名
+        conditions:查询条件
+        doc:修改后的对象
+        options:查询选项{skip:Number,limit:Number}
+        schema:约束文档
     */
     update({tableName,conditions,doc,options = null,schema}){
         return new Promise((resolve,reject)=>{
@@ -100,9 +102,9 @@ class DB {
     }
 
     /* 
-    tableName:集合名
-    doc:新增的对象
-    schema:约束文档
+        tableName: 集合名
+        doc: 新增的对象
+        schema: 约束文档
     */
     insert({tableName,doc,schema}){
         return new Promise((resolve,reject)=>{
@@ -125,9 +127,9 @@ class DB {
     }
 
     /* 
-    tableName:集合名
-    conditions:查询条件
-    schema:约束文档
+        tableName:集合名
+        conditions:查询条件
+        schema:约束文档
     */
     delete({tableName,conditions,schema}){
         return new Promise((resolve,reject)=>{
@@ -149,9 +151,9 @@ class DB {
     }
 
     /* 
-    tableName:集合名
-    conditions:查询条件
-    schema:约束文档
+        tableName:集合名
+        conditions:查询条件
+        schema:约束文档
     */
     count({tableName,conditions,schema}){
         return new Promise((resolve,reject)=>{

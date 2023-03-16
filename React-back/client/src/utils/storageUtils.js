@@ -4,7 +4,7 @@ export default{
     // 存入localStorage
     saveUser(user){
         // localStorage.setItem(USER_KEY,JSON.stringify(user));
-        store.set(USER_KEY,user);
+        store.set(USER_KEY, user);
     },
     // 读取localStorage
     getUser(){

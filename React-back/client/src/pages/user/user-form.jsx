@@ -34,7 +34,7 @@ class UserForm extends Component {
                     }                    
                 </Item>
                     {
-                        user._id?null:(
+                        user._id ? null : (
                             <Item label='密码'>
                                 {
                                     getFieldDecorator('password',{

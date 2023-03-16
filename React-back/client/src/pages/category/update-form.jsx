@@ -11,7 +11,7 @@ class UpdateForm extends Component {
     }
     componentWillMount(){
         // 将form对象通过setForm()传递给父组件
-        console.log(this.props.form);
+        // console.log(this.props.form);
         this.props.setForm(this.props.form)
     }
     render() {
@@ -22,7 +22,7 @@ class UpdateForm extends Component {
                 <Item>
                     {
                         getFieldDecorator('categoryName',{
-                            initialValue:categoryName,
+                            initialValue: categoryName,
                             rules:[
                                 {required:true,message:'分类名称必须输入'}
                             ]

@@ -15,6 +15,8 @@ import Line from '../charts/line'
 import Pie from '../charts/pie'
 import NotFound from '../not-found/not-found'
 const {Footer,Sider,Content} = Layout;
+
+
 /* 后台管理的路由组件 */
 class Admin extends Component {
     render() {

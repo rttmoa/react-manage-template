@@ -34,7 +34,7 @@ app.use(koaBody({
 
 //静态资源处理
 app.use(require('koa-static')(__dirname + '/public'));
-console.log(__dirname);
+// console.log(__dirname);
 
 // routes definition
 app.use(users.routes(), users.allowedMethods());

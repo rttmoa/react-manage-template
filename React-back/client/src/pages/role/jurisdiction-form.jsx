@@ -16,7 +16,7 @@ export default class JurisdictionForm extends Component {
         const {menus} = this.props.role;
         // 根据传入的角色的menus生成初始状态
         this.state = {
-            checkedKeys:menus
+            checkedKeys: menus
         }
     }
 
@@ -26,11 +26,12 @@ export default class JurisdictionForm extends Component {
 
     /* 为父组件提交获取最新menus数据 */
     getMenus = ()=>this.state.checkedKeys;
+
     getTreeNodes = (menuList)=>{
         return menuList.reduce((pre,item)=>{
             pre.push(
                 <TreeNode title={item.title} key={item.key}>
-                    {item.children?this.getTreeNodes(item.children):null}
+                    {item.children ? this.getTreeNodes(item.children):null}
                 </TreeNode>
             );
             return pre;
@@ -47,7 +48,7 @@ export default class JurisdictionForm extends Component {
     componentWillReceiveProps(nextProps){
         const menus = nextProps.role.menus;
         this.setState({
-            checkedKeys:menus
+            checkedKeys: menus
         });
     }
 
