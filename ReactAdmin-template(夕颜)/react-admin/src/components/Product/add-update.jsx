@@ -3,9 +3,9 @@ import {Card, Button, Form, Input, Cascader, message} from 'antd'
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import qs from 'querystring'
 import {list, add, update} from '../../api/category'
-import PicturesWall from "./pictures-wall";
+import PicturesWall from "./pictures-wall";  // 图片上传功能
 import PubSub from 'pubsub-js'
-import RichTextEditor from "./rich-text-editor";
+import RichTextEditor from "./rich-text-editor";  // 富文本编辑器
 
 
 
@@ -15,8 +15,8 @@ class ProductUpdate extends Component {
 
     state = {
         options: [],
-        imgs: [],
-        content: ""
+        imgs: [], // 发布订阅 存储图片
+        content: "" // 发布订阅 存储富文本内容
     };
 
     constructor() {

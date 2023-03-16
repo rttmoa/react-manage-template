@@ -10,6 +10,7 @@ import PubSub from 'pubsub-js'
  * 图片上传
  */
 class PicturesWall extends Component {
+    
     state = {
         fileList: []
     }
@@ -25,13 +26,11 @@ class PicturesWall extends Component {
                     url: img
                 }
             })
-            this.state = {
-                fileList
-            }
+            this.state = { fileList }
         }
     }
 
-    //上传之前的钩子函数
+    /***--- 上传之前的钩子函数 ---**/
     beforeUpload = (file) => {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === "image/jpg" || file.type === "image/gif";
         if (!isJpgOrPng) {
@@ -57,7 +56,7 @@ class PicturesWall extends Component {
         return false;
     }
 
-    //点击删除按钮的回调
+    /***--- 点击删除按钮的回调 ---**/
     onRemove = (file) => {
         //先删除后台图片，在删除前台图片
         delUpload({name: file.name}).then(res => {
@@ -70,7 +69,7 @@ class PicturesWall extends Component {
             }
         })
     }
-    //图片预览事件
+    /***--- 图片预览事件 ---**/
     onPreview = async file => {
         let src = file.url;
         if (!src) {
@@ -90,7 +89,7 @@ class PicturesWall extends Component {
         return (
             <Upload
                 action=""
-                accept="image/*"  //类型
+                accept="image/*"  // 类型
                 listType="picture-card"
                 fileList={this.state.fileList}
                 beforeUpload={this.beforeUpload}
