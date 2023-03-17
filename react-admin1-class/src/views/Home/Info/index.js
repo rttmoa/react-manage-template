@@ -1,5 +1,7 @@
 import React from 'react'
 import {Row, Col, Card, Progress} from 'antd'
+
+
 export default () => (
 	<div className="info_wrapper">
 		<div className="info_header">
@@ -38,6 +40,10 @@ export default () => (
 				<li>
 					<span>NodeJs</span>
 					<Progress percent={30} />
+				</li>
+				<li>
+					<span>进度条组件"Progress" </span>
+					<Progress percent={1} />
 				</li>
 			</ul>
 		</div>

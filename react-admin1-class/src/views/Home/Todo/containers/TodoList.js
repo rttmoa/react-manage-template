@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Todo from '../components/Todo'
 import { toggleTodo } from 'views/Knowledge/Redux/actions/todo'
+
+
 const TodoList = ({ todos, onTodoClick }) => {
     return (
     <section className="todo-list">
@@ -32,7 +34,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     onTodoClick: toggleTodo
 }
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TodoList)
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList)
