@@ -4,6 +4,7 @@ import { Cookie, Local } from 'utils/storage'
 
 
 export default class extends React.Component {
+    
     render () {
         let {component: Component, ...rest} = this.props
         // 是否登录

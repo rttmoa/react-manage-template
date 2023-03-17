@@ -2,7 +2,9 @@ import { handleActions } from 'redux-actions'
 import { Local } from 'utils/storage'
 import {filterRoutes} from 'utils'
 
-/*silde开关*/
+
+
+/**--- silde开关 ---**/
 export const collapsed = handleActions({
     CHANGE_COLLAPSED: state => {
         state = !state
@@ -11,21 +13,23 @@ export const collapsed = handleActions({
     }
 }, Local.get('react_collapsed') || false)
 
-/*侧边栏打开的位置*/
+
+/**--- 侧边栏打开的位置 ---**/
 export const openKeys = handleActions({
     SET_OPENKEYS: (state, action) => {
-        return action.payload
+        // console.log("SET_OPENKEYS", action)
+        return action.payload;
     }
 }, [])
 
-/*面包屑*/
+/**--- 面包屑 ---**/
 export const breadCrumbs = handleActions({
     ADD_BREADCRUMBS: (state,action) => {
-        return action.payload
+        return action.payload;
     }
 },[])
 
-/*tabViews*/
+/**--- tabViews ---**/
 export const tabViews = handleActions({
     GET_TAB_VIEWS: state => Local.get('tabViews') || [],
     ADD_TAB_VIEWS: (state, action) => {

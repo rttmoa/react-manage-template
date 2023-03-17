@@ -1,8 +1,11 @@
 import asyncComponent from './asyncComponent'
 
+
 const _import_components = file => asyncComponent(() => import(`components/${file}`))
 
 const _import_views = file => asyncComponent(() => import(`views/${file}`))
+
+
 
 const setChildrenRoles = routes => routes.map(route => {
     let role = route.role
@@ -148,9 +151,14 @@ export const constantRouterMap = [
         component: _import_views('Home')
     }
 ]
-export const asyncRouterMap = setChildrenRoles(asyncRouterMapList)
-export const allRoutes = constantRouterMap.concat(asyncRouterMap)
-export const routes = constantRouterMap
+
+export const asyncRouterMap = setChildrenRoles(asyncRouterMapList);
+
+/**--- 所有Routes ---**/
+export const allRoutes = constantRouterMap.concat(asyncRouterMap); 
+
+ 
+export const routes = constantRouterMap;
 
 // export const asyncRouterMap 
 

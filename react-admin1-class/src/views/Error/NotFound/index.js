@@ -2,6 +2,9 @@ import React from 'react'
 import {Button, Icon} from 'antd'
 import './index.less'
 
+
+
+
 export default ({history}) => (
 	<div className="errer_404_wrapper">
         <h2>OOPS!</h2>

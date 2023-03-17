@@ -2,6 +2,9 @@ import React from 'react'
 import {Button, Icon} from 'antd'
 import './index.less'
 
+
+
+
 export default ({history}) => (
     <div className="error_401_wrapper">
         <div className="error_401_box cf">

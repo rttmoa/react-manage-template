@@ -1,6 +1,7 @@
 import { Cookie } from './storage'
 const TokenKey = 'Token-Auth'
 
+
 export function getToken() {  
 	return Cookie.get(TokenKey)
 }

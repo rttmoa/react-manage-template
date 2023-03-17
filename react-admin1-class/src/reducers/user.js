@@ -13,5 +13,7 @@ export const user = handleActions({
 
 /*routes*/
 export const routes = handleActions({
-    SET_ROUTES: (state, action) => [...constantRouterMap,...action.payload]
+    SET_ROUTES: (state, action) => {
+        return [...constantRouterMap,...action.payload]
+    }
 }, constantRouterMap)

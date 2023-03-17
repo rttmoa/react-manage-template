@@ -2,6 +2,9 @@ import React from 'react'
 import {Row, Col, Card} from 'antd'
 import Github from 'components/Github'
 import './index.less'
+
+
+
 export default () => (
     <div className="github_wrapper">
     	<Row className="gutter-row">

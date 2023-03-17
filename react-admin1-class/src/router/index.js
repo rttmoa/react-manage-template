@@ -6,6 +6,9 @@ import MainComponents from './main'
 // window._history = history
 
 
+
+
+
 export default () => (
     <HashRouter>
         <Route path="/" component={MainComponents}/>

@@ -1,5 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
+
+
 class IconSvg extends React.Component {
     render () {
         let {className, iconName} = this.props
@@ -10,8 +12,9 @@ class IconSvg extends React.Component {
         )
     } 
 }
-IconSvg.PropTypes = {
-    iconName: PropTypes.string.isRequired
+
+IconSvg.propTypes = {
+    iconName: propTypes.string.isRequired
 }
 export default IconSvg
 

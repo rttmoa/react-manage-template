@@ -1,4 +1,6 @@
+/**--- localStorage ---**/
 const ls = window.localStorage;
+/**--- sessionStorage ---**/
 const ss = window.sessionStorage;
 
 

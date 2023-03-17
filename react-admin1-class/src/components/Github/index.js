@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import './index.less'
 
 class Github extends React.Component {
@@ -26,6 +26,6 @@ class Github extends React.Component {
     }
 }
 Github.propTypes = {
-    link: PropTypes.string.isRequired
+    link: propTypes.string.isRequired
 }
 export default Github

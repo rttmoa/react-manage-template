@@ -1,8 +1,9 @@
 import {allRoutes} from 'router/config'
 
-/*
-    当前路径的路由信息
- */
+
+
+
+/**--- 当前路径的路由信息 ---**/
 export const filterRoutes = pathname => {
     let pathSnippets = pathname.split('/').filter(path => path)
     let paths = pathSnippets.map((path, index) => `/${pathSnippets.slice(0, index + 1).join('/')}`)
@@ -19,7 +20,7 @@ export const filterRoutes = pathname => {
 }
 
 /*
- 判断对象是否相等
+    判断对象是否相等
  */
 export const diff_obj = (obj1,obj2) => {
     let o1 = obj1 instanceof Object
