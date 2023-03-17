@@ -6,25 +6,25 @@ import {Cookie, Local} from 'utils/storage'
 import connect from 'connect'
 const FormItem = Form.Item
 
-const users = [{
-  userName: 'admin',
-  password: '123456',
-  roles: ['admin', 'editor'],
-  Auth_Token: 'admin'
-},
-{
-  userName: 'editor',
-  password: '123456',
-  roles: ['editor'],
-  Auth_Token: 'editor'
-}]
+// const users = [{
+//   userName: 'admin',
+//   password: '123456',
+//   roles: ['admin', 'editor'],
+//   Auth_Token: 'admin'
+// },
+// {
+//   userName: 'editor',
+//   password: '123456',
+//   roles: ['editor'],
+//   Auth_Token: 'editor'
+// }]
 
 @connect
 class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let {form, loginUser, state: {user}} = this.props;
+        let {form, loginUser, state: {user}} = this.props; // loginUser是actions中的方法
         // debugger
         // return
         form.validateFields(async (err, values) => {

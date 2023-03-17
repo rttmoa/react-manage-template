@@ -14,6 +14,7 @@ import actions from 'actions'
 
 
 
+
 const getRoute = (routes, pathname) => {
     let fn = routes => routes.map(route => {
         if (route.path === pathname && !route.redirect) return route;
@@ -35,9 +36,14 @@ const isExistPath = (routes, pathname) => routes.some(route => { // 使用递归
 
 /**--- 401判断 - 是否有无权限进入此页面 ---**/
 const isAuth = (role, user) => {
-    if (!role || (user && user.roles.indexOf('admin') >= 0)) return true
+    // 返回为false时，重定向到401
+
+    if (!role || (user && user.roles.indexOf('admin') >= 0)) return true;
+    
     if (!user) return false;
-    return role.some( r => user.roles.indexOf(r) >= 0)
+    // console.log("不存在")
+    // 当登陆用户editor时，访问http://localhost:3034/#/auth 就会不存在
+    return role.some( r => user.roles.indexOf(r) >= 0); 
 }
 
 
@@ -168,7 +174,7 @@ class MainComponents extends React.Component {
 
         // 401 - 登陆权限少的用户，去访问不存在的目录时，会跳转到401页面
         if (user && currRoute) {
-            console.log(user, currRoute)
+            // console.log(user, currRoute)
             if (!isAuth(currRoute.role, user)) return <Redirect to='/error/401'/>
         }
         
@@ -176,7 +182,7 @@ class MainComponents extends React.Component {
         let route = isRedirectPath(allRoutes, pathname)
         if (route) {
             // console.log("重定向子路径", route)
-            return <Redirect to={route.redirect}/>
+            return <Redirect to={route.redirect} />
         }
 
         document.title = currRoute.name;

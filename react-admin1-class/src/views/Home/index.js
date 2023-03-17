@@ -6,6 +6,8 @@ import Steps from './Steps'
 import {Row, Col, Card} from 'antd'
 import './index.less'
 
+
+
 export default () => (
 	<div className="home_wrapper">
 		<Panel/>
