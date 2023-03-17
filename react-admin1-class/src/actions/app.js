@@ -1,7 +1,10 @@
 import { createAction } from 'redux-actions'
 
+
+
 //侧边栏开关
 export const changeCollapsed = createAction('CHANGE_COLLAPSED')
+
 //侧边栏打开的位置
 export const setOpenKeys = createAction('SET_OPENKEYS') 
 

@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { message } from 'antd'
+// import { message } from 'antd'
 import {Cookie} from 'utils/storage'
 
 const users = [
@@ -25,16 +25,12 @@ const users = [
 
 // 登录
 const createSaveUser = createAction('SAVE_USER')
+
 export const loginUser = (loginInfo) => async dispatch => {
     let { userName, password} = loginInfo
     return new Promise( (resolve, reject) => {
 
-        // 发起异步请求  获取信息
-        /*
-            ...
-            axios(url, {userName, password})
-         */
-           
+        // 发起异步请求  获取信息   axios(url, {userName, password}) 
         // 暂时假数据代替 
         let user = users.find(v => v.userName === userName)
         if (!user) return reject('用户名错误')
@@ -47,6 +43,7 @@ export const loginUser = (loginInfo) => async dispatch => {
 
 // 获取用户信息
 const createGetUser = createAction('GET_USER')
+
 export const getUser = (token) => async dispatch => {
     return new Promise( (resolve, reject) => {
 
