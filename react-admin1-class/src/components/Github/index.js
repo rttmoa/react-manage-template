@@ -2,6 +2,9 @@ import React from 'react'
 import propTypes from 'prop-types'
 import './index.less'
 
+
+
+
 class Github extends React.Component {
     state = {
         size: this.props.size || 80,
@@ -12,9 +15,14 @@ class Github extends React.Component {
 
     render () {
         return (
-            <a href={this.state.link} target="_blank" className={this.state.className + " github-corner"} aria-label="View source on Github" style={this.state.style}>
-                <svg width={this.state.size} height={this.state.size} viewBox="0 0 250 250"
-                aria-hidden="true">
+            <a 
+                href={this.state.link} 
+                target="_blank" 
+                className={this.state.className + " github-corner"} 
+                aria-label="View source on Github" 
+                style={this.state.style}
+            >
+                <svg width={this.state.size} height={this.state.size} viewBox="0 0 250 250" aria-hidden="true">
                 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
                 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
                     fill="currentColor" style={{transformOrigin: '130px 106px'}} className="octo-arm"></path>
@@ -26,6 +34,6 @@ class Github extends React.Component {
     }
 }
 Github.propTypes = {
-    link: propTypes.string.isRequired
+    link: propTypes.string.isRequired,
 }
 export default Github

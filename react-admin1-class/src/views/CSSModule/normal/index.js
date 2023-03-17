@@ -6,12 +6,8 @@ const descNode = () => (
     <div>
         <ul>
             <li><pre>1.webpack配置css-loader:  <span style={{color: '#ff4747'}}>style-loader!css-loader?modules</span></pre></li>
-            <li><pre>2.index.css:  <span style={{color: '#ff4747'}}>
-                {`.a {
-    color: #ff4747;
-}`}
-            </span></pre></li>
-            <li><pre>3.导入CSS： <span style={{color: '#ff4747'}}>import styles from './index.css'</span></pre></li>
+            <li><pre>2.index.css:  <span style={{color: '#ff4747'}}> {`.a {color: #ff4747;}`} </span></pre></li>
+            <li><pre>3.导入CSS:  <span style={{color: '#ff4747'}}>import styles from './index.css'</span></pre></li>
             <li><pre>4.引用：<span style={{color: '#ff4747'}}>{'<div className={style.a}></div>'}</span></pre></li>
         </ul>
     </div>
@@ -37,4 +33,4 @@ class CssModuleNormal extends React.Component {
     }
 }
 
-export default CssModuleNormal
+export default CssModuleNormal;

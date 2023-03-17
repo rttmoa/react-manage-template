@@ -1,30 +1,24 @@
 import React from 'react'
 import {Button} from 'antd'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom"
+import {  BrowserRouter as Router,  Switch,  Route,  Link,  Redirect } from "react-router-dom"
 import './index.less'
 
 
-const NavLink = props => (
+const NavLink = props => ( // props: { to: "", children: "red"}
     <li className="navItem">
-      <Link {...props} style={{ color: "inherit" }} />
+      <Link {...props} style={{ color: "inherit", fontSize:26, lineHeight: 1 }} />
+      {/* {props.children} */}
+      {/* {props.to} */}
     </li>
 )
-
+// 渲染组件时，通过接收地址栏的参数
 const HSL = ({ match: { params }}) => (
     <div
       className="hsl"
       style={{ background: `hsl(${params.h}, ${params.s}%, ${params.l}%)`}}>
       <p>hsl({params.h}, {params.s}%, {params.l}%)</p>
-      	<span onClick={() => {
-      		location.href = '/'
-      	}}>
+      	<span onClick={() => {location.href = '/'}}>
       		<Button>返回首页</Button>
       	</span>
     </div>
@@ -36,9 +30,7 @@ const RGB = ({ match: { params } }) => (
       style={{ background: `rgb(${params.r}, ${params.g}, ${params.b})` }}>
       <p>rgb({params.r}, {params.g}, {params.b})</p>
       <Link to="/animate/fade">
-      	<span onClick={() => {
-      		location.href = '/'
-      	}}>
+      	<span onClick={() => {location.href = '/'}}>
       		<Button>返回首页</Button>
       	</span>
       </Link>
@@ -51,8 +43,10 @@ export default () => (
       <Route 
       	exact
       	path="/animate/router-transition"
-      	render={() => <Redirect to="/animate/router-transition/hsl/10/90/50" />}/>
-      <Route render={ ({location}) => (
+      	render={() => <Redirect to="/animate/router-transition/hsl/10/90/50" />}
+      />
+      {/* 点击Link、在这里进行Route匹配 */}
+      <Route render={({location}) => (
         <div className="fill">
           <ul className="nav">
               <NavLink to="/animate/router-transition/hsl/10/90/50">Red</NavLink>
@@ -74,4 +68,5 @@ export default () => (
         </div>
       )}/>
     </div>
-  </Router> )
+  </Router> 
+)

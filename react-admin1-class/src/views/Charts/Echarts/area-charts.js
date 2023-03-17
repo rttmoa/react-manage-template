@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
+
 let base = +new Date(1968, 9, 3)
-let oneDay = 24 * 3600 * 1000
+let oneDay = 24 * 3600 * 1000;  // 24小时 * 3600秒 * 1000毫秒
 let date = []
 
 let data = [Math.random() * 300]
@@ -61,7 +62,7 @@ const option = {
         {
             name:'模拟数据',
             type:'line',
-            smooth:true,
+            smooth: true,
             symbol: 'none',
             sampling: 'average',
             itemStyle: {

@@ -15,7 +15,7 @@ const Fade = ({ children, ...props }) => {
 	)
 }
 
-
+let num = 1
 class TodoList extends React.Component {
   	constructor(props) {
     	super(props)
@@ -25,7 +25,8 @@ class TodoList extends React.Component {
     	this.setState({
       		items: [
         		...this.state.items,
-        		prompt('Enter some text')
+				`test - ${num++}`,
+        		// prompt('Enter some text')
       		]
     	})
   	}
@@ -37,12 +38,7 @@ class TodoList extends React.Component {
   	render() {
     	return (
     		<Row className="gutter-row fmt">
-				<Col className="gutter-col" md={24}>
-					<Card title="react-transition-group">
-						<div dangerouslySetInnerHTML={{__html: AnimateGroupFade}}></div>
-					</Card>
-				</Col>
-
+				
 				<Col className="gutter-col" md={8}>
 					<Card title="实例演示">
 		        		<TransitionGroup className='todo-list'>
@@ -58,6 +54,14 @@ class TodoList extends React.Component {
 		        		<Button type="primary" onClick={() => this.handleAdd()}>Add Item</Button>
 					</Card>
 				</Col>
+
+				<Col className="gutter-col" md={24}>
+					<Card title="react-transition-group">
+						<div dangerouslySetInnerHTML={{__html: AnimateGroupFade}}></div>
+					</Card>
+				</Col>
+
+				
 			</Row>
       		
     	)	

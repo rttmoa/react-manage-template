@@ -2,8 +2,10 @@ import React from 'react'
 import {Row, Col, Card, Button, Input} from 'antd'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './index.less'
-const Search = Input.Search
-const duration = 1000
+const Search = Input.Search;
+
+
+const duration = 1000;
 const TransitionComponent = ({i, v, remove, children, classNames, ...rest }) => (
 	<CSSTransition 
 		{...rest}
@@ -15,6 +17,8 @@ const TransitionComponent = ({i, v, remove, children, classNames, ...rest }) => 
 		</div>
 	</CSSTransition>
 )
+
+
 export default class Slide extends React.Component {
 	state = {
 		leftList: [
@@ -31,19 +35,21 @@ export default class Slide extends React.Component {
 		]
 	}
 	add = (value, key) => {
-		let list = this.state[key],
-			state = this.state
-		state[key] = [...list, value]
-		this.setState(state)
+		let list = this.state[key], 
+			state = this.state;
+		state[key] = [...list, value];
+		this.setState(state);
 	}
 	remove = (i, key) => {
 		let list = this.state[key],
-			state = this.state
-		list.splice(i,1)
-		state[key] = list
-		this.setState(state)
+			state = this.state;
+		list.splice(i,1);
+		state[key] = list;
+		this.setState(state);
 	}
 	render () {
+		let num = Math.floor(Math.random() * 100);
+		// console.log(num)
 		return (
 			<div>
 				<Row className="gutter-row">
