@@ -7,6 +7,8 @@ import Account from './Account'
 import Screenfull from 'components/Screenfull'
 import './index.less'
 import connect from 'connect'
+
+
 @connect
 export default class extends React.Component {
     render () {
@@ -17,10 +19,14 @@ export default class extends React.Component {
                 <div id="container" className={state.collapsed ? 'collapsed':''}>
                     <header className="layout-header">
                         <div className="layout-header-bar">
+                            {/* 图标 */}
                             <Hamburger className='hamburger'/>
+                            {/* 面包屑 */}
                             <BreadCrumbs className='breadCrumbs'/>
                             <div className="fr r-btn">
+                                {/* 全屏 */}
                                 <Screenfull className="screenfull"/>
+                                {/* 账户 */}
                                 <Account/>
                             </div>
                         </div>

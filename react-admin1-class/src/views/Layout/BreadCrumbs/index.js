@@ -4,10 +4,12 @@ import { Breadcrumb } from 'antd'
 import './index.less'
 import connect from 'connect'
 const Item = Breadcrumb.Item
+
+
 @connect
 class BreadCrumbs extends React.Component {
     render () {
-        let {breadCrumbs} = this.props.state
+        let {breadCrumbs} = this.props.state;
         return (
             <Breadcrumb className={this.props.className}>
                 {breadCrumbs.map( (route, index) => {
