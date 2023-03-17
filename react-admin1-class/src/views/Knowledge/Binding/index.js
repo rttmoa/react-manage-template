@@ -1,6 +1,9 @@
 import React from 'react'
 import {Card} from 'antd'
 import './index.less'
+
+
+/**--- 双向绑定 ---**/
 export default class Bingding extends React.Component {
 	constructor () {
 		super()
@@ -22,16 +25,15 @@ export default class Bingding extends React.Component {
 	render () {
 		return (
 			<div className="binding_wrapper">
-				<Card title="双向绑定" style={{width: '400px',margin: '50px'}}>
+				<Card title="双向绑定1" style={{width: '400px', margin: '50px'}}>
 					<input type="text" value={this.state.value} onChange={e => {this.handleInput(e.target.value)}}/>
 					<div>{this.state.value}</div>
 				</Card>
-				<Card title="双向绑定" style={{width: '400px',margin: '50px'}}>
+				<Card title="双向绑定2" style={{width: '400px',margin: '50px'}}>
 					<input type="text" value={this.state.value1} onChange={e => {this.handleInput1(e.target.value)}}/>
 					<div>{this.state.value1}</div>
 				</Card>
 			</div>
-			
 		)
 	}
 }

@@ -34,5 +34,23 @@ export default () => (
 				</Card>
 			</Col>
 		</Row>
+		<Row className="home_body">
+			<Col md={9} className="gutter-row">
+				{/* <Card bordered={false}>
+					<Steps />
+				</Card> */}
+			</Col>
+			<Col md={9} className="gutter-row">
+				{/* <Card bordered={false}>
+					
+					<Todo />
+				</Card> */}
+			</Col>
+			<Col md={6} className="gutter-row">
+				{/* <Card bordered={false}>
+					<Info />
+				</Card> */}
+			</Col>
+		</Row>
 	</div>
 )

@@ -3,10 +3,16 @@ import {Row, Col, Card, List} from 'antd'
 import connect from 'connect'
 
 
+
+
+
 @connect
 export default class extends React.Component {
     render () {
-        let user = this.props.state.user
+        let user = this.props.state.user; 
+        // console.log(user)
+        // console.log(Object.keys(user).filter(key => key !== "Auth_Token")) // ['userName', 'password', 'roles']
+        
 	    return (
 	        <div className="auth_wrapper">
 

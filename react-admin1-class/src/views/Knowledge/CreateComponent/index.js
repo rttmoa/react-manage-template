@@ -1,6 +1,10 @@
 import React from 'react'
 import {Row, Col, Card} from 'antd'
 import {createComponent} from 'assets/md/knowledge'
+
+
+
+/**--- 组件写法 ---**/
 export default class extends React.Component {
     render () {
         return (

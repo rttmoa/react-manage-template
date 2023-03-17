@@ -2,6 +2,10 @@ import React from 'react'
 import {Row, Col, Card} from 'antd'
 import {syntax} from 'assets/md/knowledge'
 
+
+
+
+/**--- 常用语法 ---**/
 export default () => (
     <Row className="gutter-row fmt">
         <Col md={22} className="gutter-col">

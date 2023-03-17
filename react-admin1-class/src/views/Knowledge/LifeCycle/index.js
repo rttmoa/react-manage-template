@@ -1,6 +1,8 @@
 import React from 'react'
 import {Row, Col, Card} from 'antd'
 
+
+
 export default () => (
     <Row className="gutter-row">
         <Col md={22} className="gutter-col">
@@ -48,6 +50,13 @@ export default () => (
         <Col md={22} className="gutter-col">
             <Card title="componentWillUnmount">
                 <p>在组件从 DOM 中移除的时候立刻被调用。</p>
+            </Card>
+        </Col>
+        <Col md={22} className="gutter-col">
+            <Card title="此页的渲染">
+                <p>
+                    `Col md={22} Card p 内容 /p /Card /Col`
+                </p>
             </Card>
         </Col>
     </Row>
