@@ -5,7 +5,7 @@ import './index.less'
 
 
 
-export default ({history}) => (
+export default ({ history }) => (
 	<div className="errer_404_wrapper">
         <h2>OOPS!</h2>
         <img src={require('./404.png')} alt="404" className="animated swing hinge"/>                

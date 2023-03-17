@@ -16,7 +16,7 @@ const TodoList = ({ todos, onTodoClick }) => {
 )}
 
 const getVisibleTodos = (todos, filter) => {
-    console.log(todos, filter)
+    // console.log(todos, filter)
     switch(filter) {
         case 'SHOW_ALL':
             return todos

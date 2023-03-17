@@ -12,7 +12,6 @@ const List = ({item}) => (
 )
 
 @connect
-
 export default class Axios extends React.Component {
     state = {
         loading: false,
@@ -21,11 +20,13 @@ export default class Axios extends React.Component {
     componentDidMount = () => {
         axios.get('https://easy-mock.com/mock/5aa161bef6ed4a592fb5d6f4/admin-apis/componentDidMount')
             .then( res => {
-                console.log(res)
-                Modal.success({
-                    title: 'componentDidMount',
-                    content: res.data.msg,
-                })
+                // console.log(res)
+                if(res){
+                    Modal.success({
+                        title: 'componentDidMount',
+                        content: res.data.msg,
+                    })
+                }
             })
     }
 
@@ -34,19 +35,22 @@ export default class Axios extends React.Component {
             loading: true
         })
         let data = await axios.get('https://easy-mock.com/mock/5aa161bef6ed4a592fb5d6f4/admin-apis/test1')
-        console.log(data)
-        this.setState({
-            loading: false,
-            list: data.data.data.list
-        })
+        // console.log(data)
+        if(data){
+            this.setState({
+                loading: false,
+                list: data.data.data.list
+            })
+        }
+        
     }
 
     reduxRequest = () => {
         this.props.getAsyncAction()
     }
     render () {
-        let {loading, list} = this.state
-        let {asyncAction} = this.props.state
+        let {loading, list} = this.state;
+        let {asyncAction} = this.props.state;
         return (
             <Row className="gutter-row">
                 <Col md={22} className="gutter-col">
@@ -66,8 +70,8 @@ export default class Axios extends React.Component {
                         <Button type="primary" onClick={this.reduxRequest.bind(this)}>send</Button>
                         <Spin tip="Loading..." style={{display: asyncAction.loading?'block':'none'}}></Spin>
                         <ul>
-                            {asyncAction.list.map( (item,index) => (
-                                <List item={item} key={index}/>
+                            {asyncAction.list.map((item,index) => (
+                                <List item={item} key={index} />
                             ))}
                         </ul>
                     </Card>

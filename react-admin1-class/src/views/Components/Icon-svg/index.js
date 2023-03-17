@@ -4,6 +4,9 @@ import IconSvg from 'components/Icon-svg'
 import {componentSvg} from 'assets/md'
 import './index.less'
 
+
+
+/**--- SVG图标 ---**/
 export default () => (
     <div className="icon_svg_wrapper">
         <Row className="gutter-row">

@@ -5,6 +5,7 @@ import './index.less'
 
 
 
+/**--- Github组件 ---**/
 export default () => (
     <div className="github_wrapper">
     	<Row className="gutter-row">
@@ -16,7 +17,6 @@ export default () => (
     	            <Github link='http://dzblog.cn' style={{fill: 'blue', color: '#fff'}}/>
     	        </Card>
     	    </Col>
-    	</Row>
-        
+    	</Row> 
     </div>
 )
