@@ -1,6 +1,13 @@
 #### 技术栈
 
-**启动：`npm start  `**
+**启动：`npm start `   端口：`3034`**
+
+#### 注意点
+
+Webpack配置  `/build `
+
+1
+
 
 #### 用到react相关的生态链模块:
 
@@ -116,7 +123,7 @@ class MainComponents extends React.Component {
     render () {
         // 404
         if (!isExistPath(allRoutes, pathname)) return <Redirect to='/error/404'/>
-    
+  
         //当前路径路由信息
         let currRoute = getRoute(allRoutes, pathname)
 
@@ -127,7 +134,7 @@ class MainComponents extends React.Component {
             if (!Cookie.get('Auth_Token')) {
                 return <Redirect to={{ pathname: '/login' }} />
             }
-        
+      
             // 获取用户信息
             if (!user) {
                 this.getUserInfo(() => {
