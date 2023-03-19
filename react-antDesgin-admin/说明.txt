@@ -1,0 +1,60 @@
+
+react-redux配置
+react-router-dom配置
+react-router配置
+    传参与接收：params,search,state,query,history,Link  ->  只要命中Route中的path即可渲染component
+        {/* https://blog.csdn.net/QTFYING/article/details/77939171?spm=1001.2101.3001.6650.5&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5-77939171-blog-81355310.pc_relevant_aa2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5-77939171-blog-81355310.pc_relevant_aa2&utm_relevant_index=6 */}
+        {/* https://blog.csdn.net/weixin_42799526/article/details/114297245?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-114297245-blog-106645039.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-114297245-blog-106645039.pc_relevant_default&utm_relevant_index=1 */}
+        {/* react-router总结之路由传值: https://blog.csdn.net/my_love_download/article/details/109522517?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-109522517-blog-81355310.pc_relevant_aa2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-4-109522517-blog-81355310.pc_relevant_aa2&utm_relevant_index=5 */}
+webpack.config.js配置
+
+
+App.js中根据Route中path渲染login页面和routes页面
+routes->indexjs中配置后台页面：侧边栏、头部、每个要渲染的Page页面
+routes中判断是否有token、如果没有重定向到login页面
+
+一、登陆页面：login.js
+    0、!render函数中返回组件： return ( loggedIn ? ( <Redirect to="/"/> ) : LoginForm );
+    1、获取localStoreage：const loggedIn = window.localStorage.getItem('loggedIn'); // null
+    2、存储localstoreage：window.localStorage.setItem('loggedIn', true);
+    3、路由跳转：this.props.history.push('/');
+    4、Input组件使用Icon：<Input prefix={<Icon type="user" className='login-icon' />} placeholder="用户名admin"/>,
+    5、!使用Form表单：
+        5.1、Form.create({ name: 'normal_login' })(Login)
+        5.2、this.props.form.getFieldDecorator函数的使用：
+              { getFieldDecorator('username', {rules: [{ required: true, message: '请输入用户名!' }],})(
+              // CSS图标颜色：rgba(0,0,0,0.25)
+              <Input prefix={<Icon type="user" className='login-icon' />} placeholder="用户名admin"/>, )} 
+        5.2、校验值：this.props.form.validateFields((err, values) => { }
+
+
+二、主页：Home.js
+    1、highcharts图表的配置与使用：https://www.hcharts.cn/demo/highcharts#line
+    2、Div布局+flex布局
+    3、双类名：<div className={ `cart-item-icon ${item.icon}` }> <Icon type={ item.icon }/> </div>
+
+
+三、富文本编辑器：Rich.js
+    富文本编辑器wangeditor的配置、使用、及获取
+
+
+四、用户列表表单：List.js
+    1、Table组件的使用
+    2、取消按钮的加载及禁用效果
+
+五、头部
+    1、面包屑和用户退出登陆
+    2、下拉菜单组件Dropdown和菜单Menu组件 退出登录 的使用 | 控制Dropdow的显示与隐藏
+    3、组件的封装与传值HeaderBar|UserInfo
+
+六、侧边栏
+    1、Redux中menuName默认是首页、但是SiderBarjs中将titleArray传递到redux中、供HeaderBarjs渲染面包屑
+    2、componentWillMount钩子中的函数的处理
+        componentWillMount() {
+            this.handleDefaultSelect();
+            const menuList = this.setMenu(menuConfig);
+            // console.log(menuList)
+            this.setState({
+            menuList
+            });
+        }
