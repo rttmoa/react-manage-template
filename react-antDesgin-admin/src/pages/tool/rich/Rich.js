@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from 'antd';
 import E from 'wangeditor'
 
+
+
 class Rich extends React.Component {
   constructor(props) {
     super(props);

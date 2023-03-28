@@ -10,7 +10,7 @@ export default class State extends Component {
     // state 方式依然可以传递任意类型的数据，而且可以不以明文方式传输
     render() {
 
-      // console.log(this.props)
+      console.log(this.props)
       // 获取state的值
       // const {id, name, age} = this.props.location.state
 

@@ -124,6 +124,8 @@ class Home extends React.Component {
         }]
       }]
     });
+
+    
     Highcharts.chart('user_container', {
       /*Highcharts 配置*/
       chart: {
