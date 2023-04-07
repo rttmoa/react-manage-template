@@ -14,9 +14,7 @@ class UserInfo extends React.Component {
 
   handleMenuClick = e => {
     if (e.key === 'outLogin') {
-      this.setState({
-        visible: false
-      });
+      this.setState({visible: false});
       window.localStorage.removeItem('loggedIn');
       this.props.history.push('/login');
     }
@@ -50,15 +48,12 @@ const HeaderBar = (props) => {
   return (
     <Header>
       <Breadcrumb>
-        {
-          props.menuName.map((item) => {
-
+          {props.menuName.map((item) => {
             // console.log(item) 
             return (
               <Breadcrumb.Item key={ item }>{ item }</Breadcrumb.Item>
             );
-          })
-        }
+          })}
       </Breadcrumb>
       <UserInfo history={ props.history }/>
     </Header>
@@ -66,11 +61,7 @@ const HeaderBar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-
-  // console.log(state)
-  return {
-    menuName: state.menuName
-  }
+  return {menuName: state.menuName}
 };
 
 export default connect(mapStateToProps)(HeaderBar);

@@ -3,6 +3,7 @@ import './index.less';
 import dva from 'dva';
 import {browserHistory} from 'dva/router'; //--->  全局路由地址
 import router from './router';  //--->  路由
+
 import home from './models/home';  //--->  dvajs状态管理
 import orders from './models/orders';
 import storage from './models/storage';

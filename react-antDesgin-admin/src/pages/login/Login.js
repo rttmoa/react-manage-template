@@ -50,7 +50,8 @@ class Login extends React.Component {
             {/* CSS居中：block、margin: 0 auto */}
             <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
           </Form.Item>
-        </Form>
+          <h3>账户：admin1， 密码：123</h3>
+        </Form> 
       </div>
     );
     return (

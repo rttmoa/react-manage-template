@@ -19,7 +19,7 @@ class Admin extends React.Component{
                     <NavLeft/>
                 </Col>
                 <Col span="20" className="main">
-                    <Header/>
+                    <Header />
                     <Row className="content">
                         {/* <Home/> */}
                         {this.props.children}

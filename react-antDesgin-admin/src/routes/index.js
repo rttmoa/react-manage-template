@@ -21,7 +21,7 @@ class Index extends React.Component {
 
   render() {
     const loggedIn = window.localStorage.getItem('loggedIn');
-    const mainPage = (
+    const mainPage = ( // Route 匹配
       <>
         <Suspense fallback={<div>Loading... </div>}>
           <Layout>
@@ -76,11 +76,7 @@ class Index extends React.Component {
       </>
     );
     return (
-      loggedIn ? (
-        mainPage
-      ) : (
-        <Redirect to="/login"/>
-      )
+      loggedIn ? (mainPage) : (<Redirect to="/login"/>)
     );
   }
 }

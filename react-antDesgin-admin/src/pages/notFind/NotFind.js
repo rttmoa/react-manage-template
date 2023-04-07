@@ -1,4 +1,7 @@
 import React from 'react';
+
+
+
 class NotFind extends React.Component {
   render() {
     return (

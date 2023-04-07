@@ -8,7 +8,7 @@ export default class ETable extends React.Component {
     //处理行点击事件
     onRowClick = (record, index) => {
         let rowSelection = this.props.rowSelection;
-        if(rowSelection == 'checkbox'){
+        if(rowSelection === 'checkbox'){
             let selectedRowKeys = this.props.selectedRowKeys;
             let selectedIds = this.props.selectedIds;
             let selectedItem = this.props.selectedItem || [];

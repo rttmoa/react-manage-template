@@ -53,6 +53,7 @@ class SiderBar extends React.Component {
         defaultOpenKeys: [currentKey],
         defaultSelectedKeys: [pathname],
       });
+      // debugger
       this.props.handleClick(titleArray);
     }
   };
@@ -98,18 +99,19 @@ class SiderBar extends React.Component {
     return titleArray;
   };
 
-  // 点击侧边栏 -- redux
+  // 点击侧边栏并处理面包屑
   handleClick = (item) => {
+    // console.log(item)
+    item.domEvent.preventDefault();
     const currentKey = '/' + item.key.split('/')[1];
     const pathname = item.key;
     const titleArray = SiderBar.that.selectBreadcrumb(currentKey, pathname);
     this.props.handleClick(titleArray);
+    // debugger
   };
 
   // 收缩侧边栏
-  onCollapse = collapsed => {
-    this.setState({ collapsed }); // true/false
-  };
+  onCollapse = collapsed => {this.setState({ collapsed })};
 
 
   
@@ -120,19 +122,16 @@ class SiderBar extends React.Component {
     }
     return (
       <Sider collapsible collapsed={ this.state.collapsed } onCollapse={ this.onCollapse }>
-        <div className="logo">
-          <img className="logo-img" src={ logoURL } alt=""/>
-          { name }
-        </div>
+        <div className="logo"><img className="logo-img" src={ logoURL } alt=""/>{ name }</div>
         <Menu
-          onClick={ this.handleClick } theme="dark"
+          onClick={ this.handleClick }
+          theme="dark"
           defaultOpenKeys={ this.state.defaultOpenKeys }
           defaultSelectedKeys={ this.state.defaultSelectedKeys }
           mode="inline"
         >
-          { this.state.menuList }
+          {this.state.menuList}
         </Menu>
-
         <button onClick={this.HandleC.bind(this)}>传递params参数</button>
         <button onClick={this.HandleC2.bind(this)}>传递paramsData参数</button>
         <button onClick={this.HandleC3.bind(this)}>传递query参数</button>
@@ -168,11 +167,9 @@ class SiderBar extends React.Component {
     this.props.history.push(path) 
   }
 }
-
 const mapStateToProps = () => {
   return {}
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     handleClick(titleArray) {
@@ -180,5 +177,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(SiderBar);
