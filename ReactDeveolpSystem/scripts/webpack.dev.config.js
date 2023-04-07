@@ -6,13 +6,7 @@ const webpackConfigBase = require('./webpack.base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
 const os = require('os')
-let selfIp
-try {
-  // selfIp = os.networkInterfaces()['WLAN'][1].address
-  selfIp = getIpAddress()
-} catch (e) {
-  selfIp = 'localhost'
-}
+
 
 const PORT = 3009;
 
@@ -28,6 +22,14 @@ function getIpAddress () {
       }
     }
   }
+}
+
+let selfIp
+try {
+  // selfIp = os.networkInterfaces()['WLAN'][1].address
+  selfIp = getIpAddress()
+} catch (e) {
+  selfIp = 'localhost'
 }
 
 function resolve(relatedPath) {

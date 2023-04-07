@@ -15,19 +15,15 @@ const SystemInfo = ({systemUser, dispatch}) => {
     // console.log(dispatch)
 
 	const {isLogin, username, modalVisible, logupModalVisible} = systemUser;
-    // console.log('是否登陆状态', isLogin)
+    console.log('是否登陆状态', isLogin)
 
 	const loginClick = () => {
-		dispatch({
-			type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'
-		});
+		dispatch({type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'});
 		browserHistory.push('/');
 	};
 
 	const logupClick = () => {
-		dispatch({
-			type: 'systemUser/logup',
-		});
+		dispatch({type: 'systemUser/logup'});
 		browserHistory.push('/');
 	};
 
@@ -52,9 +48,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 			});
 		},
 		onCancel(){
-			dispatch({
-				type: 'systemUser/hideModal'
-			});
+			dispatch({type: 'systemUser/hideModal'});
 		}
 	};
 
@@ -82,15 +76,17 @@ const SystemInfo = ({systemUser, dispatch}) => {
 			});
 		},
 		onCancel(){
-			dispatch({
-				type: 'systemUser/hideLogupModal'
-			});
+			dispatch({type: 'systemUser/hideLogupModal'});
 		}
 	};
 
 	const LoginModalGen = () => (<LoginModal {...loginModalProps}/>);
 	const LogupModalGen = () => (<LogupModal {...logupModalProps}/>);
 
+    const userInfo = JSON.parse(window.sessionStorage.getItem('userInfo'))
+    if(userInfo){
+        dispatch({type: 'loginSuccess', payload: userInfo})
+    }
 
 	return (
 		<div className={systemInfo}>
@@ -114,11 +110,9 @@ const SystemInfo = ({systemUser, dispatch}) => {
 		</div>
 	);
 };
-
 function mapStateToProps({systemUser}) {
 	return {
         systemUser
     };
 }
-
 export default connect(mapStateToProps)(SystemInfo);

@@ -157,7 +157,6 @@ export default class app extends Component {
           ease: 'easeInOutQuint',
         },
       }));
-
     this.setState({
       children,
     });

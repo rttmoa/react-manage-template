@@ -16,7 +16,6 @@
 * [ ] 运行： 前台 /AccountSystem/npm start && /AccountSystem/service/npm start
 * [ ] 数据库名：accountSystem
 
-
 ## 如何安装
 
 1 `.` 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )`<br>`
@@ -79,4 +78,5 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 
 其他一些界面的功能就不再一一介绍，感兴趣的话自己clone一份代码，运行一下便知:)`<br>`
 
-#### 欢迎Star！`<br>`
+
+1

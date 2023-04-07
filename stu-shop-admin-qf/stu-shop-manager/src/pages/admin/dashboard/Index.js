@@ -3,10 +3,10 @@ import { Row, Col, Card, Statistic, Icon } from "antd";
 
 
 
+
 function Index() {
   return (
     <div>
-
       <Card title="数据汇总" bordered={false}>
         <Row gutter={8}>
           <Col span={8}>
@@ -38,7 +38,6 @@ function Index() {
           </Col>
         </Row>
       </Card>
-
       <Card title="其他统计" bordered={false}></Card>
     </div>
   );

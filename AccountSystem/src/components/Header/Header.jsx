@@ -41,7 +41,6 @@ export default class Header extends Component {
 	}
     // 性能优化：如果点击的菜单还是原来的菜单，那么就不会渲染
 	componentWillReceiveProps(nextProps) {
-        // console.log(123)
 		this.setState({
 			activeIndex: nextProps.activeIndex
 		});
@@ -87,8 +86,7 @@ export default class Header extends Component {
 								} else {
 									return (
 										<MenuItem key={key}>
-											<NavLink target={path}
-													 linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
+											<NavLink target={path} linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
 										</MenuItem>
 									)
 								}

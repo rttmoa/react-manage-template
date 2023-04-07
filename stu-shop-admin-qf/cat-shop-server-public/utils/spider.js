@@ -3,6 +3,7 @@ const axios = require("axios").default;
 const mongoose = require("mongoose");
 const Entities = require("html-entities").XmlEntities;
 const entities = new Entities();
+
 function fetchData(url) {
   const userAgents = [
     "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11",
@@ -14,32 +15,18 @@ function fetchData(url) {
   ];
   return new Promise((reslove, reject) => {
     setTimeout(function() {
-      axios
-        .get(url, {
+      axios.get(url, {
           timeout: 500000,
           headers: {
-            "user-agent":
-              userAgents[Math.floor(Math.random() * userAgents.length)],
+            "user-agent": userAgents[Math.floor(Math.random() * userAgents.length)],
             "X-FORWARDED-FOR":
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255),
+              Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255) +
+              "." + Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255),
             "CLIENT-IP":
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255) +
-              "." +
-              Math.floor(Math.random() * 255)
-          }
-        })
-        .then(res => reslove(res))
-        .catch(e => reject(e));
+              Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255) +
+              "." + Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255),
+        }
+      }).then(res => reslove(res)).catch(e => reject(e));
     }, 2);
   });
 }

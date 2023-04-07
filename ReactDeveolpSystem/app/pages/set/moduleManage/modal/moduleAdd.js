@@ -17,7 +17,6 @@ const FormItem = Form.Item
 // }))
 
 @Form.create({})
-
 export default class Index extends Component {
   constructor(props) {
     super(props)

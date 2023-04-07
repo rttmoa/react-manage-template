@@ -5,19 +5,17 @@ import Edit from "../pages/admin/products/Edit";
 import PageNotFound from "../pages/PageNotFound";
 import Notice from "../pages/admin/notices/Index";
 
-export const mainRoutes = [
-  {
+
+export const mainRoutes = [{
     path: "/login",
     component: Login
   },
   {
     path: "/404",
     component: PageNotFound
-  }
-];
+}];
 
-export const adminRoutes = [
-  {
+export const adminRoutes = [{
     path: "/admin/dashboard",
     component: Index,
     isShow: true,
@@ -41,5 +39,4 @@ export const adminRoutes = [
     path: "/admin/notices",
     component: Notice,
     isShow: false
-  }
-];
+}];

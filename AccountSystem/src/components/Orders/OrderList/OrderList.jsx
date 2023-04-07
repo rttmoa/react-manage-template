@@ -57,6 +57,7 @@ const OrderList = ({
 			title: '备注',
 			dataIndex: 'mem',
 			key: 'mem',
+            width: 200
 		},
 		{
 			title: '操作',
@@ -71,7 +72,9 @@ const OrderList = ({
 					<Spliter spliterText="|"/>
 					<a onClick={() => onReadOnly(record['_id'])}>详情</a>
 				</p>
-			)
+			),
+            width: 150,
+            align: 'center'
 		}
 	];
 
@@ -93,6 +96,7 @@ const OrderList = ({
 	return (
 		<div className={orderList}>
 			<Table
+                bordered={true}
 				columns={columns}
 				dataSource={dataSource}
 				loading={loading}

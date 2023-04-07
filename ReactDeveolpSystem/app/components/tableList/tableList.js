@@ -42,7 +42,7 @@ export default class TableList extends Component {
       onShowSizeChange,
       onChange,
       columns,
-    } = this.props
+    } = this.props;
     const hasMultiHead = columns.filter(one => !!one.children).length > 0
     return (
       <div className={`table-content ${hasMultiHead ? 'clear-overlap-border' : ''}`}>

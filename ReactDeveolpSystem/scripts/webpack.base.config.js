@@ -111,7 +111,7 @@ const webpackConfigBase = {
         exclude: /node_modules/,
         include: [resolve('../app')],
         // loader: 'babel',
-        //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
+        // 把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
         loader: 'happypack/loader?id=happyBabel',
       },
       {
@@ -143,8 +143,8 @@ const webpackConfigBase = {
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: 'font/[name].[hash:4].[ext]'
-        }
+          name: 'font/[name].[hash:4].[ext]',
+        },
       },
     ],
   },
@@ -166,8 +166,8 @@ const webpackConfigBase = {
         loader: 'babel-loader',
         options: {
           // babelrc: true,
-          cacheDirectory: true // 启用缓存
-        }
+          cacheDirectory: true, // 启用缓存
+        },
       }],
       // 代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
       threadPool: happyThreadPool,
@@ -190,7 +190,7 @@ const webpackConfigBase = {
         {
           loader: 'postcss-loader',
           options: {
-            sourceMap: true,//为true,在样式追溯时，显示的是编写时的样式，为false，则为编译后的样式
+            sourceMap: true,// 为true,在样式追溯时，显示的是编写时的样式，为false，则为编译后的样式
           }
         },
         {
@@ -200,9 +200,9 @@ const webpackConfigBase = {
           }
         }
       ],
-      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      // 代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
       threadPool: happyThreadPool,
-      //允许 HappyPack 输出日志
+      // 允许 HappyPack 输出日志
       verbose: false,
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

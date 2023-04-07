@@ -1,24 +1,23 @@
 export default {
-
-    namespace: 'home',
+    namespace: "home",
 
     state: {
         activeIndex: 0,
     },
 
     subscriptions: {
-        setup({dispatch, history}) {
-            history.listen(location=> {
+        setup({ dispatch, history }) {
+            history.listen((location) => {
                 dispatch({
-                    type: 'updateActiveIndex',
-                    payload: location.pathname
+                    type: "updateActiveIndex",
+                    payload: location.pathname,
                 });
             });
         },
     },
 
     reducers: {
-        updateActiveIndex(state, action){
+        updateActiveIndex(state, action) {
             let pathname = action.payload;
             let activeIndex = 0;
             if (/orders/.test(pathname)) {
@@ -34,11 +33,10 @@ export default {
             } else {
                 activeIndex = 0;
             }
-            return {...state, activeIndex: activeIndex};
-        }
+            return { ...state, activeIndex: activeIndex };
+        },
     },
-
-}
+};
 
 /*switch(pathname){
  case '/':

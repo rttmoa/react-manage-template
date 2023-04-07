@@ -32,6 +32,7 @@ export default {
     },
 
     effects: {
+        /***--- 登录成功 ---**/
         *doLogin({ payload }, { call, put }) {
             let {
                 userData,
@@ -53,6 +54,7 @@ export default {
                 reject(data);
             }
         },
+        /***--- 注册成功 ---**/
         *doLogup({ payload }, { call, put }) {
             let {
                 userData,
@@ -74,6 +76,7 @@ export default {
                 reject(data);
             }
         },
+        /***--- 退出登录成功 ---**/
         *doLogout({ payload }, { call, put }) {
             const { data } = yield call(doLogout);
             if (data && data.success) {

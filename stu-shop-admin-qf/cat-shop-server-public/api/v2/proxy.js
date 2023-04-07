@@ -3,6 +3,7 @@ const axios = require("axios").default;
 const https = require("https");
 const qs = require("qs");
 
+
 const instance = axios.create({
   httpsAgent: new https.Agent({
     rejectUnauthorized: false
@@ -22,8 +23,7 @@ router.post("/", async (req, res) => {
       }
       let data = req.body.data;
       if (
-        headers["content-type"] &&
-        headers["content-type"].indexOf("urlencoded") > -1
+        headers["content-type"] && headers["content-type"].indexOf("urlencoded") > -1
       ) {
         data = qs.stringify(data);
       }
