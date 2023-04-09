@@ -543,7 +543,7 @@ export default class app extends Component {
         </div>
       );
     }
-    if (key === "stepTree") {
+    if (key === "stepTree") { // 角色树
       return (
         <Spin spinning={this.state.treeloading}>
           <PeopleTree dataSource={this.state.treeData} />

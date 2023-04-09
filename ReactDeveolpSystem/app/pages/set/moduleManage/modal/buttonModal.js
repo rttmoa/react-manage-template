@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, message, Badge, Popconfirm } from 'antd'
@@ -52,8 +51,7 @@ export default class pop extends Component {
   column() {
     const self = this;
     const { editButton } = self.props;
-    const configArr = [
-      {
+    const configArr = [{
         title: '按钮名称',
         dataIndex: 'resName',
         key: 'resName',
@@ -78,8 +76,7 @@ export default class pop extends Component {
         width: '40%',
         render: (text, record, index) => (
           <span>
-            <Popconfirm
-              title={`确定${record.status !== 1 ? '下线' : '上线'}该按钮?`}
+            <Popconfirm title={`确定${record.status !== 1 ? '下线' : '上线'}该按钮?`}
               onConfirm={() => self.showOrHide(record.id, `${record.status}`)}
             >
               <a>{record.status !== 1 ? '下线' : '上线'}</a>

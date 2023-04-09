@@ -22,9 +22,7 @@ export default class app extends Component {
     }
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     if (this.state.currentId === '' && nextProps.roles.length > 0) {

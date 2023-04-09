@@ -18,9 +18,7 @@ const { fetchBtns } = require("@configs/common");
 
 
 @Form.create({})
-// 声明组件  并对外输出
 export default class app extends Component {
-  // 初始化页面常量 绑定事件方法
   constructor(props) {
     super(props);
     this.state = {
@@ -47,19 +45,21 @@ export default class app extends Component {
         edit: true,
         add: true,
       }, // 按钮权限的数组
-      userDeptResult: { list: [], loading: false },
-      userListResult: { list: [], loading: false },
+      userDeptResult: { list: [], loading: false }, // 地区信息
+      userListResult: { list: [], loading: false },  // 用户列表数据 Table中数据
       userDetailResult: { list: [], loading: false },
-      userRoleSetResult: { list: [], loading: false },
+      userRoleSetResult: { list: [], loading: false }, // 角色类别
     };
   }
   // 组件即将加载
   componentWillMount() {
     this.getBtnRights()
     fetchRoleList({}, (res) => {
+      // console.log(res.data)
       this.setState({ userRoleSetResult: res.data });
     });
     fetchUserDepttList({}, (res) => {
+      // console.log(res)
       if (res.data.list.length > 0) {
         this.setState({
             userDeptResult: res.data,
@@ -87,6 +87,10 @@ export default class app extends Component {
     this.props.form.setFieldsValue({ key: "" });
   }
 
+
+
+
+
   // #region 收缩业务代码功能
 
   // 发送获取当前菜单的按钮权限
@@ -97,6 +101,7 @@ export default class app extends Component {
   /***--- 获取用户列表数据 ++++++++++++++++++++++++++++++++ ---**/
   getData(callback) {
     fetchUserList({ ...this.state.searchKey }, (res) => {
+      // console.log(res)
       this.setState({
         userListResult: res.data,
       });
@@ -380,14 +385,20 @@ export default class app extends Component {
 
   // #endregion
 
+
+
+
+
+
+
+
+
   render() {
     const { userDeptResult,userListResult,userDetailResult,userRoleSetResult } = this.state;
     const { btnRights } = this.state;
     const { getFieldDecorator } = this.props.form;
     const thevalue = this.state.moduletype === "add" ? "" : userDetailResult;
-    // console.log("树结构数据", userDeptResult.list)
-
-
+    console.log("树结构数据", userDeptResult.list)
 
     return (
       <div className="page page-scrollfix page-usermanage">

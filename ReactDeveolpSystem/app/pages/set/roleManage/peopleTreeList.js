@@ -1,7 +1,11 @@
-
 import React, { Component } from 'react'
 import TableList from '@tableList'
 
+
+
+
+
+/***--- 角色树 ---**/
 export default class app extends Component {
   constructor(props) {
     super(props);
@@ -10,11 +14,11 @@ export default class app extends Component {
 
   componentWillMount() {}
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
+
+
 
   // #region 收缩业务代码功能
-
   columns() {
     return (
       [{
@@ -22,7 +26,7 @@ export default class app extends Component {
         dataIndex: 'resName',
         key: 'resName',
         width: '30%',
-      }, {
+      },{
         title: '已选模块',
         dataIndex: 'checkedArr',
         key: 'checkedArr',
@@ -34,9 +38,7 @@ export default class app extends Component {
   // #endregion
 
   render() {
-    const {
-      dataSource,
-    } = this.props
+    const { dataSource } = this.props;
     return (
       <div className="flexcolumn roleModuleList">
         <TableList

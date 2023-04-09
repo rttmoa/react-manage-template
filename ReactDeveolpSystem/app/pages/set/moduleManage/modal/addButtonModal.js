@@ -3,16 +3,15 @@ import { Button, Form, Input } from 'antd';
 import { connect } from 'react-redux';
 import { regExpConfig } from '@reg';
 import Drawer from '@components/draw/draw';
-
 const FormItem = Form.Item;
 
 
-// @connect((state, props) => ({
-//   config: state.config
-// }))
-@Form.create()
 
-// 声明组件  并对外输出
+
+
+
+@connect((state, props) => ({ config: state.config }))
+@Form.create() 
 export default class Pop extends Component {
   // 初始化页面常量 绑定事件方法
   constructor(props) {

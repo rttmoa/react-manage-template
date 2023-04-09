@@ -1,13 +1,15 @@
 
 module.exports = {
   data: {
-    list: [
-      {
+    list: [{
         id: '1',
-        children: [
-          {
+        deptName: '杭州市',
+        deptCode: '370200000000',
+        children: [{
             id: '10416',
             parentCode: '370200000000',
+            deptName: '下城区',
+            deptCode: '370202000000',
             children: [
               {
                 id: '10541',
@@ -24,22 +26,19 @@ module.exports = {
               {
                 id: '10398',
                 parentCode: '370202000000',
-                children: [
-                  {
+                deptName: '古翠路',
+                deptCode: '370202230000',
+                children: [{
                     id: '10628',
                     parentCode: '370202230000',
                     deptName: '文三路',
                     deptCode: '370202230001',
-                  },
-                  {
+                  }, {
                     id: '10629',
                     parentCode: '370202230000',
                     deptName: '文晖路',
                     deptCode: '370202230002',
-                  },
-                ],
-                deptName: '古翠路',
-                deptCode: '370202230000',
+                }], 
               },
               {
                 id: '10537',
@@ -48,12 +47,9 @@ module.exports = {
                 deptCode: '370202240000',
               },
             ],
-            deptName: '下城区',
-            deptCode: '370202000000',
+            
           },
-        ],
-        deptName: '杭州市',
-        deptCode: '370200000000',
+        ], 
       },
     ],
   },

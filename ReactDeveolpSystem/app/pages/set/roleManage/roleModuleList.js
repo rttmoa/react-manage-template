@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import TableList from '@tableList';
 import RoleCheckbox from './roleCheckbox';
 
+
+
+
+
+
+
+
 export default class app extends Component {
   constructor(props) {
     super(props);
@@ -83,11 +90,9 @@ export default class app extends Component {
       ); // 删除子集
       checkedIds = this.getFatherById(item.parentId);
     }
-    this.setState(
-      {
+    this.setState({
         checkedIds: checkedIds,
-      },
-      () => {
+      }, () => {
         this.props.onCheckModify(checkedIds);
       },
     );
@@ -244,45 +249,42 @@ export default class app extends Component {
     const _self = this;
     const { buttonList } = this.props;
     const checkedIds = this.props.checkedId;
+    console.log(sessionStorage.getItem('roleName'));
     // if (sessionStorage.getItem('roleName') === '0') {
-    return [
-      {
-        title: '功能',
-        dataIndex: 'resName',
-        key: 'resName',
-        width: '30%',
-      },
-      {
-        title: '已选模块',
-        dataIndex: 'checkedArr',
-        key: 'checkedArr',
-        width: '40%',
-      },
-      {
-        title: '操作',
-        dataIndex: 'id',
-        width: '30%',
-        render: function (text, record, index) {
-          return (
-            // sessionStorage.getItem('roleName') === '0' ?
-
-            <span>
+      return [{
+          title: '功能',
+          dataIndex: 'resName',
+          key: 'resName',
+          width: '30%',
+        },{
+          title: '已选模块',
+          dataIndex: 'checkedArr',
+          key: 'checkedArr',
+          width: '40%',
+        },{
+          title: '操作',
+          dataIndex: 'id',
+          width: '30%',
+          render: function (text, record, index) {
+            return (
+              // sessionStorage.getItem('roleName') === '0' ?
               <span>
-                <RoleCheckbox
-                  checkItem={record}
-                  onChecked={_self.onChecked}
-                  defaultChecked={_self.onInArray(record.id, checkedIds)}
-                  nowRoleName={_self.props.nowRoleName}
-                />
+                <span>
+                  <RoleCheckbox
+                    checkItem={record}
+                    onChecked={_self.onChecked}
+                    defaultChecked={_self.onInArray(record.id, checkedIds)}
+                    nowRoleName={_self.props.nowRoleName}
+                  />
+                </span>
+                <span className="ant-divider" />
+                <a onClick={() => buttonList(record.id, record.parentid)}>按钮权限</a>
               </span>
-              <span className="ant-divider" />
-              <a onClick={() => buttonList(record.id, record.parentid)}>按钮权限</a>
-            </span>
-            // : null
-          );
+              // : null
+            );
+          },
         },
-      },
-    ];
+      ];
     // }
     // return (
     //   [{

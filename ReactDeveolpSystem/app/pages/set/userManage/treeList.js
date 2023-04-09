@@ -49,7 +49,7 @@ export default class TreeList extends Component {
     const [{ props = {} } = []] = selectedNodes;
     const { title } = props;
     if(title){
-      this.props.onSelect(info, title)
+      this.props.onSelect(info, title);
     }
     else{
       this.props.onSelect() 
