@@ -30,6 +30,7 @@ export default class City extends React.Component{
                 }
             }
         }).then((res)=>{
+            // console.log(res)
             let list = res.result.item_list.map((item, index) => {
                 item.key = index;
                 return item;

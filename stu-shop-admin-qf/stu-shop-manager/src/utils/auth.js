@@ -1,17 +1,19 @@
+const tokenName = "stu-shop-qianfeng"
+
 export function getToken() {
-  return localStorage.getItem("token");
+  return localStorage.getItem(tokenName);
 }
 
 export function setToken(token) {
-  localStorage.setItem("token", token);
+  localStorage.setItem(tokenName, token);
 }
 
 export function clearToken() {
-  localStorage.removeItem("token");
+  localStorage.removeItem(tokenName);
 }
 
 export function isLogined() {
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem(tokenName)) {
     return true;
   }
   return false;

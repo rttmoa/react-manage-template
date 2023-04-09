@@ -9,20 +9,24 @@ import { clearToken } from "../../utils/auth";
 const { Header, Content, Sider } = Layout;
 
 
-const routes = adminRoutes.filter(route => route.isShow);
+const routes = adminRoutes.filter(route => route.isShow);  // 侧边栏isShow为true才显示Menu
+
 
 
 function Index(props) {
-  console.log(props);
+  // console.log(props);
+
+  // 下拉组件
   const popMenu = (
-    <Menu
-      onClick={p => {
+    <Menu onClick={p => {
+      // console.log(p)
         if (p.key == "logOut") {
+          // return
           clearToken();
           props.history.push("/login");
         } else {
           // message.info(p.key); // tip
-          if ((p.key = "noti")) {
+          if ((p.key == "noti")) {
             props.history.push("/admin/notices");
           }
         }
@@ -36,25 +40,22 @@ function Index(props) {
 
   return (
     <Layout>
-      <Header
-        className="header"
-        style={{
-          backgroundColor: "#428bca"
-        }}
-      >
+      {/* 头部 */}
+      <Header className="header" style={{backgroundColor: "#428bca"}}>
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
         <Dropdown overlay={popMenu}>
           <div>
             <Avatar>U</Avatar>
-            <Badge dot={!props.isAllRead}>
+            <Badge dot={!props.notice.isAllRead}>
               <span style={{ color: "#fff" }}>超级管理员</span>
             </Badge>
             <Icon type="down" />
           </div>
         </Dropdown>
       </Header>
+      {/* 侧边栏 */}
       <Layout>
         <Sider width={200} style={{ background: "#fff" }}>
           <Menu
@@ -65,10 +66,7 @@ function Index(props) {
           >
             {routes.map(route => {
               return (
-                <Menu.Item
-                  key={route.path}
-                  onClick={p => props.history.push(p.key)}
-                >
+                <Menu.Item key={route.path} onClick={p => props.history.push(p.key)}>
                   <Icon type={route.icon} />
                   {route.title}
                 </Menu.Item>
@@ -76,19 +74,15 @@ function Index(props) {
             })}
           </Menu>
         </Sider>
+        {/* 主体内容 */}
         <Layout style={{ padding: "16px" }}>
-          {/* <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb> */}
-          <Content
-            style={{
-              background: "#fff",
-              margin: 0,
-              minHeight: 280
-            }}
-          >
+          </Breadcrumb>
+          <Content style={{background: "#fff",margin: 0,minHeight: 280}}>
+            {/* FrameLayout: 包裹的组件中就是 children */}
             {props.children}
           </Content>
         </Layout>
@@ -96,7 +90,5 @@ function Index(props) {
     </Layout>
   );
 }
-
-const mapStateToProps = state => state.notice;
-
+const mapStateToProps = state => state;
 export default connect(mapStateToProps)(withRouter(Index));

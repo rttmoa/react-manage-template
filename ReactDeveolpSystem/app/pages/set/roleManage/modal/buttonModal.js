@@ -1,11 +1,10 @@
-
 import React, { Component } from 'react'
 import { Button, Spin, Row, Col } from 'antd'
 import Drawer from '@components/draw/draw'
-import {
-  fetchButtonList,
-  fetchChangeModuleStatus,
-} from '@apis/manage'
+import { fetchButtonList, fetchChangeModuleStatus } from '@apis/manage'
+
+
+
 
 // 声明组件  并对外输出
 export default class pop extends Component {
@@ -28,9 +27,7 @@ export default class pop extends Component {
   }
 
   getList() {
-    this.setState({
-      loading: true,
-    }, () => {
+    this.setState({ loading: true }, () => {
       fetchButtonList({ id: this.props.itemId }, (result) => {
         const data = result.data.list
         const dataSource = []
@@ -90,7 +87,7 @@ export default class pop extends Component {
   }
 
   footer() {
-    const { cancelButton } = this.props
+    const { cancelButton } = this.props;
     return (
       <div>
         <Button type="primary" onClick={this.selectChecked}>全选</Button>

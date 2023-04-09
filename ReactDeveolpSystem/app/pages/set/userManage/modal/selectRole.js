@@ -1,17 +1,17 @@
-
 import React, { Component } from 'react'
 import { Radio, Button, Modal, message } from 'antd'
 import { fetchUserSetRole } from '@apis/manage'
-
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
+
+
 
 export default class roleSelect extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false,
-      checkedValues: '',
+      checkedValues: "",
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -21,9 +21,7 @@ export default class roleSelect extends Component {
     this.setState({ checkedValues: this.props.values.roleid })
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   onChange(e) {
     this.setState({ checkedValues: e.target.value })
@@ -51,9 +49,11 @@ export default class roleSelect extends Component {
   }
 
   render() {
-    const { select, values, visible, onCancel } = this.props
-    const selectNodes = select.map((item, index) =>
-      <RadioButton value={item.id} key={index}>{item.name} </RadioButton>)
+    const { select, values, visible, onCancel } = this.props;
+    // console.log(select)
+    const selectNodes = select.map((item, index) => {
+      return <RadioButton value={item.id} key={index}>{item.roleName}</RadioButton>
+    })
     return (
       <Modal
         visible={visible}

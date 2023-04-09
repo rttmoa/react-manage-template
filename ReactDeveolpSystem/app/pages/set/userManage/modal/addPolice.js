@@ -3,16 +3,13 @@ import React, { Component } from 'react'
 import { Button, Form, Input, message, Select } from 'antd'
 import { regExpConfig } from '@reg'
 import Drawer from '@components/draw/draw'
-import {
-  fetchUserDetailUpdate,
-  fetchUserAdd,
-} from '@apis/manage'
-
+import { fetchUserDetailUpdate, fetchUserAdd } from '@apis/manage'
 const FormItem = Form.Item
 const { Option } = Select
 
-@Form.create({})
 
+
+@Form.create({})
 export default class Index extends Component {
   constructor(props) {
     super(props)
@@ -31,9 +28,7 @@ export default class Index extends Component {
   handleSubmit(e) {
     e.preventDefault()
     this.props.form.validateFields((errors, values) => {
-      if (errors) {
-        return;
-      }
+      if (errors) return;
       this.setState({ loading: true }, () => {
         if (this.props.type === 'edit') {
           fetchUserDetailUpdate({ ...values, deptCode: this.props.deptId, id: this.props.currPeopleId }, (res) => {
@@ -68,10 +63,8 @@ export default class Index extends Component {
   }
 
   render() {
-    const {
-      visible, onCancel, title, roleList, values,
-    } = this.props
-    const { getFieldDecorator } = this.props.form
+    const { visible, onCancel, title, roleList, values } = this.props;
+    const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 5 },
       wrapperCol: { span: 17 },
@@ -171,9 +164,7 @@ export default class Index extends Component {
                 placeholder="请选择用户的角色"
                 showSearch
               >
-                {
-                  roleList.map(item => <Option key={item.roleName} value={`${item.id}`}>{item.roleName}</Option>)
-                }
+                {roleList.map(item => <Option key={item.roleName} value={`${item.id}`}>{item.roleName}</Option>)}
               </Select>)}
             </FormItem>
             <Button className="hide" type="primary" htmlType="submit">确定</Button>

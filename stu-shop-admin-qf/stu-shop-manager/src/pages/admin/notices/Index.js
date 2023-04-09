@@ -10,26 +10,19 @@ const data = [
   "Los Angeles battles huge wildfires."
 ];
 
+/***--- 下拉：通知中心 ---**/
 function Index(props) {
+  // console.log(props) // {dispatch, history, location, match, notice, produect, staticContext}
   return (
-    <Card
-      title="通知中心"
-      extra={
-        <Button onClick={() => props.dispatch({type: "READ_ALL"}) }>
-          全部已读
-        </Button>
-      }
-    >
+    <Card title="通知中心" extra={<Button onClick={() => props.dispatch({type: "READ_ALL"}) }>全部已读</Button>} >
       <List
         header={<div>Header</div>}
         footer={<div>Footer</div>}
         bordered
         dataSource={data}
         renderItem={item => (
-          <List.Item
-            style={{ display: "flex", alignContent: "spaced-between" }}
-          >
-            <Typography.Text mark>[ITEM]</Typography.Text> {item}
+          <List.Item style={{ display: "flex", alignContent: "spaced-between" }}>
+            <Typography.Text mark>[ITEM]</Typography.Text>{item}
             <Button size="small">已读</Button>
           </List.Item>
         )}

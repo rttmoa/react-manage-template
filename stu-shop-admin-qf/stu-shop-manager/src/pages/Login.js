@@ -74,6 +74,7 @@ function Login(props) {
             登录
           </Button>
         </Form.Item>
+        <h3>账户：admin，密码：admin</h3>
       </Form>
     </Card>
   );

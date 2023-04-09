@@ -8,8 +8,7 @@ import { updateTabChecked, deleteTabFromList } from '@actions/tabList'
 
 const { TabPane } = Tabs
 
-@connect(
-  (state, props) => ({ tabList: state.tabListResult }),
+@connect((state, props) => ({ tabList: state.tabListResult }),
   dispatch => ({
     actions: bindActionCreators(routerActions, dispatch),
     dispatch: dispatch,
@@ -74,10 +73,7 @@ export default class TabList extends Component {
         type="editable-card"
         onEdit={this.onEdit}
       >
-        {
-          tabList.list.map(tab =>
-            <TabPane tab={tab.title} key={tab.key}>{tab.content}</TabPane>)
-        }
+        {tabList.list.map(tab => <TabPane tab={tab.title} key={tab.key}>{tab.content}</TabPane>)}
       </Tabs>
     )
   }

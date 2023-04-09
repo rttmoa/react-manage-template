@@ -6,26 +6,25 @@ import { listApi, delOne, modifyOne } from "../../../services/products";
 import { serverUrl } from "../../../utils/config";
 import "./list.css";
 
-// const dataSource = [
-//   {
+// const dataSource = [ {
 //     id: 1,
 //     name: "香皂",
 //     price: 5
-//   },
-//   {
+//   }, {
 //     id: 2,
 //     name: "特仑苏",
 //     price: 6
-//   },
-//   {
+//   }, {
 //     id: 3,
 //     name: "小浣熊",
 //     price: 1.5
-//   }
-// ];
+//   } ];
+
+
 
 function List(props) {
-  console.log(props);
+  // console.log(props);
+
   // 定义局部状态
   // const [dataSource, setDataSource] = useState([]);
   // const [total, setTotal] = useState(0);
@@ -58,7 +57,7 @@ function List(props) {
       key: "_id",
       width: 80,
       align: "center",
-      render: (txt, record, index) => index + 1
+      render: (txt, record, index) => (index + 1)
     },
     {
       title: "名字",
@@ -69,14 +68,8 @@ function List(props) {
       dataIndex: "coverImg",
       render: (txt, record) =>
         record.coverImg ? (
-          <img
-            src={serverUrl + record.coverImg}
-            alt={record.name}
-            style={{ width: "120px" }}
-          />
-        ) : (
-          "暂无图片"
-        )
+          <img src={serverUrl + record.coverImg} alt={record.name} style={{ width: "120px" }}/>
+        ) : "暂无图片"
     },
     {
       title: "价格",
@@ -95,10 +88,7 @@ function List(props) {
             <Button
               type="primary"
               size="small"
-              onClick={() => {
-                // 跳转到edit页面，传递id作为参数
-                props.history.push(`/admin/products/edit/${record._id}`);
-              }}
+              onClick={() => {props.history.push(`/admin/products/edit/${record._id}`)}}
             >
               修改
             </Button>
@@ -106,7 +96,6 @@ function List(props) {
               title="确定删除此项？"
               onCancel={() => console.log("用户取消删除")}
               onConfirm={() => {
-                // console.log("用户确认删除");
                 // 此处调用api接口进行相关操作
                 delOne(record._id).then(res => {
                   loadData();
@@ -136,15 +125,7 @@ function List(props) {
   return (
     <Card
       title="商品列表"
-      extra={
-        <Button
-          type="primary"
-          size="small"
-          onClick={() => props.history.push("/admin/products/edit")}
-        >
-          新增
-        </Button>
-      }
+      extra={<Button type="primary" size="small" onClick={() => props.history.push("/admin/products/edit")}>新增</Button>}
     >
       <Table
         rowKey="_id"
@@ -152,9 +133,7 @@ function List(props) {
         pagination={{
           total,
           defaultPageSize: 2,
-          onChange: p => {
-            props.dispatch(loadProduct({ page: p }));
-          }
+          onChange: p => {props.dispatch(loadProduct({ page: p }));}
         }}
         columns={columns}
         bordered

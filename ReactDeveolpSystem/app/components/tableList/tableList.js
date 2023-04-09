@@ -1,11 +1,14 @@
-/*
- 如果要使用不回行的table，那么就要设置table的className为nowrap，并且不能对td设置特定的宽度，且scroll={{ y: true, x: true }}的X值必须为true
-*/
-
 import React, { Component } from 'react'
 import { Table, Pagination } from 'antd'
 
+
+
+
+
+/***--- 如果要使用不回行的table，那么就要设置table的className为nowrap，并且不能对td设置特定的宽度，且scroll={{ y: true, x: true }}的X值必须为true ---**/
+/***--- /components/tableList ---**/
 export default class TableList extends Component {
+  
   componentDidMount() {
     this.tableWidthAdaptive()
   }
@@ -34,38 +37,33 @@ export default class TableList extends Component {
     }
   }
 
+
+  
   render() {
-    const {
-      currentPage,
-      pageSize,
-      totalCount,
-      onShowSizeChange,
-      onChange,
-      columns,
-    } = this.props;
-    const hasMultiHead = columns.filter(one => !!one.children).length > 0
+    const {currentPage,pageSize,totalCount,onShowSizeChange,onChange,columns} = this.props;
+    const hasMultiHead = columns.filter(one => !!one.children).length > 0;
+    // console.log("tableData", this.props); // {columns, dataSource, loading, currentPage, onChange, onShowSizeChange, pageSize, scroll}
+
     return (
       <div className={`table-content ${hasMultiHead ? 'clear-overlap-border' : ''}`}>
         <Table
-          pagination={false}
-          bordered
-          rowKey="id"
-          // rowClassName={this.props.rowClassName}
+          rowClassName={this.props.rowClassName}
+          pagination={false} // 不使用Table中的分页器  使用 <Pagination> 组件分页器
+          bordered={true}
+          rowKey="id" 
           {...this.props}
         />
-        { currentPage ?
-          <Pagination
+        {currentPage ? <Pagination
             total={totalCount || 0}
-            showSizeChanger // 是否可以改变pageSize
-            showQuickJumper={false}// 是否可以快速跳转某一页
+            showSizeChanger         // 是否可以改变pageSize
+            showQuickJumper={false} // 是否可以快速跳转某一页
             onShowSizeChange={onShowSizeChange}
             onChange={onChange}
             showTotal={_totalCount => `共 ${_totalCount} 条`}
             current={currentPage || 1}
             pageSize={pageSize || 10}
             {...this.props}
-          /> : null
-        }
+          /> : null}
       </div>
     )
   }

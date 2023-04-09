@@ -4,18 +4,13 @@ import { connect } from 'react-redux'
 import { Button, message, Badge, Popconfirm } from 'antd'
 import TableList from '@tableList'
 import Drawer from '@components/draw/draw'
-import {
-  // fetchButtonList,
-  fetchModuleDelete,
-  fetchChangeModuleStatus,
-} from '@apis/manage'
+import {  /* fetchButtonList */ fetchModuleDelete,  fetchChangeModuleStatus } from '@apis/manage'
+
+
+
 
 // 连接公用常量、后端返回的数据方法  并放置在props里面调用
-// @connect((state, props) => ({
-//   config: state.config,
-// }))
-
-// 声明组件  并对外输出
+@connect((state, props) => ({config: state.config})) 
 export default class pop extends Component {
   // 初始化页面常量 绑定事件方法
   constructor(props) {
@@ -55,8 +50,8 @@ export default class pop extends Component {
   }
 
   column() {
-    const self = this
-    const { editButton } = self.props
+    const self = this;
+    const { editButton } = self.props;
     const configArr = [
       {
         title: '按钮名称',
@@ -112,9 +107,7 @@ export default class pop extends Component {
   }
 
   render() {
-    const {
-      visible, cancelButton, listLoading, dataSource,
-    } = this.props
+    const { visible, cancelButton, listLoading, dataSource } = this.props
     // const { dataSource } = this.state
     return (
       <Drawer

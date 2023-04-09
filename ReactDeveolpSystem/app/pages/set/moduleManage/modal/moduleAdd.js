@@ -1,21 +1,18 @@
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Form, Input, message } from 'antd'
 import { regExpConfig } from '@reg'
 import Drawer from '@components/draw/draw'
-import {
-  fetchModuleUpdateDetail,
-  fetchModuleAdd,
-} from '@apis/manage'
+import {  fetchModuleUpdateDetail,  fetchModuleAdd } from '@apis/manage'
+const FormItem = Form.Item;
 
-const FormItem = Form.Item
+
+
+
+
 
 // 连接公用常量、后端返回的数据方法  并放置在props里面调用
-// @connect((state, props) => ({
-//   config: state.config,
-// }))
-
+@connect((state, props) => ({config: state.config}))
 @Form.create({})
 export default class Index extends Component {
   constructor(props) {
@@ -42,10 +39,8 @@ export default class Index extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((errors, values) => {
-      if (errors) {
-        return;
-      }
-      values.resType = 1
+      if (errors) return;
+      values.resType = 1;
       this.setState({ loading: true })
       if (this.props.type === 'modify') {
         fetchModuleUpdateDetail({ ...values, id: this.props.itemId }, (result) => {
@@ -68,7 +63,7 @@ export default class Index extends Component {
   }
 
   footer() {
-    const { loading } = this.state
+    const { loading } = this.state;
     return (
       <div>
         <Button type="primary" onClick={this.handleSubmit} loading={loading}>确定</Button>
@@ -78,9 +73,7 @@ export default class Index extends Component {
   }
 
   render() {
-    const {
-      visible, onCancel, title,
-    } = this.props
+    const { visible, onCancel, title } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 5 },
@@ -97,15 +90,11 @@ export default class Index extends Component {
         <div className="modalcontent">
           <Form layout="horizontal" autoComplete="off" onSubmit={this.handleSubmit}>
             <FormItem {...formItemLayout} label="上级菜单id" hasFeedback>
-              {getFieldDecorator('parentId', {
-                initialValue: this.props.pid || '',
-              })(<Input disabled />)}
+              {getFieldDecorator('parentId', { initialValue: this.props.pid || '' })(<Input disabled />)}
             </FormItem>
             <FormItem {...formItemLayout} label="新增菜单名称" hasFeedback>
               {getFieldDecorator('resName', {
-                rules: [
-                  { required: true, message: '请输入菜单名称' },
-                ],
+                rules: [{ required: true, message: '请输入菜单名称' }],
                 initialValue: this.props.values.resName || '',
               })(<Input placeholder="请输入菜单名称" />)}
             </FormItem>

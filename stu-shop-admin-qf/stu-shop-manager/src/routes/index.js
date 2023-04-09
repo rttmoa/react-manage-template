@@ -6,11 +6,11 @@ import PageNotFound from "../pages/PageNotFound";
 import Notice from "../pages/admin/notices/Index";
 
 
+/***--- Login/404 ---**/
 export const mainRoutes = [{
     path: "/login",
     component: Login
-  },
-  {
+  },{
     path: "/404",
     component: PageNotFound
 }];

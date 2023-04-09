@@ -6,12 +6,13 @@ import Drawer from '@components/draw/draw'
 import md5 from 'md5'
 import { updatePwd } from '@apis/common' // 修改密码api
 import '@styles/personalCenter.less'
+const FormItem = Form.Item;
 
-const FormItem = Form.Item
-@connect((state, props) => ({
-  config: state.config,
 
-}))
+
+
+
+@connect((state, props) => ({config: state.config}))
 @Form.create({
   onFieldsChange(props, items) {
     // console.log(props)
@@ -19,7 +20,6 @@ const FormItem = Form.Item
     // props.cacheSearch(items);
   },
 })
-
 export default class userInfo extends Component {
   constructor(props) {
     super(props)
@@ -31,6 +31,7 @@ export default class userInfo extends Component {
     this.checkNewPassword = this.checkNewPassword.bind(this)
     // this.checkRepeatPassword = this.checkRepeatPassword.bind(this)
   }
+
   // 修改密码 确认原先密码
   // checkOldPassword(rule, value, callback) {
   //   const oldPwd = JSON.parse(sessionStorage.getItem('userinfo')).password
@@ -51,6 +52,7 @@ export default class userInfo extends Component {
   //     callback()
   //   }
   // }
+
   // 修改密码 确认新密码
   checkNewPassword(rule, value, callback) {
     const form = this.props.form
@@ -60,6 +62,7 @@ export default class userInfo extends Component {
       callback()
     }
   }
+  
   // 修改密码后提交
   handleSubmit = (e) => {
     e.preventDefault();
@@ -72,23 +75,18 @@ export default class userInfo extends Component {
       let p = md5(values.password)
       let o = md5(values.oldPass)
 
-      // if (process.env.NODE_ENV === 'production') {
-      //   p = values.password
-      //   o = values.oldPass
-      // } else {
-      p = md5(values.password)
-      o = md5(values.oldPass)
-      // }
-      updatePwd(
-        {
-          password: p,
-          oldPassword: o,
-        }, (res) => {
+      if (process.env.NODE_ENV === 'production') {
+        p = values.password
+        o = values.oldPass
+      } else {
+        p = md5(values.password)
+        o = md5(values.oldPass)
+      }
+      updatePwd({password: p, oldPassword: o}, (res) => {
           message.info(res.msg)
           this.setState({ submitLoading: false })
-        },
-        (res) => {
-          message.error(res.msg)
+        }, (error) => {
+          message.error(error.msg)
           this.setState({ submitLoading: false })
         },
       )
@@ -103,6 +101,10 @@ export default class userInfo extends Component {
       </div>
     )
   }
+
+
+
+
   render() {
     const userinfo = JSON.parse(sessionStorage.getItem('userinfo'))
     const { getFieldDecorator } = this.props.form
@@ -110,7 +112,7 @@ export default class userInfo extends Component {
       labelCol: { span: 7 },
       wrapperCol: { span: 16 },
     };
-    let roles = ''
+    let roles = "";
     userinfo && userinfo.roles.map((item, index) => {
       roles += `${item.roleName}，`
     })
@@ -133,7 +135,9 @@ export default class userInfo extends Component {
               <li><span>单位</span><b>{userinfo.deptName}</b></li>
               <li><span>职务</span><b>{userinfo.post}</b></li>
               <li><span>用户角色</span><b>{roles}</b></li>
-              <li className="changePsw_in"><span>修改密码</span><i className="enter" onClick={() => this.setState({ pswFlag: true })}>修改</i></li>
+              <li className="changePsw_in">
+                <span>修改密码</span><i className="enter" onClick={() => this.setState({ pswFlag: true })}>修改</i>
+              </li>
               {this.state.pswFlag ?
                 <div className="changePswWrap">
                   <div className="changePsw">
@@ -170,8 +174,8 @@ export default class userInfo extends Component {
                       </div>
                     </Form>
                   </div>
-                </div>
-                : ''}
+                </div> : null
+              }
             </ul>
           </div>
         </div>

@@ -52,6 +52,7 @@ export default class Order extends React.Component{
                 params: this.params
             }
         }).then((res)=>{
+            // console.log("订单管理 res", res)
             let list = res.result.item_list.map((item, index) => {
                 item.key = index;
                 return item;

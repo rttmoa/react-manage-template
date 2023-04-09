@@ -22,9 +22,9 @@ function getBlockStyle(block) {
   }
 }
 
-// @connect((state, props) => ({
-//   config: state.config,
-// }))
+@connect((state, props) => ({
+  config: state.config,
+}))
 export default class app extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ export default class app extends Component {
     this.focus = () => this.editor.focus()
     this.onChange = editorState => this.setState({ editorState });
 
-    this.handleKeyCommand = this._handleKeyCommand.bind(this);
+    this.handleKeyCommand = this._handleKeyCommand.bind(this)
     this.onTab = this._onTab.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
@@ -82,10 +82,12 @@ export default class app extends Component {
 
     return (
       <div className="RichEditor-root">
+        {/* 封装++++++ */}
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.toggleBlockType}
         />
+        {/* 封装++++++ */}
         <InlineStyleControls
           editorState={editorState}
           onToggle={this.toggleInlineStyle}
@@ -126,13 +128,12 @@ class StyleButton extends React.Component {
     }
     // console.log(className)
     return (
-      <span className={className} onMouseDown={this.onToggle}>
-        {this.props.label}
-      </span>
+      <span className={className} onMouseDown={this.onToggle}>{this.props.label}</span>
     );
   }
 }
 
+/***--- 块样式 ---**/
 const BLOCK_TYPES = [
   { label: 'H1', style: 'header-one' },
   { label: 'H2', style: 'header-two' },
@@ -145,7 +146,6 @@ const BLOCK_TYPES = [
   { label: 'OL', style: 'ordered-list-item' },
   { label: 'Code Block', style: 'code-block' },
 ];
-
 const BlockStyleControls = (props) => {
   const { editorState } = props;
   const selection = editorState.getSelection();
@@ -165,13 +165,13 @@ const BlockStyleControls = (props) => {
   );
 };
 
+/***--- 行内样式 ---**/
 const INLINE_STYLES = [
   { label: 'Bold', style: 'BOLD' },
   { label: 'Italic', style: 'ITALIC' },
   { label: 'Underline', style: 'UNDERLINE' },
   { label: 'Monospace', style: 'CODE' },
 ];
-
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (

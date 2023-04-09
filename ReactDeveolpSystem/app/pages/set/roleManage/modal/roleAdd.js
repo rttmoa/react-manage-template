@@ -1,20 +1,17 @@
-
-
 import React, { Component } from 'react'
 import { Button, Form, Input, /* Modal, */ Select, message } from 'antd'
 import { regExpConfig } from '@reg'
 import Drawer from '@components/draw/draw'
-import {
-  fetchRoleAdd,
-  fetchRoleUpdate,
-} from '@apis/manage'
-
+import { fetchRoleAdd, fetchRoleUpdate } from '@apis/manage'
 const FormItem = Form.Item
 const { Option } = Select
 
 
-@Form.create({})
 
+
+
+
+@Form.create({})
 export default class Index extends Component {
   constructor(props) {
     super(props)
@@ -66,10 +63,8 @@ export default class Index extends Component {
   }
 
   render() {
-    const {
-      visible, onCancel, title,
-    } = this.props
-    const { getFieldDecorator } = this.props.form
+    const { visible, onCancel, title } = this.props;
+    const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 5 },
       wrapperCol: { span: 17 },

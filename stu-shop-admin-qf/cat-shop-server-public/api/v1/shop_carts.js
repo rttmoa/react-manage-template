@@ -58,7 +58,7 @@ router.delete('/:id', async (req, res, next) => {
 //     const token = req.headers.authorization.split(' ')[1]; // 获取token
 //     const decoded = jwt.verify(token, 'Arivin');
 //     const { userId } = decoded;
-//     res.json({userId});
+//     res.json({ userId });
 //   } catch (err) {
 //     next(err);
 //   }

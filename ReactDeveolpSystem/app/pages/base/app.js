@@ -7,12 +7,17 @@ import { message, LocaleProvider } from 'antd'
 import { validateTickit/* , parseQueryString */ } from '@configs/common'
 import { loginByKey } from '@apis/common'
 import zhCN from 'antd/lib/locale-provider/zh_CN'
-import '@styles/base.less'
+
+import '@styles/base.less'   //--->   页面样式
 
 import Header from './app/header'
 import LeftNav from './app/leftNav'
 // import TabList from './app/tabList'
 // import SocketComponent from './socket'
+
+
+
+
 
 @connect((state, props) => ({}))
 export default class App extends Component {
@@ -35,9 +40,7 @@ export default class App extends Component {
     this.init()
   }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
+  componentWillReceiveProps(nextProps) {}
 
   init() {
     // antd的message组件 的全局配置
@@ -50,14 +53,16 @@ export default class App extends Component {
         menuStyle: false,
       })
     }
-    console.log(sessionStorage.getItem('menuStyle'))
-    console.log(sessionStorage.getItem('menuStyle') === 'true')
+    // console.log(sessionStorage.getItem('menuStyle')) // false
+    // console.log(sessionStorage.getItem('menuStyle') === 'true')
     if (sessionStorage.getItem('menuStyle') === 'true') {
       this.setState({
         menuStyle: true,
       })
     }
+
     const { query } = this.props.location
+    // debugger
     if (query.ticket) { // 如果是url路径带ticket的话，那么在当前页面做登录的初始化
       validateTickit(this.props.location, (res) => {
         this.setState({
@@ -66,15 +71,18 @@ export default class App extends Component {
       })
     } else if (query.key) {
       // const params = parseQueryString(window.location.href)
-      loginByKey({ }, (res) => {
+      loginByKey({}, (res) => {
         sessionStorage.setItem('key', query.key)
         this.setState({
           idRenderChild: true,
         })
       })
     } else {
+
+      
       this.setState({ gMenuList: JSON.parse(sessionStorage.getItem('gMenuList')) })
       this.getMenuId(JSON.parse(sessionStorage.getItem('gMenuList')), this.props.location.pathname.replace('/', ''))
+
       // 初始化比较当前的顶级菜单属于哪个
       const { topMenuReskey } = this.state
       if (topMenuReskey !== sessionStorage.getItem('topMenuReskey')) {
@@ -82,7 +90,7 @@ export default class App extends Component {
       }
       this.setState({
         idRenderChild: true,
-        // menuStyle: false,
+        menuStyle: false,
       })
     }
 
@@ -99,9 +107,12 @@ export default class App extends Component {
 
   // 获取菜单id
   getMenuId = (nav, pathname) => {
-    this.topMenuReskeyFlag = '' // 顶级菜单分类
-    this.topMenuReskeyChild = [] // 顶级菜单的孩子，也就是当前要显示在左侧页面的菜单
-    this.flag = false // 用来保存顶级菜单的标志
+
+    // console.log(nav, pathname)
+
+    this.topMenuReskeyFlag = "";   // 顶级菜单分类
+    this.topMenuReskeyChild = [];  // 顶级菜单的孩子，也就是当前要显示在左侧页面的菜单
+    this.flag = false;   // 用来保存顶级菜单的标志
     // console.log(nav)
     if (nav && nav.length > 0) {
       this.compare(nav, pathname)
@@ -118,11 +129,10 @@ export default class App extends Component {
           this.topMenuReskeyChild = item.children
         }
       }
-      // eslint-disable-next-line
       const _resKey = `${item.resKey.replace(/[\$\.\?\+\^\[\]\(\)\{\}\|\\\/]/g, '\\$&').replace(/\*\*/g, '[\\w|\\W]+').replace(/\*/g, '[^\\/]+')}$`
       if (new RegExp(_resKey).test(pathname)) {
         // console.log(item.id)
-        this.flag = true
+        this.flag = true;
         sessionStorage.setItem('menuId', item.id)
         // debugger
         sessionStorage.setItem('topMenuReskey', this.topMenuReskeyFlag)
@@ -135,12 +145,13 @@ export default class App extends Component {
     })
   }
 
-  // 左侧是否mini
-  changeMenuStyle = (val) => {
+  /***--- 左侧是否mini ---**/
+  changeMenuStyle = (boolean) => {
+    // console.log('changeMenuStyle', boolean)
     this.setState({
-      menuStyle: val,
+      menuStyle: boolean
     }, () => {
-      sessionStorage.setItem('menuStyle', val)
+      sessionStorage.setItem('menuStyle', boolean)
     })
   }
 
@@ -180,45 +191,40 @@ export default class App extends Component {
     }
   }
 
+
+
+
+  /***--- 
+   * Header组件封装
+   * LeftNav组件封装
+   * 
+   */
   render() {
-    const { location, children } = this.props
-    const {
-      gMenuList, idRenderChild, isIframe, topMenuReskey, leftNav, menuStyle,
-    } = this.state
+    const { location, children } = this.props;
+    const {gMenuList, idRenderChild, isIframe, topMenuReskey, leftNav, menuStyle} = this.state
     return (
       <LocaleProvider locale={zhCN}>
         <div id="container">
-          {
-            /* 注释socket
-            <SocketComponent />
-            */
-          }
-          {
-            idRenderChild && !isIframe ? <Header
-              gMenuList={gMenuList}
-              topMenuClick={this.topMenuClick}
-              topMenuReskey={this.state.topMenuReskey}
-            /> : null
-          }
-
+          {/* {<SocketComponent />} */}
+          {idRenderChild && !isIframe ? 
+            <Header gMenuList={gMenuList} topMenuClick={this.topMenuClick} topMenuReskey={this.state.topMenuReskey} /> : null}
           <div className={isIframe ? 'boxed isIframe' : 'boxed'}>
             <div className={menuStyle ? 'boxed boxed-mini' : 'boxed'}>
               <div id="content-container" className="content-container">
                 <div id="page-content">
+                  {/* --------------------这是Route中包裹的 children、 通过this.props取到--------------------------------------- */}
                   {idRenderChild ? children : null}
                 </div>
               </div>
             </div>
-            {
-              idRenderChild ?
+            {idRenderChild ?
                 <LeftNav
                   location={location}
                   leftNavMode={this.changeMenuStyle}
                   menuStyle={menuStyle}
                   leftNav={leftNav}
                   topMenuReskey={topMenuReskey}
-                /> : null
-            }
+                /> : null}
           </div>
         </div>
       </LocaleProvider>

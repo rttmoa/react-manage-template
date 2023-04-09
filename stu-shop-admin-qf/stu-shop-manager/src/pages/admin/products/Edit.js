@@ -7,6 +7,10 @@ import "braft-editor/dist/index.css";
 import { createApi, getOneById, modifyOne } from "../../../services/products";
 import { serverUrl } from "../../../utils/config";
 
+
+
+
+
 function Edit(props) {
   // console.log(props);
   // props.match.params.id 存在的话表示修改，否怎为新增
@@ -19,6 +23,7 @@ function Edit(props) {
 
   // 初始化的时候执行
   useEffect(() => {
+    // 是否有id：http://localhost:3000/#/admin/products/edit/642ee36ff3d52f4db845ff43
     if (props.match.params.id) {
       getOneById(props.match.params.id).then(res => {
         setCurrentData(res);
@@ -28,6 +33,7 @@ function Edit(props) {
     }
   }, []);
 
+  // Upload按钮
   const uploadButton = (
     <div>
       <Icon type={loading ? "loading" : "plus"} />
@@ -37,6 +43,7 @@ function Edit(props) {
 
   // 图片上传
   const handleChange = info => {
+    // console.log(info);return;
     if (info.file.status === "uploading") {
       setLoading(true);
       return;
@@ -108,11 +115,7 @@ function Edit(props) {
   return (
     <Card
       title="商品编辑"
-      extra={
-        <Button onClick={() => props.history.push("/admin/products")}>
-          返回
-        </Button>
-      }
+      extra={<Button onClick={() => props.history.push("/admin/products")}>返回</Button>}
     >
       <Form onSubmit={e => handleSubmit(e)}>
         <Form.Item label="名字">
@@ -155,9 +158,7 @@ function Edit(props) {
                 alt="avatar"
                 style={{ width: "100%" }}
               />
-            ) : (
-              uploadButton
-            )}
+            ) : (uploadButton)}
           </Upload>
         </Form.Item>
         <Form.Item label="详情">

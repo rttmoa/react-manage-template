@@ -5,16 +5,15 @@ import { hashHistory/* , Link  */ } from 'react-router'
 import { Menu, Spin } from 'antd'
 // import { updateTabList } from '@actions/tabList'
 import { clearGformCache2 } from '@actions/common'
+const { SubMenu } = Menu;
 
-const { SubMenu } = Menu
 
-@connect((state, props) => ({
-  config: state.config,
-}))
+
+
+@connect((state, props) => ({config: state.config}))
 export default class LeftNav extends Component {
   constructor(props, context) {
     super(props, context)
-
     // const { pathname } = props.location
     this.state = {
       // current: pathname,
@@ -29,8 +28,10 @@ export default class LeftNav extends Component {
     this.init()
   }
 
+  /***--- 性能优化 ---**/
   componentWillReceiveProps(nextProps) {
     if (this.props.location.pathname !== nextProps.location.pathname) {
+      // console.log(11111)
       this.openKeys(nextProps.location.pathname)
     }
   }
@@ -48,9 +49,9 @@ export default class LeftNav extends Component {
   // 确认当前要打开的菜单
   openKeys = (pathname) => {
     /*
-    **计算要打开的以及菜单
+      **计算要打开的以及菜单
     */
-    const { menu } = this.state
+    const { menu } = this.state;
     const curPath = `${pathname.split('$')[0]}`.replace('/', '')
     if (curPath === '') { // 如果是默认首页，那么就不用往下计算了
       this.setState({
@@ -58,11 +59,11 @@ export default class LeftNav extends Component {
       })
       return
     }
-    let count = 0
+    let count = 0;
 
     // 定义一个标签语句
     // eslint-disable-next-line
-      jumpOut1: 
+      jumpOut1:
     for (let i = 0; i < menu.length; i += 1) {
       const item = menu[i]
       count += 1
@@ -86,10 +87,11 @@ export default class LeftNav extends Component {
     })
   }
 
-  // 菜单点击事件
+  /***--- 菜单点击事件 -- 切换url ---**/
   _handleClick = (e) => {
+    // console.log(e)
     this.props.dispatch(clearGformCache2({}))
-    hashHistory.push(`/${e.key}`)
+    hashHistory.push(`/${e.key}`)   // key: "set$/userManage"
   }
 
   onOpenChange = (openKeys) => {
@@ -103,7 +105,7 @@ export default class LeftNav extends Component {
     }
   }
 
-  // 左侧菜单切换显示模式
+  /***--- 左侧菜单切换显示模式 --- 展开/关闭 ---**/
   navMini = () => {
     this.setState({
       menuStyle: !this.state.menuStyle,
@@ -112,9 +114,10 @@ export default class LeftNav extends Component {
     })
   }
 
-  // 二级菜单的生成
+  /***--- 渲染一级菜单和二级菜单 ---**/
   renderLeftNav = (options) => {
-    const { menu } = this.state
+    const { menu } = this.state;
+    // console.log(menu)
     return menu.map((item, index) => {
       if (!item.children || item.children.length === 0) {
         return (
@@ -124,49 +127,45 @@ export default class LeftNav extends Component {
           </Menu.Item>
         )
       }
-      const key = `sub${index}`
+      const key = `sub${index}`;
+      const SubMenuTitle = (
+        <span>
+          <i className={`qqbicon qqbicon-${item.resIcon}`} title={item.resName} />
+          <span className="menu-name">{item.resName}</span>
+        </span>
+      )
       return (
-        <SubMenu key={key}
-          title={
-            <span>
-              <i className={`qqbicon qqbicon-${item.resIcon}`} title={item.resName} />
-              <span className="menu-name">{item.resName}</span>
-            </span>
-          }
-        >
-          {
-            item.children.map((child, _index) =>
-              (
-                <Menu.Item key={child.resKey ? child.resKey : child.id} name={child.resName}>
-                  <i className={`qqbicon qqbicon-${child.resIcon}`} title={child.resName} />
-                  <span className="menu-name">{child.resName}</span>
-                </Menu.Item>
-              ))
-          }
+        <SubMenu key={key} title={SubMenuTitle}>
+          {item.children.map((child, _index) => (<Menu.Item key={child.resKey ? child.resKey : child.id} name={child.resName}>
+            <i className={`qqbicon qqbicon-${child.resIcon}`} title={child.resName} />
+            <span className="menu-name">{child.resName}</span>
+          </Menu.Item>))}
         </SubMenu>
       )
     })
   }
 
-  // 左侧菜单高亮的控制
+  /***--- 左侧菜单高亮的控制： 刷新页面时，菜单是否会高亮显示 ---**/
   leftMenuHighLight = () => {
-    const { pathname } = this.props.location
+    const { pathname } = this.props.location;
     // console.log(pathname)
-    let selectedKeys = [pathname.replace('/', '')]
+    let selectedKeys = [pathname.replace('/', '')];
     if (pathname === '/' || pathname.indexOf('desk$/index') > -1) {
-      selectedKeys = ['desk$/index']
+      selectedKeys = ['desk$/index'];
     }
-    return selectedKeys
+    return selectedKeys;
   }
 
   render() {
-    const { openKeys, menuStyle } = this.state
+    const { openKeys, menuStyle } = this.state;
+    // console.log(openKeys) // ['sub0'] || ['sub1'] || ['sub2'] || ['sub3']
     return (
       <div className={menuStyle ? 'LeftNavMini' : ''}>
         <nav id="mainnav-container" className="mainnav-container">
           <div className="LeftNav-control" onClick={() => this.navMini()}>
             <i className="qqbicon qqbicon-navcontrol" />
           </div>
+          {/* 加载组件是否加载状态 */}
           <Spin spinning={false}>
             <Menu onClick={this._handleClick}
               theme="dark"

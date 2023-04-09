@@ -21,34 +21,36 @@ export default class Axios {
     }
 
     static ajax(options){
+        // console.log(options)
         let loading;
         if (options.data && options.data.isShowLoading !== false){
             loading = document.getElementById('ajaxLoading');
             loading.style.display = 'block';
         }
-        let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
+        // let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
+        let baseApi = " https://mock.mengxuegu.com/mock/6420434ee24b4b4cfeaca0ea/api"
         return new Promise((resolve,reject)=>{
             axios({
-                url:options.url,
+                url: options.url,
                 method:'get',
-                baseURL:baseApi,
+                baseURL: baseApi,
                 timeout:5000,
                 params: (options.data && options.data.params) || ''
             }).then((response)=>{
-                // console.log(response)
+                console.log(response)
                 if (options && options.data && options.data.isShowLoading !== false) {
                     loading = document.getElementById('ajaxLoading');
                     loading.style.display = 'none';
                 }
-                if (response && response.status === '200'){
+                if (response && response.status == 200){
+                    // console.log(response.data)
                     let res = response.data;
+                    // let newRes = JSON.parse(JSON.stringify(res))
+                    // console.log(newRes)
                     if (res.code === '0'){
                         resolve(res);
                     }else{
-                        Modal.info({
-                            title:"提示",
-                            content:res.msg
-                        })
+                        Modal.info({title:"提示",content: res.msg})
                     }
                 }else{
                     // console.log(response)

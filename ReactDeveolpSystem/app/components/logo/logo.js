@@ -10,7 +10,6 @@ import './logo.css'
 @connect((state, props) => ({
   config: state.config,
 }))
-
 export default class app extends Component {
   static propTypes = {
     image: PropTypes.string,
