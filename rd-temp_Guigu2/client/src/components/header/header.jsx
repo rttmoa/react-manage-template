@@ -8,6 +8,9 @@ import {formateDate} from '../../utils/dateUtils'
 import memoryUtils from '../../utils/memoryUtils'
 import LinkButton from '../link-button/linkButton'
 import './header.less'
+
+
+
 class Header extends Component {
     state = {
         currentTime:formateDate(Date.now()),

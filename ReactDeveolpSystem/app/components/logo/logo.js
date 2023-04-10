@@ -7,9 +7,7 @@ import PropTypes from 'prop-types'
 import logo from '@images/login.png'
 import './logo.css'
 
-@connect((state, props) => ({
-  config: state.config,
-}))
+@connect((state, props) => ({config: state.config,}))
 export default class app extends Component {
   static propTypes = {
     image: PropTypes.string,

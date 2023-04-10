@@ -126,10 +126,10 @@ class LeftNav extends Component {
                     <h1>硅谷后台</h1>
                 </Link>
                 <Menu
-                mode="inline"
-                theme="dark"
-                selectedKeys={[path]}
-                defaultOpenKeys={[openKey]}
+                    mode="inline"
+                    theme="dark"
+                    selectedKeys={[path]}
+                    defaultOpenKeys={[openKey]}
                 >
                 {this.menuNodes}
                 
