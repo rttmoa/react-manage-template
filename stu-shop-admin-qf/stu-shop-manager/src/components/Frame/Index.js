@@ -81,7 +81,7 @@ function Index(props) {
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
-          <Content style={{background: "#fff",margin: 0,minHeight: 280}}>
+          <Content style={{background: "#fff", margin: 0, minHeight: 280}}>
             {/* FrameLayout: 包裹的组件中就是 children */}
             {props.children}
           </Content>
