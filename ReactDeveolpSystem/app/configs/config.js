@@ -19,6 +19,8 @@ if (process.env.NODE_ENV === 'production') { // 发布环境
   _baseURL = `${_serverIp}:${_port}`
 }
 
+
+
 export const serverIp = _serverIp
 export const path = '/mock'
 export const timeout = '15000' // 接口超时限制(ms)

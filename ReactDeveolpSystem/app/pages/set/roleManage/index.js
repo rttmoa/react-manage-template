@@ -286,9 +286,7 @@ export default class app extends Component {
   };
 
   /***--- 侧边栏加号 -- 角色添加 ---**/
-  roleAdd = () => {
-    this.setState({ Visible: true, title: "新增角色", type: "add" });
-  };
+  roleAdd = () => { this.setState({ Visible: true, title: "新增角色", type: "add" }) };
 
   /**
    * @description 角色修改时执行的操作 根据id发请求 成功后设置state的值
@@ -428,20 +426,16 @@ export default class app extends Component {
     });
   };
 
-  cancelButton = () => {
-    this.setState({
-      buttonVisible: false,
-    });
-  };
+  /***--- 权限按钮 取消 ---**/
+  cancelButton = () => {this.setState({buttonVisible: false,})};
 
+  /***--- 权限按钮 保存更改 ---**/
   saveChecked = (selectedRowKeys) => {
-    fetchUpdateButton(
-      {
+    fetchUpdateButton({
         id: this.state.currRoleId,
         resourceIds: selectedRowKeys,
         menuId: this.state.itemId,
-      },
-      (res) => {
+      }, (res) => {
         message.success(res.msg);
         this.getRoleList();
         this.cancelButton();
@@ -641,7 +635,7 @@ export default class app extends Component {
 
           </Layout>
         </Layout>
-        {/* 添加/编辑角色 弹出框 */}
+        {/* 左侧 -> 添加/编辑角色 弹出框 */}
         {this.state.Visible ? (
           <RoleEditModal
             visible={this.state.Visible}
@@ -653,6 +647,7 @@ export default class app extends Component {
             modifyId={this.state.modifyId}
           />
         ) : null}
+        {/* 右侧 -> 模块选择  -> 操作 -> 权限按钮 */}
         {this.state.buttonVisible ? (
           <ButtonModal
             title="按钮权限列表"

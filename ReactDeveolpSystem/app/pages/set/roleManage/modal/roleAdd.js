@@ -10,7 +10,7 @@ const { Option } = Select
 
 
 
-
+/***--- 左侧 -> 新增/修改角色 ---**/
 @Form.create({})
 export default class Index extends Component {
   constructor(props) {
@@ -33,9 +33,7 @@ export default class Index extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((errors, values) => {
-      if (errors) {
-        return;
-      }
+      if (errors)  return;
       this.setState({ loading: true })
       if (this.props.type === 'modify') {
         fetchRoleUpdate({ ...values, id: this.props.modifyId }, (res) => {
@@ -52,8 +50,9 @@ export default class Index extends Component {
     });
   }
 
+  /**底部 确定 取消 */
   footer() {
-    const { loading } = this.state
+    const { loading } = this.state;
     return (
       <div>
         <Button type="primary" onClick={this.handleSubmit} loading={loading}>确定</Button>
@@ -99,7 +98,7 @@ export default class Index extends Component {
               {getFieldDecorator('tjFlag', {
                 initialValue: '1',
                 rules: [
-                  { required: true, message: '请选择是否统计' },
+                  { required: false, message: '请选择是否统计' },
                 ],
               })(<Select placeholder="选择是否统计">
                 <Option value="0">否</Option>

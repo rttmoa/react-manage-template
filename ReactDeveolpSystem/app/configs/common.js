@@ -3,15 +3,18 @@ import { hashHistory } from 'react-router'
 import { message } from 'antd'
 import { loginByTicket, staff, login as loginApi, getBtns } from '@apis/common'
 
+
+
+
 export function parseQueryString(url) {
   const obj = {}
   if (url.indexOf('?') !== -1) {
-    const str = url.split('?')[1]
-    const strs = str.split('&')
+    const str = url.split('?')[1];
+    const strs = str.split('&');
     strs.map((item, i) => {
-      const arr = strs[i].split('=')
+      const arr = strs[i].split('=');
       /* eslint-disable */
-      obj[arr[0]] = arr[1]
+      obj[arr[0]] = arr[1];
     })
   }
   return obj
