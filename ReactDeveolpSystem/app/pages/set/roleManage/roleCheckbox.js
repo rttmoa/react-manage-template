@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-
+/***--- roleModuleList.js表格中 渲染此组件 ---**/
 class RoleCheckbox extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +40,8 @@ class RoleCheckbox extends React.Component {
 
   // #endregion
 
+
+  // 操作左侧：未开通/已开通
   render() {
     return (
       <Checkbox

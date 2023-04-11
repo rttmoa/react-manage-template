@@ -5,19 +5,9 @@ import TableList from '@tableList'
 
 
 
-/***--- 角色树 ---**/
+/***--- 角色树 - Table ---**/
 export default class app extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  componentWillMount() {}
-
-  componentDidMount() {}
-
-
-
+  
   // #region 收缩业务代码功能
   columns() {
     return (

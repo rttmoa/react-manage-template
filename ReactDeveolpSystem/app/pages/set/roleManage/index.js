@@ -578,6 +578,7 @@ export default class app extends Component {
                   />
                 </FormItem>
                 <div className="treeside">
+                  {/* 左侧侧边栏 - 角色信息 */}
                   <RolesList
                     roles={roleListResult.list || []}
                     handleRoleDelete={this.handleRoleDelete} // 角色删除事件

@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import { Icon, Popconfirm } from 'antd'
+import React, { Component } from "react";
+import { Icon, Popconfirm } from "antd";
 
 
 
 
 
-
+/***--- 左侧侧边栏 - 角色信息 ---**/
 export default class app extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      currentId: '',
-    }
+      currentId: "",
+    };
   }
 
   componentWillMount() {
     if (this.props.roles.length > 0) {
       this.setState({
         currentId: this.props.roles[0].id || 0,
-      })
+      });
     }
   }
 
   componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.currentId === '' && nextProps.roles.length > 0) {
+    if (this.state.currentId === "" && nextProps.roles.length > 0) {
       this.setState({
         currentId: nextProps.roles[0].id || 0,
-      })
+      });
     }
   }
 
@@ -36,56 +36,59 @@ export default class app extends Component {
 
   // 角色名点击
   roleNameClick = (roleid, roleType) => {
-    this.setState({ currentId: roleid })
-    this.props.onCurrentIndex(roleid, roleType)
-  }
+    // console.log(roleid, roleType);
+    this.setState({ currentId: roleid });
+    this.props.onCurrentIndex(roleid, roleType);
+  };
 
   // 改变选中li的样式
-  checkTitleId = id =>
-    // console.log(id)
-    (id === this.state.currentId ? 'active cell-layout' : 'cell-layout')
-
+  checkTitleId = (id) => id === this.state.currentId ? "active cell-layout" : "cell-layout";
 
   // 角色修改
-  roleModify = (info) => {
-    this.props.onRoleModify(info)
-  }
+  roleModify = (info) => {this.props.onRoleModify(info);};
 
   // 角色删除
   onDelete = (info) => {
-    this.state.currentId = ''
-    this.props.handleRoleDelete(info)
-  }
+    this.state.currentId = "";
+    this.props.handleRoleDelete(info);
+  };
 
   // render roleNodes
   renderRoleNodes = () => {
-    const { roles, btnRights } = this.props
-    return roles.map((item, index) =>
-      (<li key={index} className={this.checkTitleId(item.id)}>
-        <a className="name" onClick={() => this.roleNameClick(item.id, item.type)}>{item.roleName}</a>
-        <a className="icons">
-          {
-            btnRights.edit ?
-              <Icon title="修改角色" type="edit" onClick={() => this.roleModify(item.id)} /> : null
-          }
-          {
-            btnRights.deleteRole ?
-              <Popconfirm title="删除?" onConfirm={() => this.onDelete(item.id)}>
-                <Icon title="删除角色" className="iconMargin" type="minus-circle-o" />
-              </Popconfirm>
-              : null
-          }
+    // console.log("roleList")
+    const { roles, btnRights } = this.props;
+    return roles.map((item, index) => (
+      <li key={index} className={this.checkTitleId(item.id)}>
+        <a className="name" onClick={() => this.roleNameClick(item.id, item.type)}>
+          {item.roleName}
         </a>
-      </li>))
-  }
+        <a className="icons">
+          {btnRights.edit ? (
+            <Icon
+              title="修改角色"
+              type="edit"
+              onClick={() => this.roleModify(item.id)}
+            />
+          ) : null}
+          {btnRights.deleteRole ? (
+            <Popconfirm title="删除?" onConfirm={() => this.onDelete(item.id)}>
+              <Icon
+                title="删除角色"
+                className="iconMargin"
+                type="minus-circle-o"
+              />
+            </Popconfirm>
+          ) : null}
+        </a>
+      </li>
+    ));
+  };
 
   // #endregion
 
   render() {
-    return (
-      <ul className="roleslist">
-        {this.renderRoleNodes()}
-      </ul>
-    )
+    return <ul className="roleslist">
+      {this.renderRoleNodes()}
+    </ul>;
   }
 }

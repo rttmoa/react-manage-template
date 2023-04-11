@@ -6,9 +6,9 @@ import { fetchButtonList, fetchChangeModuleStatus } from '@apis/manage'
 
 
 
-// 声明组件  并对外输出
+
+/***--- 按钮权限列表 ---**/
 export default class pop extends Component {
-  // 初始化页面常量 绑定事件方法
   constructor(props) {
     super(props)
     this.state = {
@@ -21,11 +21,13 @@ export default class pop extends Component {
     this.selectChecked = this.selectChecked.bind(this)
   }
 
+  // 用于在组件挂载（插入DOM树）之前执行一些操作
   componentWillMount() {
     this.state.selectedRowKeys = this.props.checkedIdArr[this.props.itemId] || []
     this.getList()
   }
 
+  /***--- 当加载数据时，页面加载 ---**/
   getList() {
     this.setState({ loading: true }, () => {
       fetchButtonList({ id: this.props.itemId }, (result) => {
@@ -61,7 +63,9 @@ export default class pop extends Component {
   //   })
   // }
 
+  /***--- 底部全选按钮 ---**/
   selectChecked() {
+    // console.log(this.state.dataSource);
     // const checkedArr = []
     this.state.dataSource.map((item) => {
       item.checked = true
@@ -71,6 +75,7 @@ export default class pop extends Component {
     // this.props.saveChecked(checkedArr)
   }
 
+  /***--- 按钮权限列表 保存按钮 ---**/
   saveChecked() {
     // const { selectedRowKeys } = this.state
     // if (selectedRowKeys.length === 0) {
@@ -86,6 +91,7 @@ export default class pop extends Component {
     this.props.saveChecked(checkedArr)
   }
 
+  /***--- 底部 全选，确定，取消 ---**/
   footer() {
     const { cancelButton } = this.props;
     return (
@@ -97,10 +103,12 @@ export default class pop extends Component {
     )
   }
 
-  change(id, index) {
-    const data = this.state.dataSource[index]
-    data.checked = !data.checked
+  /***--- 选择模块的事件 ---**/
+  change(id, index) { // id=134, index=0
+    const data = this.state.dataSource[index] // 先获取array[index]  
+    data.checked = !data.checked // 第index号元素中 checked 取反
     this.setState({})
+    // debugger
   }
 
   render() {
@@ -119,11 +127,7 @@ export default class pop extends Component {
             <Row gutter={8}>
               {dataSource.map((arr, i) =>
                 (<Col span="12" key={i} >
-                  <Button
-                    type={arr.checked ? 'primary' : 'ghost'}
-                    onClick={() => this.change(arr.id, i)}
-                    title={arr.resName}
-                  >
+                  <Button type={arr.checked ? 'primary' : 'ghost'} onClick={() => this.change(arr.id, i)} title={arr.resName}>
                     {arr.resName}
                   </Button>
                 </Col>))}
