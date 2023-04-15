@@ -2,29 +2,15 @@
 
 ![img](https://camo.githubusercontent.com/4c82c2bade9204481be86bfdbc0b773be2c823dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4a6176617363726970742d79656c6c6f772e7376673f7374796c653d666c6174)  ![img](https://camo.githubusercontent.com/3a5d997143423893d291af21f6a10bddf6716fd1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c616e67756167652d4e6f64652d677265656e2e7376673f7374796c653d666c6174)  ![img](https://camo.githubusercontent.com/c55a47ce085cee081ab8038d88db04e3638fee48/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f44617461626173652d4d6f6e676f44422d677265656e2e7376673f7374796c653d666c6174)
 
-## 安装及启动
-
-**安装：`npm install & cd/service npm install`**
-
-**运行前台:**   **`npm start`**
-
-**运行后台：`cd service & npm start`**
-
-## 项目注意点
-
-* [ ] 安装： 前台 /AccountSystem/npm install && /AccountSystem/service/npm install
-* [ ] 运行： 前台 /AccountSystem/npm start && /AccountSystem/service/npm start
-* [ ] 数据库名：accountSystem
-
 ## 如何安装
 
 1 `.` 请确保安装MongoDB并正确启动( mongodb相关资料请移步[这里](https://docs.mongodb.com/manual/installation/) )`<br>`
 2 `.` 请确保全局安装pm2 `npm install -g pm2<br>`
 3 `.` Clone 该项目到本地 `git clone https://github.com/yvanwangl/AccountSystem.git<br>`
 4 `.` 安装前端依赖包 `npm install<br>`
-5 `.` 安装后端依赖包 `cd service` & `npm install<br>`
+5 `.` 安装后端依赖包 `cd service & npm install<br>`
 6 `.` 该项目采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：`<br>`
-    * 启动node server开发服务 `npm run start:dev<br>`
+    * 启动node server开发服务 `cd service & npm run start:dev<br>    数据库名称：accountSystem `
     * 启动前端dev server `npm start<br>`
 7 `.` 如果以发布模式运行则执行以下命令：`<br>`
     * 前端资源打包 `npm run build<br>`
@@ -77,6 +63,5 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 ![](./docs/images/supplierBill.png)`<br>`
 
 其他一些界面的功能就不再一一介绍，感兴趣的话自己clone一份代码，运行一下便知:)`<br>`
-
 
 1
