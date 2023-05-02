@@ -15,7 +15,7 @@ function Index(props) {
   // console.log(props) // {dispatch, history, location, match, notice, produect, staticContext}
   return (
     <Card title="通知中心" extra={<Button onClick={() => props.dispatch({type: "READ_ALL"}) }>全部已读</Button>} >
-      <List
+      <List 
         header={<div>Header</div>}
         footer={<div>Footer</div>}
         bordered

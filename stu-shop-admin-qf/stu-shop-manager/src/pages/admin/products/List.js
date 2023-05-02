@@ -112,7 +112,7 @@ function List(props) {
                 // 修改在售状态
                 modifyOne(record._id, { onSale: !record.onSale }).then(res => {
                   loadData();
-                });
+                }); 
               }}
             >
               {record.onSale ? "下架" : "上架"}

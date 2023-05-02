@@ -112,11 +112,18 @@ function Edit(props) {
       }
     });
   };
+
+
+
+
+
+
   return (
     <Card
       title="商品编辑"
       extra={<Button onClick={() => props.history.push("/admin/products")}>返回</Button>}
     >
+      <h3>Form表单图片上传及富文本 - 根据Id判断初始值</h3>
       <Form onSubmit={e => handleSubmit(e)}>
         <Form.Item label="名字">
           {getFieldDecorator("name", {
@@ -131,8 +138,7 @@ function Edit(props) {
         </Form.Item>
         <Form.Item label="价格">
           {getFieldDecorator("price", {
-            rules: [
-              {
+            rules: [ {
                 required: true,
                 message: "请输入商品价格"
               },

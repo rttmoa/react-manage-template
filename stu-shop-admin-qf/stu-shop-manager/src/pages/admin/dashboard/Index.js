@@ -38,7 +38,7 @@ function Index() {
           </Col>
         </Row>
       </Card>
-      <Card title="其他统计" bordered={false}></Card>
+      <Card title="其他统计" bordered={true}></Card>
     </div>
   );
 }

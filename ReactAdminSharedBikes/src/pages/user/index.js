@@ -237,6 +237,7 @@ class UserForm extends React.Component{
             '5':'创业者'
         }[state]
     }
+    // this.getState('2')
 
     render(){
         const { getFieldDecorator } = this.props.form;

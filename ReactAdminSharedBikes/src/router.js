@@ -30,20 +30,22 @@ import Line from './pages/echarts/line/index'
 import Permission from './pages/permission'
 
 export default class ERouter extends React.Component{
-
     render(){
         return (
             <HashRouter>
+                {/* TODO: Appjs包裹内容组件chilren */}
                 <App>
                     <Switch>
                         <Route path="/login" component={Login}/>
                         <Route path="/common" render={() =>
+                            // TODO: Common 组件中包裹着children
                             <Common>
                                 <Route path="/common/order/detail/:orderId" component={OrderDetail} />
                             </Common>
                         }
                         />
                         <Route path="/" render={()=>
+                            // TODO: Admin组件包裹着children
                             <Admin>
                                 <Switch>
                                     <Route path='/home' component={Home} />
@@ -69,7 +71,7 @@ export default class ERouter extends React.Component{
                                     <Route path="/charts/line" component={Line} />
                                     <Route path="/permission" component={Permission} />
                                     <Redirect to="/home" />
-                                    {/* <Route component={NoMatch} /> */}
+                                    <Route component={NoMatch} />
                                 </Switch>
                             </Admin>         
                         } />

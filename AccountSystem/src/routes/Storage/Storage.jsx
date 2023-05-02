@@ -10,6 +10,9 @@ import ModifyStorage from '../../components/Storage/ModifyStorage/ModifyStorage'
 import {redirect} from '../../utils/webSessionUtils';
 import {storageClass, storageContainer, addStorageContainer, modifyStorageContainer} from './index.css';
 
+
+
+
 function genStorage({dispatch, storage}){
     const {
         list,
@@ -26,7 +29,7 @@ function genStorage({dispatch, storage}){
 		suppliers
     } = storage;
 
-	const storageListProps ={
+	const storageListProps = {
 		current,
 		total,
 		dataSource: list,
@@ -95,31 +98,23 @@ function genStorage({dispatch, storage}){
 	return (
 		<div className={storageClass}>
 			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
-			{
-				editorVisible?
-					(
-						editorType=='create'?
-							(
-								<div className={addStorageContainer}>
-									<AddStorage />
-								</div>
-							):
-							(
-								<div className={modifyStorageContainer}>
-									<ModifyStorage editorType={editorType}/>
-								</div>
-							)
-					):
-					(
-						<div className={storageContainer}>
-							<SearchBar onAdd={onAdd}>
-								<StorageSearchForm onSearch={onSearch} suppliers={suppliers}/>
-							</SearchBar>
-							<StorageList {...storageListProps} />
-						</div>
-					)
-			}
-
+                {editorVisible ? (editorType=='create'? (
+                        <div className={addStorageContainer}>
+                            <AddStorage />
+                        </div>
+                    ) : (
+                        <div className={modifyStorageContainer}>
+                            <ModifyStorage editorType={editorType}/>
+                        </div>
+                    )
+                ): (
+                    <div className={storageContainer}>
+                        <SearchBar onAdd={onAdd}>
+                            <StorageSearchForm onSearch={onSearch} suppliers={suppliers}/>
+                        </SearchBar>
+                        <StorageList {...storageListProps} />
+                    </div>
+                )}
 		</div>
 	);
 }
@@ -139,14 +134,10 @@ class Storage extends Component {
 		return isLogin && genStorage(this.props);
     }
 }
-
 Storage.propTypes = {
     orders:PropTypes.object,
 };
-
 function mapStateToProps({storage, systemUser}) {
     return {storage, systemUser};
 }
-
-
 export default connect(mapStateToProps)(Storage);

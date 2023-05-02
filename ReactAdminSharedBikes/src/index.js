@@ -19,5 +19,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-// ReactDOM.render(<Router />, document.getElementById('root'));
 registerServiceWorker();

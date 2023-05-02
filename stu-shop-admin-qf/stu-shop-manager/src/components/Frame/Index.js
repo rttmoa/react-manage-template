@@ -19,13 +19,10 @@ function Index(props) {
   // 下拉组件
   const popMenu = (
     <Menu onClick={p => {
-      // console.log(p)
         if (p.key == "logOut") {
-          // return
           clearToken();
           props.history.push("/login");
         } else {
-          // message.info(p.key); // tip
           if ((p.key == "noti")) {
             props.history.push("/admin/notices");
           }
@@ -40,6 +37,7 @@ function Index(props) {
 
   return (
     <Layout>
+
       {/* 头部 */}
       <Header className="header" style={{backgroundColor: "#428bca"}}>
         <div className="logo">
@@ -55,9 +53,11 @@ function Index(props) {
           </div>
         </Dropdown>
       </Header>
+
       {/* 侧边栏 */}
       <Layout>
         <Sider width={200} style={{ background: "#fff" }}>
+        <h3>Menu - Menu.Item</h3>
           <Menu
             mode="inline"
             defaultSelectedKeys={[props.location.pathname]}
@@ -74,6 +74,7 @@ function Index(props) {
             })}
           </Menu>
         </Sider>
+
         {/* 主体内容 */}
         <Layout style={{ padding: "16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
@@ -82,13 +83,13 @@ function Index(props) {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <Content style={{background: "#fff", margin: 0, minHeight: 280}}>
-            {/* FrameLayout: 包裹的组件中就是 children */}
+            <h3>props.children</h3>
             {props.children}
           </Content>
         </Layout>
+
       </Layout>
     </Layout>
   );
 }
-const mapStateToProps = state => state;
-export default connect(mapStateToProps)(withRouter(Index));
+export default connect(state => state, null)(withRouter(Index));

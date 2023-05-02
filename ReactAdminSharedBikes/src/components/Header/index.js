@@ -16,7 +16,7 @@ class Header extends React.Component{
                 sysTime
             })
         },1000)
-        // this.getWeatherAPIData();
+        this.getWeatherAPIData();
     }
 
     getWeatherAPIData(){
@@ -25,11 +25,10 @@ class Header extends React.Component{
             url:'http://api.map.baidu.com/telematics/v3/weather?location='+encodeURIComponent(city)+'&output=json&ak=mI3Cb3oIBjdSYW9A74s5qi0GNrmmhiYS'
             // url: "http://api.map.baidu.com/geocoder/v2/?address=百度大厦&output=json&ak=yourak&sn=7de5a22212ffaa9e326444c75a58f9a0"
         }).then((res)=>{    
-            // console.log(res)
             if(res.status === 'success'){
                 let data = res.results[0].weather_data[0];
                 this.setState({
-                    dayPictureUrl:data.dayPictureUrl,
+                    dayPictureUrl: data.dayPictureUrl,
                     weather:data.weather
                 })
             }
@@ -49,7 +48,7 @@ class Header extends React.Component{
                     }
                     <Col span={menuType?18:24}>
                         <span>欢迎，{this.state.userName}</span>
-                        <a href="#">退出</a>
+                        <a href="javascript;">退出</a>
                     </Col>
                 </Row>
                 {

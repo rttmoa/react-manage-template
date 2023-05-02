@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button, Table, Form, Select, Modal, message } from 'antd';
 import axios from '../../axios/index';
 import Utils from '../../utils/utils';
+import axiosJSON from 'axios'
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -21,27 +22,41 @@ export default class City extends React.Component{
 
     // 默认请求我们的接口数据
     requestList = ()=>{
-        let _this = this;
-        axios.ajax({
-            url: '/open_city',
-            data:{
-                params:{
-                    page:this.params.page
-                }
-            }
-        }).then((res)=>{
-            // console.log(res)
-            let list = res.result.item_list.map((item, index) => {
-                item.key = index;
-                return item;
-            });
-            this.setState({
-                list:list,
-                pagination:Utils.pagination(res,(current)=>{
-                    _this.params.page = current;
-                    _this.requestList();
-                })
-            })
+        let _this = this; 
+        // axios.ajax({
+        //     url: '/open_city',
+        //     data:{
+        //         params:{
+        //             page:this.params.page
+        //         }
+        //     }
+        // }).then((res)=>{
+        //     console.log(res)
+        //     let list = res.result.item_list.map((item, index) => {
+        //         item.key = index;
+        //         return item;
+        //     });
+        //     this.setState({
+        //         list:list,
+        //         pagination:Utils.pagination(res,(current)=>{
+        //             _this.params.page = current;
+        //             _this.requestList();
+        //         })
+        //     })
+        // })
+        axiosJSON.get('/api/city/list.json').then(res => {
+            console.log(res)
+            // let list = res.data.result.map((item, index) => {
+            //     item.key = index;
+            //     return item;
+            // });
+            // this.setState({
+            //     list:list,
+            //     pagination:Utils.pagination(res,(current)=>{
+            //         _this.params.page = current;
+            //         _this.requestList();
+            //     })
+            // })
         })
     }
 
@@ -54,7 +69,7 @@ export default class City extends React.Component{
     // 城市开通提交
     handleSubmit = ()=>{
         let cityInfo = this.cityForm.props.form.getFieldsValue();
-        console.log(cityInfo);
+        // console.log(cityInfo);
         axios.ajax({
             url:'/city/open',
             data:{
@@ -129,6 +144,7 @@ export default class City extends React.Component{
                         pagination={this.state.pagination}
                     />
                 </div>
+                
                 <Modal 
                     title="开通城市"
                     visible={this.state.isShowOpenCity}

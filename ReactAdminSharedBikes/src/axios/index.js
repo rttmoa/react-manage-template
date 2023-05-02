@@ -6,6 +6,9 @@ import { Modal } from 'antd'
 
 
 export default class Axios {
+    static axiosJSON (){
+        return axios
+    }
     static jsonp(options) {
         return new Promise((resolve, reject) => {
             JsonP(options.url, {
@@ -50,7 +53,7 @@ export default class Axios {
                     if (res.code === '0'){
                         resolve(res);
                     }else{
-                        Modal.info({title:"提示",content: res.msg})
+                        Modal.info({title:"提示", content: res.msg})
                     }
                 }else{
                     // console.log(response)

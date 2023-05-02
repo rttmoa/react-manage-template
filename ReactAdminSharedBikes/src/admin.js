@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import { connect } from 'react-redux'
 import NavLeft from './components/NavLeft'
 import './style/common.less'
-import Home from './pages/home'
 
 
 
@@ -21,7 +20,6 @@ class Admin extends React.Component{
                 <Col span="20" className="main">
                     <Header />
                     <Row className="content">
-                        {/* <Home/> */}
                         {this.props.children}
                     </Row>
                     <Footer/>
