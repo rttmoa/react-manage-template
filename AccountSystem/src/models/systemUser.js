@@ -18,8 +18,9 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen(location => {
+                // console.log(location)
                 if (location.pathname === '/') {
-                    //权限验证通过
+                    // 权限验证通过
                     if(sessionStorage.getItem('userInfo')){
                         dispatch({
                             type: 'loginSuccess',
@@ -79,13 +80,14 @@ export default {
         /***--- 退出登录成功 ---**/
         *doLogout({ payload }, { call, put }) {
             const { data } = yield call(doLogout);
-            if (data && data.success) {
+            // FIXME: 如果用户点击退出 = 清除session + 清除redux
+            // if (data && data.success) {
+            //     yield sessionStorage.removeItem('userInfo')
+            //     yield put({ type: 'logoutSuccess', payload: data.userInfo});
+            // }
+            if(Boolean(data)){
                 yield sessionStorage.removeItem('userInfo')
-                //退出登录成功
-                yield put({
-                    type: 'logoutSuccess',
-                    payload: data.userInfo
-                });
+                yield put({type: 'logoutSuccess'})
             }
         }
     },

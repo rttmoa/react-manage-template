@@ -9,19 +9,25 @@ import {homePage, container} from './index.css';
 const HomePage = ({children, home})=> {
     const {activeIndex} = home;
     const height = window.innerHeight - 64;
+
     return (
         <div className={homePage}>
+
+            {/* TODO: 侧边栏 */}
             <Header activeIndex={activeIndex}/>
+
+            {/* TODO: 头部 */}
             <SystemInfo/>
+
+            {/* TODO: 内容children */}
             <div className={container} style={{height}}>
                 {children}
             </div>
+
         </div>
     );
 };
-
 function mapStateToProps({home}) {
     return {home};
 }
-
 export default connect(mapStateToProps)(HomePage);

@@ -20,7 +20,5 @@ export async function doLogup(params) {
 }
 
 export async function doLogout() {
-	return request( `${LOGIN_API}/logout`,{
-		method: 'POST'
-	});
+	return request( `${LOGIN_API}/logout`,{method: 'POST'});
 }

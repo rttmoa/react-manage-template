@@ -47,52 +47,52 @@ export default class Header extends Component {
 	}
 
 	render() {
+        const defaltAddress = window.location.pathname.substring(1);
 		return (
 			<div className={header}>
 				<Menu
-					defaultSelectedKeys={['index']}
+					// defaultSelectedKeys={['index']}
+                    defaultSelectedKeys={[defaltAddress]}
 					mode="inline"
 					theme="dark"
 					className={menuList}
 				>
-					{
-						menus.map(([key, path, text, icon], index) => {
-								if (key === 'manage') {
-									return (
-										<SubMenu key={key} title={<span><Icon type="setting"/><span>{text}</span></span>}>
-											{
-												manageChildMenus.map(([key, path, text, icon], index) => (
-													<MenuItem key={key}>
-														<NavLink target={path} linkText={<span><Icon
-															type={icon}/><span>{text}</span></span>}/>
-													</MenuItem>
-												))
-											}
-										</SubMenu>
-									)
-								} else if (key === 'bills') {
-									return (
-										<SubMenu key={key} title={<span><Icon type="copy"/><span>{text}</span></span>}>
-											{
-												billsChildMenus.map(([key, path, text, icon], index) => (
-													<MenuItem key={key}>
-														<NavLink target={path} linkText={<span><Icon
-															type={icon}/><span>{text}</span></span>}/>
-													</MenuItem>
-												))
-											}
-										</SubMenu>
-									)
-								} else {
-									return (
-										<MenuItem key={key}>
-											<NavLink target={path} linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
-										</MenuItem>
-									)
-								}
-							}
-						)
-					}
+					{menus.map(([key, path, text, icon], index) => {
+                            if (key === 'manage') {
+                                return (
+                                    <SubMenu key={key} title={<span><Icon type="setting"/><span>{text}</span></span>}>
+                                        {
+                                            manageChildMenus.map(([key, path, text, icon], index) => (
+                                                <MenuItem key={key}>
+                                                    <NavLink target={path} linkText={<span><Icon
+                                                        type={icon}/><span>{text}</span></span>}/>
+                                                </MenuItem>
+                                            ))
+                                        }
+                                    </SubMenu>
+                                )
+                            } else if (key === 'bills') {
+                                return (
+                                    <SubMenu key={key} title={<span><Icon type="copy"/><span>{text}</span></span>}>
+                                        {
+                                            billsChildMenus.map(([key, path, text, icon], index) => (
+                                                <MenuItem key={key}>
+                                                    <NavLink target={path} linkText={<span><Icon
+                                                        type={icon}/><span>{text}</span></span>}/>
+                                                </MenuItem>
+                                            ))
+                                        }
+                                    </SubMenu>
+                                )
+                            } else {
+                                return (
+                                    <MenuItem key={key}>
+                                        <NavLink target={path} linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
+                                    </MenuItem>
+                                )
+                            }
+                        }
+                    )}
 				</Menu>
 			</div>
 		);

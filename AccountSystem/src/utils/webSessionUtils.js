@@ -30,10 +30,10 @@ export function redirect() {
     return null;
 }
 
-/*授权验证*/
+/** 授权验证 */
 export function requireAuth(nextState, replace) {
     const userInfo = sessionStorage.getItem('userInfo');
-    console.log("userInfo", userInfo)
+    // console.log("userInfo", userInfo)
     if(!userInfo || userInfo === null){
         message.error('请登录！');
         replace('/');

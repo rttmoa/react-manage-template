@@ -3,7 +3,7 @@
     top: 0;
     left:0 ;
     bottom: 0;
-    width:300px;
+    width:250px;
     background: #404040;
     overflow: scroll;
 }
@@ -12,6 +12,6 @@
     border: none;
 }
 
-.header ::-webkit-scrollbar { 
-    display: none; 
+.header ::-webkit-scrollbar {
+    display: none;
 }

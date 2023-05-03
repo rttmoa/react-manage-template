@@ -120,17 +120,13 @@ function genStorage({dispatch, storage}){
 }
 
 class Storage extends Component {
-    constructor(props){
-        super(props);
-    }
-
 	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
+		let {isLogin} = this.props && this.props.systemUser;
 		return !isLogin && redirect();
 	}
 
     render(){
-		let {isLogin} = this.props.systemUser;
+		let {isLogin} = this.props && this.props.systemUser;
 		return isLogin && genStorage(this.props);
     }
 }

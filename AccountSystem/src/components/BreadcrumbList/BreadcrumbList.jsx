@@ -6,25 +6,23 @@ import {breadcrumb} from './index.css';
 const BreadcrumbItem = Breadcrumb.Item;
 
 export default class BreadcrumbList extends Component {
-    constructor(props) {
-        super(props);
-        // this.state = props.breadcrumbItems;
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // this.state = props.breadcrumbItems;
+    // }
 
     render() {
         let {breadcrumbItems} = this.props;
         return (
             <div className={breadcrumb}>
                 <Breadcrumb>
-                    {
-                        breadcrumbItems.map(([target, linkText], index)=> {
-                            return (
-                                <BreadcrumbItem key={index}>
-                                    <NavLink target={target} linkText={linkText}/>
-                                </BreadcrumbItem>
-                            );
-                        })
-                    }
+                    {breadcrumbItems.map(([target, linkText], index)=> {
+                        return (
+                            <BreadcrumbItem key={index}>
+                                <NavLink target={target} linkText={linkText}/>
+                            </BreadcrumbItem>
+                        );
+                    })}
                 </Breadcrumb>
             </div>
         );

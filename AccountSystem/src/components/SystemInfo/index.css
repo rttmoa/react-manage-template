@@ -9,7 +9,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    left: 300px;
+    left: 250px;
     z-index: 999;
     box-shadow: 0 1px 5px rgba(0,0,0,.2);
 }
@@ -17,9 +17,11 @@
     color: #4a4a4a;
     font-size: 18px;
 }
+
 .userInfo,
-.userName > span {
-    display: flex;
+.userName .ava {
+    display: inline-block;
+    /* 垂直居中 */
     align-items: center;
 }
 .userName {

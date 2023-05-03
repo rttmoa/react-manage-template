@@ -10,7 +10,11 @@ import ModifyOrder from '../../components/Orders/ModifyOrder/ModifyOrder';
 import {redirect} from '../../utils/webSessionUtils';
 import {orderClass, orderContainer, addOrderContainer, modifyOrderContainer} from './index.css';
 
-function genOrders({dispatch, orders}){
+
+
+
+
+function genOrders({dispatch, orders, children, history, location, route, routeParams, routes, systemUser }){
     const {
         list,
         total,
@@ -26,6 +30,7 @@ function genOrders({dispatch, orders}){
 		customers
     } = orders;
 
+    // Table表格Data
     const orderListProps ={
         current,
         total,
@@ -95,56 +100,42 @@ function genOrders({dispatch, orders}){
     return (
         <div className={orderClass}>
             <BreadcrumbList breadcrumbItems={breadcrumbItems} />
-            {
-                editorVisible?
-                    (
-                        editorType==='create'?
-                            (
-                                <div className={addOrderContainer}>
-                                    <AddOrder />
-                                </div>
-                            ):
-                            (
-                                <div className={modifyOrderContainer}>
-                                    <ModifyOrder editorType={editorType}/>
-                                </div>
-                            )
-                    ):
-                    (
-                        <div className={orderContainer}>
-                            <SearchBar onAdd={onAdd}>
-                                <OrderSearchForm onSearch={onSearch} customers={customers}/>
-                            </SearchBar>
-                            <OrderList {...orderListProps} />
-                        </div>
-                    )
-            }
+            {editorVisible ? (editorType === 'create' ? (
+                    <div className={addOrderContainer}>
+                        <AddOrder />
+                    </div>
+                ): (
+                    <div className={modifyOrderContainer}>
+                        <ModifyOrder editorType={editorType}/>
+                    </div>
+                )
+            ): (<div className={orderContainer}>
+                {/* TODO: 搜索组件 */}
+                <SearchBar onAdd={onAdd}>
+                    <OrderSearchForm onSearch={onSearch} customers={customers}/>
+                </SearchBar>
+                {/* TODO: Table */}
+                <OrderList {...orderListProps} />
+            </div>)}
         </div>
     );
 }
 
 class Orders extends Component{
-    constructor(props) {
-        super(props);
-    }
-
 	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
+		let {isLogin} = this.props && this.props.systemUser;
 		return !isLogin && redirect();
 	}
-
     render(){
-		let {isLogin} = this.props.systemUser;
+		let {isLogin} = this.props && this.props.systemUser;
 		return isLogin && genOrders(this.props);
     }
 }
-
 Orders.propTypes = {
     orders:PropTypes.object,
+    systemUser: PropTypes.object
 };
-
 function mapStateToProps({orders, systemUser}) {
     return {orders, systemUser};
 }
-
 export default connect(mapStateToProps)(Orders);

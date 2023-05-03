@@ -15,7 +15,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
     // console.log(dispatch)
 
 	const {isLogin, username, modalVisible, logupModalVisible} = systemUser;
-    console.log('是否登陆状态', isLogin)
+    console.log(`------------登陆 ? ${isLogin ? "是" : "否"}---------------`)
 
 	const loginClick = () => {
 		dispatch({type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'});
@@ -93,10 +93,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 			<span className={systemName}>铭帝系统门窗管理系统</span>
 			<span className={userInfo}>
                 <span className={userName}>
-                    {
-                        isLogin ?
-                        <span><Avatar style={{marginRight: '4px'}} size="small" icon="user" /> {username} </span> : null
-                    }
+                    {isLogin ? <span className='ava'><Avatar style={{marginRight: '4px'}} size="small" icon="user" /> {username} </span> : null}
                 </span>
                 <Button type="primary" className={loginButton} onClick={loginClick}>{isLogin ? "退出" : "登录"}</Button>
 				{register && !isLogin ? <Button className={logupButton} onClick={logupClick}>{isLogin ? '' : '注册'}</Button> : null}
@@ -104,6 +101,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 
             {/* 登陆模态框组件 */}
 			<LoginModalGen />
+
             {/* 注册模态框组件 */}
 			<LogupModalGen />
 

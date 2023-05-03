@@ -15,7 +15,8 @@ import Manage from './routes/Manage/Manage';
 import Customers from './routes/Customers/Customers';
 import Products from './routes/Products/Products';
 import Suppliers from './routes/Suppliers/Suppliers';
-import {requireAuth} from './utils/webSessionUtils';
+
+import { requireAuth } from './utils/webSessionUtils'; // 授权验证
 
 
 /**--- routerjs是所有路由 ---**/
