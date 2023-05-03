@@ -9,6 +9,11 @@ import Supplier from '../../components/Suppliers/AddSupplier/AddSupplier';
 import {redirect} from '../../utils/webSessionUtils';
 import {supplierClass, supplierContainer, addSupplierContainer, modifySupplierContainer} from './index.css';
 
+
+
+
+
+
 function genSuppliers({dispatch, suppliers}) {
     const {
         list,
@@ -87,7 +92,7 @@ function genSuppliers({dispatch, suppliers}) {
 		}
 	};
 
-    const onAdd = ()=> {
+    const onAdd = () => {
         dispatch({
             type: 'suppliers/showEditor'
         });
@@ -96,23 +101,18 @@ function genSuppliers({dispatch, suppliers}) {
     return (
         <div className={supplierClass}>
             <BreadcrumbList breadcrumbItems={breadcrumbItems}/>
-            {
-                editorVisible ?
-                    (
-						<div className={addSupplierContainer}>
-							<Supplier {...supplierEditor}/>
-						</div>
-                    ) :
-                    (
-                        <div className={supplierContainer}>
-                            <SearchBar onAdd={onAdd}>
-								<SearchForm {...supplierSearchProps}/>
-                            </SearchBar>
-                            <SupplierList {...supplierListProps} />
-                        </div>
-                    )
-            }
-
+            {editorVisible ? (
+                <div className={addSupplierContainer}>
+                    <Supplier {...supplierEditor}/>
+                </div>
+            ) : (
+                <div className={supplierContainer}>
+                    <SearchBar onAdd={onAdd}>
+                        <SearchForm {...supplierSearchProps}/>
+                    </SearchBar>
+                    <SupplierList {...supplierListProps} />
+                </div>
+            )}
         </div>
     );
 }

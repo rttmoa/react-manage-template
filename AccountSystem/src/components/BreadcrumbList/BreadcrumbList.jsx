@@ -5,14 +5,14 @@ import {breadcrumb} from './index.css';
 
 const BreadcrumbItem = Breadcrumb.Item;
 
+
+
 export default class BreadcrumbList extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     // this.state = props.breadcrumbItems;
-    // }
 
     render() {
         let {breadcrumbItems} = this.props;
+        // console.log(breadcrumbItems) // [['/', '首页'], ['/orders', '订单']]
+
         return (
             <div className={breadcrumb}>
                 <Breadcrumb>

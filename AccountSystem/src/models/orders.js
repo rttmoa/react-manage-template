@@ -85,8 +85,11 @@ export default {
     // TODO: Action
     effects: {
         // 查询 ~   1、onSearch(日期 + 客户名称 + 订单编号)   2、onPageChange分页查询数据
-        *query({payload}, {call, put, select}){
-			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
+        *query({payload}, {call, put, select}) {
+
+            // console.log(payload) // 查询： {timeRange: Array(2), customerId: '640d74a80a0f744698d3ea96', orderNumber: 'MDC202305020007', page: 1}
+            // console.log(payload) // 分页
+			const isLogin = yield select(({systemUser}) => systemUser.isLogin);
 			if(!isLogin) return;
             yield put({type: 'showLoading'});
             yield put({
@@ -101,8 +104,9 @@ export default {
             });
             let {page, timeRange, customerId, orderNumber} = yield select(state => state.orders);
 			customerId = customerId === '00000' ? '' : customerId;
+            // console.log(parse({page, timeRange, customerId, orderNumber}))
             const {data} = yield call(query, parse({page, timeRange, customerId, orderNumber}));
-            console.log("/order/query", data) // FIXME: 表格数据
+            // console.log("/order/query", data) // FIXME: 表格数据
                 // {isAuth: false}
                 // {success: true, orders: Array(3), page: {…}}
             if (data) {
@@ -116,7 +120,7 @@ export default {
                 });
             }
         },
-        *create({payload}, {call, put}){
+        *create({payload}, {call, put}) {
             yield put({type: 'showLoading'});
             //保存之前清洗数据，对商品条目为空的商品记录进行删除
             const order = payload.order;
@@ -170,6 +174,7 @@ export default {
                 });
             }
         },
+
         // 操作 ~ 查看 / 编辑
         *queryOrderById({payload}, {call, put}) {
             const {data} = yield call(queryOrderById, payload.orderId);
@@ -193,7 +198,7 @@ export default {
         },
 
         // 表头 ~ 添加订单
-        *getOrderNumber({payload}, {call, put}){
+        *getOrderNumber({payload}, {call, put}) {
             const {data} = yield call(getOrderNumber, {});
             if (data && data.success) {
                 yield put({
@@ -215,7 +220,7 @@ export default {
         },
 
         // 获取 客户
-		*getCustomers({payload}, {select, call, put}){
+		*getCustomers({payload}, {select, call, put}) {
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin) return;
 			const {data} = yield call(customers.queryAll, {});
@@ -227,7 +232,8 @@ export default {
 				});
 			}
 		},
-		*getProducts({payload}, {select, call, put}){
+
+		*getProducts({payload}, {select, call, put}) {
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin) return;
 			const {data} = yield call(resource.query, {});
@@ -279,7 +285,7 @@ export default {
 
         // 操作 ~ 删除Order
         delSuccess(state, action){
-            const newList = state.list.filter(order=> order._id !== action.payload);
+            const newList = state.list.filter(order => order._id !== action.payload);
             return {...state, list: newList, loading: false};
         },
 

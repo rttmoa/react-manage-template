@@ -27,9 +27,9 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
         current,
         currentItem,
         editorVisible,
-        editorType,
-        breadcrumbItems,
-		customers
+        editorType,         // 编辑类型： w
+        breadcrumbItems,    // 面包屑
+		customers           // 客户
     } = orders;
     // console.log('Orderjsx - total', total)
 
@@ -93,6 +93,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
     };
 
     const onSearch = (fieldValues) => {
+        // fieldValues: {timeRange: Array(2), customerId: '640d74a80a0f744698d3ea96', orderNumber: 'aaaa'}
         dispatch({
         	type:'orders/query',
 			payload: {...fieldValues, page: 1}
@@ -101,7 +102,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
 
     const onAdd = () => {
         dispatch({
-            type:'orders/getOrderNumber'
+            type: 'orders/getOrderNumber'
         });
     };
 
@@ -120,7 +121,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
             ): (<div className={orderContainer}>
                 {/* TODO: 搜索组件 */}
                 <SearchBar onAdd={onAdd}>
-                    <OrderSearchForm onSearch={ } customers={customers}/>
+                    <OrderSearchForm onSearch={onSearch} customers={customers} />
                 </SearchBar>
                 {/* TODO: Table */}
                 <OrderList {...orderListProps} />

@@ -10,11 +10,11 @@ class AddOrderGrid extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: this.props.products,
-            count: 1,
-            totalAmount: this.props.totalAmount,
-            paymentAmount: this.props.paymentAmount,
-            remarks: ''
+            dataSource: this.props.products,          // Table数据
+            count: 1,  // 表格中List的数量
+            totalAmount: this.props.totalAmount,      // 合计金额
+            paymentAmount: this.props.paymentAmount,  // 支付金额
+            remarks: '' // 备注
         };
         let disabled = this.props.disabled || false;
         const {productList} = this.props;
@@ -32,7 +32,7 @@ class AddOrderGrid extends Component {
                     !disabled ? (
                         <p style={{textAlign: 'center'}}>
                             <a type='ghost' onClick={this.handleAdd.bind(this)}><Icon type="plus"/></a>
-                            <Spliter />
+                            <Spliter spliterText="|" />
                             <Popconfirm title="确定删除该条记录？" onConfirm={this.onDelete(index)}>
                                 <a type='ghost'><Icon type="minus"/></a>
                             </Popconfirm>
@@ -45,13 +45,14 @@ class AddOrderGrid extends Component {
                 dataIndex: 'productName',
                 key: 'productName',
 				width: '20%',
-                render: (text, record, index)=>(
+                render: (text, record, index) => (
+                    // 封装下拉框组件
                     <ListEditableCell
                         disabled={disabled}
                         editType='editCell'
 						componentType='combo'
 						productList={productList}
-                        value={{key: record['productId'], label:text}}
+                        value={{key: record['productId'], label: text}}
                         onChange={this.onListCellChange(index, 'productName')}
                     />
                 )
@@ -61,7 +62,7 @@ class AddOrderGrid extends Component {
                 dataIndex: 'quantity',
                 key: 'quantity',
 				width: '10%',
-                render: (text, record, index)=>(
+                render: (text, record, index) => (
 					record.productId !== undefined && record.productId !== '' ?
                     <EditableCell
 						fieldType="number"
@@ -69,7 +70,7 @@ class AddOrderGrid extends Component {
                         editType='editCell'
                         value={text}
                         onChange={this.onLinkCellChange(index, 'quantity')}
-					/>:<span>{text}</span>
+					/> : <span>{text}</span>
                 )
             },
             {
@@ -110,7 +111,7 @@ class AddOrderGrid extends Component {
                 dataIndex: 'remarks',
                 key: 'remarks',
 				width: '20%',
-                render: (text, record, index)=>(
+                render: (text, record, index) => (
                     <EditableCell
 						fieldType="text"
                         disabled={disabled}
@@ -123,6 +124,7 @@ class AddOrderGrid extends Component {
         ];
     }
 
+    // Table 添加备注
     onCellChange(index, key) {
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
@@ -134,6 +136,7 @@ class AddOrderGrid extends Component {
         }
     }
 
+    // Table 选择商品名称 / 下拉选择值
     onListCellChange(index, key){
 		const {editProducts} = this.props;
 		const {totalAmount, paymentAmount} = this.state;
@@ -150,6 +153,7 @@ class AddOrderGrid extends Component {
 		}
 	}
 
+    // Table 输入数量 / 单价
     onLinkCellChange(index, key) {
         const {editProducts, productList} = this.props;
         const {paymentAmount} = this.state;
@@ -180,7 +184,7 @@ class AddOrderGrid extends Component {
             editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
-
+    // 获取总价 金额/天
     getTotalAmount() {
         const dataSource = [...this.state.dataSource];
         let totalAmount = 0;
@@ -188,6 +192,7 @@ class AddOrderGrid extends Component {
         return totalAmount;
     }
 
+    // Table 删除Item项目
     onDelete(index) {
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
@@ -204,6 +209,7 @@ class AddOrderGrid extends Component {
         }
     }
 
+    // Table 新增Item项目
     handleAdd() {
         let {dataSource, count} = this.state;
         let newData = {
@@ -222,10 +228,11 @@ class AddOrderGrid extends Component {
         });
     }
 
+    // Footer 支付金额
     handlePaymentAmount() {
         const {editProducts} = this.props;
         const {dataSource, totalAmount} = this.state;
-        return (paymentValue)=> {
+        return (paymentValue) => {
             this.setState({
                 paymentAmount: paymentValue
             });
@@ -248,15 +255,20 @@ class AddOrderGrid extends Component {
                     footer={() =>
                         <div className={totalAmountClass}>
                             <div>合计金额：￥{totalAmount}</div>
-                            <div className={paymentAmountClass}>支付金额：￥<EditableCell disabled={disabled}
-                                                                                    fieldType="number"
-																					editType='editLine'
-                                                                                    onChange={this.handlePaymentAmount()}
-                                                                                    value={paymentAmount}/></div>
+                            <div className={paymentAmountClass}>
+                                支付金额：￥
+                                <EditableCell
+                                    disabled={disabled}
+                                    fieldType="number"
+                                    editType='editLine'
+                                    onChange={this.handlePaymentAmount()}
+                                    value={paymentAmount}
+                                />
+                            </div>
                         </div>
                     }
                     size="small"
-                    rowClassName={()=>rowClassName}
+                    rowClassName={() => rowClassName}
                 />
             </div>
         );

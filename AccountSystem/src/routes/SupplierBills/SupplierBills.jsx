@@ -104,11 +104,7 @@ function genSupplierBills({dispatch, supplierBillsSpace}){
 			<div className={supplierBillsListContainer}>
 				<SupplierBillsList {...supplierBillsListProps}/>
 			</div>
-			{
-				editorType === 'clearStorage'?
-					<ClearDebtStorageModalGen />:
-					<ClearSupplierBillsModalGen />
-			}
+			{editorType === 'clearStorage'? <ClearDebtStorageModalGen /> : <ClearSupplierBillsModalGen />}
 		</div>
 	);
 }

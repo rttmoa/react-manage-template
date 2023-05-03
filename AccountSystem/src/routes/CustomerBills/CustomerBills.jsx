@@ -101,11 +101,7 @@ function genCustomerBills({dispatch, customerBillsSpace}){
 			<div className={customerBillsListContainer}>
 				<CustomerBillsList {...customerBillsListProps}/>
 			</div>
-			{
-				editorType=='clearOrder'?
-					<ClearDebtOrdersModalGen />:
-					<ClearCustomerBillsModalGen />
-			}
+			{editorType=='clearOrder' ? <ClearDebtOrdersModalGen /> : <ClearCustomerBillsModalGen />}
 		</div>
 	);
 }

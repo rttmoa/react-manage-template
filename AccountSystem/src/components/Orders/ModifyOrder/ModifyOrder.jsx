@@ -8,11 +8,10 @@ import OrderRemarkForm from '../OrderCommon/OrderRemarkForm/OrderRemarkForm';
 import {connect} from 'dva';
 import {modifyOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
-const ModifyOrder = ({
-	dispatch,
-	editorType,
-	orders
-}) => {
+
+
+
+const ModifyOrder = ({ dispatch, editorType, orders }) => {
 	const {order, currentItem, customers, productList} = orders;
 	const disabled = editorType !== 'modify';
 	const modifyOrderFormProps = {
@@ -80,7 +79,7 @@ const ModifyOrder = ({
 		paymentAmount: currentItem.paymentAmount,
 		disabled: disabled,
 		editProducts(products, totalAmount, paymentAmount){
-			console.log(totalAmount + '--' + paymentAmount);
+			// console.log(totalAmount + '--' + paymentAmount);
 			dispatch({
 				type: 'orders/setProducts',
 				payload: {
@@ -101,10 +100,7 @@ const ModifyOrder = ({
 				<OrderRemarkForm disabled={disabled} mem={currentItem.mem} onSetMem={onSetMem}/>
 			</div>
 			<div className={buttonGroup}>
-				{
-					editorType === 'modify' &&
-					<Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
-				}
+				{editorType === 'modify' && <Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>}
 				<Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>
 			</div>
 		</div>

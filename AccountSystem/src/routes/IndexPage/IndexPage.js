@@ -3,6 +3,11 @@ import {connect} from 'dva';
 // import {Link} from 'dva/router';
 import {normal, title, welcome, list} from './index.css';
 
+
+
+
+
+
 function IndexPage() {
     return (
         <div className={normal}>

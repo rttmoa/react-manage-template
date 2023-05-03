@@ -95,8 +95,7 @@ function genProducts({dispatch, products}) {
 						<div className={addProductContainer}>
 							<Product {...productEditor}/>
 						</div>
-                    ) :
-                    (
+                    ) : (
                         <div className={productContainer}>
                             <SearchBar onAdd={onAdd}>
 								<SearchForm {...productSearchProps}/>

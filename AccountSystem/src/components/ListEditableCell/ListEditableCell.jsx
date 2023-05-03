@@ -42,43 +42,37 @@ class ListEditableCell extends Component {
         let { disabled, productList} = this.props;
         return (
             <div className={editCell}>
-                {
-                    editable ?
-                        (
-                            <div className={inputWrapper}>
-								<Select
-									defaultValue={{ key: value.key }}
-									onSelect={this.handleSelect}
-									onBlur={this.check}
-									style={{ minWidth: 120, width:'100%' }}
-									disabled={disabled || false}
-									labelInValue
-								>
-									{
-										productList.map(({_id, productName, productUnit})=>
-											<Option key={_id}>{`${productName} (${productUnit})`}</Option>
-										)
-									}
-								</Select>
-                                <Icon
-                                    type="check"
-                                    className={checkIcon}
-                                    onClick={this.check}
-                                />
-                            </div>
-                        ) :
-                        (
-                            <div className={textWrapper} onDoubleClick={this.edit}>
-                                {value.label}
-                                <Icon
-                                    type="edit"
-                                    className={!disabled?editIcon:hiddenIcon}
-                                    onClick={this.edit}
-                                />
-                            </div>
-                        )
-
-                }
+                {editable ? (
+                    <div className={inputWrapper}>
+                        <Select
+                            defaultValue={{ key: value.key }}
+                            onSelect={this.handleSelect}
+                            onBlur={this.check}
+                            style={{ minWidth: 120, width:'100%' }}
+                            disabled={disabled || false}
+                            labelInValue
+                        >
+                            {productList.map(({_id, productName, productUnit})=>
+                                <Option key={_id}>{`${productName} (${productUnit})`}</Option>
+                            )}
+                        </Select>
+                        <Icon
+                            type="check"
+                            className={checkIcon}
+                            onClick={this.check}
+                        />
+                    </div>
+                ) : (
+                    // 双击文本 / 点击图标 显示下拉框
+                    <div className={textWrapper} onDoubleClick={this.edit}>
+                        {value.label}
+                        <Icon
+                            type="edit"
+                            className={!disabled ? editIcon : hiddenIcon}
+                            onClick={this.edit}
+                        />
+                    </div>
+                )}
             </div>
         );
     }

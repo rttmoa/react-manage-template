@@ -8,15 +8,18 @@ import AddRemarkForm from '../OrderCommon/OrderRemarkForm/OrderRemarkForm';
 import {connect} from 'dva';
 import {addOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
 
-const AddOrder = ({
-	dispatch,
-	orders
-}) => {
-	const {order, customers, productList} = orders;
+
+
+
+
+const AddOrder = ({	dispatch,	orders }) => {
+    const {order, customers, productList} = orders;
+
+    // Form表单初始值
 	const addOrderFormProps = {
 		customers,
 		disabled: false,
-		onSelect(customerId){
+		onSelect(customerId) {
 			dispatch({
 				type: 'orders/setCustomer',
 				payload: {
@@ -26,6 +29,7 @@ const AddOrder = ({
 		}
 	};
 
+    // 填写备注
 	const onSetMem = (mem) => {
 		dispatch({
 			type: 'orders/setMem',
@@ -35,6 +39,7 @@ const AddOrder = ({
 		});
 	};
 
+    // 确定
 	const handleConfirm = () => {
 		/**
 		 * 数据保存前，做数据校验,
@@ -64,6 +69,7 @@ const AddOrder = ({
 		});
 	};
 
+    // 取消
 	const handleCancel = () => {
 		dispatch({
 			type: 'orders/resetOrder'
@@ -91,10 +97,14 @@ const AddOrder = ({
 	return (
 		<div className={addOrder}>
 			<div className={orderWrapper}>
-				<AddOrderTitle orderNumber={order.orderNumber}/>
+                {/* 标题 + 单据编号 */}
+				<AddOrderTitle orderNumber={order.orderNumber} />
+                {/* 客户名称 */}
 				<AddOrderForm {...addOrderFormProps}/>
+                {/* 填写订单 Order */}
 				<AddOrderGrid {...addOrderGridProps}/>
-				<AddRemarkForm disabled={false} onSetMem={onSetMem}/>
+                {/* 填写备注 */}
+				<AddRemarkForm disabled={false} onSetMem={onSetMem} />
 			</div>
 			<div className={buttonGroup}>
 				<Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
