@@ -17,7 +17,6 @@ export function getCurrentUser() {
 }
 
 export async function fetchIsAuth(callback) {
-    // console.log(123)
     return request(`${AUTH_API}?authToken=${getCurrentUser()['authToken']}`)
         .then(data => callback(data.data.isAuth))
         .catch(e => console.log(e));

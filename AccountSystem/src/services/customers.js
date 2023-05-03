@@ -6,7 +6,7 @@ const CUSTOMER_API = `/api/customers`;
 export async function query(params) {
     return request(`${CUSTOMER_API}?${qs.stringify(params)}`);
 }
-
+// 获取所有 客户
 export async function queryAll() {
     return request(`${CUSTOMER_API}/all`);
 }

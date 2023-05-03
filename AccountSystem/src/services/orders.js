@@ -4,8 +4,8 @@ import qs from 'qs';
 const ORDER_API = '/api/orders';
 
 export async function query(params) {
-    console.log(params);
-    console.log(qs.stringify(params));
+    // console.log(params);
+    // console.log(qs.stringify(params));
     return request(`${ORDER_API}?${qs.stringify(params)}`);
 }
 
@@ -38,6 +38,6 @@ export async function getCustomers() {
 }
 
 export async function queryOrderById(orderId) {
-    console.log(orderId);
+    // console.log(orderId);
     return request(`${ORDER_API}/${orderId}`);
 }

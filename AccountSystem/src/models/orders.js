@@ -2,6 +2,11 @@ import {query, create, modify, del, getOrderNumber, queryOrderById} from '../ser
 import * as customers from '../services/customers';
 import * as resource from '../services/resource';
 import {parse} from 'qs';
+
+
+
+
+
 const defaultProduct = {
     key: '0',
 	productId: '',
@@ -26,12 +31,11 @@ const defaultOrder = {
 };
 
 export default {
-
     namespace: 'orders',
-
     state: {
-        list: [],
-        total: null,
+        list: [], // TableData
+        // total: null,
+        total: 0,
 		timeRange: [],
         customerId: '',
         orderNumber: '',
@@ -45,13 +49,13 @@ export default {
             ['/orders', '订单'],
         ],
         order: {...defaultOrder},
-		customers:[],
-		productList:[]
+		customers: [],   // 客户List
+		productList: []  // 商品List
     },
 
     subscriptions: {
         setup({dispatch, history}) {
-            history.listen(location=> {
+            history.listen(location => {
                 if (location.pathname === '/orders') {
                 	dispatch({
                 		type:'getCustomers'
@@ -78,12 +82,12 @@ export default {
         },
     },
 
+    // TODO: Action
     effects: {
+        // 查询 ~   1、onSearch(日期 + 客户名称 + 订单编号)   2、onPageChange分页查询数据
         *query({payload}, {call, put, select}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
-			if(!isLogin){
-				return;
-			}
+			if(!isLogin) return;
             yield put({type: 'showLoading'});
             yield put({
                 type: 'updateQueryKey',
@@ -95,9 +99,12 @@ export default {
                     ...payload
                 }
             });
-            let {page, timeRange, customerId, orderNumber} = yield select(state=>state.orders);
-			customerId = customerId==='00000'?'':customerId;
+            let {page, timeRange, customerId, orderNumber} = yield select(state => state.orders);
+			customerId = customerId === '00000' ? '' : customerId;
             const {data} = yield call(query, parse({page, timeRange, customerId, orderNumber}));
+            console.log("/order/query", data) // FIXME: 表格数据
+                // {isAuth: false}
+                // {success: true, orders: Array(3), page: {…}}
             if (data) {
                 yield put({
                     type: 'querySuccess',
@@ -134,7 +141,7 @@ export default {
             yield put({type: 'showLoading'});
             const id = yield select(({orders})=>orders.currentItem['_id']);
             const newOrder = {...payload.order, id};
-            //保存之前清洗数据，对商品条目为空的商品记录进行删除
+            // 保存之前清洗数据，对商品条目为空的商品记录进行删除
             const {products} = newOrder;
             const validProducts = products.filter(product=> product.productId !== '');
             newOrder['products'] = validProducts;
@@ -151,6 +158,8 @@ export default {
                 });
             }
         },
+
+        // 操作 ~ 删除Order
         *del({payload}, {call, put}){
             yield put({type: 'showLoading'});
             const {data} = yield call(del, {id: payload});
@@ -161,13 +170,14 @@ export default {
                 });
             }
         },
+        // 操作 ~ 查看 / 编辑
         *queryOrderById({payload}, {call, put}) {
             const {data} = yield call(queryOrderById, payload.orderId);
             if (data && data.success) {
                 yield put({
                     type: 'queryOrderByIdSuccess',
                     payload: {
-                        editorType: payload.editorType,
+                        editorType: payload.editorType,  // type: modify / detail
                         currentItem: data.order,
                         editorVisible: true,
                         order: data.order
@@ -181,13 +191,15 @@ export default {
                 });
             }
         },
+
+        // 表头 ~ 添加订单
         *getOrderNumber({payload}, {call, put}){
             const {data} = yield call(getOrderNumber, {});
             if (data && data.success) {
                 yield put({
                     type: 'getOrderNumberSuccess',
                     payload: {
-                        editorType: 'create',
+                        editorType: 'create', // type: create
 						sequence: data.sequence,
                         orderNumber: data.orderNumber,
                         editorVisible: true
@@ -201,12 +213,13 @@ export default {
                 });
             }
         },
+
+        // 获取 客户
 		*getCustomers({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
-			if(!isLogin){
-				return;
-			}
+			if(!isLogin) return;
 			const {data} = yield call(customers.queryAll, {});
+            // console.log("客户 response", data)
 			if(data && data.success){
 				yield put({
 					type:'getCustomersSuccess',
@@ -216,10 +229,9 @@ export default {
 		},
 		*getProducts({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
-			if(!isLogin){
-				return;
-			}
+			if(!isLogin) return;
 			const {data} = yield call(resource.query, {});
+            // console.log("商品", data)
 			if(data && data.success){
 				yield put({
 					type:'getProductsSuccess',
@@ -229,10 +241,13 @@ export default {
 		}
     },
 
+    // TODO: reducers
     reducers: {
         fetch(state, action) {
             return {...state, ...action.payload};
         },
+
+        // 显示 加载Loading
         showLoading(state, action){
             return {...state, loading: true};
         },
@@ -242,9 +257,13 @@ export default {
         hideEditor(state, action){
             return {...state, editorVisible: false};
         },
+
+        // 获取列表
         querySuccess(state, action){
             return {...state, ...action.payload, loading: false};
         },
+
+        // 操作 ~ 查看 / 编辑 订单
         queryOrderByIdSuccess(state, action){
             return {...state, ...action.payload};
         },
@@ -257,10 +276,14 @@ export default {
              return {...state, list: newList, loading:false};*/
             return {...state, loading: false};
         },
+
+        // 操作 ~ 删除Order
         delSuccess(state, action){
             const newList = state.list.filter(order=> order._id !== action.payload);
             return {...state, list: newList, loading: false};
         },
+
+        // 更新 查询关键词
         updateQueryKey(state, action){
             return {...state, ...action.payload};
         },
@@ -276,11 +299,15 @@ export default {
             let newOrder = {...order, sequence, orderNumber};
             return {...state, order: newOrder, ...action.payload};
         },
+
+        // 获取 客户
 		getCustomersSuccess(state, action){
         	let customers = action.customers;
         	customers.unshift({_id:'00000', customerName:'全部'});
         	return {...state, customers};
 		},
+
+        // 获取 商品
 		getProductsSuccess(state, action){
 			return {...state, productList: action.productList};
 		},
@@ -296,6 +323,8 @@ export default {
             ];
             return {...state, breadcrumbItems: newItems, editorVisible: false};
         },
+
+
         resetOrder(state, action){
             let newItems = [
                 ['/', '首页'],

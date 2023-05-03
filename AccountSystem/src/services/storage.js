@@ -4,8 +4,8 @@ import qs from 'qs';
 const STORAGE_API = '/api/storage';
 
 export async function query(params) {
-    console.log(params);
-    console.log(qs.stringify(params));
+    // console.log(params);
+    // console.log(qs.stringify(params));
     return request(`${STORAGE_API}?${qs.stringify(params)}`);
 }
 
@@ -34,6 +34,6 @@ export async function getNoteNumber() {
 }
 
 export async function queryStorageById(storageId) {
-    console.log(storageId);
+    // console.log(storageId);
     return request(`${STORAGE_API}/${storageId}`);
 }

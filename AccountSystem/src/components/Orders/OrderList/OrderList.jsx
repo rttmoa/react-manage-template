@@ -8,6 +8,7 @@ import Spliter from '../../Spliter/Spliter';
 import {orderList} from './index.css';
 
 
+
 const OrderList = ({
 	total,
 	current,
@@ -62,6 +63,7 @@ const OrderList = ({
 		{
 			title: '操作',
 			key: 'operation',
+            align: 'center',
 			render: (text, record) => (
 				<p>
 					<a onClick={() => onModify(record['_id'])}>编辑</a>
@@ -73,8 +75,7 @@ const OrderList = ({
 					<a onClick={() => onReadOnly(record['_id'])}>详情</a>
 				</p>
 			),
-            width: 150,
-            align: 'center'
+            width: 150
 		}
 	];
 
@@ -114,7 +115,6 @@ const OrderList = ({
 		</div>
 	);
 };
-
 OrderList.propTypes = {
 	onPageChange: PropTypes.func,
 	onModify: PropTypes.func,
@@ -124,5 +124,4 @@ OrderList.propTypes = {
 	total: PropTypes.any,
 	current: PropTypes.any
 };
-
 export default OrderList;

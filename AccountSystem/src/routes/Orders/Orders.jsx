@@ -15,6 +15,8 @@ import {orderClass, orderContainer, addOrderContainer, modifyOrderContainer} fro
 
 
 function genOrders({dispatch, orders, children, history, location, route, routeParams, routes, systemUser }){
+
+    if(!orders) return null; // 必须返回某个值： caught Invariant Violation: Orders.render(): A valid React element (or null) must be returned.
     const {
         list,
         total,
@@ -29,20 +31,24 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
         breadcrumbItems,
 		customers
     } = orders;
+    // console.log('Orderjsx - total', total)
+
 
     // Table表格Data
-    const orderListProps ={
+    const orderListProps = {
         current,
         total,
         dataSource: list,
         loading,
+        // 分页
         onPageChange(page){
 			dispatch({
 				type:'orders/query',
 				payload: {timeRange, customerId, orderNumber, page}
 			});
         },
-        onModify(orderId){
+        // 操作 ~ 编辑
+        onModify(orderId) {
             dispatch({
                 type:'orders/queryOrderById',
                 payload: {
@@ -51,6 +57,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
                 }
             });
         },
+        // 操作 ~ 详情
         onReadOnly(orderId){
             dispatch({
                 type:'orders/queryOrderById',
@@ -60,6 +67,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
                 }
             });
         },
+        // 操作 ~ 删除
         onDel(orderId){
             dispatch({
                 type:'orders/del',
@@ -84,14 +92,14 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
         }
     };
 
-    const onSearch = (fieldValues)=>{
+    const onSearch = (fieldValues) => {
         dispatch({
         	type:'orders/query',
-			payload: {...fieldValues, page:1}
+			payload: {...fieldValues, page: 1}
 		});
     };
 
-    const onAdd = ()=>{
+    const onAdd = () => {
         dispatch({
             type:'orders/getOrderNumber'
         });
@@ -112,7 +120,7 @@ function genOrders({dispatch, orders, children, history, location, route, routeP
             ): (<div className={orderContainer}>
                 {/* TODO: 搜索组件 */}
                 <SearchBar onAdd={onAdd}>
-                    <OrderSearchForm onSearch={onSearch} customers={customers}/>
+                    <OrderSearchForm onSearch={ } customers={customers}/>
                 </SearchBar>
                 {/* TODO: Table */}
                 <OrderList {...orderListProps} />
@@ -127,7 +135,7 @@ class Orders extends Component{
 		return !isLogin && redirect();
 	}
     render(){
-		let {isLogin} = this.props && this.props.systemUser;
+		let {isLogin} = this.props.systemUser;
 		return isLogin && genOrders(this.props);
     }
 }

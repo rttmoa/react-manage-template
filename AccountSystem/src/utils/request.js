@@ -1,14 +1,16 @@
 import fetch from 'dva/fetch';
 import {HTTP_SERVER, DEFAULT_OPTIONS} from '../constants/constants';
 
+
+
 function parseJSON(response) {
     return response.json();
 }
-
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
+    console.log("/utils/requestjs-checkStatus", response.statusText)
     const error = new Error(response.statusText);
     error.response = response;
     throw error;
@@ -33,9 +35,10 @@ function checkStatus(response) {
 //     },
 // };
 export default function request(url, options) {
+    // console.log("/utils/resquestjs-options", options) // {method: 'POST', body: '{"username":"15303663375","password":"Wenc1101"}'}
     return fetch(`${HTTP_SERVER}${url}`, {...DEFAULT_OPTIONS, ...options})
         .then(checkStatus)
         .then(parseJSON)
         .then((data) => ({data}))
-        .catch((err) => ({err}));
+        .catch((err) => ({}));
 }
