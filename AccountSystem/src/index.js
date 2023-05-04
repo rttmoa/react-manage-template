@@ -1,7 +1,7 @@
 import './index.html';
 import './index.less';
 import dva from 'dva';
-import {browserHistory} from 'dva/router'; //--->  全局路由地址
+import { browserHistory } from 'dva/router'; //--->  全局路由地址
 import router from './router';  //--->  路由
 
 import home from './models/home';  //--->  dvajs状态管理
@@ -18,7 +18,13 @@ import customerBills from './models/customerBills';
 import supplierBills from './models/supplierBills';
 
 // 1. Initialize
-const app = dva({ history: browserHistory });
+const app = dva({
+    history: browserHistory,
+    onError(err) {
+		// 在这里进行错误处理
+		console.log("indexjs-dvaError", err);
+	},
+});
 
 // 2. Plugins
 //app.use({});

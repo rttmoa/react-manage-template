@@ -5,6 +5,9 @@ import {PAGE_SIZE} from '../../../constants/constants';
 import Spliter from '../../Spliter/Spliter';
 import {supplierList} from './index.css';
 
+
+
+
 const SupplierList = ({
     total,
     current,

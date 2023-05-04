@@ -35,6 +35,7 @@ function checkStatus(response) {
 //     },
 // };
 export default function request(url, options) {
+    // console.log("/utils/resquestjs-options", DEFAULT_OPTIONS)
     // console.log("/utils/resquestjs-options", options) // {method: 'POST', body: '{"username":"15303663375","password":"Wenc1101"}'}
     return fetch(`${HTTP_SERVER}${url}`, {...DEFAULT_OPTIONS, ...options})
         .then(checkStatus)

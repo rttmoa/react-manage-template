@@ -20,5 +20,3 @@ export async function doClearBill(params) {
 		body: JSON.stringify(params)
 	});
 }
-
-
