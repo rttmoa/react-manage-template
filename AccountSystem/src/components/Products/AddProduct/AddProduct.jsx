@@ -24,6 +24,8 @@ class AddProduct extends Component {
             if (!!err) {
                 return;
             }
+            // console.log("onConfirm", values)
+            // {productCode: 'A111', productName: '烦烦烦', productType: '唉唉唉', productUnit: '谁谁谁', productImg: ['http://localhost:4000/uploadfiles/737333540340017.jpg']}
             onConfirm(values);
         });
     }
@@ -42,17 +44,13 @@ class AddProduct extends Component {
                     <AddProductForm product={product} disabled={disabled} ref="addProductForm"/>
                 </div>
                 <div className={buttonGroup}>
-					{
-						disabled?
-							null:
-							<Button type="primary" className={confirmButton} onClick={this.handleConfirm}>
-								确定
-							</Button>
-					}
-
+					{disabled ? null: (
+                        <Button type="primary" className={confirmButton} onClick={this.handleConfirm}>
+                            确定
+                        </Button>
+                    )} 
                     <Button type="ghost" className={cancelButton} onClick={this.handleCancel}>取消</Button>
                 </div>
-
             </div>
         );
     }

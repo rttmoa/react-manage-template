@@ -17,18 +17,14 @@ const SearchForm = ({
 }) => {
     const onSubmit = (e)=> {
         e.preventDefault();
+        // console.log(getFieldsValue()) // {customerName: 'aaa'}
 		onSearch(getFieldsValue());
     };
-
     return (
         <div className={searchForm}>
             <Form layout='inline' onSubmit={onSubmit}>
                 <FormItem label={labelName}>
-                    {
-                        getFieldDecorator(fieldName)(
-                            <Input type="text"/>
-                        )
-                    }
+                    {getFieldDecorator(fieldName)(<Input type="text"/>)}
                 </FormItem>
                 <Button type='primary' htmlType='submit'>搜索</Button>
             </Form>

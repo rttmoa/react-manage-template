@@ -56,13 +56,22 @@ const StockList = ({ loading, dataSource, }) => {
 			title: '销售均价',
 			dataIndex: 'averagePrice',
 			key: 'averagePrice',
-			render: (text, record, index)=> record._id!='total'?numberFormat(text):null
+			render: (text, record, index) => {
+                // console.log(text) // 113
+                // console.log(numberFormat(text)) // "113.00"
+                return record._id != 'total' ? numberFormat(text) : null
+            }
 		},
 		{
 			title: '库存资金',
 			dataIndex: 'stockFunds',
 			key: 'stockFunds',
-			render: (text)=> <span style={{color: 'red'}}>{numberFormat(text)}</span>
+			render: (text)=> {
+                // console.log(text) // 15142
+                // console.log(numberFormat(text)) // "15,142.00"
+                // text(number): 15142  /  numberFormat(text)(string): "15,142.00"
+                return <span style={{color: 'red'}}>{numberFormat(text)}</span>
+            }
 		}
     ];
 
@@ -82,7 +91,7 @@ const StockList = ({ loading, dataSource, }) => {
     };
 
 	const computeTotal = (dataSource, key)=>{
-		return  dataSource.map(data=> data[key]).reduce((total, amount)=> total += amount, 0);
+		return  dataSource.map(data=> data[key]).reduce((total, amount) => total += amount, 0);
 	};
 
 	const getTotalData = (dataSource)=>{
@@ -107,11 +116,14 @@ const StockList = ({ loading, dataSource, }) => {
 
     return (
         <div className={orderList}>
+            <h3>!!!获取入库，出库，库存计算价格getTotalData函数</h3>
+            <br />
+            <h3>格式化金钱：text(number): 15142  /  numberFormat(text)(string): "15,142.00"</h3>
             <Table
                 columns={columns}
                 dataSource={dataSource && getTotalData(dataSource)}
                 loading={loading}
-                rowKey={record=>record._id}
+                rowKey={record => record._id}
                 pagination={false}
                 rowSelection={rowSelection}
             />

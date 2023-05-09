@@ -40,11 +40,9 @@ class Funds extends Component {
     constructor(props) {
         super(props);
     }
-
     static propTypes = {
         stocks: PropTypes.array,
     };
-
     render() {
         return genFunds(this.props);
     }

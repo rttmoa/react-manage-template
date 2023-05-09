@@ -24,4 +24,3 @@ export default function dateFormat(text, formatType) {
 function preFixO(number) {
     return ('0' + number).substr(-2);
 }
-

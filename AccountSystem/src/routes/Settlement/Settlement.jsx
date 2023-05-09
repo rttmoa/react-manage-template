@@ -77,24 +77,19 @@ class Settlement extends Component {
     constructor(props) {
         super(props);
     }
-
     componentWillMount() {
         let { isLogin } = this.props.systemUser;
         return !isLogin && redirect();
     }
-
     render() {
         let { isLogin } = this.props.systemUser;
         return isLogin && genSettlement(this.props);
     }
 }
-
 Settlement.propTypes = {
     orders: PropTypes.object,
 };
-
 function mapStateToProps({ settlement, systemUser }) {
     return { settlement, systemUser };
 }
-
 export default connect(mapStateToProps)(Settlement);

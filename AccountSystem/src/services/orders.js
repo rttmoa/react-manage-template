@@ -6,6 +6,7 @@ const ORDER_API = '/api/orders';
 export async function query(params) {
     // console.log(params);
     // console.log(qs.stringify(params));
+    // console.log(await request(`${ORDER_API}?${qs.stringify(params)}`))
     return request(`${ORDER_API}?${qs.stringify(params)}`);
 }
 

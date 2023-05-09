@@ -14,6 +14,9 @@ import {
     modifyCustomerContainer,
 } from "./index.css";
 
+
+
+
 function genCustomers({ dispatch, customers }) {
     const {
         list,
@@ -99,6 +102,8 @@ function genCustomers({ dispatch, customers }) {
         });
     };
 
+
+    // console.log(breadcrumbItems)
     return (
         <div className={customerClass}>
             <BreadcrumbList breadcrumbItems={breadcrumbItems} />
@@ -122,12 +127,10 @@ class Customers extends Component {
     constructor(props) {
         super(props);
     }
-
     componentWillMount() {
         let { isLogin } = this.props.systemUser;
         return !isLogin && redirect();
     }
-
     render() {
         let { isLogin } = this.props.systemUser;
         return isLogin && genCustomers(this.props);

@@ -7,6 +7,9 @@ import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import {settlementList} from './index.css';
 
+
+
+
 class SettlementList extends Component {
 	constructor(props) {
 		super(props);
@@ -25,14 +28,23 @@ class SettlementList extends Component {
 				dataIndex: 'createInstance',
 				key: 'createInstance',
 				width: '30%',
-				render: (text) => <span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
+				render: (text) => {
+                    // console.log(text) // 2023-04-07T02:03:30.621Z
+                    // console.log(moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')) // 2022-10-20 19:28
+                    return <span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
+                }
 			},
 			{
 				title: '结算金额',
 				dataIndex: 'settlementAmount',
 				key: 'settlementAmount',
 				width: '30%',
-				render: (text, record, index)=> numberFormat(text)
+				render: (text, record, index) => {
+                    // console.log(text) // -13850
+                    // console.log(numberFormat(text)) // "-13,850.00"
+                    // text(numer): -13850 -->   numberFormat(text)(string): "-13,850.00"
+                    return numberFormat(text)
+                }
 			},
 			{
 				title: '结算操作员',
@@ -43,6 +55,7 @@ class SettlementList extends Component {
 		];
 	}
 
+    // TODO: 指定传参属性
 	static propTypes = {
 		onSettlementSelect: PropTypes.func,
 		onPageChange: PropTypes.func,
@@ -63,10 +76,7 @@ class SettlementList extends Component {
 		}
 	};
 
-	onPageChange = (page) => {
-		const {onPageChange} = this.props;
-		onPageChange(page);
-	};
+	onPageChange = (page) => { const {onPageChange} = this.props; onPageChange(page) }
 
 	componentWillReceiveProps(nextProps) {
 		const {onSettlementSelect, settlementId} = nextProps;
@@ -86,6 +96,17 @@ class SettlementList extends Component {
 		} = this.props;
 		return (
 			<div className={settlementList}>
+                <h3>双击行后，底部结算商品明细显示数据</h3>
+                <br />
+                <h3>静态属性：static propTypes=｛｝</h3>
+                <br />
+                <h3>钩子：componentWillReceiveProps(nextProps)｛｝</h3>
+                <br />
+                <h3>格式化时间：2023-04-07T02:03:30.621Z --?  2022-10-20 19:28  ｛moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')｝</h3>
+                <br />
+                <h3>格式化金钱：text(numer): -13850 --?   numberFormat(text)(string): "-13,850.00"</h3>
+                <br />
+                <h3>分页：onPageChange = (page) =? ｛const ｛onPageChange｝ = this.props; onPageChange(page)｝ </h3>
 				<Table
 					columns={this.columns}
 					dataSource={dataSource}

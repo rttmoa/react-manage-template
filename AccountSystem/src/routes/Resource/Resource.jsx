@@ -45,20 +45,16 @@ class Resource extends Component {
     constructor(props) {
         super(props);
     }
-
     componentWillMount() {
         let { isLogin } = this.props.systemUser;
         return !isLogin && redirect();
     }
-
     render() {
         let { isLogin } = this.props.systemUser;
         return isLogin && genResource(this.props);
     }
 }
-
 function mapStateToProps({ resource, stocks, funds, systemUser }) {
     return { resource, systemUser };
 }
-
 export default connect(mapStateToProps)(Resource);

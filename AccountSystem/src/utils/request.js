@@ -30,16 +30,15 @@ function checkStatus(response) {
 // const defaultOptions = {
 //     mode: 'cors',
 //     credentials: 'include',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
+//     headers: {'Content-Type': 'application/json'},
 // };
 export default function request(url, options) {
     // console.log("/utils/resquestjs-options", DEFAULT_OPTIONS)
     // console.log("/utils/resquestjs-options", options) // {method: 'POST', body: '{"username":"15303663375","password":"Wenc1101"}'}
+    // console.log(HTTP_SERVER, url)
     return fetch(`${HTTP_SERVER}${url}`, {...DEFAULT_OPTIONS, ...options})
         .then(checkStatus)
         .then(parseJSON)
         .then((data) => ({data}))
         .catch((err) => ({}));
-}
+    }

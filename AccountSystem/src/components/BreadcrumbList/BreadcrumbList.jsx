@@ -16,6 +16,9 @@ export default class BreadcrumbList extends Component {
         return (
             <div className={breadcrumb}>
                 <Breadcrumb>
+                    {/* {breadcrumbItems.map(([target, linkText], ind) => {
+                        console.log(target, linkText)
+                    })} */}
                     {breadcrumbItems.map(([target, linkText], index)=> {
                         return (
                             <BreadcrumbItem key={index}>

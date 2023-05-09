@@ -70,7 +70,7 @@ function genProducts({ dispatch, products }) {
         onConfirm(data) {
             dispatch({
                 type: `products/${editorType}`,
-                payload: data,
+                payload: data, // {productCode: 'A111', productName: '烦烦烦', productType: '唉唉唉', productUnit: '谁谁谁', productImg: ['http://localhost:4000/uploadfiles/737333540340017.jpg']}
             });
         },
         onCancel() {
