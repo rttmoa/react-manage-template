@@ -51,13 +51,9 @@ const ClearSupplierBillsModal =({
         <Modal {...modalOpts} className={modal}>
             <Form layout='horizontal'>
 				<FormItem {...formItemLayout} style={{margin: 0}}>
-					{
-						getFieldDecorator('supplierId', {
-							initialValue: supplierId
-						})(
-							<Input type="hidden"/>
-						)
-					}
+					{getFieldDecorator('supplierId', {
+                        initialValue: supplierId
+                    })(<Input type="hidden"/>)}
 				</FormItem>
                 <FormItem label='客户名称：' {...formItemLayout}>
                     {
@@ -87,19 +83,14 @@ const ClearSupplierBillsModal =({
 					}
 				</FormItem>
 				<FormItem label='清账金额：' {...formItemLayout}>
-					{
-						getFieldDecorator('clearBillAmount', {
-							initialValue: numberFormat(clearBillAmount)
-						})(
-							<Input type="text" disabled={true}/>
-						)
-					}
+					{getFieldDecorator('clearBillAmount', {
+                        initialValue: numberFormat(clearBillAmount)
+                    })(<Input type="text" disabled={true}/>)}
 				</FormItem>
             </Form>
         </Modal>
     );
 };
-
 ClearSupplierBillsModal.propTypes = {
     visible:PropTypes.any,
     onConfirm:PropTypes.func,

@@ -9,12 +9,9 @@ import ClearCustomerBillsModal from "../../components/CustomerBills/ClearCustome
 // import {routerRedux} from 'dva/router';
 import BreadcrumbList from "../../components/BreadcrumbList/BreadcrumbList";
 import { redirect } from "../../utils/webSessionUtils";
-import {
-    search,
-    customerBillsClass,
-    debtOrdersListContainer,
-    customerBillsListContainer,
-} from "./index.css";
+import {search,customerBillsClass,debtOrdersListContainer,customerBillsListContainer} from "./index.css";
+
+
 
 function genCustomerBills({ dispatch, customerBillsSpace }) {
     const {

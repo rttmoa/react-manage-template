@@ -2,28 +2,26 @@
  * Created by wyf on 2017/3/5.
  */
 import React, {PropTypes} from 'react';
-import {Form, Button, Select} from 'antd';
+import {Form, Button, Select, message} from 'antd';
 import styles  from './index.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-function FundsSearchForm({
-	onSearch,
-	form: {
-		getFieldDecorator,
+function FundsSearchForm({	onSearch,	form: {		getFieldDecorator,
 		getFieldsValue,
 		validateFields
 	}
 }){
 	const onSubmit = (e)=>{
-		e.preventDefault();
-		validateFields((err, values)=>{
-			if(!!err){
-				return;
-			}
-			onSearch(values);
-		});
+        message.info("失败")
+		// e.preventDefault();
+		// validateFields((err, values)=>{
+		// 	if(!!err){
+		// 		return;
+		// 	}
+		// 	onSearch(values);
+		// });
 	};
 
 	return (

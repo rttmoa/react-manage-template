@@ -9,25 +9,32 @@ import { Button } from "antd";
 import { redirect } from "../../utils/webSessionUtils";
 import styles from "./index.css";
 
+
+
 function genResource({ dispatch, resource }) {
     const { breadcrumbItems, products, stocks, funds, loading } = resource;
-
     const onSearch = (fieldValues) => {
         dispatch({
             type: "resource/query",
             payload: fieldValues,
         });
     };
-
     const onSettlement = () => {
         dispatch({
             type: "resource/onSettlement",
         });
     };
 
+
+    // console.log(stocks) // (2) [{…}, {…}, computed: true]
+    // console.log(funds) // (2) [{…}, {…}, computed: true]
     return (
         <div>
+
+            {/* 面包屑 */}
             <BreadcrumbList breadcrumbItems={breadcrumbItems} />
+
+            {/* 顶部搜索 + 结算 */}
             <div className={styles.search}>
                 <ResourceSearchForm onSearch={onSearch} products={products} />
                 <div className={styles.settlementButton}>
@@ -36,8 +43,13 @@ function genResource({ dispatch, resource }) {
                     </Button>
                 </div>
             </div>
+
+            {/* 仓库明细表 */}
             <Stock stocks={stocks} loading={loading} />
+
+            {/* 资金明细表 */}
             <Funds funds={funds} loading={loading} />
+
         </div>
     );
 }

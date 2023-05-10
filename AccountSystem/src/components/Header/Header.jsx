@@ -33,14 +33,11 @@ const billsChildMenus = [
 
 /***--- 左侧菜单栏 ---**/
 export default class Header extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			activeIndex: 0
-		};
-	}
-    // 性能优化：如果点击的菜单还是原来的菜单，那么就不会渲染
-	componentWillReceiveProps(nextProps) {
+	state = {
+        activeIndex: 0
+    };
+
+    componentWillReceiveProps(nextProps) {
 		this.setState({
 			activeIndex: nextProps.activeIndex
 		});
@@ -48,50 +45,46 @@ export default class Header extends Component {
 
 	render() {
         const defaltAddress = window.location.pathname.substring(1);
+        const menuOptions = {
+            defaultSelectedKeys: [defaltAddress],
+            mode: "inline",
+            theme: "dark",
+            className: menuList,
+        }
 		return (
 			<div className={header}>
-				<Menu
-					// defaultSelectedKeys={['index']}
-                    defaultSelectedKeys={[defaltAddress]}
-					mode="inline"
-					theme="dark"
-					className={menuList}
-				>
+				<Menu {...menuOptions}>
 					{menus.map(([key, path, text, icon], index) => {
-                            if (key === 'manage') {
-                                return (
-                                    <SubMenu key={key} title={<span><Icon type="setting"/><span>{text}</span></span>}>
-                                        {
-                                            manageChildMenus.map(([key, path, text, icon], index) => (
-                                                <MenuItem key={key}>
-                                                    <NavLink target={path} linkText={<span><Icon
-                                                        type={icon}/><span>{text}</span></span>}/>
-                                                </MenuItem>
-                                            ))
-                                        }
-                                    </SubMenu>
-                                )
-                            } else if (key === 'bills') {
-                                return (
-                                    <SubMenu key={key} title={<span><Icon type="copy"/><span>{text}</span></span>}>
-                                        {
-                                            billsChildMenus.map(([key, path, text, icon], index) => (
-                                                <MenuItem key={key}>
-                                                    <NavLink target={path} linkText={<span><Icon
-                                                        type={icon}/><span>{text}</span></span>}/>
-                                                </MenuItem>
-                                            ))
-                                        }
-                                    </SubMenu>
-                                )
-                            } else {
-                                return (
-                                    <MenuItem key={key}>
-                                        <NavLink target={path} linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
-                                    </MenuItem>
-                                )
-                            }
-                        }
+                        if (key === 'manage') {
+                            return (
+                                <SubMenu key={key} title={<span><Icon type="setting"/><span>{text}</span></span>}>
+                                    {/* FIXME: 数组解构 */}
+                                    {manageChildMenus.map(([key, path, text, icon], index) => (
+                                        <MenuItem key={key}>
+                                            <NavLink target={path} linkText={<span><Icon
+                                                type={icon}/><span>{text}</span></span>}/>
+                                        </MenuItem>
+                                    ))}
+                                </SubMenu>
+                            )
+                        } else if (key === 'bills') {
+                            return (
+                                <SubMenu key={key} title={<span><Icon type="copy"/><span>{text}</span></span>}>
+                                    {billsChildMenus.map(([key, path, text, icon], index) => (
+                                        <MenuItem key={key}>
+                                            <NavLink target={path} linkText={<span><Icon
+                                                type={icon}/><span>{text}</span></span>}/>
+                                        </MenuItem>
+                                    ))}
+                                </SubMenu>
+                            )
+                        } else {
+                            return (
+                                <MenuItem key={key}>
+                                    <NavLink target={path} linkText={<span><Icon type={icon}/><span>{text}</span></span>}/>
+                                </MenuItem>
+                            )
+                        }}
                     )}
 				</Menu>
 			</div>

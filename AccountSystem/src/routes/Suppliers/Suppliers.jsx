@@ -7,12 +7,11 @@ import { routerRedux } from "dva/router";
 import BreadcrumbList from "../../components/BreadcrumbList/BreadcrumbList";
 import Supplier from "../../components/Suppliers/AddSupplier/AddSupplier";
 import { redirect } from "../../utils/webSessionUtils";
-import {
-    supplierClass,
-    supplierContainer,
-    addSupplierContainer,
-    modifySupplierContainer,
-} from "./index.css";
+import { supplierClass, supplierContainer, addSupplierContainer, modifySupplierContainer } from "./index.css";
+
+
+
+
 
 function genSuppliers({ dispatch, suppliers }) {
     const {

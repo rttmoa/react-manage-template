@@ -130,10 +130,8 @@ const StockList = ({ loading, dataSource, }) => {
         </div>
     );
 };
-
 StockList.propTypes = {
     dataSource: PropTypes.array,
     loading: PropTypes.any
 };
-
 export default StockList;

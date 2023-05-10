@@ -26,7 +26,7 @@ const ClearDebtStorageModal =({
         validateFields((errors, values)=>{
             if(!!errors){
                 return;
-            }
+            } 
             onConfirm({
 				storageId: values.storageId,
 				paymentAmount: (values.paymentAmount*1 + values.clearStorageAmount*1).toFixed(2)*1,
@@ -71,12 +71,12 @@ const ClearDebtStorageModal =({
 						)
 					}
 				</FormItem>
-				<FormItem {...formItemLayout} style={{margin: 0}}>
+				<FormItem label="供应商Id" {...formItemLayout}>
 					{
 						getFieldDecorator('supplierId', {
 							initialValue: supplierId
 						})(
-							<Input type="hidden"/>
+							<Input type="text" disabled/>
 						)
 					}
 				</FormItem>

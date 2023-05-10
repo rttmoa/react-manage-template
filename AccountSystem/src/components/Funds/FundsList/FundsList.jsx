@@ -40,7 +40,7 @@ const FundsList = ({  loading,  dataSource  }) => {
             title: '销售金额',
             dataIndex: 'salePrice',
             key: 'salePrice',
-			render: (text, record, index)=> numberFormat(text)
+			render: (text, record, index) => numberFormat(text)
         },
         {
             title: '利润额',
@@ -66,7 +66,7 @@ const FundsList = ({  loading,  dataSource  }) => {
     };
 
 	const computeTotal = (dataSource, key)=>{
-		return  dataSource.map(data=> data[key]).reduce((total, amount)=> total += amount, 0);
+		return  dataSource.map(data => data[key]).reduce((total, amount)=> total += amount, 0);
 	};
 
 	const getTotalData = (dataSource)=>{
@@ -89,21 +89,20 @@ const FundsList = ({  loading,  dataSource  }) => {
 
     return (
         <div className={fundsList}>
+            <h3>!!!获取入库，出库，库存计算价格getTotalData函数</h3>
             <Table
                 columns={columns}
                 dataSource={dataSource && getTotalData(dataSource)}
                 loading={loading}
-                rowKey={record=>record._id}
+                rowKey={record => record._id}
                 pagination={false}
                 rowSelection={rowSelection}
             />
         </div>
     );
 };
-
 FundsList.propTypes = {
     dataSource: PropTypes.array,
     loading: PropTypes.any
 };
-
 export default FundsList;

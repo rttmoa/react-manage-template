@@ -7,6 +7,9 @@ import numberFormat from '../../../utils/numberFormat';
 // import * as moment from 'moment';
 import {supplierBillsList, supplierBillsListTitle} from './index.css';
 
+
+
+
 class SupplierBillsList extends Component {
 	constructor(props) {
 		super(props);
@@ -71,10 +74,7 @@ class SupplierBillsList extends Component {
 	};
 
 	render() {
-		const {
-			loading,
-			dataSource
-		} = this.props;
+		const { loading, dataSource } = this.props;
 		return (
 			<div className={supplierBillsList}>
 				<h2 className={supplierBillsListTitle}>负债供应商列表</h2>

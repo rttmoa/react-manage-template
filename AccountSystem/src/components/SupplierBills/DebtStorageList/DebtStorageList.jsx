@@ -7,6 +7,9 @@ import numberFormat from '../../../utils/numberFormat';
 import * as moment from 'moment';
 import {debtStorageList, debtStorageListTitle} from './index.css';
 
+
+
+
 class DebtStorageList extends Component {
 	constructor(props) {
 		super(props);

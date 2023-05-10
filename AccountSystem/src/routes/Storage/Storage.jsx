@@ -8,12 +8,10 @@ import BreadcrumbList from "../../components/BreadcrumbList/BreadcrumbList";
 import AddStorage from "../../components/Storage/AddStorage/AddStorage";
 import ModifyStorage from "../../components/Storage/ModifyStorage/ModifyStorage";
 import { redirect } from "../../utils/webSessionUtils";
-import {
-    storageClass,
-    storageContainer,
-    addStorageContainer,
-    modifyStorageContainer,
-} from "./index.css";
+import { storageClass, storageContainer, addStorageContainer, modifyStorageContainer } from "./index.css";
+
+
+
 
 function genStorage({ dispatch, storage }) {
     const {
