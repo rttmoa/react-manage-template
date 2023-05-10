@@ -1,3 +1,5 @@
+// import
+
 export default {
 
     namespace: 'example',
@@ -5,13 +7,11 @@ export default {
     state: {},
 
     subscriptions: {
-        setup({dispatch, history}) {
-        },
+        setup({dispatch, history}) {},
     },
 
     effects: {
-        *fetchRemote({payload}, {call, put}) {
-        },
+        *fetchRemote({payload}, {select, call, put}) {},
     },
 
     reducers: {

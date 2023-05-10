@@ -3,10 +3,6 @@ import * as customers from '../services/customers';
 import * as resource from '../services/resource';
 import {parse} from 'qs';
 
-
-
-
-
 const defaultProduct = {
     key: '0',
 	productId: '',
@@ -29,6 +25,11 @@ const defaultOrder = {
     paymentAmount: 0,
     mem: ''
 };
+
+
+
+
+
 
 export default {
     namespace: 'orders',
@@ -125,7 +126,7 @@ export default {
             //保存之前清洗数据，对商品条目为空的商品记录进行删除
             const order = payload.order;
             const {products} = order;
-            const validProducts = products.filter(product=> product.productId !== '');
+            const validProducts = products.filter(product => product.productId !== '');
             order['products'] = validProducts;
             const {data} = yield call(create, order);
             if (data && data.success) {
@@ -143,7 +144,7 @@ export default {
         *modify({payload}, {select, call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const id = yield select(({orders})=>orders.currentItem['_id']);
+            const id = yield select(({orders}) => orders.currentItem['_id']);
             const newOrder = {...payload.order, id};
             // 保存之前清洗数据，对商品条目为空的商品记录进行删除
             const {products} = newOrder;
@@ -198,7 +199,7 @@ export default {
         },
 
         // 表头 ~ 添加订单
-        *getOrderNumber({payload}, {call, put}) {
+        *getOrderNumber({payload}, { call, put}) {
             const {data} = yield call(getOrderNumber, {});
             if (data && data.success) {
                 yield put({
@@ -329,8 +330,6 @@ export default {
             ];
             return {...state, breadcrumbItems: newItems, editorVisible: false};
         },
-
-
         resetOrder(state, action){
             let newItems = [
                 ['/', '首页'],

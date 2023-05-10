@@ -8,6 +8,10 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen((location) => {
+                // console.log(location.pathname)
+                // console.log(location)
+                // console.log(history)
+                // history.push(location.pathname)
                 dispatch({
                     type: "updateActiveIndex",
                     payload: location.pathname,
@@ -20,8 +24,10 @@ export default {
         updateActiveIndex(state, action) {
             let pathname = action.payload;
             let activeIndex = 0;
+            // console.log(window)
             if (/orders/.test(pathname)) {
                 activeIndex = 1;
+                // window.location.href = pathname
             } else if (/storage/.test(pathname)) {
                 activeIndex = 2;
             } else if (/stock/.test(pathname)) {

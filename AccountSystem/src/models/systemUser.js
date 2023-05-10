@@ -35,11 +35,7 @@ export default {
     effects: {
         /***--- 登录成功 ---**/
         *doLogin({ payload }, { call, put }) {
-            let {
-                userData,
-                resolve,
-                reject
-            } = payload;
+            let { userData, resolve, reject } = payload;
             yield put({ type: 'showLoading' });
             const { data } = yield call(doLogin, userData);
             if (data && data.success) {
@@ -57,16 +53,12 @@ export default {
         },
         /***--- 注册成功 ---**/
         *doLogup({ payload }, { call, put }) {
-            let {
-                userData,
-                resolve,
-                reject
-            } = payload;
+            let { userData, resolve, reject } = payload;
             yield put({ type: 'showLoading' });
             const { data } = yield call(doLogup, userData);
             if (data && data.success) {
                 let userInfo = data.userInfo;
-                yield sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+                yield sessionStorage.setItem('userInfo', JSON.stringify(userInfo));   // FIXME: 存储userInfo
                 //注册成功
                 yield put({
                     type: 'logupSuccess',
@@ -81,10 +73,6 @@ export default {
         *doLogout({ payload }, { call, put }) {
             const { data } = yield call(doLogout);
             // FIXME: 如果用户点击退出 = 清除session + 清除redux
-            // if (data && data.success) {
-            //     yield sessionStorage.removeItem('userInfo')
-            //     yield put({ type: 'logoutSuccess', payload: data.userInfo});
-            // }
             if(Boolean(data)){
                 yield sessionStorage.removeItem('userInfo')
                 yield put({type: 'logoutSuccess'})

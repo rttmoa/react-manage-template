@@ -74,7 +74,7 @@ export default {
         *modify({payload}, {select, call, put}){
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
-            const id = yield select(({order})=>order.currentItem.id);
+            const id = yield select(({order}) => order.currentItem.id);
             const newOrder = {...payload, id};
             const {data} = yield call(modify, newOrder);
             if (data && data.success) {
