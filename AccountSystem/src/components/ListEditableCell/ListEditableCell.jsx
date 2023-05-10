@@ -12,7 +12,7 @@ class ListEditableCell extends Component {
         super(props);
         this.state = {
             value: this.props.value,
-			name: '',
+			// name: '',
             editable: false
         };
     }
@@ -31,14 +31,15 @@ class ListEditableCell extends Component {
     };
 
     edit = () => {
-        let {disabled} = this.props;
-        if (disabled) {
+        if (this.props.disabled) {
             return false;
         }
         this.setState({
             editable: true
         });
     };
+
+
 
     render() {
         let {value, editable} = this.state;
@@ -55,7 +56,7 @@ class ListEditableCell extends Component {
                             disabled={disabled || false}
                             labelInValue
                         >
-                            {productList.map(({_id, productName, productUnit})=>
+                            {productList.map(({_id, productName, productUnit}) =>
                                 <Option key={_id}>{`${productName} (${productUnit})`}</Option>
                             )}
                         </Select>

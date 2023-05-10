@@ -5,6 +5,9 @@ import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon, hidd
 
 
 
+// table单元格：备注
+// table单元格：单价
+// table单元格：数量
 class EditableCell extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +26,7 @@ class EditableCell extends Component {
 		});
 	}
 
+    // 文本域Change事件
     handleChange(e) {
         let value = e.target.value;
         this.setState({value});
@@ -37,9 +41,9 @@ class EditableCell extends Component {
         }
     }
 
+    // 让显示为可编辑格式
     edit() {
-        let {disabled} = this.props;
-        if (disabled) {
+        if (this.props.disabled) {
             return false;
         }
         this.setState({
@@ -52,30 +56,23 @@ class EditableCell extends Component {
         let {editType, disabled, fieldType} = this.props;
         return (
             <div className={editType == 'editCell' ? editCell : editLine}>
+                {/* FIXME: 是否可编辑 */}
                 {editable ? (
                     <div className={inputWrapper}>
                         <Input
-                            type={fieldType}
+                            type={fieldType}   // 类型为传递过来的：text / number
                             value={value}
                             onChange={this.handleChange}
                             onPressEnter={this.check}
                             onBlur={this.check}
                             disabled={disabled || false}
                         />
-                        <Icon
-                            type="check"
-                            className={checkIcon}
-                            onClick={this.check}
-                        />
+                        <Icon type="check" className={checkIcon} onClick={this.check}/>
                     </div>
                 ) : (
                     <div className={textWrapper} onDoubleClick={this.edit}>
                         {value}
-                        <Icon
-                            type="edit"
-                            className={!disabled ? editIcon:hiddenIcon}
-                            onClick={this.edit}
-                        />
+                        <Icon type="edit" className={!disabled ? editIcon:hiddenIcon} onClick={this.edit}/>
                     </div>
                 )}
             </div>

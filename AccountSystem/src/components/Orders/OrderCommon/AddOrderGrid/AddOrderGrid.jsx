@@ -19,11 +19,11 @@ class AddOrderGrid extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: this.props.products,          // Table数据
-            count: 1,  // 表格中List的数量
-            totalAmount: this.props.totalAmount,      // 合计金额
-            paymentAmount: this.props.paymentAmount,  // 支付金额
-            remarks: '' // 备注
+            dataSource: this.props.products,            // Table数据
+            count: 1,                                   // 表格中List的数量
+            totalAmount: this.props.totalAmount,        // 合计金额
+            paymentAmount: this.props.paymentAmount,    // 支付金额
+            remarks: ""||"",                            // 备注
         };
         let disabled = this.props.disabled || false;
         const {productList} = this.props;
@@ -35,10 +35,10 @@ class AddOrderGrid extends Component {
                 key: 'serialNumber',
                 render: (text, record, index)=><span>{index + 1}</span>
             },
-            {
+            { // 操作：增加 / 删除 Item
                 title: '操作',
                 key: 'operation',
-                render: (text, record, index)=>(
+                render: (text, record, index) => (
                     !disabled ? (
                         <p style={{textAlign: 'center'}}>
                             <a type='ghost' onClick={this.handleAdd.bind(this)}><Icon type="plus"/></a>
@@ -50,24 +50,28 @@ class AddOrderGrid extends Component {
                     ) : null
                 )
             },
-            {
+            { // 商品名称：Select下拉框
                 title: '商品名称',
                 dataIndex: 'productName',
                 key: 'productName',
 				width: '20%',
-                render: (text, record, index) => (
-                    // 封装下拉框组件
-                    <ListEditableCell
+                render: (text, record, index) => {
+                    // console.log(text)   // 热水器
+                    // console.log(record) // {key: '0', productId: '645a5ee0e7cb2043bcdd50a2', productName: '热水器', quantity: '1', productUnit: '家电', …}
+                    // console.log(index)  // 0\
+                    // console.log(productList) // (2) [{…}, {…}]
+                    // FIXME: 双击显示下拉 失去焦点显示label
+                    return <ListEditableCell
                         disabled={disabled}
                         editType='editCell'
-						componentType='combo'
-						productList={productList}
+                        componentType='combo'
+                        productList={productList}
                         value={{key: record['productId'], label: text}}
                         onChange={this.onListCellChange(index, 'productName')}
                     />
-                )
+                }
             },
-            {
+            { // 数量：数字类型输入框
                 title: '数量',
                 dataIndex: 'quantity',
                 key: 'quantity',
@@ -83,7 +87,7 @@ class AddOrderGrid extends Component {
 					/> : <span>{text}</span>
                 )
             },
-            {
+            { // 单位：无
                 title: '单位',
                 dataIndex: 'productUnit',
                 key: 'productUnit',
@@ -96,14 +100,14 @@ class AddOrderGrid extends Component {
                     />
                 )*/
             },
-            {
+            { // 单价：数字类型输入框
                 title: '单价',
                 dataIndex: 'price',
                 key: 'price',
 				width: '10%',
                 render: (text, record, index)=>(
                     <EditableCell
-						fieldType="number"
+						fieldType="number"      // 输入框类型：数字
                         disabled={disabled}
                         editType='editCell'
                         value={text}
@@ -111,19 +115,20 @@ class AddOrderGrid extends Component {
                     />
                 )
             },
-            {
+            { // 金额/元：无
                 title: '金额 / 元',
                 dataIndex: 'amount',
                 key: 'amount'
             },
-            {
+            { // 备注： 文本类型输入框
                 title: '备注',
                 dataIndex: 'remarks',
                 key: 'remarks',
 				width: '20%',
                 render: (text, record, index) => (
+                    // 是否可编辑：{editable ? () : ()}
                     <EditableCell
-						fieldType="text"
+						fieldType="text"        // 输入框类型：文本
                         disabled={disabled}
                         editType='editCell'
                         value={text}
@@ -135,70 +140,78 @@ class AddOrderGrid extends Component {
     }
 
     // Table 添加备注
-    onCellChange(index, key) {
+    onCellChange(index, key) { // key: remarks
         const {editProducts} = this.props;
         const {totalAmount, paymentAmount} = this.state;
-        return (value)=> {
+        // console.log(totalAmount)     // 合计金额: 9000
+        // console.log(paymentAmount)   // 支付金额: 0
+        // console.log(this.state.dataSource) // Item中的值：[{key:"0", remarks: "沙发上ss", amount: 9000}]
+        return (value) => {
+            // console.log(value) // 文本域的值：沙发上谁谁谁saasf
             const dataSource = [...this.state.dataSource];
-            dataSource[index][key] = value;
+            dataSource[index][key] = value; // FIXME: 将数组中文本域的值 重新赋值
             this.setState({dataSource});
-            editProducts(dataSource, totalAmount, paymentAmount);
+            editProducts(dataSource, totalAmount, paymentAmount); // 将数据重新Change
         }
     }
 
     // Table 选择商品名称 / 下拉选择值
-    onListCellChange(index, key){
+    onListCellChange(index, key){ // Item项的索引
 		const {editProducts} = this.props;
 		const {totalAmount, paymentAmount} = this.state;
-		return ({key, label})=> {
+		return ({key, label}) => {
+            // console.log(key, label) //  Select传递过来的值：  key: 642f7b9c0f672825c06161c8     label: 三星手机 (三星)
 			const dataSource = [...this.state.dataSource];
 			const arr = label.match(/([\u4e00-\u9fa5\w]+)/g);
-            if(key!==''&&arr!==null){
-                dataSource[index]['productId'] = key;
-                dataSource[index]['productName'] = arr[0];
-                dataSource[index]['productUnit'] = arr[1];
-                this.setState({dataSource:[...dataSource]});
+            if(key !== '' && arr !== null){
+                dataSource[index]['productId'] = key;       // Id
+                dataSource[index]['productName'] = arr[0];  // 三星手机
+                dataSource[index]['productUnit'] = arr[1];  // 三星
+                this.setState({dataSource: [...dataSource]});  // 根据Item的索引去设置Key属性
                 editProducts(dataSource, totalAmount, paymentAmount);
             }
 		}
 	}
 
-    // Table 输入数量 / 单价
-    onLinkCellChange(index, key) {
+    // Table单元格：  数量 / 单价
+    onLinkCellChange(index, key) { // Key:  quantity / price
         const {editProducts, productList} = this.props;
         const {paymentAmount} = this.state;
-        return (value)=> {
+        return (value) => {
             let dataSource = [...this.state.dataSource];
-            let record = dataSource[index];
+            let record = dataSource[index]; // 表示第几个Item
+            // console.log(record)  // // {amount: -1200, price: "400", quantity: "-3"}
             if (key === 'quantity') {
                 let price = record.price;
-				let selectProduct = productList.filter(product=> product._id===record.productId)[0];
+				let selectProduct = productList.filter(product => product._id === record.productId)[0];
 				/*如果输入的产品数量大于库存量，则给出提示*/
-                if(value>selectProduct.amount){
+                if(value > selectProduct.amount){
 					message.error(`商品数量不能大于当前库存量: ${selectProduct.amount}！`);
-					value=0;
+					value = 0;
 				}
                 if (price !== null) {
-                    record.amount = (value*price).toFixed(2)*1;
+                    record.amount = (value * price).toFixed(2) * 1;          // 每项金额 = 数量 * 价格
                 }
             } else if (key === 'price') {
-                let quantity = record.quantity;
+                let quantity = record.quantity; // 数量
                 if (quantity !== null) {
-                    record.amount = (value*quantity).toFixed(2)*1;
+                    record.amount = (value * quantity).toFixed(2) * 1;       // 每项金额 = 单价 * 数量
                 }
             }
             record[key] = value;
+            // console.log("重新设置的值为：", record) // {amount: -1200, price: "400", quantity: "-3"}
             this.setState({dataSource});
             let totalAmount = this.getTotalAmount();
             this.setState({totalAmount});
             editProducts(dataSource, totalAmount, paymentAmount);
         }
     }
-    // 获取总价 金额/天
+
+    // 合计金额: 每一项Item的金额累加的结果
     getTotalAmount() {
         const dataSource = [...this.state.dataSource];
         let totalAmount = 0;
-        dataSource.map((data, index)=> totalAmount += data['amount']);
+        dataSource.map(Item => totalAmount += Item['amount']);  // 累加金额 = 合计金额
         return totalAmount;
     }
 
@@ -208,7 +221,7 @@ class AddOrderGrid extends Component {
         const {totalAmount, paymentAmount} = this.state;
         return () => {
             const dataSource = [...this.state.dataSource];
-            if(dataSource.length>1){
+            if(dataSource.length > 1){
 				dataSource.splice(index, 1);
 				this.setState({dataSource});
 				editProducts(dataSource, totalAmount, paymentAmount);
@@ -223,14 +236,14 @@ class AddOrderGrid extends Component {
     handleAdd() {
         let {dataSource, count} = this.state;
         let newData = {
-            key: count,
-            productId: '',
-            productName: '',
-            quantity: 0,
-            productUnit: '',
-            price: 0,
-            amount: 0,
-            remarks: ''
+            key: count,         // 索引
+            productId: '',      // 产品Id
+            productName: '',    // 产品名称
+            quantity: 0,        // 数量
+            productUnit: '',    // 产品单元
+            price: 0,           // 价格
+            amount: 0,          // Item总金额
+            remarks: ''         // Item备注
         };
         this.setState({
             dataSource: [...dataSource, newData],

@@ -36,17 +36,17 @@ const ModifyOrder = ({ dispatch, editorType, orders }) => {
     const modifyOrderGridProps = {
 		products: currentItem.products,
 		productList,
-		totalAmount: currentItem.totalAmount,
-		paymentAmount: currentItem.paymentAmount,
+		totalAmount: currentItem.totalAmount,       // Footer: 合计金额
+		paymentAmount: currentItem.paymentAmount,   // Footer: 支付金额
 		disabled: disabled,
-		editProducts(products, totalAmount, paymentAmount){
+		editProducts(products, totalAmount, paymentAmount){ // 产品，合计金额，支付金额
 			// console.log(totalAmount + '--' + paymentAmount);
 			dispatch({
 				type: 'orders/setProducts',
 				payload: {
-					products,
-					totalAmount,
-					paymentAmount
+					products,       // 产品Id
+					totalAmount,    // 合计金额
+					paymentAmount   // 支付金额
 				}
 			});
 		}
