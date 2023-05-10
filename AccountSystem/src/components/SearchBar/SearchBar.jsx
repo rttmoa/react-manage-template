@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Button} from 'antd';
 import {search, addButton} from './index.css';
 
@@ -6,8 +6,10 @@ import {search, addButton} from './index.css';
 
 
 
-const SearchBar = ({onAdd, children}) => {
 
+
+
+const SearchBar = ({onAdd, children}) => {
     return (
         <div className={search}>
             {children}
@@ -17,5 +19,4 @@ const SearchBar = ({onAdd, children}) => {
         </div>
     );
 };
-
 export default SearchBar;

@@ -12,7 +12,10 @@ import {addOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from '
 
 
 
+
+
 const AddOrder = ({	dispatch,	orders }) => {
+
     const {order, customers, productList} = orders;
 
     // Form表单初始值
@@ -97,6 +100,7 @@ const AddOrder = ({	dispatch,	orders }) => {
 	return (
 		<div className={addOrder}>
 			<div className={orderWrapper}>
+                <h3>AddOrderGrid 组件中的功能！！！！！！</h3>
                 {/* 标题 + 单据编号 */}
 				<AddOrderTitle orderNumber={order.orderNumber} />
                 {/* 客户名称 */}
@@ -113,19 +117,16 @@ const AddOrder = ({	dispatch,	orders }) => {
 		</div>
 	);
 };
-
 AddOrder.propTypes = {
 	onPageChange: PropTypes.func,
 	onModify: PropTypes.func,
 	onDel: PropTypes.func,
 	dataSource: PropTypes.array,
-	loading: PropTypes.any,
-	total: PropTypes.any,
+	loading: PropTypes.bool,
+    total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	current: PropTypes.any
 };
-
 function mapStateToProps({orders}) {
 	return {orders};
 }
-
 export default connect(mapStateToProps)(AddOrder);

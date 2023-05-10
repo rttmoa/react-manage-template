@@ -8,12 +8,12 @@ const SubMenu = Menu.SubMenu;
 
 const menus = [
 	['index', '/', '首页', 'home'],
-	['orders', '/orders', '订单', 'solution'],
+	['orders', '/orders', '！订单', 'solution'],
 	['storage', '/storage', '入库', 'upload'],
 	/*['stock', '/stock', '仓库', 'folder'],
 	 ['funds', '/funds', '资金', 'pay-circle-o'],*/
-	['resource', '/resource', '物资', 'pay-circle-o'],
-	['settlement', '/settlement', '结算', 'pushpin-o'],
+	['resource', '/resource', '！物资', 'pay-circle-o'],
+	['settlement', '/settlement', '！结算', 'pushpin-o'],
 	['bills', '/bills', '对账', 'copy'],
 	['manage', '/manage', '管理', 'setting'],
 ];
@@ -26,7 +26,7 @@ const manageChildMenus = [
 
 const billsChildMenus = [
 	['customerBills', '/customerBills', '客户对账', 'user-add'],
-	['supplierBills', '/supplierBills', '供应商对账', 'usergroup-add']
+	['supplierBills', '/supplierBills', '！供应商对账', 'usergroup-add']
 ];
 
 

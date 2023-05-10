@@ -1,6 +1,16 @@
 import React, {Component, PropTypes} from 'react';
 import {orderTitle, orderNumberClass} from './index.css';
 
+
+
+
+
+
+
+
+
+
+
 const OrderTitle = ({orderNumber}) => {
 
     return (

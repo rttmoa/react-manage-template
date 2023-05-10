@@ -11,15 +11,7 @@ const Option = Select.Option;
 
 
 
-const OrderSearchForm = ({
-	onSearch,
-	customers,
-	form: {
-		getFieldDecorator,
-		getFieldsValue,
-		validateFields
-	}
-}) => {
+const OrderSearchForm = ({ onSearch, customers, form: {getFieldDecorator,getFieldsValue,validateFields} }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		validateFields((errors, values) => {

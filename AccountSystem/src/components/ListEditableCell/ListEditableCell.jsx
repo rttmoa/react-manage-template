@@ -1,9 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Input, Icon, Select} from 'antd';
 import {editCell, editLine, inputWrapper, textWrapper, checkIcon, editIcon, hiddenIcon} from './index.css';
-
 const Option = Select.Option;
 
+
+
+
+// TODO: 商品名称下拉框 控制是否显示下拉框
 class ListEditableCell extends Component {
     constructor(props) {
         super(props);

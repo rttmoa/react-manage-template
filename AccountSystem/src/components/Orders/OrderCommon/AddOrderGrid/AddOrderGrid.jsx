@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Table, Popconfirm, Icon, message} from 'antd';
 import EditableCell from '../../../EditableCell/EditableCell';
 import ListEditableCell from '../../../ListEditableCell/ListEditableCell';
@@ -6,7 +6,16 @@ import Spliter from '../../../Spliter/Spliter';
 import {addOrderGrid, rowClassName, totalAmountClass, paymentAmountClass} from './index.css';
 
 
+
+
+
+
+
+
+// TODO: 表单内数据处理
+// FIXME: 表单内数据处理
 class AddOrderGrid extends Component {
+    // TODO: constructor 构造函数
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +27,7 @@ class AddOrderGrid extends Component {
         };
         let disabled = this.props.disabled || false;
         const {productList} = this.props;
+        // console.log(productList) // 商品： [{…}]
         this.columns = [
             {
                 title: '序号',
@@ -240,50 +250,52 @@ class AddOrderGrid extends Component {
         };
     }
 
+    FooterData = ()  => {
+        let {dataSource, totalAmount, paymentAmount} = this.state;
+        let {disabled} = this.props;
+        return (
+            <div className={totalAmountClass}>
+                <div>合计金额：￥{totalAmount}</div>
+                <div className={paymentAmountClass}>
+                    支付金额：￥
+                    <EditableCell
+                        disabled={disabled}
+                        fieldType="number"
+                        editType='editLine'
+                        onChange={this.handlePaymentAmount()}
+                        value={paymentAmount}
+                    />
+                </div>
+            </div>
+        )
+    }
+
 
     render() {
         let {dataSource, totalAmount, paymentAmount} = this.state;
-        let columns = this.columns;
         let {disabled} = this.props;
         return (
             <div className={addOrderGrid}>
                 <Table
                     bordered
                     dataSource={dataSource}
-                    columns={columns}
+                    columns={this.columns}
                     pagination={false}
-                    footer={() =>
-                        <div className={totalAmountClass}>
-                            <div>合计金额：￥{totalAmount}</div>
-                            <div className={paymentAmountClass}>
-                                支付金额：￥
-                                <EditableCell
-                                    disabled={disabled}
-                                    fieldType="number"
-                                    editType='editLine'
-                                    onChange={this.handlePaymentAmount()}
-                                    value={paymentAmount}
-                                />
-                            </div>
-                        </div>
-                    }
+                    footer={() => this.FooterData()}
                     size="small"
                     rowClassName={() => rowClassName}
                 />
             </div>
         );
     }
-
 }
-
-/*AddOrderGrid.propTypes = {
- onPageChange: PropTypes.func,
- onModify: PropTypes.func,
- onDel: PropTypes.func,
- dataSource: PropTypes.array,
- loading: PropTypes.any,
- total: PropTypes.any,
- current: PropTypes.any
- };*/
-
+AddOrderGrid.propTypes = {
+    onPageChange: PropTypes.func,
+    onModify: PropTypes.func,
+    onDel: PropTypes.func,
+    dataSource: PropTypes.array,
+    loading: PropTypes.any,
+    total: PropTypes.any,
+    current: PropTypes.any
+};
 export default AddOrderGrid;

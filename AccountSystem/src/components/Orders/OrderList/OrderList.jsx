@@ -9,6 +9,9 @@ import {orderList} from './index.css';
 
 
 
+
+
+
 const OrderList = ({
 	total,
 	current,
@@ -66,7 +69,7 @@ const OrderList = ({
             align: 'center',
 			render: (text, record) => (
 				<p>
-					<a onClick={() => onModify(record['_id'])}>编辑</a>
+					<a onClick={() => onModify(record['_id'])} style={{color:'red'}}>编辑</a>
 					<Spliter spliterText="|"/>
 					<Popconfirm title="确定删除该条记录？" onConfirm={() => onDel(record['_id'])}>
 						<a type='ghost'>删除</a>

@@ -237,7 +237,7 @@ export default {
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin) return;
 			const {data} = yield call(resource.query, {});
-            // console.log("商品", data)
+            // console.log("商品信息", data)
 			if(data && data.success){
 				yield put({
 					type:'getProductsSuccess',
@@ -343,7 +343,7 @@ export default {
             let order = state['order'];
             let {products, totalAmount, paymentAmount} = action.payload;
             let newOrder = {...order, products, totalAmount, paymentAmount};
-            console.log(newOrder);
+            // console.log(newOrder);
             return {...state, order: newOrder};
         },
         setMem(state, action){
