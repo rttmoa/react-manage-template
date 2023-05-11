@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Driver from "driver.js"; // import driver.js
 import "driver.js/dist/driver.min.css"; // import driver.js css
 import { Button, Alert } from "antd";
@@ -20,16 +21,21 @@ const Guide = () => {
 	};
 	return (
 		<div className="card content-box">
+			
+			<h2 style={{fontSize: 20}}>TODO: 引导页：使用 driver.js 包 !!!!!!</h2>
+
 			<Alert
 				message="引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于 driver.js."
 				style={{ width: "100%" }}
 				type="warning"
 			/>
+
 			<div style={{ margin: "15px auto" }}>
 				<Button type="primary" id="antd-button" onClick={guide}>
 					打开引导页 🤹‍♂️
 				</Button>
 			</div>
+			
 		</div>
 	);
 };

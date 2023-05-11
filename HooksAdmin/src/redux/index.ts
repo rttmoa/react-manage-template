@@ -1,5 +1,5 @@
 import { legacy_createStore as createStore, combineReducers, Store, compose } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer } from "redux-persist"; // TODO: 持久化Redux
 import { applyMiddleware } from "redux";
 import storage from "redux-persist/lib/storage";
 import reduxThunk from "redux-thunk";

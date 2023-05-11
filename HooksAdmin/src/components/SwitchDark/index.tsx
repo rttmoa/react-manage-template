@@ -2,6 +2,7 @@ import { Switch } from "antd";
 import { connect } from "react-redux";
 import { setThemeConfig } from "@/redux/modules/global/action";
 
+// 切换 明 / 暗
 const SwitchDark = (props: any) => {
 	const { setThemeConfig, themeConfig } = props;
 	const onChange = (checked: boolean) => {

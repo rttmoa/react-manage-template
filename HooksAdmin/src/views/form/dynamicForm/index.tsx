@@ -9,6 +9,10 @@ const DynamicForm = () => {
 
 	return (
 		<div className="card content-box">
+			<h2 style={{ fontSize: 20 }}>注意：字符在HTML中的写法 `{"/"}`` 比如下面</h2>
+			<h2 style={{ fontSize: 20 }}>
+				动态表单： {"<"}Form.List{">"} {"{"} (fields, {"{add, remove}"}) ={">"} ({"<></>"}) {"}"}
+			</h2>
 			<Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
 				<Form.List name="users">
 					{(fields, { add, remove }) => (

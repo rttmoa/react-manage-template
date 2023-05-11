@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Tabs } from "antd";
 import Pie from "./components/pie";
 import Curve from "./components/curve";
@@ -7,9 +8,9 @@ import AddPerson from "./images/add_person.png";
 import AddTeam from "./images/add_team.png";
 import Today from "./images/today.png";
 import BookSum1 from "./images/book_sum.png";
-
 const { TabPane } = Tabs;
 
+// 1
 const DataVisualize = () => {
 	const onChange = (key: string) => {
 		console.log(key);
@@ -26,8 +27,10 @@ const DataVisualize = () => {
 
 	return (
 		<div className="dataVisualize-box">
+
 			<div className=" card top-box">
 				<div className="top-title">数据可视化</div>
+				{/* 切换Tab */}
 				<Tabs defaultActiveKey="1" onChange={onChange}>
 					{tabsList.map(item => {
 						return <TabPane tab={item.label} key={item.name}></TabPane>;
@@ -71,6 +74,7 @@ const DataVisualize = () => {
 							<span className="traffic-name sle">昨日访问量</span>
 						</div>
 					</div>
+					{/* TODO: 饼图 */}
 					<div className="item-right">
 						<div className="echarts-title">Gitee / GitHub 访问量占比</div>
 						<div className="book-echarts">
@@ -79,8 +83,10 @@ const DataVisualize = () => {
 					</div>
 				</div>
 			</div>
+
 			<div className="card bottom-box">
 				<div className="bottom-title">数据来源</div>
+				{/* 切换Tab */}
 				<div className="bottom-tabs">
 					<Tabs defaultActiveKey="1" onChange={onChange}>
 						{tabsList.map(item => {
@@ -88,10 +94,12 @@ const DataVisualize = () => {
 						})}
 					</Tabs>
 				</div>
+				{/* TODO: 柱状图 */}
 				<div className="curve-echarts">
 					<Curve />
 				</div>
 			</div>
+			
 		</div>
 	);
 };

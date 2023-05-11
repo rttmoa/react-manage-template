@@ -34,9 +34,12 @@ const ValidateForm = () => {
 			gender: "male"
 		});
 	};
-
 	return (
 		<div className="card content-box">
+			<h2 style={{ fontSize: 20 }}>表单校验： 规则(rules)</h2>
+			<h2 style={{ fontSize: 20 }}>给表单设置值：form.setFieldsValue(｛user: mark, note: Helloworld, gender: male｝)</h2>
+			<h2 style={{ fontSize: 20 }}>给表单重置值：form.resetFields()</h2>
+			<h2 style={{ fontSize: 20 }}>表单默认：const [form] = Form.useForm();</h2>
 			<Form form={form} name="control-hooks" onFinish={onFinish} labelCol={{ span: 1 }}>
 				<Form.Item name="user" label="User" rules={[{ required: true }]}>
 					<Input placeholder="Please enter a user" />

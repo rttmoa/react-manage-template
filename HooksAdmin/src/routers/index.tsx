@@ -35,8 +35,8 @@ export const rootRouter: RouteObject[] = [
 ];
 
 const Router = () => {
-	const routes = useRoutes(rootRouter);
-	return routes;
+	// const routes = ;
+	return useRoutes(rootRouter);
 };
 
 export default Router;

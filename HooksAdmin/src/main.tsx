@@ -16,6 +16,7 @@ ReactDOM.render(
 	// * react严格模式
 	// <React.StrictMode>
 	<Provider store={store}>
+		{/* TODO: 持久化Redux */}
 		<PersistGate persistor={persistor}>
 			<App />
 		</PersistGate>
