@@ -60,7 +60,7 @@ export default {
             }
         },
         *create({payload}, {call, put}){
-        	console.log(payload);
+        	// console.log(payload);
             yield put({type: 'hideEditor'});
             yield put({type: 'showLoading'});
             let product = payload;
