@@ -1,16 +1,24 @@
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 import echarts from "@/utils/echarts";
 import mapJson from "../assets/china.json";
 import "./ChinaMapChart.less";
 
+
+
+
+
+
+
 const ChinaMapChart = () => {
+
+
 	echarts.registerMap("china", mapJson as any);
+
 	/* echarts sysmbol */
-	let planePath: string =
-		"path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z";
-	let data = [
-		{
+	let planePath: string = "path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z";
+	let data = [{ // fromName -> toName
 			fromName: "北京",
 			toName: "上海",
 			coords: [
@@ -76,6 +84,7 @@ const ChinaMapChart = () => {
 		}
 	];
 
+
 	const option: EChartsOption = {
 		// 悬浮窗
 		tooltip: {
@@ -91,6 +100,7 @@ const ChinaMapChart = () => {
 			top: "10px",
 			bottom: "10px"
 		},
+		// 地理坐标系组件
 		geo: {
 			map: "china",
 			zoom: 1.5,
@@ -113,8 +123,7 @@ const ChinaMapChart = () => {
 						y: 0,
 						x2: 0,
 						y2: 1,
-						colorStops: [
-							{
+						colorStops: [{
 								offset: 0,
 								color: "#073684" // 0% 处的颜色
 							},

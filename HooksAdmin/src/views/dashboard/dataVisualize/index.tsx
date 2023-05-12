@@ -13,7 +13,7 @@ const { TabPane } = Tabs;
 // 1
 const DataVisualize = () => {
 	const onChange = (key: string) => {
-		console.log(key);
+		console.log("onChange", key);
 	};
 
 	const tabsList = [
@@ -28,10 +28,12 @@ const DataVisualize = () => {
 	return (
 		<div className="dataVisualize-box">
 
+			<h2 style={{fontSize: 20}}>Charts中用useEcharts复用：组件中setOption / init / resize   使用Ref控制Div</h2>
+			<h2 style={{fontSize: 20}}>切换月份使用 Tabs + Tabs.TabPane</h2>
 			<div className=" card top-box">
 				<div className="top-title">数据可视化</div>
 				{/* 切换Tab */}
-				<Tabs defaultActiveKey="1" onChange={onChange}>
+				<Tabs defaultActiveKey="2" onChange={onChange}>
 					{tabsList.map(item => {
 						return <TabPane tab={item.label} key={item.name}></TabPane>;
 					})}

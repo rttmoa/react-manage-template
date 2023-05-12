@@ -1,26 +1,34 @@
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 import "./AnnualUseChart.less";
+import { useTimes } from "@/hooks/useTime";
 
 interface ChartProp {
 	label: string;
 	value: string[];
 }
 
-const AnnualUseChart = () => {
+const AnnualUseChart = () => { 
+
+	const Data = useTimes;
+	const v1: String[] = Data().tourist;
+	const v2: String[] = Data().tourist;
+	const v3: String[] = Data().tourist;
+
 	const gradientColors = ["rgba(254, 219, 101,0.1)", "rgba(0, 122, 254,0.1)", "rgba(255, 75, 122, 0.1)"];
 	let annualData = [
 		{
 			label: new Date().getFullYear() - 2 + "年",
-			value: ["184", "90", "120", "0", "30", "100", "80", "40", "20", "510", "350", "180"]
+			value: v1 || ["184", "90", "120", "0", "30", "100", "80", "40", "20", "510", "350", "180"]
 		},
 		{
 			label: new Date().getFullYear() - 1 + "年",
-			value: ["118", "509", "366", "162", "380", "123", "321", "158", "352", "474", "154", "22"]
+			value: v2 || ["118", "509", "366", "162", "380", "123", "321", "158", "352", "474", "154", "22"]
 		},
 		{
 			label: new Date().getFullYear() + "年",
-			value: ["548", "259", "113", "90", "69", "512", "23", "49", "28", "420", "313", "156"]
+			value: v3 || ["548", "259", "113", "90", "69", "512", "23", "49", "28", "420", "313", "156"]
 		}
 	];
 	let data = {
@@ -30,14 +38,16 @@ const AnnualUseChart = () => {
 		colors: ["#FFA600", "#007AFE", "#FF4B7A"]
 	};
 	const option: EChartsOption = {
+		// 提示框
 		tooltip: {
 			trigger: "axis",
 			axisPointer: {
 				type: "none"
 			},
-			borderWidth: 0, //边框线宽
+			borderWidth: 0, // 边框线宽
 			padding: 0,
 			backgroundColor: "transparent",
+			// FIXME: 提示框样式
 			formatter: (p: any) => {
 				let str = "";
 				p.forEach((val: any) => {
@@ -50,13 +60,13 @@ const AnnualUseChart = () => {
           `;
 				});
 				let dom = `
-                    <div class="annual-tooTip">
-                      <span class="annual-month">${p[0].dataIndex + 1}月</span>
-                      <div class="annual-list">
-                        ${str}
-                      </div>
-                    </div>
-                  `;
+					<div class="annual-tooTip">
+						<span class="annual-month">${p[0].dataIndex + 1}月</span>
+						<div class="annual-list">
+							${str}
+						</div>
+					</div>
+				`;
 				return dom;
 			}
 		},
@@ -79,6 +89,7 @@ const AnnualUseChart = () => {
 			bottom: "15%"
 			// containLabel: true
 		},
+		// 横轴 - X轴
 		xAxis: [
 			{
 				name: "(月份)",
@@ -112,6 +123,7 @@ const AnnualUseChart = () => {
 				data: data.columns
 			}
 		],
+		// 纵轴 - Y轴
 		yAxis: {
 			name: "(人数)",
 			nameTextStyle: {

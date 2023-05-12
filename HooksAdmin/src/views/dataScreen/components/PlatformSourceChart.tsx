@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 
@@ -35,9 +36,10 @@ const PlatformSourceChart = () => {
 			top: "0%",
 			left: "2%",
 			right: "2%",
-			bottom: "0%"
-			// containLabel: true
+			bottom: "0%",
+			containLabel: true
 		},
+		// 提示框
 		tooltip: {
 			trigger: "item",
 			formatter: "{b} :  {c}人"
@@ -58,7 +60,7 @@ const PlatformSourceChart = () => {
 				let text = "";
 				data.forEach((val: ChartProp) => {
 					if (val.name === name) {
-						text = name + " --- " + val.percentage;
+						text = name + " -> " + val.percentage;
 					}
 				});
 				return text;

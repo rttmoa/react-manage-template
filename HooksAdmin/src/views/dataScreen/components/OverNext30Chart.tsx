@@ -1,9 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 import { randomNum } from "@/utils/util";
 import "./OverNext30Chart.less";
+import { useTimes } from "@/hooks/useTime";
 
+
+
+
+
+
+// TODO: 未来30天游客量趋势图
 const OverNext30Chart = () => {
+
+	const {over30} = useTimes()
+	
 	// js 获取当前日期到之后一个月30天的日期区间
 	const initDate = (): string[] => {
 		let dateList = [];
@@ -12,10 +24,7 @@ const OverNext30Chart = () => {
 		endDate.setDate(startDate.getDate() + 30);
 		startDate.setDate(startDate.getDate() + 1);
 		while (endDate.getTime() - startDate.getTime() >= 0) {
-			let month =
-				(startDate.getMonth() + 1).toString().length === 1
-					? "0" + (startDate.getMonth() + 1).toString()
-					: startDate.getMonth() + 1;
+			let month = (startDate.getMonth() + 1).toString().length === 1 ? "0" + (startDate.getMonth() + 1).toString() : startDate.getMonth() + 1;
 			let day = startDate.getDate().toString().length === 1 ? "0" + startDate.getDate() : startDate.getDate();
 			dateList.push(month + "/" + day);
 			startDate.setDate(startDate.getDate() + 1);
@@ -24,11 +33,10 @@ const OverNext30Chart = () => {
 	};
 	let data = {
 		unit: ["访问量"],
-		data: new Array(30).fill("").map(val => {
-			val = randomNum(1, 20000);
-			return val;
-		})
+		// data: new Array(30).fill("").map(val => { val = randomNum(1, 20000); return val; })
+		data: over30
 	};
+
 	const option: EChartsOption = {
 		tooltip: {
 			trigger: "axis",
@@ -36,8 +44,8 @@ const OverNext30Chart = () => {
 			formatter: (params: any) => {
 				let tipData = params[0];
 				let html = `<div class="lineChart-bg">
-                        <span style="">${tipData.name} <i >${tipData.value}</i> 人次访问</span>
-                    </div>`;
+						<span style="">${tipData.name} <i >${tipData.value}</i> 人次访问</span>
+				</div>`;
 				return html;
 			},
 			backgroundColor: "transparent", //提示标签背景颜色

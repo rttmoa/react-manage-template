@@ -6,6 +6,7 @@ const Curve = () => {
 		{ value: 5000, name: "GitHub 访问量" }
 	];
 	const option: any = {
+		// 标题组件，包含主标题和副标题
 		title: {
 			text: "Gitee / GitHub",
 			subtext: "访问占比",
@@ -21,9 +22,11 @@ const Curve = () => {
 				color: "#a1a1a1"
 			}
 		},
+		// 提示框组件
 		tooltip: {
 			trigger: "item"
 		},
+		// 图例组件
 		legend: {
 			top: "4%",
 			left: "2%",
@@ -49,6 +52,7 @@ const Curve = () => {
 				}
 			}
 		},
+		// 数组：type 是饼，线，柱，树，地图
 		series: [
 			{
 				type: "pie",
@@ -58,13 +62,15 @@ const Curve = () => {
 				clockwise: true,
 				startAngle: 150,
 				data: pieData,
+				// 两个 50% 线的长度及宽度
 				labelLine: {
 					length: 80,
-					length2: 30,
+					length2: 20,
 					lineStyle: {
-						width: 1
+						width: 2
 					}
 				},
+				// 两个 50% 的样式
 				label: {
 					position: "outside",
 					show: true,
@@ -73,6 +79,7 @@ const Curve = () => {
 					fontSize: 19,
 					color: "#a1a1a1"
 				},
+				// 饼 的颜色及type
 				color: [
 					{
 						type: "linear",

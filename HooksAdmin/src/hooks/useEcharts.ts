@@ -7,6 +7,9 @@ import { useEffect, useRef } from "react";
  * @return chart
  * */
 export const useEcharts = (options: echarts.EChartsCoreOption, data?: any) => {
+	// 饼图	- Gitee / GitHub 访问量占比
+	// 柱状图	- 数据来源
+	// TODO: 所有Charts都会使用此组件 useEcharts
 	const myChart = useRef<echarts.EChartsType>();
 	const echartsRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +28,7 @@ export const useEcharts = (options: echarts.EChartsCoreOption, data?: any) => {
 			myChart.current = echarts.init(echartsRef.current as HTMLDivElement);
 		}
 		myChart?.current?.setOption(options);
-		window.addEventListener("resize", echartsResize, false);
+		window.addEventListener("resize", echartsResize, false); // TODO: resize: 尺寸宽度改变
 		return () => {
 			window.removeEventListener("resize", echartsResize);
 			myChart?.current?.dispose();

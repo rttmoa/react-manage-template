@@ -1,17 +1,29 @@
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 import { ranking1, ranking2, ranking3, ranking4 } from "../assets/ranking-icon";
 import "./HotPlateChart.less";
+
 interface ChartProp {
 	name: string;
 	value: number;
 	percentage: string;
 	maxValue: number;
 }
+
+
+
+
+
 const HotPlateChart = () => {
-	let data = [
+
+	let newArr: number[] = [];
+	for (let i = 0; i < 5; i++) { newArr.push(parseInt(String(Math.random() * 100000))) }
+	// console.log(newArr); //  [59647, 71821, 36914, 7820, 82819, 42882]
+	const totalSum = newArr.reduce((prev, curr) => prev += curr, 0);
+	let Original = [
 		{
-			value: 79999,
+			value: 7000,
 			name: "峨眉山",
 			percentage: "80%",
 			maxValue: 100000
@@ -41,6 +53,16 @@ const HotPlateChart = () => {
 			maxValue: 100000
 		}
 	];
+	const data = Original.map((item, index) => {
+		const percenTage = (newArr[index] / totalSum).toString().substring(2, 4); // 百分比： value / total = 每个值的百分数
+		return {
+			...item,
+			value: newArr[index] || 0,
+			percentage: `${percenTage}%` || ""
+		}
+	})
+
+	
 	const colors = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
 	const option: EChartsOption = {
 		grid: {

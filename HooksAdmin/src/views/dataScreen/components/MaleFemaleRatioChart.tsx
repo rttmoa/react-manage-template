@@ -1,17 +1,23 @@
+/* eslint-disable prettier/prettier */
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
 import man from "../images/man.png";
 import woman from "../images/woman.png";
 import "./MaleFemaleRatioChart.less";
+import { useTimes } from "@/hooks/useTime";
 
 interface ChartProp {
 	man: number;
 	woman: number;
 }
 const MaleFemaleRatioChart = () => {
+	const {gender} = useTimes();
+	const manPercent = +gender.toFixed(2);
+	const womanPercent = +(1 - manPercent).toFixed(2);
+
 	let data: ChartProp = {
-		man: 0.6,
-		woman: 0.4
+		man: manPercent,
+		woman: womanPercent
 	};
 	const option: EChartsOption = {
 		xAxis: {

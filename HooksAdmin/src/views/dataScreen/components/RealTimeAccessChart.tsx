@@ -1,11 +1,14 @@
-import { useState } from "react";
+/* eslint-disable prettier/prettier */
+// import { useState } from "react";
 import { useEcharts } from "@/hooks/useEcharts";
 import "echarts-liquidfill";
 import "./RealTimeAccessChart.less";
-
+import { useTimes } from '@/hooks/useTime'
 const RealTimeAccessChart = () => {
-	let data = 0.5;
+
+	const {random: data, str: str} = useTimes();
 	const option = {
+		// 标题：预约量及百分比
 		title: [
 			{
 				text: (data * 100).toFixed(0) + "%",
@@ -49,6 +52,7 @@ const RealTimeAccessChart = () => {
 			bottom: "0",
 			containLabel: true
 		},
+		// 控制绿色实线的圆环 - 粗细及左右位置
 		polar: {
 			radius: ["75%", "85%"],
 			center: ["50%", "50%"]
@@ -89,7 +93,8 @@ const RealTimeAccessChart = () => {
 				radius: "70%",
 				z: 2,
 				center: ["50%", "50%"],
-				data: [0.4, 0.4, 0.4], // data个数代表波浪数
+				// data: [0.5, data, 0.2], // FIXME: data个数代表波浪数 - 想要几层波浪 数组中传几个值即可
+				data: [data],
 				itemStyle: {
 					color: {
 						type: "linear",
@@ -123,7 +128,7 @@ const RealTimeAccessChart = () => {
 					show: false
 				},
 				backgroundStyle: {
-					borderWidth: 1,
+					borderWidth: 2,
 					// 径向渐变，前三个参数分别是圆心 x, y 和半径，取值同线性渐变
 					color: {
 						type: "radial",
@@ -148,6 +153,7 @@ const RealTimeAccessChart = () => {
 					}
 				}
 			},
+			// FIXME: 外侧细虚线
 			{
 				type: "pie",
 				radius: ["80%", "80%"],
@@ -165,11 +171,12 @@ const RealTimeAccessChart = () => {
 					color: "#11144e",
 					borderCap: "round"
 				},
-				data: [100]
+				data: [50]
 			},
+			// FIXME: 外侧粗实线
 			{
 				type: "bar",
-				data: [55],
+				data: [data * 100],
 				z: 10,
 				coordinateSystem: "polar",
 				roundCap: true,
@@ -178,7 +185,11 @@ const RealTimeAccessChart = () => {
 		]
 	};
 	const [echartsRef] = useEcharts(option, data);
-	const [actualTotal] = useState("216908");
+	// const [actualTotal] = useState("216908"); 
+	// console.log(actualTotal.split("")); // ['2', '1', '6', '9', '0', '8']
+
+
+
 	return (
 		<>
 			<div className="actual-total">
@@ -186,7 +197,7 @@ const RealTimeAccessChart = () => {
 					可预约总量<i>999999</i>人
 				</div>
 				<div className="actual-total">
-					{actualTotal.split("").map((item, index) => {
+					{str.split("").map((item, index) => {
 						return (
 							<div className="actual-item" key={index}>
 								{item}

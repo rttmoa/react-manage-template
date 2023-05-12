@@ -291,7 +291,16 @@ const WaterChart = () => {
 	};
 
 	const [echartsRef] = useEcharts(option, data);
-	return <div ref={echartsRef} className="card content-box"></div>;
+	// return ;
+	return (
+		<>
+			<h2 style={{ fontSize: 20 }}>Charts中用useEcharts复用：组件中setOption / init / resize 使用Ref控制Div</h2>
+			<h2 style={{ fontSize: 20 }}>Charts配置项 option的类型是 echarts.EChartsCoreOption={"{}"} </h2>
+			<h2 style={{ fontSize: 20 }}>Charts导入echarts-liquidfill npm包</h2>
+
+			<div ref={echartsRef} className="card content-box"></div>
+		</>
+	);
 };
 
 export default WaterChart;

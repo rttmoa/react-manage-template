@@ -13,6 +13,7 @@ const Curve = () => {
 		{ value: 50, spotName: "博客园" }
 	];
 	const option: any = {
+		// 提示框组件
 		tooltip: {
 			trigger: "axis",
 			backgroundColor: "transparent",
@@ -29,14 +30,17 @@ const Curve = () => {
 				return dom;
 			}
 		},
+		// 工具栏。内置有导出图片，数据视图，动态类型切换，数据区域缩放，重置五个工具
 		toolbox: {
 			show: true,
 			orient: "horizontal"
 		},
+		// 直角坐标系内绘图网格，单个 grid 内最多可以放置上下两个 X 轴，左右两个 Y 轴。可以在网格上绘制折线图，柱状图，散点图（气泡图）
 		grid: {
 			left: "5%",
 			right: "6%"
 		},
+		// dataZoom 组件 用于区域缩放，从而能自由关注细节的数据信息，或者概览数据整体，或者去除离群点的影响
 		dataZoom: [
 			{
 				show: false,
@@ -59,6 +63,7 @@ const Curve = () => {
 				zoomLock: true //控制伸缩
 			}
 		],
+		// 直角坐标系 grid 中的 x 轴，一般情况下单个 grid 组件最多只能放上下两个 x 轴，多于两个 x 轴需要通过配置 offset 属性防止同个位置多个 x 轴的重叠
 		xAxis: [
 			{
 				type: "category",
@@ -89,6 +94,7 @@ const Curve = () => {
 				}
 			}
 		],
+		// 直角坐标系 grid 中的 y 轴，一般情况下单个 grid 组件最多只能放左右两个 y 轴，多于两个 y 轴需要通过配置 offset 属性防止同个位置多个 Y 轴的重叠
 		yAxis: [
 			{
 				min: 0,
@@ -121,6 +127,7 @@ const Curve = () => {
 				}
 			}
 		],
+		// series: [{...}]  包含各种对象类型  /  type 是饼，线，柱，树，地图
 		series: [
 			{
 				name: "Direct",
