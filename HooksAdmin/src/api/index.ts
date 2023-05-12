@@ -29,7 +29,7 @@ class RequestHttp {
 		/**
 		 * @description 请求拦截器
 		 * 客户端发送请求 -> [请求拦截器] -> 服务器
-		 * token校验(JWT) : 接受服务器返回的token,存储到redux/本地储存当中
+		 * token校验(JWT) : 接受服务器返回的token, 存储到redux/本地储存当中
 		 */
 		this.service.interceptors.request.use(
 			(config: AxiosRequestConfig) => {
