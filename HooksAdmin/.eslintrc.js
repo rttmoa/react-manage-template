@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // @see: http://eslint.cn
 
 module.exports = {
@@ -64,6 +65,7 @@ module.exports = {
 
 		// react (https://github.com/jsx-eslint/eslint-plugin-react)
 		"react-hooks/rules-of-hooks": "off",
-		"react-hooks/exhaustive-deps": "off"
+		"react-hooks/exhaustive-deps": "off",
+		// "prettier/prettier": ["error", { singleQuote: true }]
 	}
 };

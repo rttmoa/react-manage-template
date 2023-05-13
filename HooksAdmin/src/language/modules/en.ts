@@ -3,6 +3,9 @@ export default {
 		confirm: "Login",
 		reset: "Reset"
 	},
+	logo: {
+		name: "HooksSystem"
+	},
 	home: {
 		welcome: "Welcome"
 	},

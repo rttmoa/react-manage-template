@@ -3,6 +3,9 @@ export default {
 		confirm: "登录",
 		reset: "重置"
 	},
+	logo: {
+		name: "Hooks后台"
+	},
 	home: {
 		welcome: "欢迎使用"
 	},

@@ -9,7 +9,7 @@ import { randomNum } from "@/utils/util";
 
 /**
  * @description 获取本地时间
- * 动态处理数据
+ * @link momentjs http://momentjs.cn/
  */
 export const useTimes = () => {
 	const timer: any = useRef(null);

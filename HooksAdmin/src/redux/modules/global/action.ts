@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as types from "@/redux/mutation-types";
 import { ThemeConfigProp } from "@/redux/interface/index";
 
@@ -24,3 +25,5 @@ export const setThemeConfig = (themeConfig: ThemeConfigProp) => ({
 	type: types.SET_THEME_CONFIG,
 	themeConfig
 });
+
+// FIXME: 设置Token + 设置程序集 + 设置语言 + 设置主题

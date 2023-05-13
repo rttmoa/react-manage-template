@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { HOME_URL } from "@/config/config";
 import { connect } from "react-redux";
 import { setToken } from "@/redux/modules/global/action";
+import { useTranslation } from "react-i18next";
 import PasswordModal from "./PasswordModal";
 import InfoModal from "./InfoModal";
 import avatar from "@/assets/images/avatar.png";
 
 const AvatarIcon = (props: any) => {
+	const { t } = useTranslation();
 	const { setToken } = props;
 	const navigate = useNavigate();
 
@@ -46,12 +48,12 @@ const AvatarIcon = (props: any) => {
 				},
 				{
 					key: "2",
-					label: <span className="dropdown-item">个人信息</span>,
+					label: <span className="dropdown-item">{t("header.personalData")}</span>,
 					onClick: () => infoRef.current!.showModal({ name: 11 })
 				},
 				{
 					key: "3",
-					label: <span className="dropdown-item">修改密码</span>,
+					label: <span className="dropdown-item">{t("header.changePassword")}</span>,
 					onClick: () => passRef.current!.showModal({ name: 11 })
 				},
 				{
@@ -59,7 +61,7 @@ const AvatarIcon = (props: any) => {
 				},
 				{
 					key: "4",
-					label: <span className="dropdown-item">退出登录</span>,
+					label: <span className="dropdown-item">{t("header.logout")}</span>,
 					onClick: logout
 				}
 			]}

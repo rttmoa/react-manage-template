@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { RouteObject } from "@/routers/interface";
 
 /**
@@ -47,6 +48,7 @@ export const localClear = () => {
  */
 export const getBrowserLang = () => {
 	let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
+	// console.log("browserLang", browserLang); // zh-CN
 	let defaultBrowserLang = "";
 	if (browserLang.toLowerCase() === "cn" || browserLang.toLowerCase() === "zh" || browserLang.toLowerCase() === "zh-cn") {
 		defaultBrowserLang = "zh";
@@ -78,15 +80,24 @@ export const getOpenKeys = (path: string) => {
  * @param {Array} routes 路由列表
  * @returns array
  */
-export const searchRoute = (path: string, routes: RouteObject[] = []): RouteObject => {
+// TODO: 路由守卫组件: 递归查询对应的路由
+export const searchRoute = (path: string, routes: RouteObject[] = []): RouteObject => { 
 	let result: RouteObject = {};
 	for (let item of routes) {
 		if (item.path === path) return item;
 		if (item.children) {
-			const res = searchRoute(path, item.children);
-			if (Object.keys(res).length) result = res;
+			const res = searchRoute(path, item.children); 
+			if (Object.keys(res).length) {
+				// console.log(res) 							// {path: '/assembly/svgIcon', element: {…}, meta: {…}}
+				// console.log(Object.keys(res)) 	// ['path', 'element', 'meta']
+				result = res;
+			};
 		}
 	}
+	// console.log("Svg图标：http://localhost:3301/#/assembly/svgIcon")
+	// console.log(path) 		// 	"/assembly/svgIcon"
+	// console.log(routes) 	// 	[{…}, {path: '/login', element: {…}, meta: {…}}, {element: {…}, meta: {…}, children: Array(4)}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+	// console.log(result) 	// 	{path: '/assembly/svgIcon', element: {…}, meta: {…}}
 	return result;
 };
 

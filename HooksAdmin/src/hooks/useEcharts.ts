@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
  * @param {Element} data 数据 目前只针对于次Hooks-admin里一些data都是写死在options 所以data为可选 根据项目自行修改即可
  * @param {Object} options 绘制Echarts的参数(必传)
  * @return chart
+ * @link echarts https://echarts.apache.org/examples/zh/index.html
  * */
 export const useEcharts = (options: echarts.EChartsCoreOption, data?: any) => {
 	// 饼图	- Gitee / GitHub 访问量占比
