@@ -52,6 +52,7 @@ const App = (props: any) => {
 		<HashRouter>
 			<ConfigProvider locale={i18nLocale} componentSize={assemblySize}>
 				<AuthRouter>
+					{/* Router：https://reactrouter.com/en/6.11.1/hooks/use-routes#useroutes */}
 					<Router />
 				</AuthRouter>
 			</ConfigProvider>

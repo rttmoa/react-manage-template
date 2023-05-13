@@ -17,7 +17,8 @@ const AuthRouter = (props: { children: JSX.Element }) => {
 	// console.log(pathname) 		// 	"/home/index"  ||  "/echarts/lineChart";
 	// console.log(rootRouter) 	// [{…}, {path: '/login', element: {…}, meta: {…}}, {element: {…}, meta: {…}, children: Array(4)}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 	const route = searchRoute(pathname, rootRouter);
-	// console.log(route) 			// Svg图标： {path: '/assembly/svgIcon', element: {…}, meta: {…}}
+	// Svg图标Url：http://localhost:3301/#/assembly/svgIcon
+	// console.log(route) 			// Svg图标： {path: '/assembly/svgIcon', element: {…}, meta: {requiresAuth: true, title: 'SVG 图标', key: 'svgIcon'}}
 
 	// * 在跳转路由之前，清除所有的请求
 	axiosCanceler.removeAllPending();
@@ -26,6 +27,7 @@ const AuthRouter = (props: { children: JSX.Element }) => {
 	if (!route.meta?.requiresAuth) return children;
 
 	// * 判断是否有Token
+	// console.log(store.getState())
 	const token = store.getState().global.token;
 	if (!token) return <Navigate to="/login" replace />;
 
@@ -36,7 +38,7 @@ const AuthRouter = (props: { children: JSX.Element }) => {
 	const staticRouter = [HOME_URL, "/403"];
 	const routerList = dynamicRouter.concat(staticRouter);
 	// * 如果访问的地址没有在路由表中重定向到403页面
-	if (routerList.indexOf(pathname) == -1) return <Navigate to="/403" />;
+	if (routerList.indexOf(pathname) == -1) return <Navigate to="/403" />; // 访问的地址在所有的Route中没有找到，重定向403
 
 	// * 当前账号有权限返回 Router，正常访问页面
 	return children;

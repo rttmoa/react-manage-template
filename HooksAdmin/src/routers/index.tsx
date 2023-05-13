@@ -18,7 +18,7 @@ Object.keys(metaRouters).forEach(item => {
 		routerArray.push(...metaRouters[item][key]);
 	});
 });
-// console.log(routerArray) // 处理结果： (12) [{{element: {…}, meta: {…}, children: Array(4)}}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+// console.log(routerArray) // 处理结果： (12) [{element: {…}, meta: {…}, children: Array(4)}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 
 export const rootRouter: RouteObject[] = [{
 		path: "/",

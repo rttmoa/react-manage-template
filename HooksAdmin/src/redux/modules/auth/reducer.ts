@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { AnyAction } from "redux";
 import { AuthState } from "@/redux/interface";
 import produce from "immer";
 import * as types from "@/redux/mutation-types";
 
 const authState: AuthState = {
-	authButtons: {},
+	authButtons: {}, 		// 页面按钮权限
 	authRouter: []
 };
 
