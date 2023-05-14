@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Drawer, Divider, Switch } from "antd";
 import { useState } from "react";
 import { connect } from "react-redux";
@@ -5,6 +6,10 @@ import { FireOutlined, SettingOutlined } from "@ant-design/icons";
 import { setThemeConfig } from "@/redux/modules/global/action";
 import { updateCollapse } from "@/redux/modules/menu/action";
 import SwitchDark from "@/components/SwitchDark";
+
+
+
+
 
 const Theme = (props: any) => {
 	const [visible, setVisible] = useState<boolean>(false);

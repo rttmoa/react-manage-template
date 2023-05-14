@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable prettier/prettier */
 import { RouteObject } from "@/routers/interface";
 
@@ -120,6 +121,8 @@ export const getBreadcrumbList = (path: string, menuList: Menu.MenuOptions[]) =>
 	let tempPath: any[] = [];
 	try {
 		const getNodePath = (node: Menu.MenuOptions) => {
+			// FIXME: 单步F10调试即可，查看每一项item
+			// debugger
 			tempPath.push(node);
 			// 找到符合条件的节点，通过throw终止掉递归
 			if (node.path === path) {
@@ -140,6 +143,7 @@ export const getBreadcrumbList = (path: string, menuList: Menu.MenuOptions[]) =>
 			getNodePath(menuList[i]);
 		}
 	} catch (e) {
+		// console.log("面包屑捕捉的结果：", tempPath)
 		return tempPath.map(item => item.title);
 	}
 };
@@ -149,14 +153,19 @@ export const getBreadcrumbList = (path: string, menuList: Menu.MenuOptions[]) =>
  * @param {String} menuList 当前菜单列表
  * @returns object
  */
+// NOTE: 双重递归处理面包屑导航
 export const findAllBreadcrumb = (menuList: Menu.MenuOptions[]): { [key: string]: any } => {
 	let handleBreadcrumbList: any = {};
 	const loop = (menuItem: Menu.MenuOptions) => {
 		// 下面判断代码解释 *** !item?.children?.length   ==>   (item.children && item.children.length > 0)
-		if (menuItem?.children?.length) menuItem.children.forEach(item => loop(item));
-		else handleBreadcrumbList[menuItem.path] = getBreadcrumbList(menuItem.path, menuList);
+		if (menuItem?.children?.length) {
+			menuItem.children.forEach(item => loop(item))
+		} else { 
+			handleBreadcrumbList[menuItem.path] = getBreadcrumbList(menuItem.path, menuList) // 每一项的Item和整个ListArray
+		}
 	};
 	menuList.forEach(item => loop(item));
+	// console.log("处理面包屑结果：", handleBreadcrumbList) // TODO: results: {/home/index: Array(1), /dataScreen/index: Array(1), /proTable/useHooks: Array(2), /proTable/useComponent: Array(2), /dashboard/dataVisualize: Array(2), …}
 	return handleBreadcrumbList;
 };
 
@@ -166,11 +175,13 @@ export const findAllBreadcrumb = (menuList: Menu.MenuOptions[]): { [key: string]
  * @param {Array} newArr 菜单的一维数组
  * @return array
  */
+// NOTE: 递归处理路由菜单
 export function handleRouter(routerList: Menu.MenuOptions[], newArr: string[] = []) {
 	routerList.forEach((item: Menu.MenuOptions) => {
 		typeof item === "object" && item.path && newArr.push(item.path);
 		item.children && item.children.length && handleRouter(item.children, newArr);
 	});
+	// console.log("路由菜单结果：", newArr)
 	return newArr;
 }
 

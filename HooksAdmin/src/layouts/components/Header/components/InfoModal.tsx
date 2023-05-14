@@ -13,7 +13,7 @@ const InfoModal = (props: Props) => {
 	}));
 
 	const showModal = (params: { name: number }) => {
-		console.log(params);
+		console.log("useImperativeHandle + 参数", params);
 		setModalVisible(true);
 	};
 

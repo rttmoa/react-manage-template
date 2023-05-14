@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useRef } from "react";
 import { Avatar, Modal, Menu, Dropdown, message } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -18,7 +19,7 @@ const AvatarIcon = (props: any) => {
 	interface ModalProps {
 		showModal: (params: { name: number }) => void;
 	}
-	const passRef = useRef<ModalProps>(null);
+	const passRef = useRef<ModalProps>(null);   // NOTE: 可调用子组件中的方法： useImperativeHandle(props.innerRef, () => ({ showModal }));
 	const infoRef = useRef<ModalProps>(null);
 
 	// 退出登录
@@ -49,12 +50,12 @@ const AvatarIcon = (props: any) => {
 				{
 					key: "2",
 					label: <span className="dropdown-item">{t("header.personalData")}</span>,
-					onClick: () => infoRef.current!.showModal({ name: 11 })
+					onClick: () => infoRef.current!.showModal({ name: 2 })
 				},
 				{
 					key: "3",
 					label: <span className="dropdown-item">{t("header.changePassword")}</span>,
-					onClick: () => passRef.current!.showModal({ name: 11 })
+					onClick: () => passRef.current!.showModal({ name: 3 })
 				},
 				{
 					type: "divider"
@@ -69,10 +70,12 @@ const AvatarIcon = (props: any) => {
 	);
 	return (
 		<>
-			<Dropdown overlay={menu} placement="bottom" arrow trigger={["click"]}>
-				<Avatar size="large" src={avatar} />
+			<Dropdown overlay={menu} placement="bottom" arrow trigger={["hover", "click"]}>
+				<Avatar size="default" src={avatar} />
 			</Dropdown>
+
 			<InfoModal innerRef={infoRef}></InfoModal>
+
 			<PasswordModal innerRef={passRef}></PasswordModal>
 		</>
 	);

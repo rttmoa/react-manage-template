@@ -78,7 +78,7 @@ const LayoutMenu = (props: any) => {
 		return newArr;
 	};
 
-	// 获取菜单列表并处理成 antd menu 需要的格式
+	// TODO: 获取菜单列表并处理成 antd menu 需要的格式,  // NOTE: 多处使用递归
 	const [menuList, setMenuList] = useState<MenuItem[]>([]);
 	const [loading, setLoading] = useState(false);
 	const getMenuData = async () => {
@@ -96,6 +96,7 @@ const LayoutMenu = (props: any) => {
 
 			// 把路由菜单处理成一维数组，存储到 redux 中，做菜单权限判断
 			const dynamicRouter = handleRouter(data);
+			// console.log("处理后的路由菜单", dynamicRouter)
 			setAuthRouter(dynamicRouter);
 
 			setMenuListAction(data);

@@ -7,6 +7,7 @@ const AssemblySize = (props: any) => {
 
 	// 切换组件大小
 	const onClick = (e: MenuInfo) => {
+		console.log(e); // {key: 'middle', keyPath: ['middle'], domEvent: SyntheticBaseEvent}
 		setAssemblySize(e.key);
 	};
 
@@ -35,7 +36,7 @@ const AssemblySize = (props: any) => {
 		/>
 	);
 	return (
-		<Dropdown overlay={menu} placement="bottom" trigger={["click"]} arrow={true}>
+		<Dropdown overlay={menu} placement="bottom" trigger={["hover", "click"]} arrow={true}>
 			<i className="icon-style iconfont icon-contentright"></i>
 		</Dropdown>
 	);
