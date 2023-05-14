@@ -1,19 +1,24 @@
-import NProgress from "@/config/nprogress";
+/* eslint-disable prettier/prettier */
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { message } from "antd";
+
+// NOTE: 自定义类
+import NProgress from "@/config/nprogress";
 import { showFullScreenLoading, tryHideFullScreenLoading } from "@/config/serviceLoading";
 import { ResultData } from "@/api/interface";
 import { ResultEnum } from "@/enums/httpEnum";
 import { checkStatus } from "./helper/checkStatus";
 import { AxiosCanceler } from "./helper/axiosCancel";
 import { setToken } from "@/redux/modules/global/action";
-import { message } from "antd";
 import { store } from "@/redux";
 
 const axiosCanceler = new AxiosCanceler();
 
+
+
 const config = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
-	baseURL: import.meta.env.VITE_API_URL as string,
+	baseURL: import.meta.env.VITE_API_URL as string, // development: /api
 	// 设置超时时间（10s）
 	timeout: 10000,
 	// 跨域时候允许携带凭证

@@ -4,6 +4,10 @@ import logo from "@/assets/images/logo.png";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+
+
+
+
 const Logo = (props: any) => {
 	const { t } = useTranslation();
 	const { isCollapse } = props;
@@ -13,7 +17,5 @@ const Logo = (props: any) => {
 			{!isCollapse ? <h2 className="logo-text">HooksSystem{/* {t("logo.name")} */}</h2> : null}
 		</div>
 	);
-};
-
-const mapStateToProps = (state: any) => state.menu;
-export default connect(mapStateToProps)(Logo);
+}; 
+export default connect((state: any) => state.menu, null)(Logo);

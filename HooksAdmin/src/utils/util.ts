@@ -46,6 +46,7 @@ export const localClear = () => {
  * @description 获取浏览器默认语言
  * @return string
  */
+// NOTE: 获取浏览器默认语言
 export const getBrowserLang = () => {
 	let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
 	// console.log("browserLang", browserLang); // zh-CN
@@ -63,14 +64,22 @@ export const getBrowserLang = () => {
  * @param {String} path 当前访问地址
  * @returns array
  */
-export const getOpenKeys = (path: string) => {
+// NOTE: 将地址栏中字符串处理成Antd数组
+export const getOpenKeys = (path: string) => {   // 接收 String -> 返回 Array[]
+	// console.log("++++++++地址栏及处理给Antd需要的数组++++++++++++++++++++++++++++++++++++++++++++++++")
+	// console.log(path)
+	// console.log(path.split("/"))
+	// console.log(path.split("/").map(i => "/" + i))
 	let newStr: string = "";
 	let newArr: any[] = [];
 	let arr = path.split("/").map(i => "/" + i);
-	for (let i = 1; i < arr.length - 1; i++) {
+	// console.log("for循环")
+	for (let i = 1; i < arr.length - 1; i++) { // i = 1, i < 2
 		newStr += arr[i];
+		// console.log(newStr);
 		newArr.push(newStr);
 	}
+	// console.log("最终", newArr)
 	return newArr;
 };
 
@@ -80,7 +89,7 @@ export const getOpenKeys = (path: string) => {
  * @param {Array} routes 路由列表
  * @returns array
  */
-// TODO: 路由守卫组件: 递归查询对应的路由
+// NOTE: 路由守卫组件: 递归查询对应的路由
 export const searchRoute = (path: string, routes: RouteObject[] = []): RouteObject => { 
 	let result: RouteObject = {};
 	for (let item of routes) {
