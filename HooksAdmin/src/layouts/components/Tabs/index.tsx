@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Tabs, message } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import { useEffect, useState } from "react";
@@ -9,15 +10,22 @@ import { routerArray } from "@/routers";
 import { searchRoute } from "@/utils/util";
 import MoreButton from "./components/MoreButton";
 import "./index.less";
+const { TabPane } = Tabs;
+
+
+
+
+
+
 
 const LayoutTabs = (props: any) => {
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const { tabsList } = props.tabs;
 	const { themeConfig } = props.global;
 	const { setTabsList } = props;
-	const { TabPane } = Tabs;
-	const { pathname } = useLocation();
-	const navigate = useNavigate();
 	const [activeValue, setActiveValue] = useState<string>(pathname);
+	// console.log(activeValue == pathname) // true
 
 	useEffect(() => {
 		addTabs();
@@ -55,6 +63,7 @@ const LayoutTabs = (props: any) => {
 	};
 
 	return (
+		// Tabs: https://4x.ant.design/components/tabs-cn/
 		<>
 			{!themeConfig.tabs && (
 				<div className="tabs">
@@ -64,14 +73,11 @@ const LayoutTabs = (props: any) => {
 						onChange={clickTabs}
 						hideAdd
 						type="editable-card"
-						onEdit={path => {
-							delTabs(path as string);
-						}}
+						onEdit={path => { delTabs(path as string); }}
 					>
 						{tabsList.map((item: Menu.MenuOptions) => {
 							return (
-								<TabPane
-									key={item.path}
+								<TabPane key={item.path}
 									tab={
 										<span>
 											{item.path == HOME_URL ? <HomeFilled /> : ""}
@@ -89,7 +95,6 @@ const LayoutTabs = (props: any) => {
 		</>
 	);
 };
-
 const mapStateToProps = (state: any) => state;
 const mapDispatchToProps = { setTabsList };
 export default connect(mapStateToProps, mapDispatchToProps)(LayoutTabs);
