@@ -155,6 +155,7 @@ export default class City extends React.Component{
                     }}
                     onOk={this.handleSubmit}
                 >
+                    {/* 获取过滤条件参数 const { getFieldDecorator }  =this.props.form;  */}
                     <OpenCityForm wrappedComponentRef={(inst)=>{this.cityForm = inst;}}/>
                 </Modal>
             </div>

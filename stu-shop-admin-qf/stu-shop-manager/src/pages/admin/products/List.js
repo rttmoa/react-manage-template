@@ -112,7 +112,7 @@ function List(props) {
                 // 修改在售状态
                 modifyOne(record._id, { onSale: !record.onSale }).then(res => {
                   loadData();
-                }); 
+                });
               }}
             >
               {record.onSale ? "下架" : "上架"}
@@ -127,6 +127,7 @@ function List(props) {
       title="商品列表"
       extra={<Button type="primary" size="small" onClick={() => props.history.push("/admin/products/edit")}>新增</Button>}
     >
+      <h3>Card+Table</h3>
       <Table
         rowKey="_id"
         rowClassName={record => (record.onSale ? "" : "bg-red")}

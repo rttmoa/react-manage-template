@@ -43,6 +43,7 @@ function Index(props) {
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
+        <h3>Header</h3>
         <Dropdown overlay={popMenu}>
           <div>
             <Avatar>U</Avatar>
@@ -57,12 +58,12 @@ function Index(props) {
       {/* 侧边栏 */}
       <Layout>
         <Sider width={200} style={{ background: "#fff" }}>
-        <h3>Menu - Menu.Item</h3>
+          <h3>Menu - Menu.Item</h3>
           <Menu
             mode="inline"
             defaultSelectedKeys={[props.location.pathname]}
             defaultOpenKeys={["sub1"]}
-            style={{ height: "100%", borderRight: 0 }}
+            style={{ height: "100%", borderRight: 0,  }}
           >
             {routes.map(route => {
               return (
@@ -77,6 +78,8 @@ function Index(props) {
 
         {/* 主体内容 */}
         <Layout style={{ padding: "16px" }}>
+          <h3>此项目：使用Hooks和redux简易版， 封装{"<FrameLayout />"}组件包裹{"props.children"} + {"<Route render=>{routeProps => return <route.component ...routeProps />} />"}</h3>
+          <h3>检查元素：查看页面由哪些板块组成</h3>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
