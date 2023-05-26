@@ -33,6 +33,8 @@ class Post extends PureComponent {
     const { list, pagination } = post
     const { query, pathname } = location
 
+    // Table表格参数
+    // http://localhost:7000/post?status=2&page=3&pageSize=10
     return {
       pagination,
       dataSource: list,
@@ -56,6 +58,7 @@ class Post extends PureComponent {
 
     return (
       <Page inner>
+        <h3>Tabs切换页面 history.push() 到路由中 获取到参数放到Table中</h3>
         <Tabs
           activeKey={ query.status === String(EnumPostStatus.UNPUBLISH) ? String(EnumPostStatus.UNPUBLISH) : String(EnumPostStatus.PUBLISHED)}
           onTabClick={this.handleTabClick}

@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { history } from 'umi'
@@ -63,7 +64,7 @@ class User extends PureComponent {
       },
     }
   }
-  /***--- 列表 属性 ---**/
+  /***--- Table 属性 ---**/
   get listProps() {
     const { dispatch, user, loading } = this.props
     const { list, pagination, selectedRowKeys } = user
@@ -84,8 +85,7 @@ class User extends PureComponent {
           payload: id,
         }).then(() => {
           this.handleRefresh({
-            page:
-              list.length === 1 && pagination.current > 1 ? pagination.current - 1 : pagination.current,
+            page: list.length === 1 && pagination.current > 1 ? pagination.current - 1 : pagination.current,
           })
         })
       },
@@ -146,6 +146,8 @@ class User extends PureComponent {
 
     return (
       <Page inner>
+        {/* http://localhost:7000/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=123 */}
+        <h3>将Form表单中参数使用Ref获取到后，用history.push()到地址栏后，用dvajs(redux)获取最近数据传到组件中</h3>
         <Filter {...this.filterProps} />
         {selectedRowKeys.length > 0 && (
           <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
@@ -163,6 +165,7 @@ class User extends PureComponent {
             </Col>
           </Row>
         )}
+        <h3>Table中可查看详情，可更新，可删除用户信息  可用dvajs控制数据，Loading，pagination，Model等</h3>
         <List {...this.listProps} />
         <Modal {...this.modalProps} />
       </Page>

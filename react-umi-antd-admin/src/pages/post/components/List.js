@@ -36,7 +36,7 @@ class List extends PureComponent {
       title: t`Title`,
       dataIndex: 'title',
       render: text => (
-        <Ellipsis tooltip length={30}>
+        <Ellipsis tooltip length={20}>
           {text}
         </Ellipsis>
       ),

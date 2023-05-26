@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'

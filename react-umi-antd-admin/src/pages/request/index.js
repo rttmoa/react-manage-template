@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import React from 'react'
 import { request } from 'utils'
 import { apiPrefix } from 'utils/config'
@@ -43,7 +44,9 @@ const requests = Object.values(api).map(item => {
 
 let uuid = 2
 class RequestPage extends React.Component {
+
   formRef = React.createRef()
+
   constructor(props) {
     super(props)
     this.state = {
@@ -64,13 +67,14 @@ class RequestPage extends React.Component {
 
         const params = {}
         for (let i in values) {
-          if (i.startsWith('check')) {
+          if (i.startsWith('check')) { // 第一步：参数中，Check状态是true的
             const index = i.match(/check\[(\d+)\]/)[1]
+            // 第二步：获取key和value添加到params中
             const key = values[`key[${index}]`]
             params[key] = values[`value[${index}]`]
           }
         }
-
+        // 第三步：发请求
         request({ method, url, data: params }).then(data => {
           this.setState({
             result: JSON.stringify(data),
