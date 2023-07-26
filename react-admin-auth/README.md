@@ -1,13 +1,3 @@
-#### 技术栈
-
-**启动：`npm start `   端口：`3034`**
-
-#### 注意点
-
-Webpack配置  `/build `
-
-权限的封装和 Layout
-
 #### 用到react相关的生态链模块:
 
 * `react`
@@ -133,7 +123,7 @@ class MainComponents extends React.Component {
             if (!Cookie.get('Auth_Token')) {
                 return <Redirect to={{ pathname: '/login' }} />
             }
-    
+  
             // 获取用户信息
             if (!user) {
                 this.getUserInfo(() => {

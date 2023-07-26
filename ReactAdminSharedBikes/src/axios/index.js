@@ -39,8 +39,8 @@ export default class Axios {
                 baseURL: baseApi,
                 timeout:5000,
                 params: (options.data && options.data.params) || ''
-            }).then((response)=>{
-                console.log(response)
+            }).then((response) => {
+                // console.log(response)
                 if (options && options.data && options.data.isShowLoading !== false) {
                     loading = document.getElementById('ajaxLoading');
                     loading.style.display = 'none';

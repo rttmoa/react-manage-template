@@ -1,20 +1,7 @@
-[![CircleCI branch](https://img.shields.io/circleci/project/github/duxianwei520/react/master.svg?style=flat-square)](https://circleci.com/gh/duxianwei520/react)[![GitHub forks](https://img.shields.io/github/forks/duxianwei520/react.svg)](https://github.com/duxianwei520/react/network)[![GitHub stars](https://img.shields.io/github/stars/duxianwei520/react.svg)](https://github.com/duxianwei520/react/stargazers)[![GitHub issues](https://img.shields.io/github/issues/duxianwei520/react.svg)](https://github.com/duxianwei520/react/issues)[![GitHub license](https://img.shields.io/github/license/duxianwei520/react.svg)](https://github.com/duxianwei520/react/blob/master/LICENSE)[![Coverage Status](https://coveralls.io/repos/github/duxianwei520/react/badge.svg)](https://coveralls.io/github/duxianwei520/react)
+##  二、环境参数
 
-## 项目运行   `/npm install   /npm start`
-
-## 项目截图   `/docs`
-
-## 项目技术栈
-
-node10.15.3 + react@16.12.0 + redux@3.7.2 + react-router@3.2.0 + webpack@4.41.2 + axios@0.19.0 + less@2.7.1 + antd@3.25.2
-
-**注意点：**
-
-此项目逻辑复杂
-
-Webpack中开发、测试、打包环境的配置
-
-react+mock
+1. **前端技术：`node + react16 + redux3 + react-router3 + webpack4 + axios + less2 + antd3 + WEBPACK`**
+2. **后端技术：`mock`**
 
 ## 功能一览
 
@@ -87,7 +74,7 @@ https://github.com/duxianwei520/node
 ### 取消http请求示例：
 
 ```
-import axios from 'axios'
+ import axios from 'axios'
 const axiosHandle = axios.CancelToken.source()
 
 login(){
@@ -99,11 +86,3 @@ login(){
 }
 
 ```
-
-## License
-
-[MIT](https://github.com/duxianwei520/react/blob/master/LICENSE)
-
-## 交流
-
-想跟其他的使用react的小伙伴们交流的话，可以加入我创建的reactQQ群：159697743

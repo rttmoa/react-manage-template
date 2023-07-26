@@ -16,16 +16,18 @@
     * 前端资源打包 `npm run build<br>`
     * 启动node server部署服务 `npm run start:prod<br>`
 
-## 项目技术栈
+## 二、环境参数
 
-前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack `<br>`
-前端脚手架：[dva](https://github.com/dvajs/dva) `<br>`
-UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
-后端技术：Express + Mongoose `<br>`
+1. **前端技术：`React + React-Router + Redux + Webpack + dvajs + antd`**
+2. **后端技术：`express + mongoose `**
 
-该项目采用前后端分离技术，前端使用React全家桶，项目整体框架使用dva，dva是一个将redux、redux-saga 和 react-router 等进行封装的前端框架，方便项目配置及代码管理；后端使用express + mongoose 进行后端业务处理及数据库操作。`<br>`
+```
+该项目采用前后端分离技术：
+    前端使用React全家桶，项目整体框架使用dva，dva是一个将redux、redux-saga 和 react-router 等进行封装的前端框架，方便项目配置及代码管理； 
+    后端使用express + mongoose 进行后端业务处理及数据库操作
+```
 
-## 实现功能
+## 三、实现功能
 
 1 `.` 登录注册功能 `<br>`
 2 `.` 基础数据管理功能，包括：客户管理、商品管理、供应商管理 `<br>`
@@ -34,7 +36,7 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 5 `.` 结算管理功能 `<br>`
 6 `.` 账单管理功能，包括：客户对账管理、供应商对账管理 `<br>`
 
-## 项目结构
+## 四、项目结构 （目录结构）
 
 ![](./docs/images/project.png)`<br>`
 
@@ -46,9 +48,7 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 
 ## 入库管理
 
-入库管理包括增加、修改、删除及查看入库单详情的功能，可根据入库单生成日期、供应商名称及入库单编号进行查询，入库单编号支持模糊查询 `<br>`
-
-![](./docs/images/bill.png)`<br>`
+入库管理包括增加、修改、删除及查看入库单详情的功能，可根据入库单生成日期、供应商名称及入库单编号进行查询，入库单编号支持模糊查询 `<br> `
 
 ## 物资管理
 
@@ -60,8 +60,4 @@ UI组件库：[ant-design](https://github.com/ant-design/ant-design) `<br>`
 
 供应商对账管理从负债入库单和负债供应商两个角度对负债账务进行分类，同时可以根据供应商的名称对负债入库账单和负债供应商进行过滤。从两个角度进行分类统计是为了方便能够按照入库单进行分批清账，或直接向供应商清账，方便账务分类管理 `<br>`
 
-![](./docs/images/supplierBill.png)`<br>`
-
-其他一些界面的功能就不再一一介绍，感兴趣的话自己clone一份代码，运行一下便知:)`<br>`
-
-1
+![](./docs/images/supplierBill.png)`<br> `
