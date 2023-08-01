@@ -20,7 +20,7 @@ class Header extends React.Component{
     }
 
     getWeatherAPIData(){
-        let city = '北京';
+        let city = '北京'; // TODO: 调用百度地图接口
         axios.jsonp({
             url:'http://api.map.baidu.com/telematics/v3/weather?location='+encodeURIComponent(city)+'&output=json&ak=mI3Cb3oIBjdSYW9A74s5qi0GNrmmhiYS'
             // url: "http://api.map.baidu.com/geocoder/v2/?address=百度大厦&output=json&ak=yourak&sn=7de5a22212ffaa9e326444c75a58f9a0"

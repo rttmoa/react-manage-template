@@ -7,7 +7,9 @@ const Option = Select.Option;
 const TextArea = Input.TextArea;
 class FormRegister extends React.Component{
 
-    state={}
+    state={
+        
+    }
 
     handleSubmit = ()=>{
         let userInfo = this.props.form.getFieldsValue();

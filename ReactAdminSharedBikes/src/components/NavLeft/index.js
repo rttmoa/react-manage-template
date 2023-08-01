@@ -6,6 +6,9 @@ import { switchMenu, saveBtnList } from '../../redux/action'
 import MenuConfig from '../../config/menuConfig'
 import './index.less'
 const SubMenu = Menu.SubMenu;
+
+
+ 
 class NavLeft extends React.Component {
     state = {
         currentKey: ''
@@ -17,7 +20,7 @@ class NavLeft extends React.Component {
         }
         // 事件派发，自动调用reducer，通过reducer保存到store对象中
         const { dispatch } = this.props;
-        dispatch(switchMenu(item.props.title));
+        dispatch(switchMenu(item.props.title)); // TODO: 左侧侧边栏存储到redux
 
         this.setState({
             currentKey: key
@@ -32,7 +35,7 @@ class NavLeft extends React.Component {
         })
     }
     // 菜单渲染
-    renderMenu =(data)=>{
+    renderMenu =(data)=>{ // TODO: 渲染侧边栏结构
         return data.map((item)=>{
             if(item.children){
                 return (

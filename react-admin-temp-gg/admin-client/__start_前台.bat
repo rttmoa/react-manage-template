@@ -1,1 +1,1 @@
-cmd /k "cd /d E:\Project\ReactAdmin\rd-temp_Guigu\admin-client\ && npm start"
+cmd /k "cd /d  E:\Project\ReactAdmin\react-admin-temp-gg\admin-client\  && npm start"

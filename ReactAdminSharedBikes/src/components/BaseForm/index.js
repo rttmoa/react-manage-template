@@ -15,7 +15,7 @@ class FilterForm extends React.Component{
         this.props.form.resetFields();
     }
 
-    initFormList = ()=>{
+    initFormList = () => {
         const { getFieldDecorator } = this.props.form;
         const formList = this.props.formList;
         const formItemList = [];

@@ -1,4 +1,5 @@
-// https://umijs.org/config/
+// TODO: https://umijs.org/config/
+
 import { resolve } from 'path'
 const fs = require('fs')
 const path = require('path')

@@ -10,7 +10,8 @@ export default {
         let date = new Date(time);
         return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     },
-    pagination(data,callback){
+    // 调用（res是接口结果）： Utils.pagination(res, (current) => { this.params.page = current; this.requestList(); })
+    pagination(data, callback){
         return {
             onChange:(current)=>{
                 callback(current)

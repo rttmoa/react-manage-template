@@ -7,6 +7,8 @@ import Moment from 'moment'
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
+
+
 export default class User extends React.Component{
 
     state = {
@@ -32,10 +34,8 @@ export default class User extends React.Component{
                     item.key=index
                     return item;
                 }),
-                pagination:Utils.pagination(res,(current)=>{
-                    _this.params.page = current;
-                    _this.requestList();
-                })
+                pagination: Utils.pagination(res, (current) => { _this.params.page = current; _this.requestList(); })
+                // pagination: Utils.pagination(res, (current) => { this.params.page = current; this.requestList(); })
             })
         })
     }
@@ -102,7 +102,7 @@ export default class User extends React.Component{
         let type = this.state.type;
         let data = this.userForm.props.form.getFieldsValue();
         axios.ajax({
-            url:type == 'create'?'/user/add':'/user/edit',
+            url: type == 'create'?'/user/add':'/user/edit',
             data:{
                 params:{
                     ...data
