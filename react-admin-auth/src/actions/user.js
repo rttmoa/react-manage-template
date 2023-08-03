@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions'
+import { Cookie } from 'utils/storage'
 // import { message } from 'antd'
-import {Cookie} from 'utils/storage'
 
 const users = [
     {
@@ -26,10 +26,10 @@ const users = [
 // 登录
 const createSaveUser = createAction('SAVE_USER')
 
+/** #### 用户登陆（三种类型：admin / editor / sanimate）  */
 export const loginUser = (loginInfo) => async dispatch => {
     let { userName, password} = loginInfo
     return new Promise( (resolve, reject) => {
-
         // 发起异步请求  获取信息   axios(url, {userName, password}) 
         // 暂时假数据代替 
         let user = users.find(v => v.userName === userName)
@@ -44,9 +44,9 @@ export const loginUser = (loginInfo) => async dispatch => {
 // 获取用户信息
 const createGetUser = createAction('GET_USER')
 
+/** #### 获取用户信息 （通过Token验证）  */
 export const getUser = (token) => async dispatch => {
-    return new Promise( (resolve, reject) => {
-
+    return new Promise( (resolve, reject) => { 
         // 发起异步请求  获取信息
         /*
             ...
@@ -60,9 +60,9 @@ export const getUser = (token) => async dispatch => {
     })
 }
 
-//清除用户信息
+// 清除用户信息
 export const clearUser = createAction('CLEAR_USER')
 
 
-// routes
+// set routes
 export const setRoutes = createAction('SET_ROUTES')

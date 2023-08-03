@@ -4,6 +4,7 @@ import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
 import { Trans } from "@lingui/macro"
 import city from 'utils/city'
 import { t } from "@lingui/macro"
+
 const FormItem = Form.Item
 const formItemLayout = {
   labelCol: {
@@ -15,9 +16,7 @@ const formItemLayout = {
 }
 
 
-
-
-// console.log("city", city) // ch8ildren 嵌套关系
+// console.log("city", city) // FIXME: 中国所有城市
 class UserModal extends PureComponent {
   formRef = React.createRef()
 
@@ -25,16 +24,15 @@ class UserModal extends PureComponent {
     const { item = {}, onOk } = this.props
 
     this.formRef.current.validateFields().then(values => {
-        const data = {
-          ...values,
-          key: item.key,
-        }
-        data.address = data.address.join(' ')
-        onOk(data)
-      })
-      .catch(errorInfo => {
-        console.log(errorInfo)
-      })
+      const data = {
+        ...values,
+        key: item.key,
+      }
+      data.address = data.address.join(' ')
+      onOk(data)
+    }).catch(errorInfo => {
+      console.log(errorInfo)
+    })
   }
 
   render() {

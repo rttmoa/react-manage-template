@@ -4,7 +4,7 @@ import {filterRoutes} from 'utils'
 
 
 
-/**--- silde开关 ---**/
+/** #### 是否开启侧边栏  */
 export const collapsed = handleActions({
     CHANGE_COLLAPSED: state => {
         state = !state
@@ -14,7 +14,7 @@ export const collapsed = handleActions({
 }, Local.get('react_collapsed') || false)
 
 
-/**--- 侧边栏打开的位置 ---**/
+/** #### 侧边栏打开的位置  */
 export const openKeys = handleActions({
     // // 在数据初始化时(mainjs)添加 tabViews、面包屑、slidebar展开的节点
     SET_OPENKEYS: (state, action) => {
@@ -23,7 +23,7 @@ export const openKeys = handleActions({
     }
 }, [])
 
-/**--- 面包屑 ---**/
+/** #### 添加面包屑  */
 export const breadCrumbs = handleActions({
     // 在数据初始化时(mainjs)添加 tabViews、面包屑、slidebar展开的节点
     ADD_BREADCRUMBS: (state,action) => {
@@ -31,7 +31,7 @@ export const breadCrumbs = handleActions({
     }
 },[])
 
-/**--- tabViews ---**/
+/** #### tabViews （添加、删除、存储）  */
 export const tabViews = handleActions({
     GET_TAB_VIEWS: state => Local.get('tabViews') || [],
     // 在数据初始化时(mainjs)添加 tabViews、面包屑、slidebar展开的节点

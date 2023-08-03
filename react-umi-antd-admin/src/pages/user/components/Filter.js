@@ -6,7 +6,8 @@ import { FilterItem } from 'components'
 import { Trans } from '@lingui/macro'
 import { t } from '@lingui/macro'
 import { Button, Row, Col, DatePicker, Form, Input, Cascader } from 'antd'
-import city from 'utils/city'
+import city from '../../../utils/city'
+
 const { Search } = Input // 输入框+按钮 组件
 const { RangePicker } = DatePicker; // 日历 组件
 const ColProps = {
@@ -25,6 +26,7 @@ const TwoColProps = {
 
 
 class Filter extends Component {
+
   formRef = React.createRef()
 
   // 处理 - 名字，地址，创建时间
@@ -38,17 +40,18 @@ class Filter extends Component {
     }
     return fields
   }
-  /***--- 提交 Submit ---**/
+
+  /** #### 搜索条件搜索内容  */
   handleSubmit = () => {
     // console.log("submit", this.props)
     const { onFilterChange } = this.props;
     const values = this.formRef.current.getFieldsValue()
     // console.log("getFieldsValue", values) // {address: ['北京', '北京市', '西城区'], createTime: ['国际化时间', '国际化时间'], name: "zhangsan"}
-    // debugger
     const fields = this.handleFields(values)
     onFilterChange(fields)
   }
-  /***--- 重新选择 Reset ---**/
+
+  /** #### 重置表头过滤条件 ResetProps  */
   handleReset = () => {
     const fields = this.formRef.current.getFieldsValue()
     for (let item in fields) {
@@ -64,6 +67,7 @@ class Filter extends Component {
     this.formRef.current.setFieldsValue(fields) // 设置 字段值为处理后的值
     this.handleSubmit() // 重新提交
   }
+
   handleChange = (key, values) => {
     const { onFilterChange } = this.props;
     let fields = this.formRef.current.getFieldsValue()

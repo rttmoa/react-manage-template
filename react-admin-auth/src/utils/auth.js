@@ -4,7 +4,7 @@ const TokenKey = 'Token-Auth'
 
 
 
-
+/** #### Cookie  */
 
 export function getToken() {  
 	return Cookie.get(TokenKey)

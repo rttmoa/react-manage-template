@@ -19,29 +19,29 @@ import Modal from './components/Modal'
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
 
-  /***--- 处理表单内的值 ---**/
+  /** #### TODO: 将变化的Filter添加到地址栏中  */
   handleRefresh = newQuery => {
     const { location } = this.props
     const { query, pathname } = location
-
-    history.push({
-      pathname,
-      search: stringify({...query,...newQuery}, {arrayFormat: 'repeat'}),
+    history.push({  pathname,
       // search: ({...query,...newQuery}, {arrayFormat: 'repeat'}),
+      search: stringify({...query,...newQuery}, {arrayFormat: 'repeat'}),
     })
+    // http://localhost:40003/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=userName
   }
 
+  // 未使用属性
   handleDeleteItems = () => {
     const { dispatch, user } = this.props;
     const { list, pagination, selectedRowKeys } = user;
-
     dispatch({ type: 'user/multiDelete', payload: {ids: selectedRowKeys} }).then(() => {
       this.handleRefresh({
         page: list.length === selectedRowKeys.length && pagination.current > 1 ? pagination.current - 1 : pagination.current,
       })
     })
   }
-  /***--- 弹出框 属性 ---**/
+
+  /** #### 弹出框属性 ModelProps  */
   get modalProps() {
     const { dispatch, user, loading } = this.props;
     const { currentItem, modalOpen, modalType } = user;
@@ -64,11 +64,13 @@ class User extends PureComponent {
       },
     }
   }
-  /***--- Table 属性 ---**/
+
+  /** #### table表格属性 TableProps  */
   get listProps() {
     const { dispatch, user, loading } = this.props
     const { list, pagination, selectedRowKeys } = user
 
+    // 返回给table的 Props
     return {
       dataSource: list,
       loading: loading.effects['user/query'],
@@ -111,11 +113,11 @@ class User extends PureComponent {
       },
     }
   }
-  /***--- 过滤条件 属性 ---**/
+
+  /** #### 过滤条件属性 FitlerProps  */
   get filterProps() {
     const { location, dispatch } = this.props;
     const { query } = location;
-    // debugger
 
     return {
       filter: {
@@ -146,7 +148,6 @@ class User extends PureComponent {
 
     return (
       <Page inner>
-        {/* http://localhost:40003/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=userName */}
         <h3>将Form表单中参数使用Ref获取到后，用history.push()到地址栏后，用dvajs(redux)获取最近数据传到组件中</h3>
         <Filter {...this.filterProps} />
         {selectedRowKeys.length > 0 && (

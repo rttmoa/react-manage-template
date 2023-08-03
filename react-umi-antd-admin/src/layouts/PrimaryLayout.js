@@ -7,7 +7,7 @@ import { MyLayout, GlobalFooter } from '../components'
 import { Drawer, FloatButton, Layout } from 'antd';
 import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, getLocale } from 'utils'
-import Error from '../pages/404'
+import Error from '../pages/failure/404'
 import styles from './PrimaryLayout.less'
 import store from 'store'
 

@@ -11,9 +11,12 @@ export const user = handleActions({
 }, null) 
 
 
-/*routes*/
+/** #### 设置 routes  */
 export const routes = handleActions({
     SET_ROUTES: (state, action) => {
-        return [...constantRouterMap,...action.payload]
+        return [
+            ...constantRouterMap,
+            ...action.payload
+        ]
     }
 }, constantRouterMap)

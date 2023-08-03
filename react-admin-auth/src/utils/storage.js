@@ -1,8 +1,10 @@
 /**--- localStorage ---**/
 const ls = window.localStorage;
+
 /**--- sessionStorage ---**/
 const ss = window.sessionStorage;
 
+/** #### TODO: 存储：cookie、sessionStoreage、localStoreage  */
 
 
 export const Cookie = {
@@ -33,7 +35,7 @@ export const Cookie = {
     remove (key) {
         let setting = arguments[0]
         if (Object.prototype.toString.call(setting).slice(8, -1) === 'Array') {
-            setting.forEach( key => {
+            setting.forEach(key => {
                 this.set(key, 1, -1)
             })
         }else{

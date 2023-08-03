@@ -4,6 +4,9 @@ const { pathToRegexp } = require("path-to-regexp")
 
 const { queryUser } = api
 
+
+
+
 export default {
   namespace: 'userDetail',
 
