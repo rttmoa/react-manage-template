@@ -1,6 +1,8 @@
 import { Constant } from './_utils'
 const { ApiPrefix } = Constant
 
+
+/** #### TODO: route配置  */
 const database = [
   {
     id: '1',
@@ -32,7 +34,7 @@ const database = [
     breadcrumbParentId: '1',
     name: 'Posts',
     zh: {
-      name: '用户管理'
+      name: '文章发布管理'
     },
     'pt-br': {
       name: 'Posts'

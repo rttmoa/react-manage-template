@@ -3,6 +3,21 @@
   "version": "5.3.0",
   "license": "MIT",
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
+  "scripts": {
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "build": "umi build",
+    "check:model": "umi dva list model",
+    "lint:js": "eslint --ext .js src",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "start": "umi dev",
+    "test": "cross-env BABELRC=none umi test",
+    "prettier": "prettier --write 'src/**/*.{js,less}'",
+    "precommit": "lint-staged",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "trans": "lingui extract --clean && node ./scripts/translate.js",
+    "doc": "docsify serve docs"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@lingui/react": "^3.8.0",
@@ -111,20 +126,5 @@
         "@babel/preset-react"
       ]
     }
-  },
-  "scripts": {
-    "analyze": "cross-env ANALYZE=1 umi build",
-    "build": "umi build",
-    "check:model": "umi dva list model",
-    "lint:js": "eslint --ext .js src",
-    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "start": "umi dev",
-    "test": "cross-env BABELRC=none umi test",
-    "prettier": "prettier --write 'src/**/*.{js,less}'",
-    "precommit": "lint-staged",
-    "add-locale": "lingui add-locale",
-    "extract": "lingui extract",
-    "trans": "lingui extract --clean && node ./scripts/translate.js",
-    "doc": "docsify serve docs"
   }
 }

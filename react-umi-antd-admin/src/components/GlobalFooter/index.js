@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
+
+
 const GlobalFooter = ({ className, links, copyright }) => {
   const clsString = classNames(styles.globalFooter, className);
   return (
@@ -13,7 +15,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
               key={link.key}
               title={link.key}
               target={link.blankTarget ? '_blank' : '_self'}
-              href={link.href}
+              href={link.href} rel="noreferrer"
             >
               {link.title}
             </a>

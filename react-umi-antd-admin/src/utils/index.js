@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import { cloneDeep } from 'lodash'
 import store from 'store'
 import { i18n } from './config'
@@ -5,16 +6,19 @@ import { i18n } from './config'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
-const { pathToRegexp } = require("path-to-regexp")
-
 dayjs.extend(relativeTime)
+
+const { pathToRegexp } = require("path-to-regexp")
 
 export classnames from 'classnames'
 export config from './config'
 export request from './request'
+
 export { Color } from './theme'
 
+
 export const languages = i18n ? i18n.languages.map(item => item.key) : []
+
 export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
 
 /**
@@ -32,19 +36,14 @@ export function queryArray(array, key, value) {
 }
 
 /**
- * Convert an array to a tree-structured array.
+ * #### 将数组转换为 树结构数组. (处理menuTree)
  * @param   {array}     array     The Array need to Converted.
  * @param   {string}    id        The alias of the unique ID of the object in the array.
  * @param   {string}    parentId       The alias of the parent ID of the object in the array.
  * @param   {string}    children  The alias of children of the object in the array.
  * @return  {array}    Return a tree-structured array.
  */
-export function arrayToTree(
-  array,
-  id = 'id',
-  parentId = 'pid',
-  children = 'children'
-) {
+export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'children') {
   const result = []
   const hash = {}
   const data = cloneDeep(array)
@@ -104,7 +103,6 @@ export function queryAncestors(array, current, parentId, id = 'id') {
   const result = [current]
   const hashMap = new Map()
   array.forEach(item => hashMap.set(item[id], item))
-
   const getPath = current => {
     const currentParentId = hashMap.get(current[id])[parentId]
     if (currentParentId) {
@@ -112,26 +110,21 @@ export function queryAncestors(array, current, parentId, id = 'id') {
       getPath(hashMap.get(currentParentId))
     }
   }
-
   getPath(current)
   return result
 }
 
 /**
- * Query which layout should be used for the current path based on the configuration.
+ * #### TODO: 根据配置查询当前路径应使用哪种布局. (/layouts/BaseLayoutjs)
  * @param   {layouts}     layouts   Layout configuration.
  * @param   {pathname}    pathname  Path name to be queried.
  * @return  {string}   Return frist object when query success.
  */
 export function queryLayout(layouts, pathname) {
   let result = 'public'
-
   const isMatch = regepx => {
-    return regepx instanceof RegExp
-      ? regepx.test(pathname)
-      : pathToRegexp(regepx).exec(pathname)
+    return regepx instanceof RegExp ? regepx.test(pathname) : pathToRegexp(regepx).exec(pathname)
   }
-
   for (const item of layouts) {
     let include = false
     let exclude = false
@@ -143,7 +136,6 @@ export function queryLayout(layouts, pathname) {
         }
       }
     }
-
     if (include && item.exclude) {
       for (const regepx of item.exclude) {
         if (isMatch(regepx)) {
@@ -152,21 +144,19 @@ export function queryLayout(layouts, pathname) {
         }
       }
     }
-
     if (include && !exclude) {
       result = item.name
       break
     }
   }
-
+  // console.log(result)
   return result
 }
 
+/** #### 获取store中的国际化语言  */
+export function getLocale() { return store.get('locale') || defaultLanguage }
 
-export function getLocale() {
-  return store.get('locale') || defaultLanguage
-}
-
+/** #### 设置store中的国际化语言  */
 export function setLocale(language) {
   if (getLocale() !== language) {
     dayjs.locale(language === 'zh' ? 'zh-cn' : language)

@@ -1,6 +1,5 @@
 /* eslint-disable import/first */
-/* global window */
-
+/* eslint-disable import/no-anonymous-default-export */
 import { history } from 'umi'
 import { stringify } from 'qs'
 import store from 'store'
@@ -15,13 +14,12 @@ const { queryRouteList, logoutUser, queryUserInfo } = api
 
 const goDashboard = () => {
   if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
-    history.push({
-      pathname: '/dashboard',
-    })
+    history.push({ pathname: '/dashboard' })
   }
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
+
+
 export default {
   namespace: 'app',
   state: {
@@ -64,11 +62,9 @@ export default {
         })
       })
     },
-
     setupRequestCancel({ history }) {
       history.listen(() => {
         const { cancelRequest = new Map() } = window
-
         cancelRequest.forEach((value, key) => {
           if (value.pathname !== window.location.pathname) {
             value.cancel(CANCEL_REQUEST_MESSAGE)
@@ -92,18 +88,13 @@ export default {
         const { list } = yield call(queryRouteList)
         const { permissions } = user
         let routeList = list
-        if (
-          permissions.role === ROLE_TYPE.ADMIN ||
-          permissions.role === ROLE_TYPE.DEVELOPER
-        ) {
+        if (permissions.role === ROLE_TYPE.ADMIN || permissions.role === ROLE_TYPE.DEVELOPER) {
           permissions.visit = list.map(item => item.id)
         } else {
           routeList = list.filter(item => {
             const cases = [
               permissions.visit.includes(item.id),
-              item.mpid
-                ? permissions.visit.includes(item.mpid) || item.mpid === '-1'
-                : true,
+              item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
               item.bpid ? permissions.visit.includes(item.bpid) : true,
             ]
             return cases.every(_ => _)
@@ -123,7 +114,7 @@ export default {
         })
       }
     },
-
+    // 退出
     *signOut({ payload }, { call, put }) {
       const data = yield call(logoutUser)
       if (data.success) {
@@ -144,17 +135,14 @@ export default {
         ...payload,
       }
     },
-
     handleThemeChange(state, { payload }) {
       store.set('theme', payload)
       state.theme = payload
     },
-
     handleCollapseChange(state, { payload }) {
       store.set('collapsed', payload)
       state.collapsed = payload
     },
-
     allNotificationsRead(state) {
       state.notifications = []
     },

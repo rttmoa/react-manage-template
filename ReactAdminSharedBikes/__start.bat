@@ -1,1 +1,0 @@
-cmd /k "cd /d E:\Project\ReactAdmin\ReactAdminSharedBikes\ && npm start"

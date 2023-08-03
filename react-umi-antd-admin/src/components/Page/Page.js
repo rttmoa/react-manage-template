@@ -6,6 +6,7 @@ import styles from './Page.less'
 
 
 
+/** #### TODO: 页面内容部分 Content  */
 export default class Page extends Component {
   render() {
     const { className, children, loading = false, inner = false } = this.props
@@ -14,10 +15,7 @@ export default class Page extends Component {
       overflow: 'hidden',
     }
     return (
-      <div
-        className={classnames(className, {
-          [styles.contentInner]: inner,
-        })}
+      <div className={classnames(className, { [styles.contentInner]: inner, })}
         style={loading ? loadingStyle : null}
       >
         {loading ? <Loader spinning /> : ''}

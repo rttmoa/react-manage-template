@@ -1,36 +1,26 @@
+/* eslint-disable valid-jsdoc */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'components'
-import {
-  BellOutlined,
-  RightOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons'
+import {  BellOutlined,  RightOutlined,  MenuFoldOutlined,  MenuUnfoldOutlined, } from '@ant-design/icons'
 import { Trans } from "@lingui/macro"
 import { getLocale, setLocale } from 'utils'
 import dayjs from 'dayjs'
 import classnames from 'classnames'
-import config from 'config'
+import config from '../../utils/config'
 import styles from './Header.less'
 
 const { SubMenu } = Menu
 
+
+/** #### TODO: 头部：通知、切语言、用户退出  */
 class Header extends PureComponent {
   handleClickMenu = e => {
     e.key === 'SignOut' && this.props.onSignOut()
   }
   render() {
-    const {
-      fixed,
-      avatar,
-      username,
-      collapsed,
-      notifications,
-      onCollapseChange,
-      onAllNotificationsRead,
-    } = this.props
+    const { fixed, avatar, username, collapsed, notifications, onCollapseChange, onAllNotificationsRead, } = this.props;
 
     const rightContent = [
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
@@ -55,27 +45,19 @@ class Header extends PureComponent {
     if (config.i18n) {
       const { languages } = config.i18n
       const language = getLocale()
-      const currentLanguage = languages.find(
-        item => item.key === language
-      )
+      const currentLanguage = languages.find(item => item.key === language)
 
       rightContent.unshift(
         <Menu
           key="language"
           selectedKeys={[currentLanguage.key]}
-          onClick={data => {
-            setLocale(data.key)
-          }}
+          onClick={data => { setLocale(data.key) }}
           mode="horizontal"
         >
           <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
             {languages.map(item => (
               <Menu.Item key={item.key}>
-                <Avatar
-                  size="small"
-                  style={{ marginRight: 8 }}
-                  src={item.flag}
-                />
+                <Avatar size="small" style={{ marginRight: 8 }} src={item.flag}/>
                 {item.title}
               </Menu.Item>
             ))}
@@ -124,30 +106,20 @@ class Header extends PureComponent {
           </div>
         }
       >
-        <Badge
-          count={notifications.length}
-          dot
-          offset={[-10, 10]}
-          className={styles.iconButton}
-        >
+        <Badge count={notifications.length} dot offset={[-10, 10]} className={styles.iconButton}>
           <BellOutlined className={styles.iconFont} />
         </Badge>
       </Popover>
     )
 
+    // TODO: 渲染头部结构
     return (
       <Layout.Header
-        className={classnames(styles.header, {
-          [styles.fixed]: fixed,
-          [styles.collapsed]: collapsed,
-        })}
+        className={classnames(styles.header, { [styles.fixed]: fixed, [styles.collapsed]: collapsed, })}
         style={{height: 72, backgroundColor: 'white', paddingInline: 0}}
         id="layoutHeader"
       >
-        <div
-          className={styles.button}
-          onClick={onCollapseChange.bind(this, !collapsed)}
-        >
+        <div className={styles.button} onClick={onCollapseChange.bind(this, !collapsed)}>
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
         <div className={styles.rightContainer}>{rightContent}</div>

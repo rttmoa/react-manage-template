@@ -9,16 +9,17 @@ import { config } from 'utils'
 import SiderMenu from './Menu'
 import styles from './Sider.less'
 
+
+
+
+
+// Tailwind Elements:  https://tailwind-elements.com/
+// Disabled horizontal scrolling:  https://github.com/utatti/perfect-scrollbar#options
+/** #### TODO: 侧边栏：Logo + Menu + SwitchTheme  */
 class Sider extends PureComponent {
   render() {
-    const {
-      menus,
-      theme,
-      isMobile,
-      collapsed,
-      onThemeChange,
-      onCollapseChange,
-    } = this.props
+    // PrimaryLayout给的属性
+    const { menus, theme, isMobile, collapsed, onThemeChange, onCollapseChange, } = this.props;
 
     return (
       <Layout.Sider
@@ -32,19 +33,15 @@ class Sider extends PureComponent {
         className={styles.sider}
       >
         <div className={styles.brand}>
-          <div className={styles.logo}>
-            <img alt="logo" src={config.logoPath} />
-            {!collapsed && <h1>{config.siteName}</h1>}
-          </div>
+          <a href="https://antd-admin.zuiidea.com/" target='_black'>
+            <div className={styles.logo} >
+              <img alt="logo" src={config.logoPath} />
+              {!collapsed && <h1>{config.siteName}</h1>}
+            </div>
+          </a>
         </div>
-
         <div className={styles.menuContainer}>
-          <ScrollBar
-            options={{
-              // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
-              suppressScrollX: true,
-            }}
-          >
+          <ScrollBar options={{ suppressScrollX: true }}>
             <SiderMenu
               menus={menus}
               theme={theme}
@@ -61,10 +58,7 @@ class Sider extends PureComponent {
               <Trans>Switch Theme</Trans>
             </span>
             <Switch
-              onChange={onThemeChange.bind(
-                this,
-                theme === 'dark' ? 'light' : 'dark'
-              )}
+              onChange={onThemeChange.bind(this, theme === 'dark' ? 'light' : 'dark')}
               defaultChecked={theme === 'dark'}
               checkedChildren={t`Dark`}
               unCheckedChildren={t`Light`}

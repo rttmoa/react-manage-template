@@ -146,18 +146,14 @@ class User extends PureComponent {
 
     return (
       <Page inner>
-        {/* http://localhost:7000/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=123 */}
+        {/* http://localhost:40003/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=userName */}
         <h3>将Form表单中参数使用Ref获取到后，用history.push()到地址栏后，用dvajs(redux)获取最近数据传到组件中</h3>
         <Filter {...this.filterProps} />
         {selectedRowKeys.length > 0 && (
           <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
             <Col>
               {`Selected ${selectedRowKeys.length} items `}
-              <Popconfirm
-                title="Are you sure delete these items?"
-                placement="left"
-                onConfirm={this.m}
-              >
+              <Popconfirm title="Are you sure delete these items?" placement="left" onConfirm={this.m}>
                 <Button type="primary" style={{ marginLeft: 8 }}>
                   Remove
                 </Button>

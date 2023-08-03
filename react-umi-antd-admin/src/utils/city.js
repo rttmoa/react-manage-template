@@ -4020,14 +4020,17 @@ let DICT = {
   990100: '海外',
 }
 
+
+
 const tree = list => {
   let hashTable = Object.create(null)
   list.forEach(aData => (hashTable[aData.id] = { ...aData, children: [] }))
   let dataTree = []
   list.forEach(aData => {
     if (aData.pid) {
-      if (hashTable[aData.pid])
+      if (hashTable[aData.pid]) {
         hashTable[aData.pid].children.push(hashTable[aData.id])
+      }
     } else dataTree.push(hashTable[aData.id])
   })
   return dataTree

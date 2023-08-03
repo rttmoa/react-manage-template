@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+/** #### TODO: 导入组件 根据单选框选择的值 去渲染匹配的组件   */
 import SimpleChartComponent from './SimpleChartComponent'
 import ChartWithEventComponent from './ChartWithEventComponent'
 import ThemeChartComponent from './ThemeChartComponent'
@@ -41,7 +42,6 @@ const EchartsComponent = ({ type }) => {
   if (type === 'TransparentBar3DComPonent') return <TransparentBar3DComPonent />
   return <DynamicChartComponent />
 }
-
 EchartsComponent.propTypes = {
   type: PropTypes.string,
 }

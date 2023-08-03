@@ -1,4 +1,4 @@
-// TODO: https://umijs.org/config/
+// TODO: https://umijs.org/docs/api/config
 
 import { resolve } from 'path'
 const fs = require('fs')
@@ -11,6 +11,8 @@ const { convertLegacyToken } = require('@ant-design/compatible/lib')
 
 const mapToken = theme.defaultAlgorithm(theme.defaultSeed)
 const v4Token = convertLegacyToken(mapToken)
+
+
 
 
 
@@ -51,9 +53,7 @@ export default {
       },
       'ant-design-icons',
     ],
-    [
-      'macros'
-    ]
+    ['macros']
   ],
   hash: true,
   ignoreMomentLocale: true,
@@ -71,12 +71,10 @@ export default {
     },
   },
   // Theme for antd
-  // https://ant.design/docs/react/customize-theme
+  // TODO: https://ant.design/docs/react/customize-theme
   theme: {
     ...v4Token,
-    ...lessToJs(
-    fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
-    )
+    ...lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8'))
   },
   webpack5: {},
   mfsu: {},

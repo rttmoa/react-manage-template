@@ -9,7 +9,8 @@ module.exports = {
         env: 'development',
         publicPath: '/',
         host: 'localhost',
-        port: '3034',
+        // FIXME: webpack读取此文件
+        port: '40002',
         assetsSubDirectory: 'static',
         devtoolType: 'cheap-module-eval-source-map',
         proxyTable: {}

@@ -42,6 +42,9 @@ const requests = Object.values(api).map(item => {
   }
 })
 
+
+
+
 let uuid = 2
 class RequestPage extends React.Component {
 
@@ -133,8 +136,8 @@ class RequestPage extends React.Component {
       keys: keys.filter(item => item !== key),
     })
   }
-  /***--- 参数add Params按钮是否显示 ---**/
-  handleVisible = () => {
+
+  handleVisible = () => { // 是否显示参数Params
     this.setState({
       visible: !this.state.visible,
     })
@@ -152,9 +155,7 @@ class RequestPage extends React.Component {
               className={styles.requestList}
               dataSource={requests}
               renderItem={item => (
-                <List.Item className={classnames(styles.listItem, {
-                    [styles.lstItemActive]: item.method === method && item.url === url,
-                  })}
+                <List.Item className={classnames(styles.listItem, {[styles.lstItemActive]: item.method === method && item.url === url,})}
                   onClick={this.handleClickListItem.bind(this, item)}
                 >
                   <span style={{ width: 72 }}>
@@ -171,48 +172,27 @@ class RequestPage extends React.Component {
             {/* 右侧 - GET + URL + Params + Send */}
             <Row type="flex" justify="space-between">
               <InputGroup compact size="large" style={{ flex: 1 }}>
-                <Select
-                  size="large"
-                  value={method}
-                  style={{ width: 100 }}
-                  onChange={this.handleSelectChange}
-                >
+                <Select size="large" value={method} style={{ width: 100 }} onChange={this.handleSelectChange}>
                   {methods.map(item => (
                     <Option value={item} key={item}>
                       {item}
                     </Option>
                   ))}
                 </Select>
-                <Input
-                  value={url}
-                  onChange={this.handleInputChange}
-                  style={{ width: 'calc(100% - 200px)' }}
-                />
+                <Input value={url} onChange={this.handleInputChange} style={{ width: 'calc(100% - 200px)' }}/>
                 <Button ghost={visible} type={visible ? 'primary' : ''} onClick={this.handleVisible} size="large">
                   <Trans>Params</Trans>
                 </Button>
               </InputGroup>
-              <Button
-                size="large"
-                type="primary"
-                style={{ width: 100 }}
-                onClick={this.handleRequest}
-              >
+              <Button size="large" type="primary" style={{ width: 100 }} onClick={this.handleRequest}>
                 <Trans>Send</Trans>
               </Button>
             </Row>
-
             {/* 添加参数 + 请求结果 */}
-            <Form ref={this.formRef} name="control-ref" >
+            <Form ref={this.formRef} name="control-ref">
               <div className={classnames(styles.paramsBlock, {[styles.hideParams]: !visible})}>
                 {keys.map((key, index) => (
-                  <Row
-                    gutter={8}
-                    type="flex"
-                    justify="start"
-                    align="middle"
-                    key={key}
-                  >
+                  <Row gutter={8} type="flex" justify="start" align="middle" key={key} >
                     <Col style={{ marginTop: 8 }}>
                       <Form.Item name={`check[${key}]`} valuePropName="checked">
                         <Checkbox defaultChecked />
@@ -229,14 +209,10 @@ class RequestPage extends React.Component {
                       </Form.Item>
                     </Col>
                     <Col style={{ marginTop: 8 }}>
-                      <CloseOutlined
-                        onClick={this.handleRemoveField.bind(this, key)}
-                        style={{ cursor: 'pointer' }}
-                      />
+                      <CloseOutlined onClick={this.handleRemoveField.bind(this, key)} style={{ cursor: 'pointer' }} />
                     </Col>
                   </Row>
                 ))}
-
                 <Row style={{ marginTop: 8 }}>
                   <Button onClick={this.handleAddField}>
                     <Trans>Add Param</Trans>

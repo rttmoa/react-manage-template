@@ -9,8 +9,6 @@ const avatar = '//cdn.antd-admin.zuiidea.com/bc442cf0cc6f7940dcc567e465048d1a8d6
 
 
 
-
-
 export default modelExtend(model, {
   namespace: 'dashboard',
   state: {
@@ -58,7 +56,7 @@ export default modelExtend(model, {
       try {
         payload.location = 'shenzhen'
         const result = yield call(queryWeather, payload)
-        console.log(result)
+        // console.log(result)
         const { success } = result
         if (success) {
           const data = result.results[0]

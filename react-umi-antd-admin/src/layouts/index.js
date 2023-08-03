@@ -16,46 +16,35 @@ i18n.loadLocaleData({
   zh: { plurals: zh },
   'pt-br': { plurals: pt }
 })
-
-// antd
-const languages = {
-  zh: zhCN,
-  en: enUS,
-  'pt-br': ptBR
-}
-
 const { defaultLanguage } = i18n
+// antd
+const languages = { zh: zhCN, en: enUS, 'pt-br': ptBR }
+
 
 @withRouter
 class Layout extends Component {
-  state = {
-  }
-
-  componentDidMount() {
-  }
+  state = {}
+  componentDidMount() {}
 
   loadCatalog = async (lan) => {
-    const catalog = await import(
-      `../locales/${lan}/messages.json`
-    )
-
+    const catalog = await import(`../locales/${lan}/messages.json`)
     i18n.load(lan, catalog)
     i18n.activate(lan)
   }
 
   render() {
-    const { children } = this.props
+    const { children } = this.props;
 
+    // TODO: 处理项目语言类型
     let language = getLocale()
-
     if (!languages[language]) language = defaultLanguage
-
     this.loadCatalog(language)
 
     return (
       <ConfigProvider locale={languages[language]}>
         <I18nProvider i18n={i18n}>
-          <BaseLayout>{children}</BaseLayout>
+          {/* TODO: 界面结构 */}
+          <BaseLayout>{children || "内容区域"}</BaseLayout>
         </I18nProvider>
       </ConfigProvider>
     )

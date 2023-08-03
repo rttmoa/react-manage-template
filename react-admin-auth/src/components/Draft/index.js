@@ -2,6 +2,9 @@ import React from 'react'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import './index.less'
+
+
+
 export default class Draft extends React.Component {
 	state = {
         editorContent: '',
