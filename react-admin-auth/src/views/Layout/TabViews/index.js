@@ -2,7 +2,7 @@ import React from 'react'
 import {Tag} from 'antd'
 import connect from 'connect'
 import {Link, withRouter} from 'react-router-dom'
-import ScrollPane from 'components/ScrollPane'
+import ScrollPane from '../../../components/ScrollPane'
 
 
 
@@ -14,10 +14,10 @@ class TabViews extends React.Component {
     render () {
         let {state, delTabView, location} = this.props;
         let pathname = location.pathname;
-        console.log(pathname)
         return (
+            // TODO: 封装组件
             <ScrollPane>
-                {state.tabViews.map( (tab, index) => (
+                {state.tabViews.map(tab => (
                     <Tag 
                         key={tab.path} 
                         closable

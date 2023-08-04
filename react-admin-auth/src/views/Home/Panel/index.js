@@ -1,7 +1,9 @@
 import React from 'react'
 import {Row, Col, Card, Icon} from 'antd'
+
 export default () => (
 	<Row>
+		<h3>{"<Row /> <Col /> <Card /> <Icon /> 组件"}</h3>
 		<Col md={6} className="gutter-row">
 			<Card bordered={false}>
 				<div className="box">

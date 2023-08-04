@@ -17,7 +17,7 @@ const configureStore = preloadedState => createStore(
     compose(
         applyMiddleware(thunk, fn),
         DevTools.instrument()
-    ) 
+    )
 )
 export default configureStore;
 

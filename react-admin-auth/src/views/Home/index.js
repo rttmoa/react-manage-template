@@ -13,9 +13,12 @@ import './index.less'
  *  ---**/
 export default () => (
 	<div className="home_wrapper">
+
 		{/* 人数、收藏、邮件、图片 - 卡片组件 */}
 		<Panel />
+
 		<Row className="home_body">
+			<h3>{"封装 <Steps /> <Todo /> <Info /> 组件"}</h3>
 			<Col md={9} className="gutter-row">
 				<Card bordered={false}>
 					{/* 时间线组件 */}
@@ -23,8 +26,7 @@ export default () => (
 				</Card>
 			</Col>
 			<Col md={9} className="gutter-row">
-				<Card bordered={false}>
-					
+				<Card bordered={false}> 
 					<Todo />
 				</Card>
 			</Col>
@@ -34,23 +36,24 @@ export default () => (
 				</Card>
 			</Col>
 		</Row>
+
 		<Row className="home_body">
 			<Col md={9} className="gutter-row">
-				{/* <Card bordered={false}>
+				<Card bordered={false}>
 					<Steps />
-				</Card> */}
+				</Card>
 			</Col>
 			<Col md={9} className="gutter-row">
-				{/* <Card bordered={false}>
-					
+				<Card bordered={false}> 
 					<Todo />
-				</Card> */}
+				</Card>
 			</Col>
 			<Col md={6} className="gutter-row">
-				{/* <Card bordered={false}>
+				<Card bordered={false}>
 					<Info />
-				</Card> */}
+				</Card>
 			</Col>
 		</Row>
+
 	</div>
 )

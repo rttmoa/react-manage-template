@@ -10,6 +10,7 @@ export default class extends React.Component {
         return (
             <div className="component_write_wrapper markdown_box">
                 <Row className="fmt gutter-row">
+                    <h3 style={{fontWeight: 'bold'}}>{"此处渲染Markdown格式，使用dangerouslySetInnerHTML渲染 "}</h3>
                     <Col md={12} className="gutter-col">
                         <Card title="React.createClass">
                             <div dangerouslySetInnerHTML={{__html: createComponent.html1}}></div>

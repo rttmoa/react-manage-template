@@ -8,7 +8,9 @@ const screenfullStyles = {
     width: '20px',
     height: '20px',
 }
-/**--- 全屏组件 ---**/
+
+
+/** #### 全屏组件按钮  */
 export default class extends React.Component {
     click = () => {
         if (!screenfull.enabled) {
@@ -19,7 +21,7 @@ export default class extends React.Component {
     }
     render () {
         return (
-            <svg 
+            <svg
               t="1508738709248" 
               onClick={this.click} 
               className={this.props.className} 
@@ -31,8 +33,7 @@ export default class extends React.Component {
               xlinkHref="http://www.w3.org/1999/xlink" 
               width="32" 
               height="32"
-            >
-              {/* 小四方形 */}
+            > 
               <path d="M333.493443 428.647617 428.322206 333.832158 262.572184 168.045297 366.707916 64.444754 64.09683 64.444754 63.853283 366.570793 167.283957 262.460644Z"
                 p-id="2070"></path>
               <path d="M854.845439 760.133334 688.61037 593.95864 593.805144 688.764889 759.554142 854.56096 655.44604 958.161503 958.055079 958.161503 958.274066 656.035464Z"

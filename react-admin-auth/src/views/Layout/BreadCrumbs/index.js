@@ -7,20 +7,20 @@ const Item = Breadcrumb.Item;
 
 
 
-/**--- 面包屑 ---**/
+
+/** #### 面包屑、由路由处理后得到的Routes数组  */
 @connect
 class BreadCrumbs extends React.Component {
+
     render () {
-        let {breadCrumbs} = this.props.state;
-        // console.log(breadCrumbs)
+        let { breadCrumbs } = this.props.state;  
         return (
             <Breadcrumb className={this.props.className}>
-                {
-                    breadCrumbs.map( (route, index) => {
-                        return index === breadCrumbs.length-1 ? <Item key={route.path}>{route.name}</Item> : 
-                            (<Item key={route.path}><Link to={route.path}>{route.name}</Link></Item>)
-                    })
-                }
+                {breadCrumbs.map( (route, index) => {
+                    return index === breadCrumbs.length - 1 
+                    ? <Item key={route.path}>{route.name}</Item> 
+                    : <Item key={route.path}><Link to={route.path}>{route.name}</Link></Item>
+                })}
             </Breadcrumb>
         )
     }

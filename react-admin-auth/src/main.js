@@ -12,11 +12,12 @@ import './styles/index.css'
 import './styles/index.less'
 import 'components/Markdown/markdown.css'   //--->  markdown.css
 
-
-
-
 const store = configureStore()
 {process.env.NODE_ENV === 'production' ? '' : <DevTools/>}
+
+
+
+
 render(
     <Provider store={store}>
         <div>

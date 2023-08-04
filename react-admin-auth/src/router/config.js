@@ -7,28 +7,7 @@ const _import_components = file => asyncComponent(() => import(`components/${fil
 /** #### 导入页面： 引入哪个页面  */
 const _import_views = file => asyncComponent(() => import(`views/${file}`))
 
-
-
-const setChildrenRoles = routes => routes.map(route => {
-    let role = route.role
-    if (!role) return route
-
-    let fn = (children, role) => {
-        return children.map(child => {
-            child.role = Array.from(new Set([...(child.role || []), ...role]))
-            if (child.children) {
-                child.children = fn(child.children, child.role)
-            }
-            return child
-        })
-    }
-    if (route.children) {
-        route.children = fn(route.children, role)
-    }
-    return route
-})
-
-
+ 
 /** #### react-router-config  后台界面路由配置  */
 const asyncRouterMapList = [
     {
@@ -155,9 +134,34 @@ export const constantRouterMap = [
     }
 ]
 
+/** #### TODO: 处理如果对象 有role && 有children属性时：将children属性中增加一个role属性  */
+const setChildrenRoles = routes => routes.map(route => {
+    // 如果Obj中没有role属性 不做处理
+    let role = route.role
+    if (!role) return route
+
+    let fn = (children, role) => {
+        // console.log(children, role) // {children: [], role: ['animate']}
+        return children.map(child => {
+            // FIXME: 让children属性下每个对象都加上role属性
+            child.role = Array.from(new Set([...(child.role || []), ...role]))
+            if (child.children) {
+                child.children = fn(child.children, child.role)
+            }
+            // console.log(child)
+            return child
+        })
+    }
+    if (route.children) {
+        route.children = fn(route.children, role)
+    }
+    return route
+})
+
+/** #### 处理后的role  */
 export const asyncRouterMap = setChildrenRoles(asyncRouterMapList);
 
-/** #### 所有Routes  */
+/** #### 处理后的所有Routes  */
 export const allRoutes = constantRouterMap.concat(asyncRouterMap); 
 
  

@@ -9,12 +9,13 @@ window._history = history
 
 
 
+
+
+
+
 export default () => (
     <HashRouter>
-        <Route 
-            path="/" 
-            component={MainComponents}
-        />
+        <Route path="/" component={MainComponents} />
     </HashRouter>
 )
 

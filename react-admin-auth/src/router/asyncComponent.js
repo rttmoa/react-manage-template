@@ -4,9 +4,14 @@ import NProgress from 'nprogress'
 
 
 
+
+/** #### TODO: 类似：这块有将过 with...   函数组件中包裹着类组件  */
+
 export default loadComponent => (
     
+
     class AsyncComponent extends React.Component {
+
         state = {
             Component: null,
         }
@@ -15,7 +20,9 @@ export default loadComponent => (
             
             try {
                 const {default: Component} = await loadComponent()
-                this.setState({ Component })
+                this.setState({
+                    Component
+                })
             }catch (err) {
                 console.error(`Cannot load component in <AsyncComponent />`);
                 throw err
@@ -25,7 +32,7 @@ export default loadComponent => (
 
         render() {
             const { Component } = this.state
-            return (Component) ? <Component {...this.props} /> : null
+            return  Component  ? <Component {...this.props} /> : null
         }
     }
 )

@@ -17,21 +17,9 @@ const transitionStyles = {
 }
 /**--- 动画组件 ---**/
 const AnimateComponent = ({in: inPro}) => (
-	<Transition
-		in={inPro}
-		timeout={duration}
-	>
-		{status => {
-			// console.log(status)
-			return (
-				<div style={{
-					...defaultStyle,
-					...transitionStyles[status]
-					}}
-				>
-					Fade动画
-				</div>
-			)
+	<Transition in={inPro} timeout={duration}>
+		{status => { 
+			return <div style={{ ...defaultStyle, ...transitionStyles[status] }}>Fade动画 </div>
 		}}
 	</Transition>
 )

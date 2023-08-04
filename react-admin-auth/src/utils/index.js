@@ -1,12 +1,17 @@
-import {allRoutes} from 'router/config'
+import { allRoutes } from '../router/config'
 
 
 
 
-/**--- 当前路径的路由信息 ?? ---**/
+
+/** #### TODO: 根据 处理地址栏得到处理后的数组 （路由中面包屑使用、侧边栏展开项使用）  */
 export const filterRoutes = pathname => {
+    // 访问的是 react动画 -> 滑动
     let pathSnippets = pathname.split('/').filter(path => path)
     let paths = pathSnippets.map((path, index) => `/${pathSnippets.slice(0, index + 1).join('/')}`)
+    // console.log(pathname)       // 路由：  /animate/slide 
+    // console.log(pathSnippets)   // 分割：  ['animate', 'slide']
+    // console.log(paths)          // 处理：  ['/animate', '/animate/slide']
     let filter = (arr, index) => {
         if (index < paths.length) {
             let p = paths[index]
@@ -16,7 +21,9 @@ export const filterRoutes = pathname => {
         }
         return []
     }
-    return [allRoutes.find( route => route.path === '/')].concat(filter(allRoutes, 0))
+    let handleRoutes = [allRoutes.find( route => route.path === '/')].concat(filter(allRoutes, 0))
+    // console.log(handleRoutes) // 处理后的路由：首页 + 当前访问的模块 + 当前访问的路由
+    return handleRoutes
 }
 
 /*
@@ -25,10 +32,9 @@ export const filterRoutes = pathname => {
 export const diff_obj = (obj1,obj2) => {
     let o1 = obj1 instanceof Object
     let o2 = obj2 instanceof Object
-    if(!o1 || !o2){/*  判断不是对象  */
+    if(!o1 || !o2){
         return obj1 === obj2
     }
-
     if(Object.keys(obj1).length !== Object.keys(obj2).length) return false
 
     for(let attr in obj1){

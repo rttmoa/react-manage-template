@@ -14,11 +14,9 @@ export default () => (
     <div className="home-task">
         <small>10个已经完成, 2个待完成, 1个正在进行中</small>
         <Timeline>
-            {
-                list.map( (item, index) => {
-                    return <Item key={index} color={item.color}>{item.desc}</Item>
-                })
-            }
+            {list.map( (item, index) => {
+                return <Item key={index} color={item.color}>{item.desc}</Item>
+            })}
         </Timeline>
     </div>
 )

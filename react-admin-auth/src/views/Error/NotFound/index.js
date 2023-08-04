@@ -5,6 +5,8 @@ import './index.less'
 
 
 
+
+
 export default ({ history }) => (
 	<div className="errer_404_wrapper">
         <h2>OOPS!</h2>

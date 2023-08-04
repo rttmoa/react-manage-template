@@ -6,19 +6,19 @@ import { Cookie, Local } from 'utils/storage'
 
 
 
+
+/** #### TODO: 类似：拦截路由  */
 export default class extends React.Component {
     
     render () {
         let {component: Component, ...rest} = this.props
+        // console.log(this.props)
+
         // 是否登录
         if (!Cookie.get('Auth_Token')) {
             return <Redirect to={{ pathname: '/login' }} />
         }
 
-        return <Route {...rest}  render={
-            props => {
-                return <Component {...props} />
-            }
-        }/>
+        return <Route {...rest}  render={ props => <Component {...props} /> }/>
     }
 }

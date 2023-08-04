@@ -35,7 +35,7 @@ export default class Axios extends React.Component {
             loading: true
         })
         let data = await axios.get('https://easy-mock.com/mock/5aa161bef6ed4a592fb5d6f4/admin-apis/test1')
-        // console.log(data)
+        console.log(data)
         if(data){
             this.setState({
                 loading: false,

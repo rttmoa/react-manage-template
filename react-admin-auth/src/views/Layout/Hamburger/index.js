@@ -5,19 +5,19 @@ import connect from 'connect'
 
 
 
-/**--- 三个横线：展示侧边栏/关闭侧边栏 ---**/
+/** #### 侧边栏按钮 （开关状态）  */
 @connect
 class Hamburger extends React.Component {
     render () {
+        const { changeCollapsed, className, state } = this.props;
         return (
             <svg  
-                onClick={this.props.changeCollapsed} 
-                className={`wscn-icon hamburger ${this.props.className} ${this.props.state.collapsed?'is-active':''}`} 
+                onClick={changeCollapsed} 
+                className={`wscn-icon hamburger ${className} ${state.collapsed ? 'is-active' : ''}`} 
                 viewBox="0 0 1024 1024" 
                 width="64"
                 height="64"
             >
-                {/* 三个path为三条线 */}
                 <path d="M966.8023 568.849776 57.196677 568.849776c-31.397081 0-56.850799-25.452695-56.850799-56.850799l0 0c0-31.397081 25.452695-56.849776 56.850799-56.849776l909.605623 0c31.397081 0 56.849776 25.452695 56.849776 56.849776l0 0C1023.653099 543.397081 998.200404 568.849776 966.8023 568.849776z"
                     p-id="1692"></path>
                 <path d="M966.8023 881.527125 57.196677 881.527125c-31.397081 0-56.850799-25.452695-56.850799-56.849776l0 0c0-31.397081 25.452695-56.849776 56.850799-56.849776l909.605623 0c31.397081 0 56.849776 25.452695 56.849776 56.849776l0 0C1023.653099 856.07443 998.200404 881.527125 966.8023 881.527125z"

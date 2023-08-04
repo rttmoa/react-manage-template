@@ -4,7 +4,7 @@ import createHistory from "history/createBrowserHistory"
 
 let history = createHistory()
 const unlisten = history.listen((location, action) => {
-    console.log(location)
+    // console.log('监听history：', location)
 })
 
 // 停止监听
