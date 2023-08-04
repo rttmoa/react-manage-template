@@ -1,8 +1,10 @@
 import asyncComponent from './asyncComponent'
 
 
+/** #### 导入组件  */
 const _import_components = file => asyncComponent(() => import(`components/${file}`))
 
+/** #### 导入页面： 引入哪个页面  */
 const _import_views = file => asyncComponent(() => import(`views/${file}`))
 
 
@@ -27,7 +29,7 @@ const setChildrenRoles = routes => routes.map(route => {
 })
 
 
-// react-router-config
+/** #### react-router-config  后台界面路由配置  */
 const asyncRouterMapList = [
     {
         path: '/auth',
@@ -133,6 +135,7 @@ const asyncRouterMapList = [
     },
 ]
 
+/** #### 登陆页 / 首页  */
 export const constantRouterMap = [
     {
         path: '/login',
@@ -154,11 +157,8 @@ export const constantRouterMap = [
 
 export const asyncRouterMap = setChildrenRoles(asyncRouterMapList);
 
-/**--- 所有Routes ---**/
+/** #### 所有Routes  */
 export const allRoutes = constantRouterMap.concat(asyncRouterMap); 
 
  
-export const routes = constantRouterMap;
-
-// export const asyncRouterMap 
-
+export const routes = constantRouterMap; 

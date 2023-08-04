@@ -2,8 +2,9 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {Menu, Dropdown} from 'antd'
 import connect from 'connect'
-import './index.less'
 import { Cookie } from 'utils/storage'
+import './index.less'
+
 const Item = Menu.Item;
 
 
