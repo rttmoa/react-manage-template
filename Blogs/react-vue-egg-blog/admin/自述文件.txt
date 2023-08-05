@@ -1,0 +1,23 @@
+参考：如何使用表格、如果使用表单、单选框、多选框、
+Redux和接口和mockjs和locale
+
+
+components-> NavBar 中 中英文切换
+
+pages-> login-> index.tsx
+useEffect(() => { document.body.setAttribute('arco-theme', 'light');}, []);   设置主题属性
+
+pages-> login-> form.tsx
+登录：表单校验之后登录的逻辑和函数的封装 1.onSubmitClick()  2.login()  3.afterLoginSuccess
+  
+categoriesjs
+格式化日期(dayjs)：1660292316--> 2022-08-12 16:18:36
+编辑标签/编辑文章分类
+onAdd：添加分类的按钮点击时间   这里REDUX做的事情是 控制弹出框的显示与隐藏
+
+site-> home
+封装了UploadImage组件(公共组件)
+
+site-> right-> components-> tab0.tsx
+onSave函数中表单校验、map返回的数据做处理
+
