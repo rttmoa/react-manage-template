@@ -10,13 +10,16 @@ import tabs from "./modules/tabs/reducer";
 import auth from "./modules/auth/reducer";
 import breadcrumb from "./modules/breadcrumb/reducer";
 
+import todos from '../views/hooks/todos/store/reducer'
 // 创建reducer(拆分reducer)
 const reducer = combineReducers({
 	global,
 	menu,
 	tabs,
 	auth,
-	breadcrumb
+	breadcrumb,
+
+	todos,
 });
 
 // redux 持久化配置

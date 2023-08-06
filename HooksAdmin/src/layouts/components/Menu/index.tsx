@@ -86,8 +86,9 @@ const LayoutMenu = (props: any) => {
 		try {
 			const { data } = await getMenuList();
 			if (!data) return;
+			// console.log('meun', data);
 			// NOTE: 将接口的数据处理成Antd要的数据
-			console.log("初始：", data)
+			// console.log("初始：", data)
 			// console.log("结果：", deepLoopFloat(data))
 			setMenuList(deepLoopFloat(data));
 

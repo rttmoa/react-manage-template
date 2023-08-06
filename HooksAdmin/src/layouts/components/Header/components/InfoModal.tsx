@@ -27,9 +27,21 @@ const InfoModal = (props: Props) => {
 	};
 	return (
 		<Modal title="个人信息" visible={modalVisible} onOk={handleOk} onCancel={handleCancel} destroyOnClose={true}>
-			<p>User Info...</p>
-			<p>User Info...</p>
-			<p>User Info...</p>
+			<p>
+				<a href="https://gitee.com/laramie/Hooks-Admin" target="_blank" rel="noreferrer">
+					Gitee 🍒🍉🍊
+				</a>
+			</p>
+			<p>
+				<a href="https://github.com/HalseySpicy/Hooks-Admin" target="_blank" rel="noreferrer">
+					Github 🍒🍉🍊
+				</a>{" "}
+			</p>
+			<p>
+				<a href="https://juejin.cn/user/3263814531551816/posts" target="_blank" rel="noreferrer">
+					掘金 🍒🍉🍊
+				</a>
+			</p>
 		</Modal>
 	);
 };

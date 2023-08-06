@@ -26,8 +26,7 @@ const DataVisualize = () => {
 	];
 
 	return (
-		<div className="dataVisualize-box">
-
+		<div className="dataVisualize-box"> 
 			<h2 style={{fontSize: 20}}>Charts中用useEcharts复用：组件中setOption / init / resize   使用Ref控制Div</h2>
 			<h2 style={{fontSize: 20}}>切换月份使用 Tabs + Tabs.TabPane</h2>
 			<div className=" card top-box">

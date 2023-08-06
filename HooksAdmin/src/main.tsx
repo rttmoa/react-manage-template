@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ReactDOM from "react-dom";
 import "@/styles/reset.less";
 import "@/assets/iconfont/iconfont.less";
@@ -11,12 +12,17 @@ import { Provider } from "react-redux";
 import { store, persistor } from "@/redux";
 import App from "@/App";
 
+
+
+
+/** #### TODO: Mockjs: https://mock.mengxuegu.com/project/64ce5fd3686aea63fd6b5a30  */
+
+
 // react 17 创建，控制台会报错，暂时不影响使用（菜单折叠时不会出现闪烁）
 ReactDOM.render(
 	// * react严格模式
 	// <React.StrictMode>
 	<Provider store={store}>
-		{/* TODO: 持久化Redux */}
 		<PersistGate persistor={persistor}>
 			<App />
 		</PersistGate>
@@ -24,6 +30,13 @@ ReactDOM.render(
 	// </React.StrictMode>,
 	document.getElementById("root")
 );
+
+
+
+
+
+
+
 
 // import ReactDOM from "react-dom/client";
 // react 18 创建（会导致 antd 菜单折叠时闪烁，等待官方修复）
