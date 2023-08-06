@@ -9,10 +9,10 @@ export const DEL_TODOS = "DEL_TODOS";
 
 
 /** #### 清除 todo  */
-export const CLEAR_TODO = "CLEAR_TODO";
+export const CLEAR_TODOS = "CLEAR_TODOS";
 
 /** #### 切换 todo  */
-export const TOGGLE_TODO = "TOGGLE_TODO";
+export const TOGGLE_TODOS = "TOGGLE_TODOS";
 
 /** #### 设置全选/全不选的状态  */
 export const SET_TOGGLE_TODO_STATUS = "SET_TOGGLE_TODO_STATUS";

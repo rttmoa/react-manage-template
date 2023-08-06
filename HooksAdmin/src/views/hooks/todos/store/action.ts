@@ -13,36 +13,44 @@ let nextTodoId = 8
 
 /** #### 添加 todo  */
 export const addTodos = ( text: TodoOptions ) => { 
+	// console.log(text);
 	return ({
 		type: types.ADD_TODOS,
 		todoList: {
 			id: nextTodoId++,
-			text
+			text,
+			completed: false
 		}
 	});
 }
  
 
 // 删除
-export const delTodo = (id: number) => ({
-	type: types.DEL_TODOS,
-	todoList: {
-		id 
+export const delTodo = (id: number) => {
+	// console.log(id);
+	return { 
+		type: types.DEL_TODOS,
+		todoList: {
+			id
+		}
 	}
-})
+}
 
 // 清除
 export const clearTodo = () => ({
-	type: types.CLEAR_TODO
+	type: types.CLEAR_TODOS
 })
 
 // 切换
-export const toggleTodo = (id: number) => ({
-	type: types.TOGGLE_TODO,
-	todoList: {
-		id
+export const toggleTodo = (id: number) => {
+	// console.log("切换 todo", id);
+	return {
+		type: types.TOGGLE_TODOS,
+		todoList: {
+			id
+		}
 	}
-})
+}
 
 
 // 设置全选/全不选的状态
@@ -59,10 +67,12 @@ export const toggleTodoAll = (active: boolean) => ({
 
 
 // 过滤
-export const setVisibilityFilter = (filter: string) => ({
-	type: types.SET_VISIBILITY_FILTER,
-	filter
-})
+export const setVisibilityFilter = (filter: string) => { 
+	return {
+		type: types.SET_VISIBILITY_FILTER,
+		filter
+	}
+}
 
 // 状态
 export const visibilityStatus = [

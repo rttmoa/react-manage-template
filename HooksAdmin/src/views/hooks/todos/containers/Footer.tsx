@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setVisibilityFilter, visibilityStatus, clearTodo } from '../actions/todo'
+import { setVisibilityFilter, visibilityStatus, clearTodo } from '../store/action'
 
 
 
 
-const Footer = ({dispatch, active, len}) => {
-    const set = filter => {
-        dispatch(setVisibilityFilter(filter))
+const Footer = (props: any) => {
+	
+		const {setVisibilityFilter,clearTodo, active, len} = props;
+    const set = (filter: string) => {
+			setVisibilityFilter(filter)
     }
     return (
 			<footer>
@@ -17,20 +19,26 @@ const Footer = ({dispatch, active, len}) => {
 					</span>
 					<ul className="filters">
 							{visibilityStatus.map((v: any, index: number) => (
-									<li key={index}><a href="#" 
-									className={v.filter === active ? 'selected':''} 
-									onClick={e => {e.stopPropagation(); set(v.filter)}}>{v.text}</a></li>
+									<li key={index}>
+										<span
+											className={v.filter === active ? 'selected':''} 
+											onClick={e => {e.stopPropagation(); set(v.filter)}}
+										>{v.text}</span>{".                     	."}
+									</li>
 							))}
 					</ul>
-					<button className="clear-completed" onClick={e => {dispatch(clearTodo())}}>
+					<button className="clear-completed" onClick={e => {(clearTodo())}}>
 							Clear completed
 					</button>
 			</footer>
     )
 }
 
-const mapDispatchToProps = (state: any) => ({
-    active: state.visibilityFilter,
-    len: state.todos.length || 0
-})
-export default connect( mapDispatchToProps )(Footer)
+const mapStateToProps = (state: any) => { 
+	return {
+    active: state.todos.visibilityFilter,
+    len: state.todos.todoList.length || 0
+	}
+}
+const mapDispatchToProps = { setVisibilityFilter, clearTodo }
+export default connect( mapStateToProps, mapDispatchToProps)(Footer)

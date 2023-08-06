@@ -8,10 +8,12 @@ import Footer from './containers/Footer'
 
 
 const Todos = (props: any) => {
-	// const { addTodos } = props
  
 	return (
 		<div id="redux-todo">
+				<a href="https://react-typescript-todomvc.netlify.app/" target="_black">todosMVC-typescript参考（在线）</a>
+				<p></p>
+				<a href="https://github.com/laststance/react-typescript-todomvc-2022" target="_black">todosMVC-typescript参考（github）</a>
         <h1>todos</h1>
         <div className="main">
             <AddTodo />
