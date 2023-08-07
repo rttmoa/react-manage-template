@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 import { HashRouter } from "react-router-dom";
 import { ConfigProvider } from "antd";
 
-import { getBrowserLang } from "@/utils/util";									// FIXME: 获取浏览器语言
-import { setLanguage } from "@/redux/modules/global/action";   	// FIXME: 设置Token + 设置程序集 + 设置语言 + 设置主题
-import AuthRouter from "@/routers/utils/authRouter";						// FIXME: 路由守卫组件
-import Router from "@/routers/index";														// FIXME: 路由规则
-import useTheme from "@/hooks/useTheme";												// FIXME: 全局主题设置
+import { getBrowserLang } from "@/utils/util";								// 获取浏览器语言
+import { setLanguage } from "@/redux/modules/global/action";  // 设置Token + 设置程序集 + 设置语言 + 设置主题
+import AuthRouter from "@/routers/utils/authRouter";					// 路由守卫组件
+import Router from "@/routers/index";													// 路由规则
+import useTheme from "@/hooks/useTheme";											// 全局主题设置
 
 import zhCN from "antd/lib/locale/zh_CN";
 import enUS from "antd/lib/locale/en_US";
 import i18n from "i18next";
-import "moment/dist/locale/zh-cn";
+import "moment/dist/locale/zh-cn";  
 
 
 

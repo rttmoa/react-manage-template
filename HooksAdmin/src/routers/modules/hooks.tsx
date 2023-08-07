@@ -11,6 +11,7 @@ const menuRouter: Array<RouteObject> = [
       title: "Hooks"
     },
     children: [
+			// 添加 todos
       {
         path: "/hooks/todos",
         element: lazyLoad(React.lazy(() => import("@/views/hooks/todos"))),
@@ -20,7 +21,26 @@ const menuRouter: Array<RouteObject> = [
           key: "todos"
         }
       },
-       
+			// 添加 mobx
+      {
+        path: "/hooks/mobx",
+        element: lazyLoad(React.lazy(() => import("@/views/hooks/mobx"))),
+        meta: {
+          requiresAuth: true,
+          title: "Mobx",
+          key: "mobx"
+        }
+      },
+			// 添加 hooks - baby张
+			{
+        path: "/hooks/hooks1",
+        element: lazyLoad(React.lazy(() => import("@/views/hooks/hooks1"))),
+        meta: {
+          requiresAuth: true,
+          title: "Hooks",
+          key: "hooks1"
+        }
+      },
     ]
   }
 ];
