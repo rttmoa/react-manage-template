@@ -41,6 +41,16 @@ const menuRouter: Array<RouteObject> = [
           key: "hooks1"
         }
       },
+			// 添加 hooks - bookmark
+			{
+        path: "/hooks/bookmark",
+        element: lazyLoad(React.lazy(() => import("@/views/hooks/bookmark"))),
+        meta: {
+          requiresAuth: true,
+          title: "Bookmark",
+          key: "bookmark"
+        }
+      },
     ]
   }
 ];
