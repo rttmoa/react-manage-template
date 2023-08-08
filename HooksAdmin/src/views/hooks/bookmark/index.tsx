@@ -15,7 +15,7 @@ const Hooks1: React.FC = () => {
 		console.log(key);
 	};
 	return (
-		<div className="App">  
+		<div className="App">
 			<Tabs
 				className="tab"
 				defaultActiveKey="1"
