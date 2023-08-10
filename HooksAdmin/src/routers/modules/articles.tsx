@@ -21,6 +21,16 @@ const articlesRouter: Array<RouteObject> = [
           key: "list"
         }
       },
+			// 添加 ReactAdminShareBikes
+			{	
+        path: "/articles/bike",
+        element: lazyLoad(React.lazy(() => import("@/views/articles/Bike"))),
+        meta: {
+          requiresAuth: true,
+          title: "bike",
+          key: "bike"
+        }
+      },
     ]
   }
 ];

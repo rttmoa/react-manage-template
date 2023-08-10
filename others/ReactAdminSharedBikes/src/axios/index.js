@@ -30,9 +30,9 @@ export default class Axios {
             loading = document.getElementById('ajaxLoading');
             loading.style.display = 'block';
         }
-        // let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
-        let baseApi = " https://mock.mengxuegu.com/mock/6420434ee24b4b4cfeaca0ea/api"
-        return new Promise((resolve,reject)=>{
+        let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
+        // let baseApi = " https://mock.mengxuegu.com/mock/6420434ee24b4b4cfeaca0ea/api"
+        return new Promise((resolve, reject)=>{
             axios({
                 url: options.url,
                 method:'get',
@@ -45,7 +45,7 @@ export default class Axios {
                     loading = document.getElementById('ajaxLoading');
                     loading.style.display = 'none';
                 }
-                if (response && response.status == 200){
+                if (response && response.status === 200){
                     // console.log(response.data)
                     let res = response.data;
                     // let newRes = JSON.parse(JSON.stringify(res))
