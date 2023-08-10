@@ -87,7 +87,7 @@ const dashboardRouter: Array<RouteObject> = [
 					key: "dynamicForm"
 				}
 			},
-			//------------------>    TODO: 常用组件
+			//------------------>    TODO: 常用组件 assembly
 			{
 				path: "/dashboard/assembly/guide",
 				element: lazyLoad(React.lazy(() => import("@/views/dashboard/assembly/guide/index"))),
@@ -124,10 +124,10 @@ const dashboardRouter: Array<RouteObject> = [
 					key: "selectIcon"
 				}
 			},
-			//------------------>    TODO: 嵌套菜单
+			//------------------>    TODO: 嵌套菜单 Menu
 			{
         path: "/dashboard/menu/menu1",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu1/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu1/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单1",
@@ -136,7 +136,7 @@ const dashboardRouter: Array<RouteObject> = [
       },
       {
         path: "/dashboard/menu/menu2/menu21",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu2/menu21/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu2/menu21/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单2-1",
@@ -145,7 +145,7 @@ const dashboardRouter: Array<RouteObject> = [
       },
       {
         path: "/dashboard/menu/menu2/menu22/menu221",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu2/menu22/menu221/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu2/menu22/menu221/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单2-2-1",
@@ -154,7 +154,7 @@ const dashboardRouter: Array<RouteObject> = [
       },
       {
         path: "/dashboard/menu/menu2/menu22/menu222",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu2/menu22/menu222/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu2/menu22/menu222/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单2-2-2",
@@ -163,7 +163,7 @@ const dashboardRouter: Array<RouteObject> = [
       },
       {
         path: "/dashboard/menu/menu2/menu23",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu2/menu23/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu2/menu23/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单2-3",
@@ -172,15 +172,13 @@ const dashboardRouter: Array<RouteObject> = [
       },
       {
         path: "/dashboard/menu/menu3",
-        element: lazyLoad(React.lazy(() => import("@/views/menu/menu3/index"))),
+        element: lazyLoad(React.lazy(() => import("@/views/dashboard/menu/menu3/index"))),
         meta: {
           requiresAuth: true,
           title: "菜单3",
           key: "menu3"
         }
-      }
-    
-
+      } 
 
 
     ]

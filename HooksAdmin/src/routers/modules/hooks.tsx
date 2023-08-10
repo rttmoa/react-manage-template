@@ -3,8 +3,8 @@ import lazyLoad from "@/routers/utils/lazyLoad";
 import { LayoutIndex } from "@/routers/constant";
 import { RouteObject } from "@/routers/interface";
 
-// menu 模块
-const menuRouter: Array<RouteObject> = [
+
+const hookRouter: Array<RouteObject> = [
   {
     element: <LayoutIndex />,
     meta: {
@@ -55,4 +55,4 @@ const menuRouter: Array<RouteObject> = [
   }
 ];
 
-export default menuRouter;
+export default hookRouter;
