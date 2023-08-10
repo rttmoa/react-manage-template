@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.1",
 	"scripts": {
+		"start": "vite",
 		"dev": "vite",
 		"serve": "vite",
 		"build:dev": "tsc && vite build --mode development",
