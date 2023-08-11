@@ -1,9 +1,7 @@
 import React from 'react';
 import { Select } from 'antd'
 const Option = Select.Option;
-
-
-
+ 
 export default {
     formateDate(time){
         if(!time)return '';

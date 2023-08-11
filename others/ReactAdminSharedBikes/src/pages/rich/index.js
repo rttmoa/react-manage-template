@@ -3,6 +3,9 @@ import {Button,Card,Modal} from 'antd'
 import {Editor} from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import draftjs from 'draftjs-to-html'
+
+
+/** #### TODO: 富文本编辑器  */
 export default class RichText extends React.Component{
 
     state = {
@@ -60,7 +63,7 @@ export default class RichText extends React.Component{
                     }}
                     footer={null}
                 >
-                    {draftjs(this.state.editorContent)}
+                    {draftjs(editorContent)}
                 </Modal>
             </div>
         );

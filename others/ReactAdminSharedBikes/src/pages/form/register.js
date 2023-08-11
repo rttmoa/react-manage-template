@@ -5,6 +5,8 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
 const TextArea = Input.TextArea;
+
+/** #### TODO: 表单注册： 用户名、密码、性别、年龄、生日、头像  */
 class FormRegister extends React.Component{
 
     state={

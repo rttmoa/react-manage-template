@@ -31,6 +31,19 @@ const articlesRouter: Array<RouteObject> = [
           key: "bike"
         }
       },
+			// 添加 夕颜后台
+			{	
+        path: "/articles/xy",
+        element: lazyLoad(React.lazy(() => import("@/views/articles/Xy"))),
+        meta: {
+          requiresAuth: true,
+          title: "xy",
+          key: "xy"
+        }
+      },
+
+
+
     ]
   }
 ];
