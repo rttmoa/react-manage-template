@@ -52,7 +52,7 @@ export default class Gallery extends React.Component<any, any> {
 				);
 			});
 		}); 
-		console.log(viewerArr);
+		// console.log(viewerArr);
 
 
 

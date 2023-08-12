@@ -18,11 +18,7 @@ import Line from "../Charts/line";
 import Pie from "../Charts/pie";
 import {getUser} from '../../utils/storaUtil';
 import Error from "../Error";
-
-
-
-
-
+ 
 class Admin extends Component {
 
     state = {
@@ -42,10 +38,7 @@ class Admin extends Component {
     componentWillUnmount() {
         PubSub.unsubscribe(this.token);
     }
-
-
-
-
+ 
     render() {
 
         // console.log(getUser()) // 对象格式的数据

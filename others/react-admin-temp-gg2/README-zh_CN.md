@@ -1,14 +1,8 @@
-## 项目运行   `npm start && npm start`
-
 ## 项目 gif
 
 ## 项目技术栈
 
-    **前端使用react全家桶,后端使用koa2+MongoDB**
-
-## 功能
-
-接入百度地图获取城市天气
+    **前端使用react全家桶,后端使用 koa2+mongodb**
 
 ## 注意内容
 
@@ -16,10 +10,6 @@
 
 **server Koa2中 使用 new Promise 回调 数据库查询的结果   reslove() 回调给调用者 封装db.js**
 
-**koajs模块封装 + 可复用**
+**koajs模块封装 + 可复用** 
 
-client中代码结构基本与夕颜后台相似
-
-#### github地址
-
-https://github.com/Tolerating/react-back
+**[github](https://github.com/Tolerating/react-back)**

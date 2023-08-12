@@ -1,19 +1,16 @@
-import React, {Component} from 'react';
-import {Layout} from 'antd';
+import React, { Component } from "react";
+import { Layout } from "antd";
 
-const {Footer} = Layout;
-
-
-
-
-
+const { Footer } = Layout;
 
 class FooterNav extends Component {
-    render() {
-        return (
-            <Footer style={{textAlign: 'center'}}>Ant Design ©8102 Created by Ant UED</Footer>
-        );
-    }
+  render() {
+    return (
+      <Footer style={{ textAlign: "center" }}>
+        Ant Design ©8102 Created by Ant UED
+      </Footer>
+    );
+  }
 }
 
 export default FooterNav;

@@ -19,6 +19,7 @@
 		"commit": "git pull && git add -A && git-cz && git push"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^5.2.5",
 		"antd": "^4.22.2",
 		"axios": "^0.27.2",
 		"clipboard": "^2.0.11",

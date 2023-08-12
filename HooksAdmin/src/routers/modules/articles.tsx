@@ -41,6 +41,26 @@ const articlesRouter: Array<RouteObject> = [
           key: "xy"
         }
       },
+			// 添加 react-umi-dva-admin
+			{	
+				path: "/articles/UmiAdmin",
+				element: lazyLoad(React.lazy(() => import("@/views/articles/UmiAdmin"))),
+				meta: {
+					requiresAuth: true,
+					title: "UmiAdmin",
+					key: "UmiAdmin"
+				}
+			},
+			// 添加 react-admin-auth
+			{	
+				path: "/articles/DzAdmin",
+				element: lazyLoad(React.lazy(() => import("@/views/articles/DzAdmin"))),
+				meta: {
+					requiresAuth: true,
+					title: "DzAdmin",
+					key: "DzAdmin"
+				}
+			},
 
 
 
