@@ -60,16 +60,18 @@ const List: React.FC = () => {
 					<Title level={3}>项目介绍</Title>
 					<Divider orientation="left">技术</Divider>
 					<Paragraph className="readme">
-						<Title level={5}><CrownTwoTone />  React + Nodejs</Title>
-						<Title level={5}><CrownTwoTone />  Module：js-cookie、i18next、react-i18next、pubsub-js</Title>
+						<Title level={5}><CrownTwoTone />  React + Mock</Title>
+						{/* <Title level={5}><CrownTwoTone />  Module：js-cookie、i18next、react-i18next、pubsub-js</Title> */}
 					</Paragraph>
 					<Divider orientation="left">实现功能</Divider>
 					<Paragraph className="readme">
-						<Title level={5}><ToolTwoTone />  商品分类管理；一级分类、二级分类</Title> 
-						<Title level={5}><ToolTwoTone />  商品管理；商品的增删改查</Title> 
-						<Title level={5}><ToolTwoTone />  用户管理；用户的增删改查</Title>
-						<Title level={5}><ToolTwoTone />  角色管理/权限管理；角色查看目录的范围</Title>
-						<Title level={5}><ToolTwoTone />  Echarts图形图表；柱状图、折线图、饼图</Title>
+						<Title level={5}><ToolTwoTone />  Main：路由处理 + 权限管理 + 基础组件使用</Title> 
+						<Title level={5}><ToolTwoTone />  router的处理：处理面包屑、处理侧边栏、处理TabViews</Title> 
+						<Title level={5}><ToolTwoTone />  人员权限： admin、animate、editor [role]</Title>
+						<Title level={5}><ToolTwoTone />  项目布局：Layout、SiderBar、Hamburger、BreadCrumbs、TabViews</Title>
+						<Title level={5}><ToolTwoTone />  侧边栏：react基础知识点、组件、react动画、CSSModule、编辑器、图表、ErrorPage</Title>
+						<Title level={5}><ToolTwoTone />  其他：直接渲染HTML使用{" {__dangerHTML: HTML}"}</Title>
+						<Title level={5}><ToolTwoTone />  其他：webpack的配置 在/build目录下</Title>
 					</Paragraph> 
 				</div>
 
@@ -78,7 +80,7 @@ const List: React.FC = () => {
 				<div className="content">
 					<Title level={3}>图片画廊</Title>
 					<Divider orientation="left">功能业务</Divider>
-					<Gallery url={"/src/resource/Xy/"}></Gallery>
+					<Gallery url={"/src/resource/DzAdmin/"}></Gallery>
 				</div>
 
 

@@ -46,12 +46,11 @@ module.exports = {
     let newData = database
     for (let key in other) {
       if ({}.hasOwnProperty.call(other, key)) {
-        newData = newData.filter(item => {
+        newData = newData.filter((item) => {
           if ({}.hasOwnProperty.call(item, key)) {
             return (
-              String(item[key])
-                .trim()
-                .indexOf(decodeURI(other[key]).trim()) > -1
+              String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) >
+              -1
             )
           }
           return true

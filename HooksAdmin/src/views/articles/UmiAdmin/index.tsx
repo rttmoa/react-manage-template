@@ -60,16 +60,33 @@ const List: React.FC = () => {
 					<Title level={3}>项目介绍</Title>
 					<Divider orientation="left">技术</Divider>
 					<Paragraph className="readme">
-						<Title level={5}><CrownTwoTone />  React + Nodejs</Title>
-						<Title level={5}><CrownTwoTone />  Module：js-cookie、i18next、react-i18next、pubsub-js</Title>
+						<Title level={5}><CrownTwoTone />  React + Mock</Title>
+						{/* <Title level={5}><CrownTwoTone />  Module：js-cookie、i18next、react-i18next、pubsub-js</Title> */}
 					</Paragraph>
 					<Divider orientation="left">实现功能</Divider>
 					<Paragraph className="readme">
-						<Title level={5}><ToolTwoTone />  商品分类管理；一级分类、二级分类</Title> 
-						<Title level={5}><ToolTwoTone />  商品管理；商品的增删改查</Title> 
+						<Title level={5}><ToolTwoTone />  首页布局：侧边+头部+内容+底部</Title> 
+						<Title level={5}><ToolTwoTone />  权限管理：普通用户和管理员看到的界面不同</Title> 
 						<Title level={5}><ToolTwoTone />  用户管理；用户的增删改查</Title>
-						<Title level={5}><ToolTwoTone />  角色管理/权限管理；角色查看目录的范围</Title>
-						<Title level={5}><ToolTwoTone />  Echarts图形图表；柱状图、折线图、饼图</Title>
+						<Title level={5}><ToolTwoTone />  文章管理：文章发布状态；未发布，已发布</Title>
+						<Title level={5}><ToolTwoTone />  Request：标签；get，post，patch，delete 可添加参数，发送请求获取数据</Title>
+						<Title level={5}><ToolTwoTone />  文本域：Editor编辑器转换HTML、MarkDown、JSON格式数据</Title>
+						<Title level={5}><ToolTwoTone />  Echarts：下面图片展示 Echarts、HighCharts、Recharts三种npm包</Title>
+					</Paragraph> 
+					<Divider orientation="left">其他功能</Divider>
+					<Paragraph className="readme">
+						<ul>
+							<li>路由处理：界面参数会添加到地址栏中去</li>
+							<li>使用dvajs状态管理</li>
+							<li>使用umi需要配置文件 umirc.js</li>
+							<li>使用umi中ES7语法： @connect((loading, dispathc)) {"=>"} ()</li>
+							<li>Components封装了一些公共组件</li>
+							<li>Layout布局的封装格式</li>
+							<li>page各界面下组件的写法，代码格式，书写规范</li>
+							<li>utils下封装了一些工具类</li> 
+							<li>头部：使用国际化locales中英葡、通知组件、用户信息</li> 
+							<li>侧边：处理侧边栏菜单、切换侧边栏主题颜色</li> 
+						</ul>
 					</Paragraph> 
 				</div>
 
@@ -78,7 +95,7 @@ const List: React.FC = () => {
 				<div className="content">
 					<Title level={3}>图片画廊</Title>
 					<Divider orientation="left">功能业务</Divider>
-					<Gallery url={"/src/resource/Xy/"}></Gallery>
+					<Gallery url={"/src/resource/UmiAdmin/"}></Gallery>
 				</div>
 
 

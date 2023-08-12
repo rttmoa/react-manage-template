@@ -12,10 +12,6 @@ const { convertLegacyToken } = require('@ant-design/compatible/lib')
 const mapToken = theme.defaultAlgorithm(theme.defaultSeed)
 const v4Token = convertLegacyToken(mapToken)
 
-
-
-
-
 // how to speed compile: https://umijs.org/guide/boost-compile-speed
 export default {
   // IMPORTANT! change next line to yours or delete. And hide in dev
@@ -53,7 +49,7 @@ export default {
       },
       'ant-design-icons',
     ],
-    ['macros']
+    ['macros'],
   ],
   hash: true,
   ignoreMomentLocale: true,
@@ -74,72 +70,75 @@ export default {
   // TODO: https://ant.design/docs/react/customize-theme
   theme: {
     ...v4Token,
-    ...lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8'))
+    ...lessToJs(
+      fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
+    ),
   },
   webpack5: {},
   mfsu: {},
   chainWebpack: function (config, { webpack }) {
-    !isDevelopment && config.merge({
-      optimization: {
-        minimize: false,
-        splitChunks: {
-          chunks: 'all',
-          minSize: 30000,
-          minChunks: 3,
-          automaticNameDelimiter: '.',
-          cacheGroups: {
-            react: {
-              name: 'react',
-              priority: 20,
-              test: /[\\/]node_modules[\\/](react|react-dom|react-dom-router)[\\/]/,
-            },
-            antd: {
-              name: 'antd',
-              priority: 20,
-              test: /[\\/]node_modules[\\/](antd|@ant-design\/icons)[\\/]/,
-            },
-            'echarts-gl': {
-              name: 'echarts-gl',
-              priority: 30,
-              test: /[\\/]node_modules[\\/]echarts-gl[\\/]/,
-            },
-            zrender: {
-              name: 'zrender',
-              priority: 30,
-              test: /[\\/]node_modules[\\/]zrender[\\/]/,
-            },
-            echarts: {
-              name: 'echarts',
-              priority: 20,
-              test: /[\\/]node_modules[\\/](echarts|echarts-for-react|echarts-liquidfill)[\\/]/,
-            },
-            highcharts: {
-              name: 'highcharts',
-              priority: 20,
-              test: /[\\/]node_modules[\\/]highcharts[\\/]/,
-            },
-            recharts: {
-              name: 'recharts',
-              priority: 20,
-              test: /[\\/]node_modules[\\/]recharts[\\/]/,
-            },
-            draftjs: {
-              name: 'draftjs',
-              priority: 30,
-              test: /[\\/]node_modules[\\/](draft-js|react-draft-wysiwyg|draftjs-to-html|draftjs-to-markdown)[\\/]/,
-            },
-            async: {
-              chunks: 'async',
-              minChunks: 2,
-              name: 'async',
-              maxInitialRequests: 1,
-              minSize: 0,
-              priority: 5,
-              reuseExistingChunk: true,
+    !isDevelopment &&
+      config.merge({
+        optimization: {
+          minimize: false,
+          splitChunks: {
+            chunks: 'all',
+            minSize: 30000,
+            minChunks: 3,
+            automaticNameDelimiter: '.',
+            cacheGroups: {
+              react: {
+                name: 'react',
+                priority: 20,
+                test: /[\\/]node_modules[\\/](react|react-dom|react-dom-router)[\\/]/,
+              },
+              antd: {
+                name: 'antd',
+                priority: 20,
+                test: /[\\/]node_modules[\\/](antd|@ant-design\/icons)[\\/]/,
+              },
+              'echarts-gl': {
+                name: 'echarts-gl',
+                priority: 30,
+                test: /[\\/]node_modules[\\/]echarts-gl[\\/]/,
+              },
+              zrender: {
+                name: 'zrender',
+                priority: 30,
+                test: /[\\/]node_modules[\\/]zrender[\\/]/,
+              },
+              echarts: {
+                name: 'echarts',
+                priority: 20,
+                test: /[\\/]node_modules[\\/](echarts|echarts-for-react|echarts-liquidfill)[\\/]/,
+              },
+              highcharts: {
+                name: 'highcharts',
+                priority: 20,
+                test: /[\\/]node_modules[\\/]highcharts[\\/]/,
+              },
+              recharts: {
+                name: 'recharts',
+                priority: 20,
+                test: /[\\/]node_modules[\\/]recharts[\\/]/,
+              },
+              draftjs: {
+                name: 'draftjs',
+                priority: 30,
+                test: /[\\/]node_modules[\\/](draft-js|react-draft-wysiwyg|draftjs-to-html|draftjs-to-markdown)[\\/]/,
+              },
+              async: {
+                chunks: 'async',
+                minChunks: 2,
+                name: 'async',
+                maxInitialRequests: 1,
+                minSize: 0,
+                priority: 5,
+                reuseExistingChunk: true,
+              },
             },
           },
         },
-      },
-    })
+      })
   },
 }

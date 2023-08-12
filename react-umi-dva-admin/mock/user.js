@@ -94,7 +94,7 @@ const NOTFOUND = {
 module.exports = {
   [`POST ${ApiPrefix}/user/login`](req, res) {
     const { username, password } = req.body
-    const user = adminUsers.filter(item => item.username === username)
+    const user = adminUsers.filter((item) => item.username === username)
 
     if (user.length > 0 && user[0].password === password) {
       const now = new Date()
@@ -132,7 +132,7 @@ module.exports = {
       response.success = token.deadline > new Date().getTime()
     }
     if (response.success) {
-      const userItem = adminUsers.find(_ => _.id === token.id)
+      const userItem = adminUsers.find((_) => _.id === token.id)
       if (userItem) {
         const { password, ...other } = userItem
         user = other
@@ -151,10 +151,10 @@ module.exports = {
     let newData = database
     for (let key in other) {
       if ({}.hasOwnProperty.call(other, key)) {
-        newData = newData.filter(item => {
+        newData = newData.filter((item) => {
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
-              return other[key].every(iitem => item[key].indexOf(iitem) > -1)
+              return other[key].every((iitem) => item[key].indexOf(iitem) > -1)
             } else if (key === 'createTime') {
               const start = new Date(other[key][0]).getTime()
               const end = new Date(other[key][1]).getTime()
@@ -166,9 +166,8 @@ module.exports = {
               return true
             }
             return (
-              String(item[key])
-                .trim()
-                .indexOf(decodeURI(other[key]).trim()) > -1
+              String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) >
+              -1
             )
           }
           return true
@@ -183,8 +182,8 @@ module.exports = {
   },
 
   [`POST ${ApiPrefix}/users/delete`](req, res) {
-    const { ids=[] } = req.body
-    database = database.filter(item => !ids.some(_ => _ === item.id))
+    const { ids = [] } = req.body
+    database = database.filter((item) => !ids.some((_) => _ === item.id))
     res.status(204).end()
   },
 
@@ -221,7 +220,7 @@ module.exports = {
     const { id } = req.params
     const data = queryArray(database, id, 'id')
     if (data) {
-      database = database.filter(item => item.id !== id)
+      database = database.filter((item) => item.id !== id)
       res.status(204).end()
     } else {
       res.status(200).json(NOTFOUND)
@@ -233,7 +232,7 @@ module.exports = {
     const editItem = req.body
     let isExist = false
 
-    database = database.map(item => {
+    database = database.map((item) => {
       if (item.id === id) {
         isExist = true
         return Object.assign({}, item, editItem)

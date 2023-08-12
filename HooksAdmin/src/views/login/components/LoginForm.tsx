@@ -50,12 +50,12 @@ const LoginForm = (props: any) => {
 			autoComplete="off"
 		>
 
-			<Form.Item name="username" rules={[{ required: true, message: "请输入用户名" }]}>
+			<Form.Item name="username" initialValue={"admin"} rules={[{ required: true, message: "请输入用户名" }]}>
 				<Input placeholder="用户名：admin / user" prefix={<UserOutlined />} />
 			</Form.Item>
 
-			<Form.Item name="password" rules={[{ required: true, message: "请输入密码" }]}>
-				<Input.Password autoComplete="new-password" placeholder="密码：123456" prefix={<LockOutlined />} />
+			<Form.Item name="password" initialValue={"admin123456"} rules={[{ required: true, message: "请输入密码" }]}>
+				<Input.Password autoComplete="new-password" placeholder="密码：admin123456" prefix={<LockOutlined />} />
 			</Form.Item>
 
 			<Form.Item className="login-btn">
