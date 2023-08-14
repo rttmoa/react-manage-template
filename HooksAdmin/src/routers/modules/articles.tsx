@@ -61,7 +61,16 @@ const articlesRouter: Array<RouteObject> = [
 					key: "DzAdmin"
 				}
 			},
-
+			// 添加 WcsControl
+			{	
+				path: "/articles/WcsControl",
+				element: lazyLoad(React.lazy(() => import("@/views/articles/WcsControl"))),
+				meta: {
+					requiresAuth: true,
+					title: "WcsControl",
+					key: "WcsControl"
+				}
+			},
 
 
     ]
