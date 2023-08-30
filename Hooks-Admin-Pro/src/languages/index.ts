@@ -4,6 +4,7 @@ import zhCnTrans from "./modules/zh";
 import { getBrowserLang } from "@/utils";
 import { initReactI18next } from "react-i18next";
 
+// .TODO: 国际化
 i18n.use(initReactI18next).init({
   resources: {
     en: {

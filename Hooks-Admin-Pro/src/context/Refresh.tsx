@@ -21,6 +21,6 @@ export const RefreshProvider: React.FC<{ children: React.ReactNode }> = ({ child
     outletShow,
     updateOutletShow
   };
-
+  // console.log(children);
   return <RefreshContext.Provider value={contextValue}>{children}</RefreshContext.Provider>;
 };

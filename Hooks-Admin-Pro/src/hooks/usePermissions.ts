@@ -5,7 +5,7 @@ import { setAuthButtonList, setAuthMenuList } from "@/redux/modules/auth";
 import { getAuthMenuListApi, getAuthButtonListApi } from "@/api/modules/login";
 
 /**
- * @description  Use permissions hook
+ * @description  Use permissions hook （用户权限Hooks）
  */
 const usePermissions = () => {
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ const usePermissions = () => {
   const initPermissions = async (token: string) => {
     if (token) {
       try {
-        // Get button list
+        // Get button list （获取用户的按钮权限）
         const { data: buttonList } = await getAuthButtonListApi();
         dispatch(setAuthButtonList(buttonList));
 
-        // Get menu list
+        // Get menu list （获取用户的菜单权限）
         const { data: menuList } = await getAuthMenuListApi();
         dispatch(setAuthMenuList(menuList));
 

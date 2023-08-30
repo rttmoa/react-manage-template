@@ -7,5 +7,6 @@ import http from "@/api";
  */
 // Get user list
 export const getUserList = (params: ReqPage) => {
+  // console.log(http.post<ResPage<UserList>>(PORT1 + `/user/list`, params));
   return http.post<ResPage<UserList>>(PORT1 + `/user/list`, params);
 };

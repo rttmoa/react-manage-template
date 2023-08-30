@@ -56,6 +56,7 @@ export const staticRouter: RouteObjectType[] = [
 // Wrap each element with a higher-order component
 // 用高阶组件包装每个元素
 export const wrappedStaticRouter = staticRouter.map(route => {
+  // console.log(route);
   return {
     ...route,
     element: <RouterGuard>{route.element}</RouterGuard>,

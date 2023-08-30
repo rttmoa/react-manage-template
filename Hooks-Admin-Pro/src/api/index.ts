@@ -4,9 +4,9 @@ import { LOGIN_URL } from "@/config";
 import { ResultData } from "@/api/interface";
 import { ResultEnum } from "@/enums/httpEnum";
 import { message } from "@/hooks/useMessage";
-import { setToken } from "@/redux/modules/user";
-import { checkStatus } from "./helper/checkStatus";
-import { store } from "@/redux";
+import { setToken } from "@/redux/modules/user"; // 用户：Token
+import { checkStatus } from "./helper/checkStatus"; // 状态码：checkStatus
+import { store } from "@/redux"; // redux：Store
 
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   loading?: boolean;
@@ -15,12 +15,12 @@ export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 const config = {
   // The default address request address, which can be modified in the .env.** file
   baseURL: import.meta.env.VITE_API_URL as string,
-  // timeout
   timeout: ResultEnum.TIMEOUT as number,
-  // Credentials are allowed to be carried across domains
+  // Credentials are allowed to be carried across domains （允许跨域携带凭证）
   withCredentials: false
 };
 
+/** #### TODO: 封装 @Http  */
 class RequestHttp {
   service: AxiosInstance;
   public constructor(config: AxiosRequestConfig) {

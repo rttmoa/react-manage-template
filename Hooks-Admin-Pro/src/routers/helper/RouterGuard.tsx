@@ -5,12 +5,12 @@ import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from "@/config";
 
 /**
- * @description Route guard component
+ * @description Route guard component （路由守卫组件）
  */
 interface RouterGuardProps {
   children: React.ReactNode;
 }
-
+/** #### TODO: （路由守卫组件） */
 const RouterGuard: React.FC<RouterGuardProps> = props => {
   const loader = useLoaderData();
   const navigate = useNavigate();

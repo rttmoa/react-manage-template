@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { theme, ConfigProvider, App as AppProvider } from "antd";
-import { RootState, useSelector, useDispatch } from "@/redux";
-import { setGlobalState } from "@/redux/modules/global";
-import { LanguageType } from "@/redux/interface";
+import { RootState, useSelector, useDispatch } from "@/redux"; // redux
+import { setGlobalState } from "@/redux/modules/global"; // 设置Global属性 redux
+import { LanguageType } from "@/redux/interface"; // 语言类型 枚举 enum
 import { shallowEqual } from "react-redux";
-import { getBrowserLang } from "@/utils";
+import { getBrowserLang } from "@/utils"; // 获取浏览器默认语言
 import { I18nextProvider } from "react-i18next";
 import { RefreshProvider } from "@/context/Refresh";
-import RouterProvider from "@/routers";
-import i18n from "@/languages/index";
+import RouterProvider from "@/routers"; // 路由 router
+import i18n from "@/languages/index"; // 国际化 i18n
 import enUS from "antd/locale/en_US";
 import zhCN from "antd/locale/zh_CN";
-import dayjs from "dayjs";
+import dayjs from "dayjs"; // dayjs
 import "dayjs/locale/zh-cn";
 
 const App: React.FC = () => {

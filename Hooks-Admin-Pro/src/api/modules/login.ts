@@ -10,6 +10,7 @@ import authButtonList from "@/assets/json/authButtonList.json";
  */
 // User login
 export const loginApi = (params: ReqLogin) => {
+  // console.log(http.post<ResLogin>(PORT1 + `/login`, params).then(res => console.log(res)));
   return http.post<ResLogin>(PORT1 + `/login`, params);
   // return http.post<ResLogin>(PORT1 + `/login`, params, { loading: false });
   // return http.post<ResLogin>(PORT1 + `/login`, {}, { params });
@@ -20,13 +21,13 @@ export const loginApi = (params: ReqLogin) => {
 // Get menu list
 export const getAuthMenuListApi = () => {
   return http.get<AuthState["authMenuList"]>(PORT1 + `/menu/list`);
-  return authMenuList;
+  return authMenuList; // JSON中的菜单列表
 };
 
 // Get button permissions
 export const getAuthButtonListApi = () => {
   return http.get<AuthState["authButtonList"]>(PORT1 + `/auth/buttons`);
-  return authButtonList;
+  return authButtonList; // JSON中的按钮权限
 };
 
 // User logout

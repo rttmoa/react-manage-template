@@ -92,6 +92,7 @@
       </div>
     </div>
     <script>
+      // TODO: 读取本地redux持久化数据内容
       const reduxState = JSON.parse(window.localStorage.getItem("persist:redux-state"));
       if (reduxState) {
         const globalState = JSON.parse(reduxState.global);

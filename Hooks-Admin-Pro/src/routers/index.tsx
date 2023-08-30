@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RouterProvider as Router, RouteObject, createHashRouter, createBrowserRouter } from "react-router-dom";
 import { convertToDynamicRouterFormat } from "./helper/ConvertRouter";
-import { wrappedStaticRouter } from "./modules/staticRouter";
+import { wrappedStaticRouter } from "./modules/staticRouter"; // 静态 Router
 import { RootState, useSelector } from "@/redux";
 import { RouteObjectType } from "./interface";
 import useTheme from "@/hooks/useTheme";
@@ -22,8 +22,8 @@ const RouterProvider: React.FC = () => {
 
   const { initPermissions } = usePermissions();
 
-  const token = useSelector((state: RootState) => state.user.token);
-  const authMenuList = useSelector((state: RootState) => state.auth.authMenuList);
+  const token = useSelector((state: RootState) => state.user.token); // 获取用户 token
+  const authMenuList = useSelector((state: RootState) => state.auth.authMenuList); // 获取侧边栏菜单
 
   const [routerList, setRouterList] = useState<RouteObjectType[]>(wrappedStaticRouter);
 
