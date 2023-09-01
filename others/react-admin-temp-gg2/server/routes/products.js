@@ -1,8 +1,8 @@
-const router = require('koa-router')();
-const mongoose = require('mongoose');
-const db = require('../utils/db');
-const ProductsSchema = require('../Models/ProductModel');
-router.prefix('/manage');
+const router = require('koa-router')()
+const mongoose = require('mongoose')
+const db = require('../utils/db')
+const ProductsSchema = require('../Models/ProductModel')
+router.prefix('/manage')
 
 
 
@@ -12,34 +12,34 @@ router.prefix('/manage');
 |pageNum    |Y       |Number   |页码
 |pageSize   |Y       |Number   |每页条目数
 */
-router.get('/product/list',async (ctx,next)=>{
-    let count = await db.count({tableName:'products',conditions:{},schema:ProductsSchema}).then(val=>{
-        return val;
-    }).catch(err=>{
+router.get('/product/list', async (ctx, next) => {
+    let count = await db.count({ tableName: 'products', conditions: {}, schema: ProductsSchema }).then(val => {
+        return val
+    }).catch(err => {
         return ctx.body = {
             "status": 1,
-            "msg":err.message
+            "msg": err.message
         }
-    });
-    let {pageNum,pageSize} = ctx.query;
-    await db.find({tableName:'products',conditions:{},options:{skip:(pageNum-1)*pageSize,limit:Number(pageSize)},schema:ProductsSchema}).then(val=>{
+    })
+    let { pageNum, pageSize } = ctx.query
+    await db.find({ tableName: 'products', conditions: {}, options: { skip: (pageNum - 1) * pageSize, limit: Number(pageSize) }, schema: ProductsSchema }).then(val => {
         return ctx.body = {
             "status": 0,
             "data": {
                 "pageNum": pageNum,
                 "total": count,
-                "pages": Math.ceil(count/pageSize),
+                "pages": Math.ceil(count / pageSize),
                 "pageSize": pageSize,
                 "list": val
             }
         }
-    }).catch(err=>{
+    }).catch(err => {
         return ctx.body = {
             "status": 1,
-            "msg":err.message
+            "msg": err.message
         }
-    });
-});
+    })
+})
 
 /* 
 根据ID/Name搜索产品分页列表
@@ -53,41 +53,41 @@ $regex表示一个正则表达式，匹配了key
 $or为模糊查询  格式:$or:[{name:{$regex: String(key),$options: '$i'}},{}....]
 
 */
-router.get('/product/search',async (ctx,next)=>{
-    let {pageNum,pageSize,productName = null,productDesc = null} = ctx.query;
-    let condition = {};
+router.get('/product/search', async (ctx, next) => {
+    let { pageNum, pageSize, productName = null, productDesc = null } = ctx.query
+    let condition = {}
     // let query = new RegExp(searchName,'i');
-    if(productName){
-        condition = {$or: [{"name": {$regex: String(productName)}}]};
-    }else{
-        condition = {$or: [{"desc": {$regex: String(productDesc)}}]};
+    if (productName) {
+        condition = { $or: [{ "name": { $regex: String(productName) } }] }
+    } else {
+        condition = { $or: [{ "desc": { $regex: String(productDesc) } }] }
     }
-    let count = await db.count({tableName:'products',conditions:condition,schema:ProductsSchema}).then(val=>{
-        return val;
-    }).catch(err=>{
+    let count = await db.count({ tableName: 'products', conditions: condition, schema: ProductsSchema }).then(val => {
+        return val
+    }).catch(err => {
         return ctx.body = {
             "status": 1,
-            "msg":err.message
+            "msg": err.message
         }
-    });
-    await db.find({tableName:'products',conditions:condition,options:{skip:(pageNum-1)*pageSize,limit:Number(pageSize)},schema:ProductsSchema}).then(val=>{
-        return ctx.body={
+    })
+    await db.find({ tableName: 'products', conditions: condition, options: { skip: (pageNum - 1) * pageSize, limit: Number(pageSize) }, schema: ProductsSchema }).then(val => {
+        return ctx.body = {
             "status": 0,
             "data": {
                 "pageNum": pageNum,
                 "total": count,
-                "pages": Math.ceil(count/pageSize),
+                "pages": Math.ceil(count / pageSize),
                 "pageSize": pageSize,
                 "list": val
             }
         }
-    }).catch(err=>{
+    }).catch(err => {
         return ctx.body = {
             "status": 1,
-            "msg":err.message
+            "msg": err.message
         }
-    });
-});
+    })
+})
 
 /* 
 添加商品
@@ -100,21 +100,21 @@ router.get('/product/search',async (ctx,next)=>{
 |detail        |N       |string   |商品详情
 |imgs          |N       |array   |商品图片名数组
 */
-router.post('/product/add',async (ctx,next)=>{
+router.post('/product/add', async (ctx, next) => {
     // console.log(ctx.request.body);
-    let {name,desc,price,imgs,detail,pCategoryId,categoryId} = ctx.request.body;
-    await db.insert({tableName:'products',doc:{name,desc,price,imgs,detail,pCategoryId,categoryId,status:1},schema:ProductsSchema}).then(val=>{
+    let { name, desc, price, imgs, detail, pCategoryId, categoryId } = ctx.request.body
+    await db.insert({ tableName: 'products', doc: { name, desc, price, imgs, detail, pCategoryId, categoryId, status: 1 }, schema: ProductsSchema }).then(val => {
         return ctx.body = {
             "status": 0,
-            "data":val
+            "data": val
         }
-    }).catch(err=>{
+    }).catch(err => {
         return ctx.body = {
             "status": 1,
-            "msg":err.message
+            "msg": err.message
         }
-    });
-});
+    })
+})
 
 /* 
 更新商品
@@ -128,18 +128,18 @@ router.post('/product/add',async (ctx,next)=>{
 |detail        |N       |string   |商品详情
 |imgs          |N       |array   |商品图片名数组
 */
-router.post('/product/update',async (ctx,next)=>{
-    let {_id,name,desc,price,imgs,detail,pCategoryId,categoryId} = ctx.request.body;
-    await db.update({tableName:'products',conditions:{_id},doc:{$set:{name,desc,price,imgs,detail,pCategoryId,categoryId}},schema:ProductsSchema}).then(val=>{
-        return ctx.body={
+router.post('/product/update', async (ctx, next) => {
+    let { _id, name, desc, price, imgs, detail, pCategoryId, categoryId } = ctx.request.body
+    await db.update({ tableName: 'products', conditions: { _id }, doc: { $set: { name, desc, price, imgs, detail, pCategoryId, categoryId } }, schema: ProductsSchema }).then(val => {
+        return ctx.body = {
             "status": 0
         }
-    }).catch(err=>{
-        return ctx.body={
+    }).catch(err => {
+        return ctx.body = {
             "status": 1
         }
-    });
-});
+    })
+})
 
 /* 
 对商品进行上架/下架处理
@@ -147,16 +147,16 @@ router.post('/product/update',async (ctx,next)=>{
 |productId    |Y       |string   |商品名称
 |status       |Y       |number   |商品状态值
 */
-router.post('/product/updateStatus',async (ctx,next)=>{
-    let {productId,status} = ctx.request.body;
-    await db.update({tableName:'products',conditions:{_id:productId},doc:{$set:{status}},schema:ProductsSchema}).then(val=>{
-        return ctx.body={
+router.post('/product/updateStatus', async (ctx, next) => {
+    let { productId, status } = ctx.request.body
+    await db.update({ tableName: 'products', conditions: { _id: productId }, doc: { $set: { status } }, schema: ProductsSchema }).then(val => {
+        return ctx.body = {
             "status": 0
         }
-    }).catch(err=>{
-        return ctx.body={
+    }).catch(err => {
+        return ctx.body = {
             "status": 1
         }
-    });
-});
+    })
+})
 module.exports = router

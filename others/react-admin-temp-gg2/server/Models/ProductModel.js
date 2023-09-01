@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const productSchema = new mongoose.Schema({
   status: { type: Number, required: true },
@@ -9,5 +9,5 @@ const productSchema = new mongoose.Schema({
   pCategoryId: String,
   categoryId: String,
   detail: String,
-});
-module.exports = productSchema;
+})
+module.exports = productSchema

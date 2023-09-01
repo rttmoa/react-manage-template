@@ -3,6 +3,6 @@
 let config = {
   dbUrl: "mongodb://127.0.0.1:27017/",
   dbName: "react_manage",
-};
+}
 
-module.exports = config;
+module.exports = config

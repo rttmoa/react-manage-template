@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const roleSchema = new mongoose.Schema({
   name: { type: String, required: true }, //角色名称
@@ -6,6 +6,6 @@ const roleSchema = new mongoose.Schema({
   auth_name: String, //授权人
   create_time: { type: Number, default: Date.now }, //创建时间
   menus: { type: Array, required: true },
-});
+})
 
-module.exports = roleSchema;
+module.exports = roleSchema
