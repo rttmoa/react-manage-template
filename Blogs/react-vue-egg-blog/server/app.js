@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line strict
 module.exports = app => {
+
+
   app.once('server', server => {
     // websocket
     console.dir('(===================================================服务已开启====================================================================)');
