@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 // Module dependencies.
+// TODO: 注册 app.js
 var app = require('../app')
 var debug = require('debug')('generator:server')
 var http = require('http')
+// TODO: 服务器端、跨域、数据库配置
 let systemConfig = require('../../system.config')
 
+
+// TODO: 创建Http服务、运行项目
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || systemConfig.serverPort)
 app.set('port', port)
-
 // Create HTTP server.
 var server = http.createServer(app)
-
 // Listen on provided port, on all network interfaces.
 server.listen(port)
 server.on('error', onError)
