@@ -94,23 +94,22 @@ if (app.get('env') === 'development') {
  })();
 */
 
-
 // 统一权限拦截
 app.use(routesAuth)
-app.use('/api/users', users)
+app.use('/api/users', users) // 用户测试
 app.use('/api/orders', orders)
 app.use('/api/storage', storage)
-app.use('/api/customers', customers)
+app.use('/api/customers', customers) // 客户
 app.use('/api/products', products)
 app.use('/api/productStocks', productStocks)
 app.use('/api/resource', resource)
 app.use('/api/settlement', settlement)
 app.use('/api/suppliers', suppliers)
-app.use('/api/customerBills', customerBills)
+app.use('/api/customerBills', customerBills) // 客户账单
 app.use('/api/supplierBills', supplierBills)
-app.use('/api/uploadProductImg', uploadProductImg)
-app.use('/system', system)
-app.use('/api/auth', auth)
+app.use('/api/uploadProductImg', uploadProductImg) // 上传商品图片
+app.use('/system', system) // 管理用户
+app.use('/api/auth', auth) // 鉴权
 
 //确保react-router刷新正确路由
 app.get('*', function (request, response) {

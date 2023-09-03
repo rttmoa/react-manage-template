@@ -6,6 +6,10 @@ let router = express.Router()
 let Product = require('../models/products')
 let constants = require('../constants/constants')
 
+
+
+
+
 router.route('/')
     .get((req, res, next) => {
         let { page, productName } = req.query

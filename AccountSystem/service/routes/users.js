@@ -2,6 +2,7 @@ let express = require('express')
 let router = express.Router()
 
 
+// user.js
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {  // /api/users

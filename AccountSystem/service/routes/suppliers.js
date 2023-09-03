@@ -6,7 +6,10 @@ let router = express.Router()
 let Supplier = require('../models/suppliers')
 let constants = require('../constants/constants')
 
-//查询所有供应商
+
+
+
+// 查询所有供应商
 router.route('/all')
     .get((req, res, next) => {
         let currentUser = req.session.userInfo

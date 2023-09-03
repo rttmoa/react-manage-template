@@ -7,12 +7,19 @@ let utils = require('../utils/utils')
 let constants = require('../constants/constants')
 
 /* GET orders listing. */
+
+// TODO: 客户账单： customerBills.js
+    // 实现功能：
+        // ?
+        // 更新订单支付金额
+        // 更新账单支付金额
+
 router.route('/')
     .get(function (req, res, next) {
-        let { page, customerId } = req.query
-        let limit = constants.PAGE_SIZE
-        let skip = (page - 1) * limit
-        let currentUser = req.session.userInfo
+        let { page, customerId } = req.query;
+        let limit = constants.PAGE_SIZE;
+        let skip = (page - 1) * limit;
+        let currentUser = req.session.userInfo;
         let queryCondition = {
             userId: currentUser['_id']
         }
@@ -109,6 +116,7 @@ router.route('/')
         })
     })
 
+// 更新订单支付金额
 router.route('/doClearOrder')
     .post(function (req, res, next) {
         let currentUser = req.session.userInfo
@@ -127,11 +135,12 @@ router.route('/doClearOrder')
             }
             res.send({
                 success: true,
-                order: order
+                order
             })
         })
     })
 
+// 更新账单支付金额
 router.route('/doClearBill')
     .post(function (req, res, next) {
         let currentUser = req.session.userInfo

@@ -6,10 +6,20 @@ let router = express.Router()
 let Customer = require('../models/customers')
 let constants = require('../constants/constants')
 
-//查询所有客户
+
+
+// TODO: 客户：customer.js
+    // 客户的增删改查接口：get、post、put、delete
+    // 实现功能：
+        // 查询所有客户
+        // 根据条件查询客户：页码、模糊词（查询公司名）
+        // 添加新客户
+        // 根据客户iD 更新用户信息
+        // 根据客户iD 删除客户
+
 router.route('/all')
-    .get((req, res, next) => {
-        let currentUser = req.session.userInfo
+    .get((req, res, next) => {  // 查询所有客户
+        let currentUser = req.session.userInfo;
         let queryCondition = {
             userId: currentUser['_id']
         }
@@ -29,7 +39,7 @@ router.route('/all')
     })
 
 router.route('/')
-    .get((req, res, next) => {
+    .get((req, res, next) => { // 根据条件查询客户：页码、模糊词（查询公司名）
         let { page, customerName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -63,7 +73,7 @@ router.route('/')
                 })
         })
     })
-    .post((req, res, next) => {
+    .post((req, res, next) => { // 添加新客户
         let customer = req.body
         let currentUser = req.session.userInfo
         let newCustomer = new Customer(Object.assign({}, customer, { userId: currentUser['_id'] }))
@@ -83,7 +93,7 @@ router.route('/')
     })
 
 router.route('/:customerId')
-    .put((req, res, next) => {
+    .put((req, res, next) => { // 根据客户iD 更新用户信息
         let customerId = req.params.customerId
         let customer = req.body
         let newCustomer = Object.assign({}, customer)
@@ -103,7 +113,7 @@ router.route('/:customerId')
             }
         })
     })
-    .delete((req, res, next) => {
+    .delete((req, res, next) => { // 根据客户iD 删除客户
         let customerId = req.params.customerId
         Customer.remove({ _id: customerId }, (err) => {
             if (err) {

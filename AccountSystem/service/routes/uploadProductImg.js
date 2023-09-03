@@ -15,6 +15,11 @@ let port = systemConfig.serverPort
 let uploadfoldername = 'uploadfiles'
 let uploadfolderpath = path.join(__dirname, '../../upload', uploadfoldername)
 
+
+// TODO: 上传图片： uploadProductImg.js
+    // 实现功能：
+        // 获取File{}对象 保存到upload下
+
 router.route('/')
     .post(function (req, res, next) {
         // 使用第三方的 formidable 插件初始化一个 form 对象
@@ -22,22 +27,18 @@ router.route('/')
         form.uploadDir = path.join(__dirname, '../', 'tmp')
 
         form.parse(req, function (err, fields, files) {
-            if (err) {
-                return console.log('formidable, form.parse err')
-            }
-
+            if (err) {return console.log('formidable, form.parse err') }
             console.log('formidable, form.parse ok')
             // 显示参数，例如 token
-            console.log('显示上传时的参数 begin')
-            console.log(fields)
-            console.log('显示上传时的参数 end')
+            // console.log("params - fields", fields)
+            // console.log("params - files", files) //  File { }   上传文件对象
 
-            let item
-            // 计算 files 长度
+            let item;
             let length = 0
             for (item in files) {
                 length++
             }
+            // console.log(length)
             if (length === 0) {
                 return console.log('files no data')
             }
@@ -50,16 +51,15 @@ router.route('/')
                 let type = file.type
 
                 // 获取文件名，并根据文件名获取扩展名
-                let filename = file.name
-                let extname = filename.lastIndexOf('.') >= 0
-                    ? filename.slice(filename.lastIndexOf('.') - filename.length)
-                    : ''
+                let filename = file.name;
+                let extname = filename.lastIndexOf('.') >= 0 ? filename.slice(filename.lastIndexOf('.') - filename.length) : ""
                 // 文件名没有扩展名时候，则从文件类型中取扩展名
                 if (extname === '' && type.indexOf('/') >= 0) {
                     extname = '.' + type.split('/')[1]
                 }
+                console.log("文件拓展名：", extname) // .jpg
                 // 将文件名重新赋值为一个随机数（避免文件重名）
-                filename = Math.random().toString().slice(2) + extname
+                filename = Math.random().toString().slice(2) + extname;
 
                 // 构建将要存储的文件的路径
                 let filenewpath = path.join(uploadfolderpath, filename)
@@ -81,12 +81,11 @@ router.route('/')
                         console.log('fs.rename done')
                         // 拼接图片url地址
                         result = 'http://' + server + ':' + port + '/' + uploadfoldername + '/' + filename
+                        // http://localhost:4000/uploadfiles/7584217451595576.jpg
                     }
 
                     // 返回结果
-                    res.writeHead(200, {
-                        'Content-type': 'text/html'
-                    })
+                    res.writeHead(200, { 'Content-type': 'text/html' })
                     res.end(result)
                 }) // fs.rename
             } // for in

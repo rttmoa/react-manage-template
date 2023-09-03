@@ -51,8 +51,7 @@ router
                             Customer.find({}, function (err, customers) {
                                 customers.map(
                                     (customer) =>
-                                    (customerMap[customer["_id"]] =
-                                        customer["customerName"])
+                                    (customerMap[customer["_id"]] = customer["customerName"])
                                 )
                                 orders.map(
                                     (order) =>
@@ -130,33 +129,34 @@ router
         })
     })
 
-router.route("/getOrderNumber").get(function (req, res, next) {
-    let currentUser = req.session.userInfo
-    Order.find({ userId: currentUser["_id"] }, function (error, orders) {
-        if (error) {
-            res.send({
-                success: false,
-                error: error,
-            })
-        } else {
-            let sequence
-            if (orders.length == 0) {
-                sequence = 1
-            } else if (orders.length == 1) {
-                sequence = orders[0].sequence + 1
+router.route("/getOrderNumber")
+    .get(function (req, res, next) {
+        let currentUser = req.session.userInfo
+        Order.find({ userId: currentUser["_id"] }, function (error, orders) {
+            if (error) {
+                res.send({
+                    success: false,
+                    error: error,
+                })
             } else {
-                sequence =
-                    orders.sort((o1, o2) => o2.sequence - o1.sequence)[0]
-                        .sequence + 1
+                let sequence
+                if (orders.length == 0) {
+                    sequence = 1
+                } else if (orders.length == 1) {
+                    sequence = orders[0].sequence + 1
+                } else {
+                    sequence =
+                        orders.sort((o1, o2) => o2.sequence - o1.sequence)[0]
+                            .sequence + 1
+                }
+                res.send({
+                    success: true,
+                    sequence: sequence,
+                    orderNumber: utils.getOrderNumber(sequence),
+                })
             }
-            res.send({
-                success: true,
-                sequence: sequence,
-                orderNumber: utils.getOrderNumber(sequence),
-            })
-        }
+        })
     })
-})
 
 router
     .route("/:orderId")
