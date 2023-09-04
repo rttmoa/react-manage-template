@@ -2,7 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const styleLoader = require('./style-loader')
-const prodConf = require('../config').build //生产环境配置参数
+const prodConf = require('./config').build //生产环境配置参数
 const baseConf = require('./webpack.base.conf') //webpack基本配置
 
 //一个webpack配置合并模块,可简单的理解为与Object.assign()功能类似！
@@ -43,10 +43,11 @@ const prod = merge({}, baseConf, {
     },
     plugins: [
 
-        // 抽离css
-        new ExtractTextPlugin({
-            filename: assetsPath('css/[name].[contenthash].css')
-        }),
+        // 抽离CSS （分离CSS和JS文件）
+        // new ExtractTextPlugin('[name].[chunkhash:8].css'), 
+        // new ExtractTextPlugin('styles.[contenthash:8].css'), 
+        // new ExtractTextPlugin({ filename: `[name]_[md5:contenthash:hex:8].css` }),
+        new ExtractTextPlugin({ filename: assetsPath('css/[name].[contenthash].css') }),
 
         //压缩css
         new OptimizeCSSPlugin({
@@ -84,15 +85,15 @@ const prod = merge({}, baseConf, {
         }]),
 
 
-        // 第三方库chunk
+        // 第三方库chunk （提供公共代码）
+        // new webpack.optimize.CommonsChunkPlugin({ name: 'vendor',filename: '[name].[chunkhash:8].js' }),
+        // new webpack.optimize.CommonsChunkPlugin({ name: 'vendor',filename: 'javascript.[chunkhash:8].js' }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: function (module) {
                 //在node_modules的js文件!
                 return (
-                    module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf(path.join(__dirname, "../node_modules")) === 0
+                    module.resource && /\.js$/.test(module.resource) && module.resource.indexOf(path.join(__dirname, "../node_modules")) === 0
                 );
             }
         }),
@@ -128,7 +129,16 @@ const prod = merge({}, baseConf, {
                 // https://github.com/kangax/html-minifier#options-quick-reference
             },
         })
-    ]
+    ],
+    // webpack5x-mobx-admin写法：
+    // performance: {
+    //     maxEntrypointSize: 400000,
+    //     maxAssetSize: 800000,
+    // },
+    // optimization: {
+    //     runtimeChunk: { name: 'manifest', },
+    //     splitChunks: {}
+    // }
 })
 
 if (prodConf.productionGzip) { //是否开启Gzip压缩
@@ -150,7 +160,7 @@ if (prodConf.productionGzip) { //是否开启Gzip压缩
 }
 
 // 查看打包内容
-if (process.env.analyz_npm_config_report) {
+if (process.env.analyz_npm_config_report) { // build: report
     const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
     prod.plugins.push(new BundleAnalyzerPlugin())
 }

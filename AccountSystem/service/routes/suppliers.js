@@ -11,7 +11,7 @@ let constants = require('../constants/constants')
 
 // 查询所有供应商
 router.route('/all')
-    .get((req, res, next) => {
+    .get((req, res, next) => { // 查询所有供应商
         let currentUser = req.session.userInfo
         let queryCondition = {
             userId: currentUser['_id']
@@ -32,7 +32,7 @@ router.route('/all')
     })
 
 router.route('/')
-    .get((req, res, next) => {
+    .get((req, res, next) => { // 条件查询供应商 （有参数过滤，无参数查所有）
         let { page, supplierName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -66,7 +66,7 @@ router.route('/')
                 })
         })
     })
-    .post((req, res, next) => {
+    .post((req, res, next) => { // 新增供应商
         let supplier = req.body
         let currentUser = req.session.userInfo
         let newSupplier = new Supplier(Object.assign({}, supplier, { userId: currentUser['_id'] }))
@@ -86,7 +86,7 @@ router.route('/')
     })
 
 router.route('/:supplierId')
-    .put((req, res, next) => {
+    .put((req, res, next) => {  // 修改供应商信息
         let supplierId = req.params.supplierId
         let supplier = req.body
         let newSupplier = Object.assign({}, supplier)
@@ -106,7 +106,7 @@ router.route('/:supplierId')
             }
         })
     })
-    .delete((req, res, next) => {
+    .delete((req, res, next) => { // 删除供应商
         let supplierId = req.params.supplierId
         Supplier.remove({ _id: supplierId }, (err) => {
             if (err) {

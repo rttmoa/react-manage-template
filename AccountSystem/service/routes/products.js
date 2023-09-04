@@ -8,10 +8,8 @@ let constants = require('../constants/constants')
 
 
 
-
-
 router.route('/')
-    .get((req, res, next) => {
+    .get((req, res, next) => { // 通过请求参数查询产品数据 （请求参数 + 过滤条件）
         let { page, productName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -45,7 +43,7 @@ router.route('/')
                 })
         })
     })
-    .post((req, res, next) => {
+    .post((req, res, next) => { // 新增产品数据
         let product = req.body
         let currentUser = req.session.userInfo
         let newProduct = new Product(Object.assign({}, product, { userId: currentUser['_id'] }))
@@ -65,9 +63,9 @@ router.route('/')
     })
 
 router.route('/:productId')
-    .put((req, res, next) => {
-        let productId = req.params.productId
-        let product = req.body
+    .put((req, res, next) => { // 通过参数productId修改产品信息
+        let productId = req.params.productId;
+        let product = req.body;
         let newProduct = Object.assign({}, product)
         Product.findOneAndUpdate({ _id: productId }, newProduct, { new: true }, (err, product) => {
             if (err) {
@@ -83,7 +81,7 @@ router.route('/:productId')
             }
         })
     })
-    .delete((req, res, next) => {
+    .delete((req, res, next) => { // 通过参数productId删除产品信息
         let productId = req.params.productId
         Product.remove({ _id: productId }, (err) => {
             if (err) {

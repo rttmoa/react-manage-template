@@ -21,7 +21,7 @@ let uploadfolderpath = path.join(__dirname, '../../upload', uploadfoldername)
         // 获取File{}对象 保存到upload下
 
 router.route('/')
-    .post(function (req, res, next) {
+    .post(function (req, res, next) { // TODO: 上传图片 获取File{}对象 保存到upload下
         // 使用第三方的 formidable 插件初始化一个 form 对象
         let form = new formidable.IncomingForm()
         form.uploadDir = path.join(__dirname, '../', 'tmp')

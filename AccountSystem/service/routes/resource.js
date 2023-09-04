@@ -148,6 +148,10 @@ function getResource (queryCondition, callback) {
 }
 
 /* GET orders listing. */
+
+
+// TODO: 此接口 业务逻辑处理！！！
+
 router.route('/')
     .get(function (req, res, next) {
         let currentUser = req.session.userInfo

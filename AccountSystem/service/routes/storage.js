@@ -8,8 +8,10 @@ let utils = require('../utils/utils')
 let constants = require('../constants/constants')
 
 /* GET storage listing. */
+// 实现功能：
+    // TODO: 查询产品库存
 router.route('/')
-    .get(function (req, res, next) {
+    .get(function (req, res, next) { // TODO: 查询库存信息
         let queryData = req.query
         let { page, timeRange, supplierId, noteNumber } = queryData
         let limit = constants.PAGE_SIZE
@@ -53,12 +55,8 @@ router.route('/')
                                         error: err
                                     })
                                 }
-                                suppliers.map((supplier) =>
-                                    supplierMap[supplier['_id']] = supplier['supplierName']
-                                )
-                                storage.map((item) =>
-                                    item['supplierName'] = supplierMap[item['supplierId']]
-                                )
+                                suppliers.map(supplier => supplierMap[supplier['_id']] = supplier['supplierName'])
+                                storage.map(item => item['supplierName'] = supplierMap[item['supplierId']])
                                 res.send({
                                     success: true,
                                     storage: storage,
@@ -82,7 +80,7 @@ router.route('/')
                 })
         })
     })
-    .post(function (req, res, next) {
+    .post(function (req, res, next) { // 新增库存数据
         let storage = req.body
         let currentUser = req.session.userInfo
         let newStorage = new Storage(Object.assign({}, storage, { userId: currentUser['_id'], createInstance: new Date() }))
@@ -126,7 +124,7 @@ router.route('/')
     })
 
 router.route('/getNoteNumber')
-    .get(function (req, res, next) {
+    .get(function (req, res, next) { // 获取记录号/序列号
         let currentUser = req.session.userInfo
         Storage.find({ userId: currentUser['_id'] }, function (error, storages) {
             if (error) {
@@ -153,7 +151,7 @@ router.route('/getNoteNumber')
     })
 
 router.route('/:storageId')
-    .get(function (req, res, next) {
+    .get(function (req, res, next) { // 获取库存详情
         let storageId = req.params.storageId
         Storage.findById(storageId, function (err, storage) {
             if (err) {
@@ -169,7 +167,7 @@ router.route('/:storageId')
             }
         })
     })
-    .put(function (req, res, next) {
+    .put(function (req, res, next) { // 修改库存详情
         let storageId = req.params.storageId
         let storage = req.body
         let newStorage = Object.assign({}, storage, { modifyInstance: new Date() })
@@ -186,7 +184,7 @@ router.route('/:storageId')
             })
         })
     })
-    .delete(function (req, res, next) {
+    .delete(function (req, res, next) { // 删除库存详情
         let storageId = req.params.storageId
         Storage.remove({ _id: storageId }, function (err) {
             if (err) {

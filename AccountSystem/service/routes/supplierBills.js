@@ -7,8 +7,10 @@ let utils = require('../utils/utils')
 let constants = require('../constants/constants')
 
 /* GET orders listing. */
+// 实现功能：
+    // TODO: 供应商订单处理业务
 router.route('/')
-    .get(function (req, res, next) {
+    .get(function (req, res, next) { // TODO: 供应商订单处理业务
         let { page, supplierId } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -110,7 +112,7 @@ router.route('/')
     })
 
 router.route('/doClearStorage')
-    .post(function (req, res, next) {
+    .post(function (req, res, next) { // 更新供应商库存支付金额
         let currentUser = req.session.userInfo
         let { storageId, paymentAmount } = req.body
         let newStorage = {
@@ -132,7 +134,7 @@ router.route('/doClearStorage')
     })
 
 router.route('/doClearBill')
-    .post(function (req, res, next) {
+    .post(function (req, res, next) { // 更新供应商账单支付金额
         let currentUser = req.session.userInfo
         let { supplierId } = req.body
         let queryCondition = {

@@ -8,14 +8,12 @@ let constants = require('../constants/constants')
 
 /* GET orders listing. */
 
-// TODO: 客户账单： customerBills.js
-    // 实现功能：
-        // ?
-        // 更新订单支付金额
-        // 更新账单支付金额
+// 实现功能：
+    // TODO: 获取客户账单
+
 
 router.route('/')
-    .get(function (req, res, next) {
+    .get(function (req, res, next) { // TODO: 获取客户账单
         let { page, customerId } = req.query;
         let limit = constants.PAGE_SIZE;
         let skip = (page - 1) * limit;
@@ -32,86 +30,82 @@ router.route('/')
                 .limit(limit)
                 .skip(skip)
                 .exec(function (err, orders) {
-                    if (err) {
-                        res.send({
-                            success: false,
-                            error: err
-                        })
-                    } else {
-                        if (count > 0) {
-                            //欠债订单
-                            const debtOrders = orders.filter(order => order.totalAmount !== order.paymentAmount)
-                            const debtOrdersClone = [...debtOrders]
-                            const customerObj = {}
-                            //按照客户对订单进行归类
-                            debtOrdersClone.map(order => {
-                                //只有订单上客户存在的才是正常的出库订单，客户为空的结算生成的订单
-                                if (order['customerId']) {
-                                    if (customerObj[order['customerId']]) {
-                                        customerObj[order['customerId']].push(order)
-                                    } else {
-                                        customerObj[order['customerId']] = [order]
-                                    }
+                    if (err) { res.send({ success: false, error: err }) }
+
+                    if (count > 0) {
+                        //欠债订单
+                        const debtOrders = orders.filter(order => order.totalAmount !== order.paymentAmount)
+                        const debtOrdersClone = [...debtOrders]
+                        const customerObj = {}
+                        //按照客户对订单进行归类
+                        debtOrdersClone.map(order => {
+                            //只有订单上客户存在的才是正常的出库订单，客户为空的结算生成的订单
+                            if (order['customerId']) {
+                                if (customerObj[order['customerId']]) {
+                                    customerObj[order['customerId']].push(order)
+                                } else {
+                                    customerObj[order['customerId']] = [order]
                                 }
-                            })
+                            }
+                        })
 
-                            //欠债的客户列表
-                            const debtCustomers = Object.keys(customerObj).map(key => {
-                                let debtCustomer = {}
-                                debtCustomer['_id'] = key
-                                return debtCustomer
-                            })
+                        //欠债的客户列表
+                        const debtCustomers = Object.keys(customerObj).map(key => {
+                            let debtCustomer = {}
+                            debtCustomer['_id'] = key
+                            return debtCustomer
+                        })
 
-                            //账单列表
-                            const bills = Object.keys(customerObj).map(key => {
-                                let billObj = {}
-                                billObj['_id'] = key
-                                billObj['customerId'] = key
-                                billObj['totalAmount'] = customerObj[key].reduce((total, order) => total += order.totalAmount, 0)
-                                billObj['paymentAmount'] = customerObj[key].reduce((total, order) => total += order.paymentAmount, 0)
-                                billObj['debtAmount'] = billObj['totalAmount'] - billObj['paymentAmount']
-                                return billObj
-                            })
+                        //账单列表
+                        const bills = Object.keys(customerObj).map(key => {
+                            let billObj = {}
+                            billObj['_id'] = key
+                            billObj['customerId'] = key
+                            billObj['totalAmount'] = customerObj[key].reduce((total, order) => total += order.totalAmount, 0)
+                            billObj['paymentAmount'] = customerObj[key].reduce((total, order) => total += order.paymentAmount, 0)
+                            billObj['debtAmount'] = billObj['totalAmount'] - billObj['paymentAmount']
+                            return billObj
+                        })
 
-                            const customerMap = {}
-                            Customer.find({}, function (err, customers) {
-                                customers.map((customer) =>
-                                    customerMap[customer['_id']] = customer['customerName']
-                                )
-                                debtOrders.map((order) => {
-                                    order['debtAmount'] = order['totalAmount'] - order['paymentAmount']
-                                    order['customerName'] = customerMap[order['customerId']]
-                                })
-                                debtCustomers.map((customer) =>
-                                    customer['customerName'] = customerMap[customer['_id']]
-                                )
-                                bills.map((bill) =>
-                                    bill['customerName'] = customerMap[bill['customerId']]
-                                )
-                                res.send({
-                                    success: true,
-                                    orders: debtOrders,
-                                    customers: debtCustomers,
-                                    customerBills: bills,
-                                    page: {
-                                        total: debtOrders.length,
-                                        current: page
-                                    }
-                                })
+                        const customerMap = {}
+                        Customer.find({}, function (err, customers) {
+                            customers.map((customer) =>
+                                customerMap[customer['_id']] = customer['customerName']
+                            )
+                            debtOrders.map((order) => {
+                                order['debtAmount'] = order['totalAmount'] - order['paymentAmount']
+                                order['customerName'] = customerMap[order['customerId']]
                             })
-                        } else {
+                            debtCustomers.map((customer) =>
+                                customer['customerName'] = customerMap[customer['_id']]
+                            )
+                            bills.map((bill) =>
+                                bill['customerName'] = customerMap[bill['customerId']]
+                            )
                             res.send({
                                 success: true,
-                                orders: [],
-                                customers: [],
-                                customerBills: [],
-                                page: {
-                                    total: 0,
+                                orders: debtOrders, // 订单
+                                customers: debtCustomers, // 客户
+                                customerBills: bills, // 客户账单
+                                page: { // 页码
+                                    total: debtOrders.length,
                                     current: page
                                 }
                             })
-                        }
+                        })
+                    } else {
+                        res.send({
+                            success: true,
+                            orders: [],
+                            customers: [],
+                            customerBills: [],
+                            page: {
+                                total: 0,
+                                current: page
+                            }
+                        })
                     }
+
                 })
         })
     })

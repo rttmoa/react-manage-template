@@ -102,7 +102,7 @@ app.use('/api/storage', storage)
 app.use('/api/customers', customers) // 客户
 app.use('/api/products', products)
 app.use('/api/productStocks', productStocks)
-app.use('/api/resource', resource)
+app.use('/api/resource', resource) // TODO: 资源结算业务
 app.use('/api/settlement', settlement)
 app.use('/api/suppliers', suppliers)
 app.use('/api/customerBills', customerBills) // 客户账单

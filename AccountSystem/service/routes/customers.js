@@ -8,7 +8,7 @@ let constants = require('../constants/constants')
 
 
 
-// TODO: 客户：customer.js
+// 客户：customer.js
     // 客户的增删改查接口：get、post、put、delete
     // 实现功能：
         // 查询所有客户

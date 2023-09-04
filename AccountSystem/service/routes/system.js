@@ -22,7 +22,7 @@ let utils = require('../utils/utils')
 
 
 // 用户登陆；
-router.post('/login', function (req, res, next) {
+router.post('/login', function (req, res, next) { // 用户登陆；
     let userInfo = req.body
     User.findByUserName(userInfo['username'], function (err, userList) {
         if (err) {
@@ -74,7 +74,7 @@ router.post('/login', function (req, res, next) {
 })
 
 // 用户注册：
-router.post('/logup', function (req, res, next) {
+router.post('/logup', function (req, res, next) { // 用户注册：
     let userInfo = req.body;
     User.findByUserName(userInfo['username'], (err, userList) => {
         if (err) {
@@ -141,7 +141,7 @@ router.post('/logup', function (req, res, next) {
 })
 
 // 退出登录
-router.post('/logout', function (req, res, next) {
+router.post('/logout', function (req, res, next) { // 退出登录
     let currentUser = req.session.userInfo
     console.log('logout' + JSON.stringify(currentUser))
     if (currentUser && currentUser._id) {
