@@ -1,39 +1,37 @@
 "use strict";
 const path = require('path')
 const webpack = require('webpack')
+const merge = require("webpack-merge"); // 一个webpack配置合并模块, 与Object.assign()功能类似！
+// Plugins
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // 一个创建html入口文件的webpack插件！
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 一个抽离出css的webpack插件！
+const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin"); // 一个压缩css的webpack插件！
+const CopyWebpackPlugin = require("copy-webpack-plugin"); // 一个拷贝文件的webpack插件！
+
+// Import
 const styleLoader = require('./style-loader')
 const prodConf = require('./config').build //生产环境配置参数
 const baseConf = require('./webpack.base.conf') //webpack基本配置
 
-//一个webpack配置合并模块,可简单的理解为与Object.assign()功能类似！
-const merge = require("webpack-merge");
-//一个创建html入口文件的webpack插件！
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-//一个抽离出css的webpack插件！
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-//一个压缩css的webpack插件！
-const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
-//一个拷贝文件的webpack插件！
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
 // 资源路径
-const assetsPath = function (dir) {
+const assetsPath = (dir) => {
     return path.posix.join(prodConf.assetsSubDirectory, dir)
 }
+console.log(process.env.NODE_ENV)
 
 const prod = merge({}, baseConf, {
     output: {
-        //Build后所有文件存放的位置
+        // Build后所有文件存放的位置
         path: path.resolve(__dirname, '../dist'),
 
-        //html引用资源路径,可在此配置cdn引用地址！
+        // html引用资源路径,可在此配置cdn引用地址！
         publicPath: prodConf.publicPath,
 
-        //文件名
-        filename: assetsPath('js/[name].[chunkhash].js'),
+        // 文件名 （表示 js 目录下）
+        filename: assetsPath('js/[name].[chunkhash:8].file.js'),
 
-        //用于打包require.ensure(代码分割)方法中引入的模块
-        chunkFilename: assetsPath('js/[name].[chunkhash].js')
+        // 用于打包require.ensure(代码分割)方法中引入的模块
+        chunkFilename: assetsPath('js/[name].[chunkhash:5].chunk.js')
     },
     module: {
         rules: styleLoader.styleLoader({
@@ -131,28 +129,38 @@ const prod = merge({}, baseConf, {
         })
     ],
     // webpack5x-mobx-admin写法：
-    // performance: {
-    //     maxEntrypointSize: 400000,
-    //     maxAssetSize: 800000,
-    // },
     // optimization: {
-    //     runtimeChunk: { name: 'manifest', },
-    //     splitChunks: {}
-    // }
+	// 	splitChunks: {
+	// 		chunks: "all",   // 共有3个值"initial"，"async"和"all"。配置后，代码分割优化仅选择初始块，按需块或所有块
+	// 		minSize: 30000,   // （默认值：30000）块的最小大小
+	// 		minChunks: 1,    // （默认值：1）在拆分之前共享模块的最小块数
+	// 		maxAsyncRequests: 5,   //（默认为5）按需加载时并行请求的最大数量
+	// 		maxInitialRequests: 3,  //（默认值为3）入口点的最大并行请求数
+	// 		automaticNameDelimiter: '~',  // 默认情况下，webpack将使用块的来源和名称生成名称，例如vendors~main.js
+	// 		name: true,
+	// 		cacheGroups: {  // 以上条件都满足后会走入cacheGroups进一步进行优化的判断
+	// 			vendors: {
+	// 				test: /[\/]node_modules[\/]/,  // 判断引入库是否是node_modules里的
+	// 				priority: -10,   // 数字越大优先级越高 （-10大于-20）
+	// 				filename: 'vendors.js'  // 设置代码分割后的文件名
+    //     		},
+	// 			default: {   //所有代码分割快都符合默认值，此时判断priority优先级
+	// 				minChunks: 2,  
+	// 				priority: -20,
+	// 				reuseExistingChunk: true   // 允许在模块完全匹配时重用现有的块，而不是创建新的块。
+	// 			}
+	// 		}
+    // 	}
+	// },
 })
 
 if (prodConf.productionGzip) { //是否开启Gzip压缩
     const CompressionWebpackPlugin = require('compression-webpack-plugin')
-
     prod.plugins.push(
         new CompressionWebpackPlugin({
             asset: '[path].gz[query]',
             algorithm: 'gzip',
-            test: new RegExp(
-                '\\.(' +
-                prodConf.productionGzipExtensions.join('|') +
-                ')$'
-            ),
+            test: new RegExp( '\\.(' + prodConf.productionGzipExtensions.join('|') +')$'),
             threshold: 10240, //只有大小大于该值的资源会被处理。默认值是 0
             minRatio: 0.8 //只有压缩率小于这个值的资源才会被处理,默认值是 0.8
         })

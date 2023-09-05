@@ -20,10 +20,8 @@ const assetsPath = (dir) => {
 /** #### Module: {entry, resolve, module}  */
 module.exports = {
 
-    entry: {
-        // app: './src/main.js',
-        // webpack5x-mobx-admin写法：
-        app: path.join(__dirname, "../src/main.js") 
+    entry: { 
+        main: path.join(__dirname, "../src/main.js") || "./src/main.js",
     },
 
     // 配置模块如何被解析
@@ -31,6 +29,9 @@ module.exports = {
         // 自动解析文件扩展名(补全文件后缀)(从左->右)
         // import hello from './hello'  （!hello.js? -> !hello.vue? -> !hello.json）
         extensions: [".js", ".jsx", ".json"],
+        // mainFiles: ['main'],
+        // resolve.modules用于配置webpack去哪些目录下寻找第三方模块，默认是 ['node_modules']
+        // modules: [path.resolve(__dirname, "node_modules")],
 
         // 配置别名映射
         alias: {
@@ -47,12 +48,15 @@ module.exports = {
             // webpack5x-mobx-admin写法：
             // '@': path.resolve(__dirname, '../src'),
             // '@pages': `${path.resolve(__dirname, '../src')}/pages`
+            // 'react': path.resolve(__dirname, './node_modules/react/dist/react.min.js'), // react15
+            // 'react': path.resolve(__dirname, './node_modules/react//umd/react.production.min.js'), // react16
         }
     },
 
     // 处理模块的规则(可在此处使用不同的loader来处理模块！)
     module: {
         rules: [
+            // Webpack 来转码你的 JS代码 => JSX
             {
                 test: /\.(js|jsx)$/, // 资源路径
                 loader: 'babel-loader', // 该路径执行的loader
@@ -82,8 +86,9 @@ module.exports = {
                 loader: 'url-loader',
                 // use: ['url-loader'],
                 options: {
-                    limit: 10000,
-                    name: assetsPath('img/[name].[hash:7].[ext]')
+                    limit: 10000, // 单位是字节 1024=1kb 
+                    name: assetsPath('img/[name].[hash:7].[ext]'),
+                    // outputPath: 'images/',
                 },
                 include: [path.resolve(__dirname, '../src')],
             },

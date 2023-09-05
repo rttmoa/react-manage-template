@@ -1,7 +1,6 @@
 'use strict'
-const path = require('path')
-//一个抽离出css的webpack插件！
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path') 
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 一个抽离出css的webpack插件！
 
 
 exports.cssLoader = function(opts) {
@@ -13,7 +12,7 @@ exports.cssLoader = function(opts) {
                 sourceMap: opts.sourceMap
             }, (loader && loader.indexOf('modules') !== -1 ? {
                 modules: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
+                localIdentName: '[name]__[local]___[hash:base64:5]' 
             } : {}))
         }, {
             loader: 'postcss-loader',

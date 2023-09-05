@@ -1,0 +1,24 @@
+
+
+
+
+record some url:
+  WEBPACK: https://www.webpackjs.com/concepts/ 
+  webpack-guidebook：https://tsejx.github.io/webpack-guidebook/basic/modularization
+  webpack-dev-server【devServer属性配置】: https://blog.csdn.net/qq_37833745/article/details/121289187
+  前端性能优化之首屏加载：https://zhuanlan.zhihu.com/p/448087825
+
+  TODO: 
+  Google搜索：react webpack性能优化
+    小墨鱼的面试笔记：https://cchroot.github.io/interview/
+    周陆军 博客 性能优化： https://www.cnblogs.com/zhoulujun/tag/webpack/
+    『Webpack系列』—— externals用法详解：https://juejin.cn/post/6844904190083350542
+    『Webpack系列』—— SplitChunks插件用法详解: https://juejin.cn/post/6844904198023168013
+
+性能优化：
+  此项目中webpack版本3.x
+  开发环境编译时间： 12975ms / 13685ms / 
+  生产环境编译时间： 67456ms / 68537ms / 65436ms
+  谷歌搜索WebPack性能优化方案
+    todo
+    运行 npm run analyz 查看模块占的空间

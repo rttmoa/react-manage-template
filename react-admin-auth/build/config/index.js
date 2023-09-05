@@ -11,13 +11,24 @@ module.exports = {
         port: '40002',
         assetsSubDirectory: 'static',
         devtoolType: 'cheap-module-eval-source-map',
-        proxyTable: {}
+        // devtoolType: 'eval-source-map',
+        // devtoolType: 'null',
+        proxyTable: {},
+        proxyProps: {
+            '/testapi': {
+                target: 'https://www.easy-mock.com/mock/5dff0acd5b188e66c6e07329/react-template',
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: { '^/testapi': '' },
+            },
+        }
     },
     // webpack 生产环境配置
     build: {
         env: 'production',
         publicPath: './',
-        assetsPath: 'static',
+        // assetsPath: 'static', // 表示打包在 /dist/static/ 目录下
+        assetsPath: '',
         assetsSubDirectory: 'static',
         devtoolType: 'source-map',
         productionGzip: true,

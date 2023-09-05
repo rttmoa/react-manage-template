@@ -13,34 +13,27 @@ const devConf = require('./config').dev;
 const styleLoader = require('./style-loader');
 const webpackBaseConf = require('./webpack.base.conf');  
 
+// console.log(process.env.NODE_ENV)
 
-
-// TODO: 开发环境
-// webpack-dev-server【devServer属性配置】: https://blog.csdn.net/qq_37833745/article/details/121289187
-// 前端性能优化之首屏加载：https://zhuanlan.zhihu.com/p/448087825
+// TODO: 开发环境 webpack 3
 const dev = merge(webpackBaseConf, {
     // webpackBaseConf: entry, resolve, module
     // dev: output, module, devtool, devServer, plugins
 
-    // mode: "development",
 
     output: { 
-        // filename: '[name]-[hash].js',
-        //html引用资源路径,在dev-server中,引用的是内存中文件！
+        filename: '[name].[hash:8].min.js', // '[name].[chunkhash:8].js'  //  Error：Cannot use [chunkhash]
+        chunkFilename: 'chunk/[name].chunk.bundle.js', // 懒加载文件名
+        // html引用资源路径,在dev-server中,引用的是内存中文件！
         publicPath: devConf.publicPath,
-
-        // webpack5x-mobx-admin写法：
-        // filename: '[name].[chunkhash:8].js', 
-        // chunkFilename: 'chunk/[name].[chunkhash:8].js',
     },
 
     module: {
         rules: styleLoader.styleLoader({ extract: false, sourceMap: true })
     },
-
-    // 生成sourceMaps(方便调试)
-    // devtool: 'eval-source-map',
-    devtool: devConf.devtoolType,
+     
+    // 生成sourceMaps(方便调试) 
+    devtool: devConf.devtoolType, 
 
     // eslint: { configFile: '.eslintrc' }, // 配置eslint规则
     // postcss: [ require('autoprefixer') ], // 调用autoprefixer插件，例如 display: flex 对于浏览器加一些前缀
@@ -54,22 +47,14 @@ const dev = merge(webpackBaseConf, {
         historyApiFallback: true, // 在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
         host: devConf.host, // 主机名
         port: devConf.port, // 端口号
-        compress: true, // 为你的代码进行压缩。加快开发流程和优化的作用
+        compress: true, // 为你的代码进行压缩。加快开发流程和优化的作用 （是否启用 gzip 压缩）
         overlay: { // 在浏览器上全屏显示编译的errors或warnings。
             errors: true,
             warnings: false
         },
         quiet: true, // 终端输出的只有初始启动信息。 webpack 的警告和错误是不输出到终端的
         proxy: devConf.proxyTable, // 配置反向代理解决跨域
-        // 接口代理转发": 例子
-        // proxy: {
-        //     '/testapi': {
-        //     target: 'https://www.easy-mock.com/mock/5dff0acd5b188e66c6e07329/react-template',
-        //     changeOrigin: true,
-        //     secure: false,
-        //     pathRewrite: { '^/testapi': '' },
-        //     },
-        // },
+        // proxy: devConf.proxyProps,  // 接口代理转发": 例子 
     },
     // dev：可以写到common部分  开发生产环境公用
     plugins: [
@@ -90,9 +75,7 @@ const dev = merge(webpackBaseConf, {
         new FriendlyErrorsPlugin({
             //编译成功提示！
             compilationSuccessInfo: {
-                messages: [
-                    `Your application is running here: http://${devConf.host}:${devConf.port}`
-                ]
+                messages: [`Your application is running here:  http://${devConf.host}:${devConf.port}`]
             },
             //编译出错！
             onErrors: function (severity, errors) {
@@ -137,6 +120,15 @@ const dev = merge(webpackBaseConf, {
         //   // __DEV__：全局变量 判断的是 npm start/npm run build中执行的是哪个
         //   __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
         // })
+
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            }
+        }),
 
     ]
 });

@@ -5,12 +5,13 @@ const rm = require("rimraf"); // 用于删除dist目录里的旧文件 （删除
 const chalk = require("chalk"); // 用于console.log() 的输出信息配置不同的显示颜色和样式（打印信息颜色）https://blog.51cto.com/u_14785218/5966504
 const path = require("path"); // 用于处理文件路径（路径） https://blog.csdn.net/m0_52040370/article/details/126567129
 const webpack = require("webpack");
-const rmFile = path.resolve(__dirname, "../dist/static"); // 删除指定的文件
+const rmFile = path.resolve(__dirname, "../dist/"); // 删除指定的文件
 const spinner = ora("building for production..."); // build start loading
 spinner.start();
 const productionConfig = require("./webpack.prod.conf"); //（引入生产环境配置）
 
 // TODO: 生产环境： 打包项目 - /dist
+// console.log(process.env.NODE_ENV)
 
 // 构建全量压缩包！
 rm(rmFile, function (err) {
