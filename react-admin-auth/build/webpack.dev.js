@@ -20,6 +20,7 @@ const dev = merge(webpackBaseConf, {
     // webpackBaseConf: entry, resolve, module
     // dev: output, module, devtool, devServer, plugins
 
+ 
 
     output: { 
         filename: '[name].[hash:8].min.js', // '[name].[chunkhash:8].js'  //  Error：Cannot use [chunkhash]

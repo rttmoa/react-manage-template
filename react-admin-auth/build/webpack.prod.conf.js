@@ -128,6 +128,11 @@ const prod = merge({}, baseConf, {
             },
         })
     ],
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为⼀个单独的⽂件
+    //     },
+    // },
     // webpack5x-mobx-admin写法：
     // optimization: {
 	// 	splitChunks: {

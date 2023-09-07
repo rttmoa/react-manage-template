@@ -24,13 +24,24 @@ module.exports = {
         main: path.join(__dirname, "../src/main.js") || "./src/main.js",
     },
 
+    // 使⽤externals优化cdn静态资源: 在index.html中
+    // <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    // externals: {
+    //     // jquery通过script引⼊之后，全局中即有了 jQuery 变量
+    //     'jquery': 'jQuery'
+    // },
+
+    // 使⽤静态资源路径publicPath(CDN)： output:{ publicPath: '//cdnURL.com', //指定存放JS⽂件的CDN地址 }
+
+
     // 配置模块如何被解析
     resolve: {
-        // 自动解析文件扩展名(补全文件后缀)(从左->右)
+        // 优化resolve.extensions配置: 自动解析文件扩展名(补全文件后缀)(从左->右)
         // import hello from './hello'  （!hello.js? -> !hello.vue? -> !hello.json）
-        extensions: [".js", ".jsx", ".json"],
+        extensions: [".js", ".jsx", ".json", ".ts"],
         // mainFiles: ['main'],
-        // resolve.modules用于配置webpack去哪些目录下寻找第三方模块，默认是 ['node_modules']
+
+        // 优化配置：resolve.modules用于配置webpack去哪些目录下寻找第三方模块，默认是 ['node_modules']
         // modules: [path.resolve(__dirname, "node_modules")],
 
         // 配置别名映射
@@ -45,6 +56,10 @@ module.exports = {
             'utils': resolve('src/utils'),
             'store': resolve('src/store'),
             'connect': resolve('src/utils/connect'),
+            // 优化resolve.alias配置
+            "react": path.resolve(__dirname, '../node_modules/react/umd/react.production.min.js'),
+            "react-dom": path.resolve(__dirname, '../node_modules/react-dom/umd/react-dom.production.min.js'),
+
             // webpack5x-mobx-admin写法：
             // '@': path.resolve(__dirname, '../src'),
             // '@pages': `${path.resolve(__dirname, '../src')}/pages`
