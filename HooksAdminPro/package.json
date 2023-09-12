@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite",
+		"start": "vite",
 		"serve": "vite",
 		"build:dev": "tsc && vite build --mode development",
 		"build:test": "tsc && vite build --mode test",
