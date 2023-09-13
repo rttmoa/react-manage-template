@@ -43,6 +43,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "ahooks": "^3.7.8",
     "antd": "^5.8.4",
+    "antd-img-crop": "^4.12.2",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "echarts": "^5.4.3",

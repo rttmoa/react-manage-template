@@ -39,13 +39,14 @@ const AvatarIcon: React.FC = () => {
 
         // Jump to login page
         navigate(LOGIN_URL, { replace: true });
+        // navigate("/login?to=/personal", { replace: true });
 
         message.success("退出登录成功！");
       }
     });
   };
 
-  const style = { fontSize: "14px" };
+  const style = { fontSize: "16px" };
 
   const items: MenuProps["items"] = [
     {
@@ -61,8 +62,11 @@ const AvatarIcon: React.FC = () => {
       onClick: () => infoRef.current?.showModal({ name: "hooks" })
     },
     {
+      type: "divider"
+    },
+    {
       key: "3",
-      label: <span className="dropdown-item">修改密码</span>,
+      label: <span className="dropdown-item">{"修改用户信息"}</span>,
       icon: <FormOutlined style={style} />,
       onClick: () => passRef.current?.showModal({ name: "hooks" })
     },

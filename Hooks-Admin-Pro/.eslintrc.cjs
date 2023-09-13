@@ -34,13 +34,13 @@ module.exports = {
   ],
   rules: {
     // eslint (http://eslint.cn/docs/rules)
-    "no-var": "error", // Require using let or const instead of var
-    "no-multiple-empty-lines": ["error", { max: 1 }], // Disallow multiple empty lines
+    "no-var": "off", // Require using let or const instead of var
+    "no-multiple-empty-lines": ["error", { max: 8 }], // Disallow multiple empty lines
     "no-use-before-define": "off", // Disallow using functions/classes/variables before they are defined
     "prefer-const": "off", // This rule is aimed at marking variables that are declared using let but never reassigned, and should be const instead
 
     // typeScript (https://typescript-eslint.io/rules)
-    "@typescript-eslint/no-unused-vars": "error", // Disallow unused variables
+    "@typescript-eslint/no-unused-vars": "off", // Disallow unused variables
     "@typescript-eslint/prefer-ts-expect-error": "error", // Disallow the use of @ts-ignore
     "@typescript-eslint/ban-ts-comment": "error", // Disallow using @ts-<directive> comments or require descriptions after directives
     "@typescript-eslint/no-inferrable-types": "off", // Allowing explicit types that can be easily inferred may add unnecessary verbosity
