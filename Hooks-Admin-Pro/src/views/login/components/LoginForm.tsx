@@ -46,6 +46,7 @@ const LoginForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [sendText, setSendText] = useState("发送验证码");
+  const [type, setType] = useState("account");
 
   const onFinish = async (values: ReqLogin) => {
     try {
@@ -147,23 +148,41 @@ const LoginForm: React.FC = () => {
   return (
     <div className="login-form-content">
       <Form name="login" size="large" autoComplete="off" ref={formRef} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <Form.Item
-          name="username"
-          initialValue="15303663375"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
-          <Input prefix={<UserOutlined />} placeholder="User：admin / user" />
-        </Form.Item>
-        <Form.Item name="password" initialValue="Wenc1101" rules={[{ required: true, message: "Please input your password!" }]}>
-          {/* <Input.Password prefix={<LockOutlined />} placeholder="Password：123456" /> */}
-          <Input
-            suffix={
-              <Button type="primary" size="small" onClick={sendCode}>
-                {sendText}
-              </Button>
-            }
-          />
-        </Form.Item>
+        {/* <Tabs
+          activeKey={type}
+          onChange={setType}
+          centered
+          items={[
+            { key: "account", label: "账户密码登陆" },
+            { key: "mobile", label: "手机号登陆" }
+          ]}
+        /> */}
+        {type === "account" && (
+          <>
+            <Form.Item
+              name="username"
+              initialValue="15303663375"
+              rules={[{ required: true, message: "Please input your username!" }]}
+            >
+              <Input prefix={<UserOutlined />} placeholder="User：admin / user" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              initialValue="Wenc1101"
+              rules={[{ required: true, message: "Please input your password!" }]}
+            >
+              {/* <Input.Password prefix={<LockOutlined />} placeholder="Password：123456" /> */}
+              <Input
+                suffix={
+                  <Button type="primary" size="small" onClick={sendCode}>
+                    {sendText}
+                  </Button>
+                }
+              />
+            </Form.Item>
+          </>
+        )}
+
         <Form.Item className="login-form-button">
           <Button shape="round" icon={<CloseCircleOutlined />} onClick={onReset}>
             Reset
