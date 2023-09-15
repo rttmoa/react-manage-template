@@ -4,9 +4,8 @@ import { setToken } from "@/redux/modules/user";
 import { setAuthButtonList, setAuthMenuList } from "@/redux/modules/auth";
 import { getAuthMenuListApi, getAuthButtonListApi } from "@/api/modules/login";
 
-/**
- * @description  Use permissions hook （用户权限Hooks）
- */
+// todo
+// todo 判断登陆的用户/管理员 调用按钮和菜单列表的接口
 const usePermissions = () => {
   const dispatch = useDispatch();
 
@@ -20,7 +19,7 @@ const usePermissions = () => {
         // Get menu list （获取用户的菜单权限）
         const { data: menuList } = await getAuthMenuListApi();
         dispatch(setAuthMenuList(menuList));
-
+        // console.log(menuList);
         // No menu permission
         if (!menuList.length) {
           notification.warning({

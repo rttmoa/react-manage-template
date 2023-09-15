@@ -8,13 +8,13 @@ import useTheme from "@/hooks/useTheme";
 import useMessage from "@/hooks/useMessage";
 import usePermissions from "@/hooks/usePermissions";
 import NotFound from "@/components/Error/404";
-
 const mode = import.meta.env.VITE_ROUTER_MODE;
 
-/**
- * @description Route file entry
- */
-// 获取views文件夹下文件为路由
+// todo
+// todo 处理主题
+// todo 处理全局Message、Modal、notification
+// todo 处理用户权限
+// todo finially 处理<Route />
 const RouterProvider: React.FC = () => {
   // useTheme && useMessage
   useTheme();
@@ -24,7 +24,7 @@ const RouterProvider: React.FC = () => {
 
   const token = useSelector((state: RootState) => state.user.token); // 获取用户 token
   const authMenuList = useSelector((state: RootState) => state.auth.authMenuList); // 获取侧边栏菜单
-
+  // console.log(authMenuList);
   const [routerList, setRouterList] = useState<RouteObjectType[]>(wrappedStaticRouter);
 
   useEffect(() => {
@@ -51,6 +51,7 @@ const RouterProvider: React.FC = () => {
   };
 
   return <Router router={routerMode[mode]()} />;
+  // Props：<Route path={item.path} exact={item.exact} render={item.render} key={index} component {...props} />
 };
-
+// 处理路由，返回 <Route /> 组件
 export default RouterProvider;

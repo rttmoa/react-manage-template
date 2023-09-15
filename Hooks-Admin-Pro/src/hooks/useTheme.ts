@@ -15,7 +15,7 @@ type ThemeType = "light" | "inverted" | "dark";
  */
 const useTheme = () => {
   const { token } = theme.useToken();
-
+  // console.log(token); // 很多CSS属性： {blue: '#1677ff', purple: '#722ED1', cyan: '#13C2C2', green: '#52C41A', magenta: '#EB2F96', …}
   const { isDark, primary, isGrey, isWeak, borderRadius, compactAlgorithm, siderInverted, headerInverted } = useSelector(
     (state: RootState) => {
       return {

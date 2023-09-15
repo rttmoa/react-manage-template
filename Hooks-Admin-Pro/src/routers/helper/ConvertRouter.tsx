@@ -15,26 +15,24 @@ const modules = import.meta.glob("@/views/**/*.tsx") as Record<string, Parameter
  * @param {Array} authMenuList Permissions menu list
  * @returns {Array} The routing format required by the react-router
  */
+// todo authMenuList接口中获取的Menu
 export const convertToDynamicRouterFormat = (authMenuList: RouteObjectType[]) => {
   // Flat Routing
   const flatMenuList = getFlatMenuList(authMenuList);
-  // console.log(authMenuList); // (14) Array [{…},....]
-  // console.log(flatMenuList); // (59) Array [{…},....]
-
+  // console.log(authMenuList); // 接口中Menu：(14) Array [{…},....]
+  // console.log(flatMenuList); // 处理后Menu：(59) Array [{…},....]
+  // return
   // .
   // Convert Routing
   const handleMenuList = flatMenuList.map(item => {
-    // console.log("item", item);
-
     item.children && delete item.children;
 
-    // Set redirection component
-    if (item.redirect) item.element = <Navigate to={item.redirect} />;
+    if (item.redirect) item.element = <Navigate to={item.redirect} />; // Set redirection component
 
     // Convert element to antd component
     if (item.element && typeof item.element == "string") {
-      // console.log(item.element);
-      const Component = LazyComponent(lazy(modules["/src/views" + item.element + ".tsx"]));
+      const Component = LazyComponent(lazy(modules["/src/views" + item.element + ".tsx"])); // item.element： /menu/menu2/menu21/index
+
       item.element = <RouterGuard>{Component}</RouterGuard>;
     }
 
@@ -46,12 +44,15 @@ export const convertToDynamicRouterFormat = (authMenuList: RouteObjectType[]) =>
   });
 
   const dynamicRouter: RouteObjectType[] = [{ element: <LayoutIndex />, children: [] }];
-
+  // console.log(dynamicRouter);
+  // return
   // Add to Dynamic routing
   handleMenuList.forEach(item => {
     if (item.meta?.isFull) dynamicRouter.push(item);
     else dynamicRouter[0].children?.push(item);
   });
+  // console.log(dynamicRouter);
+  // return;
 
   return dynamicRouter;
 };

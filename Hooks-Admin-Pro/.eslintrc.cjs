@@ -41,8 +41,8 @@ module.exports = {
 
     // typeScript (https://typescript-eslint.io/rules)
     "@typescript-eslint/no-unused-vars": "off", // Disallow unused variables
-    "@typescript-eslint/prefer-ts-expect-error": "error", // Disallow the use of @ts-ignore
-    "@typescript-eslint/ban-ts-comment": "error", // Disallow using @ts-<directive> comments or require descriptions after directives
+    "@typescript-eslint/prefer-ts-expect-error": "off", // Disallow the use of @ts-ignore
+    "@typescript-eslint/ban-ts-comment": "off", // Disallow using @ts-<directive> comments or require descriptions after directives
     "@typescript-eslint/no-inferrable-types": "off", // Allowing explicit types that can be easily inferred may add unnecessary verbosity
     "@typescript-eslint/no-namespace": "off", // Disallow using custom TypeScript modules and namespaces
     "@typescript-eslint/no-explicit-any": "off", // Disallow the use of the any type

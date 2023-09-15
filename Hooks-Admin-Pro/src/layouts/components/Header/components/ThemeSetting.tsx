@@ -8,6 +8,6 @@ const ThemeSetting: React.FC = () => {
     dispatch(setGlobalState({ key: "themeDrawerVisible", value: true }));
   };
 
-  return <i className="iconfont icon-zhuti" onClick={setThemeDrawerVisible}></i>;
+  return <i className="iconfont icon-zhuti" style={{ color: "#ff1717" || "#FFC317" }} onClick={setThemeDrawerVisible}></i>;
 };
 export default ThemeSetting;
