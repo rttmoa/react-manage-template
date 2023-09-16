@@ -49,13 +49,14 @@ export function convertToSixDigitHexColor(str: string) {
 }
 
 /**
- * @description Get the default language of the browser.
+ * @description 获取浏览器的默认语言。
  * @returns {String}
  */
 export function getBrowserLang() {
   let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
   let defaultBrowserLang = "";
-  if (["cn", "zh", "zh-cn"].includes(browserLang.toLowerCase())) defaultBrowserLang = "zh";
+  let lang = browserLang.toLowerCase();
+  if (["cn", "zh", "zh-cn"].includes(lang)) defaultBrowserLang = "zh";
   else defaultBrowserLang = "en";
   return defaultBrowserLang;
 }

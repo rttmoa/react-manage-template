@@ -5,11 +5,11 @@ import LayoutMenu from "@/layouts/components//Menu";
 import LayoutMain from "@/layouts/components/Main";
 import logo from "@/assets/images/logo.svg";
 import "./index.less";
-
 const { Header } = Layout;
-
 const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
+// todo
+// todo 横向布局
 const LayoutTransverse: React.FC = () => {
   return (
     <section className="layout-transverse">

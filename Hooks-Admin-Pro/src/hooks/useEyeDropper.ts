@@ -8,7 +8,7 @@ interface EyeDropperResult {
 }
 
 /**
- * @description  Use EyeDropper
+ * @description  use Hooks 设置EyeDropper
  */
 const useEyeDropper = (): EyeDropperResult => {
   const [color, setColor] = useState<string>("");

@@ -10,7 +10,8 @@ import "@/assets/iconfont/iconfont.less"; // iconfont
 import "virtual:svg-icons-register"; // svg
 
 // todo
-// todo 导入字体、图标
+// todo redux && redux持久化
+// todo 导入字体 && 图标
 // todo antd css dist包
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>

@@ -35,7 +35,7 @@ module.exports = {
   rules: {
     // eslint (http://eslint.cn/docs/rules)
     "no-var": "off", // Require using let or const instead of var
-    "no-multiple-empty-lines": ["error", { max: 8 }], // Disallow multiple empty lines
+    "no-multiple-empty-lines": ["error", { max: 5, maxEOF: 5 }], // Disallow multiple empty lines
     "no-use-before-define": "off", // Disallow using functions/classes/variables before they are defined
     "prefer-const": "off", // This rule is aimed at marking variables that are declared using let but never reassigned, and should be const instead
 

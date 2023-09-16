@@ -12,14 +12,12 @@ const usePermissions = () => {
   const initPermissions = async (token: string) => {
     if (token) {
       try {
-        // Get button list （获取用户的按钮权限）
-        const { data: buttonList } = await getAuthButtonListApi();
+        const { data: buttonList } = await getAuthButtonListApi(); // 用户按钮权限
+        const { data: menuList } = await getAuthMenuListApi(); // 用户菜单权限
         dispatch(setAuthButtonList(buttonList));
-
-        // Get menu list （获取用户的菜单权限）
-        const { data: menuList } = await getAuthMenuListApi();
         dispatch(setAuthMenuList(menuList));
         // console.log(menuList);
+
         // No menu permission
         if (!menuList.length) {
           notification.warning({

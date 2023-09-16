@@ -3,13 +3,13 @@ import { AuthState } from "@/redux/interface";
 import { getFlatMenuList, getShowMenuList } from "@/utils";
 
 const authState: AuthState = {
-  // List of menu permissions
+  // 菜单权限列表
   authMenuList: [],
-  // Menu permission list ==> left menu bar rendering, need to remove isHide == true
+  // 菜单权限列表 ==> 左侧菜单栏渲染，需要移除 isHide == true
   showMenuList: [],
-  // Menu permission list ==> flattened one-dimensional array menu, mainly used to add dynamic routing
+  // 菜单权限列表 ==> 扁平化一维数组菜单，主要用于添加动态路由
   flatMenuList: [],
-  // List of button permissions
+  // 按钮权限列表
   authButtonList: {}
 };
 

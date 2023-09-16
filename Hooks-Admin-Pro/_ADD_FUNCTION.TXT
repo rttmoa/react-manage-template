@@ -9,3 +9,6 @@
 
 todo  项目中添加功能
   todo 登陆 Login 手机获取验证码倒计时功能  /login  参考 
+  todo /api 二次封装Axios
+  todo /router
+  todo /redux

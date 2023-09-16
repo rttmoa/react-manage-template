@@ -4,10 +4,12 @@ import { RootState, useSelector } from "@/redux";
 import LazyComponent from "@/components/Lazy";
 import ThemeDrawer from "@/layouts/components/ThemeDrawer";
 
+// todo
+// todo 懒加载
 const LayoutIndex: React.FC = () => {
   const layout = useSelector((state: RootState) => state.global.layout);
   const watermark = useSelector((state: RootState) => state.global.watermark);
-
+  console.log("懒加载");
   const LayoutComponents = {
     vertical: React.lazy(() => import("./LayoutVertical")),
     classic: React.lazy(() => import("./LayoutClassic")),

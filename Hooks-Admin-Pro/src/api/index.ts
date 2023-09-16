@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from "axios";
 import { showFullScreenLoading, tryHideFullScreenLoading } from "@/components/Loading/fullScreen";
 import { LOGIN_URL } from "@/config";
@@ -16,15 +17,14 @@ const config = {
   // The default address request address, which can be modified in the .env.** file
   baseURL: import.meta.env.VITE_API_URL as string,
   timeout: ResultEnum.TIMEOUT as number,
-  // Credentials are allowed to be carried across domains （允许跨域携带凭证）
+  // 允许跨域携带凭证
   withCredentials: false
 };
 
-/** #### TODO: 封装 @Http  */
 class RequestHttp {
   service: AxiosInstance;
   public constructor(config: AxiosRequestConfig) {
-    // instantiation
+    // 实例化
     this.service = axios.create(config);
 
     /**
@@ -32,16 +32,15 @@ class RequestHttp {
      * Client sends request -> [request interceptor] -> server
      * token verification (JWT): Accept the token returned by the server and store it in redux/local storage
      */
-    this.service.interceptors.request.use(
-      (config: CustomAxiosRequestConfig) => {
-        // The current request needs to display loading, which is controlled by the third parameter specified in the API service: {loading: true}
+    this.service.interceptors.request.use((config: CustomAxiosRequestConfig) => {
+        // 当前请求需要显示加载，这由 API 服务中指定的第三个参数控制： {loading: true}
         config.loading && showFullScreenLoading();
         if (config.headers && typeof config.headers.set === "function") {
-          config.headers.set("x-access-token", store.getState().user.token);
+          const configToken = store.getState().user.token;
+          config.headers.set("x-access-token", configToken);
         }
         return config;
-      },
-      (error: AxiosError) => {
+      }, (error: AxiosError) => {
         return Promise.reject(error);
       }
     );
@@ -50,35 +49,36 @@ class RequestHttp {
      * @description response interceptor
      *  The server returns the information -> [intercept unified processing] -> the client JS gets the information
      */
-    this.service.interceptors.response.use(
-      (response: AxiosResponse) => {
+    this.service.interceptors.response.use((response: AxiosResponse) => {
         const { data } = response;
         tryHideFullScreenLoading();
-        // login failure
-        if (data.code == ResultEnum.OVERDUE) {
+
+        // login failure （401）
+        if (+data.code === ResultEnum.OVERDUE) {
           store.dispatch(setToken(""));
           message.error(data.msg);
-          window.$navigate(LOGIN_URL);
+          window.$navigate(LOGIN_URL); 
           return Promise.reject(data);
         }
-        // Global error information interception (to prevent data stream from being returned when downloading files, and report errors directly without code)
+
+        // 全局错误信息拦截（防止下载文件时数据流返回，直接报错，无需代码）
         if (data.code && data.code !== ResultEnum.SUCCESS) {
           message.error(data.msg);
           return Promise.reject(data);
         }
-        // Successful request (no need to handle failure logic on the page unless there are special circumstances)
+        // 请求成功（除非有特殊情况，否则无需在页面上处理失败逻辑）
         // console.log("结果：", data);
         return data;
       },
       async (error: AxiosError) => {
         const { response } = error;
         tryHideFullScreenLoading();
-        // Request timeout && network error judged separately, no response
+        // 分别判断请求超时 && 网络错误，无响应
         if (error.message.indexOf("timeout") !== -1) message.error("请求超时！请您稍后重试");
         if (error.message.indexOf("Network Error") !== -1) message.error("网络错误！请您稍后重试");
-        // Do different processing according to the error status code of the server response
+        // 根据服务器响应的错误状态代码进行不同处理
         if (response) checkStatus(response.status);
-        // The server does not return any results (maybe the server is wrong or the client is disconnected from the network), disconnection processing: you can jump to the disconnection page
+        // 服务器不返回任何结果（可能是服务器出错或客户端断开了网络连接），断开连接处理：您可以跳转到断开连接页面
         if (!window.navigator.onLine) window.$navigate("/500");
         return Promise.reject(error);
       }

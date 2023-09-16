@@ -9,7 +9,7 @@ import { Icon } from "@/components/Icon";
 import "./index.less";
 
 interface LayoutMenuProps {
-  mode: MenuProps["mode"];
+  mode: MenuProps["mode"]; // Props: "inline" || "horizontal" || "vertical"
   menuList?: RouteObjectType[];
   menuSplit?: boolean;
 }

@@ -10,10 +10,13 @@ export const RefreshContext = createContext<RefreshContextType>({
   updateOutletShow: () => {}
 });
 
+// todo
+// todo Context 全局上下文
 export const RefreshProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [outletShow, setOutletShow] = useState(true);
 
   const updateOutletShow = (val: boolean) => {
+    console.log("/context/Refresh.tsx/更新updateOutletShow！");
     setOutletShow(val);
   };
 
@@ -21,6 +24,6 @@ export const RefreshProvider: React.FC<{ children: React.ReactNode }> = ({ child
     outletShow,
     updateOutletShow
   };
-  // console.log(children);
+  // console.log(children); // children是DOM-Component
   return <RefreshContext.Provider value={contextValue}>{children}</RefreshContext.Provider>;
 };

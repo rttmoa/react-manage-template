@@ -10,22 +10,26 @@ import LayoutMenu from "@/layouts/components//Menu";
 import LayoutMain from "@/layouts/components/Main";
 import CollapseIcon from "../components/Header/components/CollapseIcon";
 import logo from "@/assets/images/logo.svg";
-import "./index.less";
+import "./index.less"; // todo 经典布局LESS
 
 const { Header, Sider } = Layout;
-
 const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
+// todo
+// todo 经典布局
 const LayoutClassic: React.FC = () => {
   const { pathname } = useLocation();
 
   const isCollapse = useSelector((state: RootState) => state.global.isCollapse);
-  const menuSplit = useSelector((state: RootState) => state.global.menuSplit);
-  const showMenuList = useSelector((state: RootState) => state.auth.showMenuList);
-  const firstLevelMenuList = getFirstLevelMenuList(showMenuList);
+  const menuSplit = useSelector((state: RootState) => state.global.menuSplit); // 菜单分割；经典布局模式
+  const showMenuList = useSelector((state: RootState) => state.auth.showMenuList); // 显示的菜单项；不包括Static Router
+  const firstLevelMenuList = getFirstLevelMenuList(showMenuList); // 处理完；无children属性
 
   const [subMenuList, setSubMenuList] = useState<RouteObjectType[]>([]);
 
+  // console.log(menuSplit);
+  // console.log(showMenuList);
+  // console.log(firstLevelMenuList);
   useEffect(() => {
     if (menuSplit) changeSubMenu();
   }, [pathname, menuSplit]);
@@ -58,9 +62,7 @@ const LayoutClassic: React.FC = () => {
               {subMenuList.length ? (
                 <React.Fragment>
                   <LayoutMenu mode="inline" menuList={subMenuList} />
-                  <div className="collapse-box">
-                    <CollapseIcon />
-                  </div>
+                  <div className="collapse-box">{<CollapseIcon />}</div>
                 </React.Fragment>
               ) : null}
             </React.Fragment>

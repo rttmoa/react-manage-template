@@ -10,11 +10,11 @@ import LayoutMenu from "@/layouts/components//Menu";
 import LayoutMain from "@/layouts/components/Main";
 import logo from "@/assets/images/logo.svg";
 import "./index.less";
-
 const { Header, Sider } = Layout;
-
 const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
+// todo
+// todo 分栏布局
 const LayoutColumns: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();

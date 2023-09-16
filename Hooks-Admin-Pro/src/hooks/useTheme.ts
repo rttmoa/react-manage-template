@@ -11,7 +11,7 @@ import globalTheme from "@/styles/theme/global";
 type ThemeType = "light" | "inverted" | "dark";
 
 /**
- * @description  Use global theme settings hook
+ * @description  use Hooks 设置全局主题
  */
 const useTheme = () => {
   const { token } = theme.useToken();

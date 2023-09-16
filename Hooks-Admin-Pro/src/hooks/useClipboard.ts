@@ -14,7 +14,7 @@ type ClipboardHook = ClipboardFunctions & {
 };
 
 /**
- * @description  Use Clipboard
+ * @description  use Hooks 设置剪切版
  */
 const useClipboard = (): ClipboardHook => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);

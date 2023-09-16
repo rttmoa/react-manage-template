@@ -11,7 +11,7 @@ const modules = import.meta.glob("@/views/**/*.tsx") as Record<string, Parameter
 // console.log("Views/modules", modules);
 
 /**
- * @description Convert menuList to the format required by react-router
+ * @description TODO: Convert menuList to the format required by react-router
  * @param {Array} authMenuList Permissions menu list
  * @returns {Array} The routing format required by the react-router
  */
@@ -30,6 +30,7 @@ export const convertToDynamicRouterFormat = (authMenuList: RouteObjectType[]) =>
     if (item.redirect) item.element = <Navigate to={item.redirect} />; // Set redirection component
 
     // Convert element to antd component
+    // todo 提前处理懒加载，在Layout中正常加载就可以
     if (item.element && typeof item.element == "string") {
       const Component = LazyComponent(lazy(modules["/src/views" + item.element + ".tsx"])); // item.element： /menu/menu2/menu21/index
 

@@ -12,9 +12,9 @@ const mode = import.meta.env.VITE_ROUTER_MODE;
 
 // todo
 // todo 处理主题
-// todo 处理全局Message、Modal、notification
+// todo 处理全局 Message、Modal、notification
 // todo 处理用户权限
-// todo finially 处理<Route />
+// todo finially 处理 <Route />
 const RouterProvider: React.FC = () => {
   // useTheme && useMessage
   useTheme();
@@ -22,34 +22,31 @@ const RouterProvider: React.FC = () => {
 
   const { initPermissions } = usePermissions();
 
-  const token = useSelector((state: RootState) => state.user.token); // 获取用户 token
-  const authMenuList = useSelector((state: RootState) => state.auth.authMenuList); // 获取侧边栏菜单
+  const token = useSelector((state: RootState) => state.user.token); // token
+  const authMenuList = useSelector((state: RootState) => state.auth.authMenuList); // 接口 》 redux 》 require
   // console.log(authMenuList);
   const [routerList, setRouterList] = useState<RouteObjectType[]>(wrappedStaticRouter);
 
   useEffect(() => {
-    // When refreshing the page, there is no menu data
+    // 刷新页面时，没有菜单数据
     if (!authMenuList.length) {
       initPermissions(token);
       return;
     }
 
-    // Convert to the routing structure required by react-router
-    const dynamicRouter = convertToDynamicRouterFormat(authMenuList);
+    const dynamicRouter = convertToDynamicRouterFormat(authMenuList); // 转换为 react-router 所需的路由结构
     let allRouter = [...wrappedStaticRouter, ...dynamicRouter];
 
-    // To prevent 404 from refreshing the page, add the * route at the end
-    allRouter.forEach(item => item.path === "*" && (item.element = <NotFound />));
+    allRouter.forEach(item => item.path === "*" && (item.element = <NotFound />)); // 为了防止404刷新页面，在最后添加*路由
 
-    // Set routerList
     setRouterList(allRouter);
   }, [authMenuList]);
 
+  // console.log(routerList); // 6个static + 3个dynamic
   const routerMode = {
     hash: () => createHashRouter(routerList as RouteObject[]),
     history: () => createBrowserRouter(routerList as RouteObject[])
   };
-
   return <Router router={routerMode[mode]()} />;
   // Props：<Route path={item.path} exact={item.exact} render={item.render} key={index} component {...props} />
 };

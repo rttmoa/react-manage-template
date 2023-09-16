@@ -5,17 +5,21 @@ import LayoutVertical from "./LayoutVertical";
 import LayoutClassic from "./LayoutClassic";
 import LayoutTransverse from "./LayoutTransverse";
 import LayoutColumns from "./LayoutColumns";
-import ThemeDrawer from "@/layouts/components/ThemeDrawer";
+import ThemeDrawer from "@/layouts/components/ThemeDrawer"; // todo 侧边 主题配置
 
+// todo
+// todo Layout
+// todo 懒加载在router中提前处理
 const LayoutIndex: React.FC = () => {
-  const layout = useSelector((state: RootState) => state.global.layout);
+  const layout = useSelector((state: RootState) => state.global.layout); // vertical | classic | transverse | columns
   const watermark = useSelector((state: RootState) => state.global.watermark);
+  // console.log(layout); // vertical | classic | transverse | columns
 
   const LayoutComponents = {
-    vertical: <LayoutVertical />,
-    classic: <LayoutClassic />,
-    transverse: <LayoutTransverse />,
-    columns: <LayoutColumns />
+    vertical: <LayoutVertical />, //------ 纵向
+    classic: <LayoutClassic />, //-------- 经典
+    transverse: <LayoutTransverse />, //-- 横向
+    columns: <LayoutColumns /> //--------- 分栏
   };
 
   return (
