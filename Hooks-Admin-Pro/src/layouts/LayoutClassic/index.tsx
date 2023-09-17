@@ -41,6 +41,8 @@ const LayoutClassic: React.FC = () => {
     setSubMenuList(menuItem?.children || []);
   };
 
+  // todo
+  // todo 经典布局：Menu分割
   return (
     <section className="layout-classic">
       <Header>
@@ -59,11 +61,11 @@ const LayoutClassic: React.FC = () => {
         <Sider width={210} collapsed={isCollapse} className={`${!subMenuList.length && menuSplit ? "not-sider" : ""}`}>
           {menuSplit ? (
             <React.Fragment>
-              {subMenuList.length ? (
-                <React.Fragment>
+              {subMenuList.length > 0 ? (
+                <>
                   <LayoutMenu mode="inline" menuList={subMenuList} />
                   <div className="collapse-box">{<CollapseIcon />}</div>
-                </React.Fragment>
+                </>
               ) : null}
             </React.Fragment>
           ) : (

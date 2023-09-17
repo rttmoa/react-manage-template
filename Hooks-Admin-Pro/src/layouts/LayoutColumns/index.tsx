@@ -44,7 +44,13 @@ const LayoutColumns: React.FC = () => {
     setSubMenuList(item.children || []);
     handleNavigation(item.children?.length ? item.children[0] : item);
   };
+  function menuCs(item: any) {
+    let menuClass = menuActive === item.path || `/${menuActive.split("/")[1]}` === item.path;
+    return menuClass;
+  }
 
+  // todo
+  // todo 分栏布局
   return (
     <section className="layout-columns">
       <div className="sider-split">
@@ -54,13 +60,7 @@ const LayoutColumns: React.FC = () => {
         <div className="menu-list">
           {showMenuList.map(item => {
             return (
-              <div
-                key={item.path}
-                className={`menu-item ${
-                  (menuActive === item.path || `/${menuActive.split("/")[1]}` === item.path) && "menu-active"
-                }`}
-                onClick={() => changeSubMenu(item)}
-              >
+              <div key={item.path} className={`menu-item ${menuCs(item) && "menu-active"}`} onClick={() => changeSubMenu(item)}>
                 <Icon name={item.meta!.icon!} />
                 <span className="title sle">{item.meta?.title}</span>
               </div>

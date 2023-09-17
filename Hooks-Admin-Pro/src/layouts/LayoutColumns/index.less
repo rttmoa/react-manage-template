@@ -31,7 +31,7 @@
     border-right: 1px solid var(--hooks-colorBorderSider);
     .menu-list {
       flex: 1;
-      overflow: auto;
+      overflow: auto; /* 是侧边滚动还是父盒子滚动 */
       &::-webkit-scrollbar {
         display: none;
       }
@@ -46,7 +46,7 @@
         color: var(--hooks-colorTextSecondarySider);
         cursor: pointer;
         border-radius: calc(var(--hooks-borderRadius) * 1px);
-        transition: all 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+        transition: all 1s cubic-bezier(0.2, 0, 0, 1) 0s;
         .anticon {
           margin: 13px 0 4px;
           font-size: 16px;

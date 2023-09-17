@@ -1,7 +1,7 @@
 // TODO: 经典布局
 .layout-classic {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 纵向：Header + Content */
   height: 100%;
   .ant-layout-header {
     display: flex;
@@ -64,7 +64,7 @@
     .header-ri {
       flex-shrink: 0;
     }
-    .hide-logo {
+    .hide-logo { /* width小于700时隐藏logo */
       @media screen and (max-width: 700px) {
         .logo {
           display: none !important;
@@ -72,22 +72,25 @@
       }
     }
   }
+  // 内容区域
   .classic-content {
-    display: flex;
-    height: calc(100% - 55px);
+    display: flex; /* 横向布局：Sider + Main */
+    height: calc(100% - 55px); /* 计算高度 */
+    // height: 100%;
     .not-sider {
       width: 0 !important;
       min-width: 0 !important;
       max-width: 0 !important;
     }
-    .ant-layout-sider {
+    .ant-layout-sider { /* 侧边栏Sider */
       background-color: var(--hooks-colorBgSider);
-      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-      .ant-layout-sider-children {
+      transition: all 1s cubic-bezier(0.2, 0, 0, 1) 0s;
+      .ant-layout-sider-children { /* 侧边栏Sider children */
         display: flex;
         flex-direction: column;
         height: 100%;
         border-right: 1px solid var(--hooks-colorBorderSecondary);
+        // todo children中纵向布局：开关有宽高，menu占1份
         .ant-menu-root {
           flex: 1;
           width: 100%;
@@ -95,6 +98,7 @@
           background-color: var(--hooks-colorBgSider);
           border-right: none;
         }
+        // 底部 开关
         .collapse-box {
           display: flex;
           align-items: center;
@@ -113,6 +117,7 @@
         }
       }
     }
+    // todo 内容区域
     .classic-main {
       display: flex;
       flex: 1;
