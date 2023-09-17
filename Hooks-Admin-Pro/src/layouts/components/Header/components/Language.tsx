@@ -4,11 +4,13 @@ import { useDispatch, RootState, useSelector } from "@/redux";
 import { setGlobalState } from "@/redux/modules/global";
 import { LanguageType } from "@/redux/interface";
 
+// todo
 const Language: React.FC = () => {
   const dispatch = useDispatch();
   const language = useSelector((state: RootState) => state.global.language);
 
   const setLanguage: MenuProps["onClick"] = val => {
+    // console.log(val); // {key: 'en', keyPath: Array(1), domEvent: SyntheticBaseEvent}
     dispatch(setGlobalState({ key: "language", value: val.key as LanguageType }));
   };
 

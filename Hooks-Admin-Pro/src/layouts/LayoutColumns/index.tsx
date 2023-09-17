@@ -9,7 +9,7 @@ import ToolBarRight from "@/layouts/components/Header/ToolBarRight";
 import LayoutMenu from "@/layouts/components//Menu";
 import LayoutMain from "@/layouts/components/Main";
 import logo from "@/assets/images/logo.svg";
-import "./index.less";
+import "./index.less"; // todo 分栏布局LESS
 const { Header, Sider } = Layout;
 const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
@@ -44,11 +44,26 @@ const LayoutColumns: React.FC = () => {
     setSubMenuList(item.children || []);
     handleNavigation(item.children?.length ? item.children[0] : item);
   };
-  function menuCs(item: any) {
-    let menuClass = menuActive === item.path || `/${menuActive.split("/")[1]}` === item.path;
-    return menuClass;
-  }
 
+  function mainMenuStructure(item: RouteObjectType) {
+    let menuClass = menuActive === item.path || `/${menuActive.split("/")[1]}` === item.path;
+    return (
+      <div key={item.path} className={`menu-item ${menuClass && "menu-active"}`} onClick={() => changeSubMenu(item)}>
+        <Icon name={item.meta!.icon!} />
+        <span className="title sle">{item.meta?.title}</span>
+      </div>
+    );
+  }
+  function subMenuStructure() {
+    return (
+      <React.Fragment>
+        <div className="logo">
+          <span className="logo-text">{isCollapse ? "H" : APP_TITLE}</span>
+        </div>
+        <LayoutMenu mode="inline" menuList={subMenuList} />
+      </React.Fragment>
+    );
+  }
   // todo
   // todo 分栏布局
   return (
@@ -57,26 +72,10 @@ const LayoutColumns: React.FC = () => {
         <div className="logo">
           <img src={logo} alt="logo" className="logo-img" />
         </div>
-        <div className="menu-list">
-          {showMenuList.map(item => {
-            return (
-              <div key={item.path} className={`menu-item ${menuCs(item) && "menu-active"}`} onClick={() => changeSubMenu(item)}>
-                <Icon name={item.meta!.icon!} />
-                <span className="title sle">{item.meta?.title}</span>
-              </div>
-            );
-          })}
-        </div>
+        <div className="menu-list">{showMenuList.map(item => mainMenuStructure(item))}</div>
       </div>
       <Sider width={210} collapsed={isCollapse} className={`${!subMenuList.length && "not-sider"}`}>
-        {subMenuList.length ? (
-          <React.Fragment>
-            <div className="logo">
-              <span className="logo-text">{isCollapse ? "H" : APP_TITLE}</span>
-            </div>
-            <LayoutMenu mode="inline" menuList={subMenuList} />
-          </React.Fragment>
-        ) : null}
+        {subMenuList.length ? subMenuStructure() : null}
       </Sider>
       <Layout>
         <Header>

@@ -3,51 +3,56 @@ import { GlobalState } from "@/redux/interface";
 import { DEFAULT_PRIMARY } from "@/config";
 
 const globalState: GlobalState = {
-  // layout mode (vertical | classic | transverse | columns)
+  // 布局 模式 (vertical | classic | transverse | columns)
   layout: "vertical",
-  // antd component size ("small" | "middle" | "large")
+  // antd 组件大小 ("small" | "middle" | "large") 默认，大型，小型
   componentSize: "middle",
-  // antd compact theme
-  compactAlgorithm: false,
-  // antd border radius
-  borderRadius: 6,
+
   // current system language
   language: null,
   // Whether the current page is full screen
   maximize: false,
-  // theme color
+
+  // 全局主题 -> 主题颜色
   primary: DEFAULT_PRIMARY,
-  // dark mode
+  // 全局主题 -> 暗黑 模式
   isDark: false,
-  // gray mode
+  // 全局主题 -> 灰色 模式
   isGrey: false,
-  // weakness mode
+  // 全局主题 -> 色弱 模式
   isWeak: false,
-  // menu splitting
+  // 全局主题 -> antd 紧凑主题
+  compactAlgorithm: false,
+  // 全局主题 -> antd 全局圆角大小
+  borderRadius: 6,
+
+  // 布局样式 -> 菜单 分割
   menuSplit: true,
-  // sidebar Invert Color
+  // 布局样式 -> 侧边 反转色
   siderInverted: false,
-  // head Inverted Color
+  // 布局样式 -> 头部 反转色
+
   headerInverted: false,
-  // menu collapse
+  // 界面设置 -> 菜单 折叠
   isCollapse: false,
-  // menu accordion
+  // 界面设置 -> 菜单手风琴
   accordion: true,
-  // water mark
+  // 界面设置 -> 水印
   watermark: true,
-  // breadcrumb
+  // 界面设置 -> 面包屑
   breadcrumb: true,
-  // breadcrumb icon
+  // 界面设置 -> 面包屑图标
   breadcrumbIcon: true,
-  // tabs
+  // 界面设置 -> 标签栏
   tabs: true,
-  // tabs icon
+  // 界面设置 -> 标签栏图标
   tabsIcon: true,
-  // tabs drag
+  // 界面设置 -> 标签栏拖拽
   tabsDrag: true,
-  // footer
+  // 界面设置 -> 页脚
   footer: true,
-  // theme box display status
+
+  // 主题盒子 Drawer 弹窗
   themeDrawerVisible: false
 };
 

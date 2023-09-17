@@ -34,6 +34,7 @@ const RouterProvider: React.FC = () => {
       return;
     }
 
+    /** #### 处理动态路由  */
     const dynamicRouter = convertToDynamicRouterFormat(authMenuList); // 转换为 react-router 所需的路由结构
     let allRouter = [...wrappedStaticRouter, ...dynamicRouter];
 

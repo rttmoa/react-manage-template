@@ -4,7 +4,6 @@ import { RootState, useSelector } from "@/redux";
 import "./index.less";
 
 const { Footer } = Layout;
-
 const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
 const LayoutFooter: React.FC = () => {

@@ -38,10 +38,12 @@ const ThemeDrawer: React.FC = () => {
       closable={false}
       maskClosable={true}
       open={themeDrawerVisible}
+      // open
       className="theme-drawer"
+      // 设置全局setGlobalStateProps
       onClose={() => dispatch(setGlobalState({ key: "themeDrawerVisible", value: false }))}
     >
-      {/* layout switching */}
+      {/* TODO: layout switching */}
       <Divider className="divider">
         <LayoutOutlined />
         布局样式
@@ -127,7 +129,7 @@ const ThemeDrawer: React.FC = () => {
         <Switch checked={headerInverted} onChange={value => dispatch(setGlobalState({ key: "headerInverted", value }))} />
       </div>
 
-      {/* theme settings */}
+      {/* TODO: theme settings */}
       <Divider className="divider">
         <FireOutlined />
         全局主题
@@ -187,7 +189,7 @@ const ThemeDrawer: React.FC = () => {
         />
       </div>
 
-      {/* interface settings */}
+      {/* TODO: interface settings */}
       <Divider className="divider">
         <SettingOutlined />
         界面设置

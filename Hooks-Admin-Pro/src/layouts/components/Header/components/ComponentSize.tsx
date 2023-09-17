@@ -8,6 +8,7 @@ const ComponentSize: React.FC = () => {
   const componentSize = useSelector((state: RootState) => state.global.componentSize);
 
   const setComponentSize: MenuProps["onClick"] = val => {
+    // console.log(val); // {key: 'middle', keyPath: Array(1), domEvent: SyntheticBaseEvent}
     dispatch(setGlobalState({ key: "componentSize", value: val.key as SizeType }));
   };
 
