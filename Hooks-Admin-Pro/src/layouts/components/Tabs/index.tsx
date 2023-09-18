@@ -18,6 +18,7 @@ interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
   "data-node-key": string;
 }
 
+// todo 拖拽
 const DraggableTabNode = ({ ...props }: DraggableTabPaneProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: props["data-node-key"]
@@ -37,24 +38,29 @@ const DraggableTabNode = ({ ...props }: DraggableTabPaneProps) => {
   });
 };
 
+// todo
+//  todo Tabs 的增删查
 const LayoutTabs: React.FC = () => {
   const matches = useMatches();
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  // console.log("matches", matches);
+  // console.log("location", location);
+  // console.log("navigate", navigate);
 
-  const path = location.pathname + location.search;
+  const path = location.pathname + location.search; // Tabs['activeKey']
+  // console.log(path);
 
-  const tabs = useSelector((state: RootState) => state.global.tabs);
-  const tabsIcon = useSelector((state: RootState) => state.global.tabsIcon);
-  const tabsDrag = useSelector((state: RootState) => state.global.tabsDrag);
+  const tabs = useSelector((state: RootState) => state.global.tabs); // 是否显示 Tabs
+  const tabsIcon = useSelector((state: RootState) => state.global.tabsIcon); // 是否显示 Tabs图标
+  const tabsDrag = useSelector((state: RootState) => state.global.tabsDrag); // 是否 可拖拽
   const tabsList = useSelector((state: RootState) => state.tabs.tabsList);
   const flatMenuList = useSelector((state: RootState) => state.auth.flatMenuList);
 
   const sensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } });
 
   useEffect(() => initTabs(), []);
-
   const initTabs = () => {
     flatMenuList.forEach(item => {
       if (item.meta?.isAffix && !item.meta.isHide && !item.meta.isFull) {
@@ -69,7 +75,7 @@ const LayoutTabs: React.FC = () => {
     });
   };
 
-  // Listen for route changes
+  // todo 监听路由变化 》 addTab()
   useEffect(() => {
     const meta = matches[matches.length - 1].data as MetaProps & { redirect: boolean };
     if (!meta?.redirect) {
@@ -79,22 +85,10 @@ const LayoutTabs: React.FC = () => {
         path: path,
         closable: !meta.isAffix
       };
+      // console.log(tabValue);
       dispatch(addTab(tabValue));
     }
   }, [matches]);
-
-  const items = tabsList.map(item => {
-    return {
-      key: item.path,
-      label: (
-        <React.Fragment>
-          {tabsIcon && <Icon name={item.icon} />}
-          {item.title}
-        </React.Fragment>
-      ),
-      closable: item.closable
-    };
-  });
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     if (active.id !== over?.id) {
@@ -104,12 +98,26 @@ const LayoutTabs: React.FC = () => {
     }
   };
 
-  const onChange = (path: string) => {
-    navigate(path);
-  };
+  // Tabs['items']：渲染 tabs
+  const items = tabsList.map(item => {
+    let tabsItem = {
+      key: item.path,
+      label: (
+        <React.Fragment>
+          {tabsIcon && <Icon name={item.icon} />}
+          {item.title}
+        </React.Fragment>
+      ),
+      closable: item.closable
+    };
+    return tabsItem;
+  });
 
+  // Tabs['onEdit']：删除 tabs
   const onEdit = (targetKey: TargetKey, action: "add" | "remove") => {
-    if (action === "remove" && typeof targetKey == "string") {
+    // console.log(action); // add 被隐藏
+    if (action === "remove" && typeof targetKey === "string") {
+      // path：/assembly/svgIcon   isCurrent：是否当前访问页
       dispatch(removeTab({ path: targetKey, isCurrent: targetKey == path }));
     }
   };
@@ -118,6 +126,7 @@ const LayoutTabs: React.FC = () => {
     <React.Fragment>
       {tabs && (
         <Tabs
+          // Tabs-Api：https://ant.design/components/tabs-cn#api
           hideAdd
           type="editable-card"
           className="tabs-box"
@@ -125,9 +134,10 @@ const LayoutTabs: React.FC = () => {
           items={items}
           activeKey={path}
           onEdit={onEdit}
-          onChange={onChange}
+          onChange={(path: string) => navigate(path)}
           tabBarExtraContent={<MoreButton path={path} />}
           {...(tabsDrag && {
+            // 拖拽部分
             renderTabBar: (tabBarProps, DefaultTabBar) => (
               <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
                 <SortableContext items={items.map(i => i.key)} strategy={horizontalListSortingStrategy}>

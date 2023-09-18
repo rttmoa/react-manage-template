@@ -33,6 +33,8 @@ const validate = {
   }
 };
 
+// todo
+// todo 登陆业务逻辑
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,6 +61,7 @@ const LoginForm: React.FC = () => {
 
       // user login
       const { data } = await loginApi({ ...values, password: md5(values.password) });
+      console.log(data);
       dispatch(setToken(data.access_token));
       // 存储Token + 派发任务存储redux
       // _.storage.set('tk', token)
@@ -67,7 +70,7 @@ const LoginForm: React.FC = () => {
       // clear last account tabs
       dispatch(setTabsList([]));
 
-      // init permissions
+      // todo 初始化权限： 获取用户按钮权限 && 获取用户菜单权限
       await initPermissions(data.access_token);
 
       // prompt for successful login and redirect
@@ -82,7 +85,10 @@ const LoginForm: React.FC = () => {
 
       // let to = usp.get("to");
       // to ? navigate(to, { replace: true }) : navigate(-1);
+    } catch (error) {
+      console.log(error);
     } finally {
+      console.log(121);
       setLoading(false);
       message.destroy();
     }

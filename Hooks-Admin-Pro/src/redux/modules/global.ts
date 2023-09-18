@@ -10,7 +10,7 @@ const globalState: GlobalState = {
 
   // current system language
   language: null,
-  // Whether the current page is full screen
+  // 当前页面是否全屏 （TabsView下拉中 最大化）
   maximize: false,
 
   // 全局主题 -> 主题颜色

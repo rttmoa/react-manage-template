@@ -55,7 +55,7 @@ export interface UserState {
 export interface AuthState {
   authMenuList: RouteObjectType[];
   showMenuList: RouteObjectType[];
-  flatMenuList: RouteObjectType[];
+  flatMenuList: RouteObjectType[]; // (60)Array: [{…}, {…}, {…}, {…}, {…}, ...............]
   authButtonList: {
     [key: string]: string[];
   };

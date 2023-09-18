@@ -7,6 +7,7 @@ import { RouteObjectType } from "@/routers/interface";
 import { useLocation, useOutlet } from "react-router-dom";
 import { setGlobalState } from "@/redux/modules/global";
 import { RootState, useDispatch, useSelector } from "@/redux";
+// 动画效果： CSSTransition 过滤 ， SwitchTransition 组件切换显示与隐藏
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Maximize from "./components/Maximize";
 import LayoutTabs from "@/layouts/components/Tabs";
@@ -29,7 +30,7 @@ const LayoutMain: React.FC = () => {
   const isCollapse = useSelector((state: RootState) => state.global.isCollapse);
   const flatMenuList = useSelector((state: RootState) => state.auth.flatMenuList);
 
-  // Monitor window changes, collapse menu
+  // 监视窗口变化，折叠菜单
   const { run } = useDebounceFn(
     () => {
       const screenWidth = document.body.clientWidth;
@@ -43,9 +44,10 @@ const LayoutMain: React.FC = () => {
     return () => window.removeEventListener("resize", run);
   }, []);
 
-  // Monitor whether the current page is maximized, dynamically add class
+  // 监控当前页面是否最大化，动态添加 class
   useEffect(() => {
     const root = document.getElementById("root") as HTMLElement;
+    // console.log(maximize);
     root.classList.toggle("main-maximize", maximize);
   }, [maximize]);
 

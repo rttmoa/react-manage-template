@@ -4,17 +4,23 @@ import type { TabsProps } from "antd";
 interface IconImports {
   [path: string]: () => Promise<{ default: string }>;
 }
-
 interface Icons {
   [path: string]: string;
 }
-
+// TODO: 处理assets下的图片作为img的src地址
 const iconsImports = import.meta.glob("/src/assets/images/notice*.png") as IconImports;
+// console.log(import.meta.glob("/src/assets/images/login*.svg"));
+// console.log(iconsImports); // {/src/assets/images/notice01.png: ƒ, /src/assets/images/notice02.png: ƒ....}
 
 let icons: Icons = {};
 
+// 遍历对象
 for (const path in iconsImports) {
-  iconsImports[path]().then(module => (icons[path] = module.default));
+  // console.log(path); // /src/assets/images/notice02.png
+  iconsImports[path]().then(module => {
+    // console.log(module);
+    return (icons[path] = module.default);
+  });
 }
 
 const Notice: React.FC = () => {

@@ -4,7 +4,6 @@ import { Modal, message } from "antd";
 export interface ShowInfoModalProps {
   name: string;
 }
-
 export interface InfoModalRef {
   showModal: (param: ShowInfoModalProps) => void;
 }
@@ -12,8 +11,10 @@ export interface InfoModalRef {
 const InfoModal = forwardRef<InfoModalRef, {}>((_props, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // todo
+  // todo 父组件中控制子组件中ref
+  // todo infoRef.current?.showModal({ name: '个人信息 showModal', })
   useImperativeHandle(ref, () => ({ showModal }));
-
   const showModal = (params: ShowInfoModalProps) => {
     console.log(params);
     setIsModalOpen(true);
@@ -23,7 +24,6 @@ const InfoModal = forwardRef<InfoModalRef, {}>((_props, ref) => {
     setIsModalOpen(false);
     message.success("修改用户信息成功 🎉");
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };

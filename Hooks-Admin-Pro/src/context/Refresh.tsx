@@ -15,6 +15,7 @@ export const RefreshContext = createContext<RefreshContextType>({
 export const RefreshProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [outletShow, setOutletShow] = useState(true);
 
+  // todo TabsView中 下拉刷新中 刷新
   const updateOutletShow = (val: boolean) => {
     console.log("/context/Refresh.tsx/更新updateOutletShow！");
     setOutletShow(val);

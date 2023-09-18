@@ -12,7 +12,7 @@ const ThemeSetting: React.FC = () => {
   return (
     <>
       <Tooltip placement="bottom" title="主题设置" arrow mouseEnterDelay={0.2}>
-        <i className="iconfont icon-zhuti" style={{ color: "#ff1717" || "#FFC317" }} onClick={setThemeDrawerVisible}></i>
+        <i className="iconfont icon-zhuti" style={{ color: "#178fff" || "#FFC317" }} onClick={setThemeDrawerVisible}></i>
       </Tooltip>
     </>
   );

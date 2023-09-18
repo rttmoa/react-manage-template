@@ -18,6 +18,7 @@ const tabsSlice = createSlice({
         state.tabsList.push(payload);
       }
     },
+    // todo 关闭当前
     removeTab(state, { payload }: PayloadAction<{ path: string; isCurrent: boolean }>) {
       if (!state.tabsList.find(item => item.path === payload.path)?.closable) return;
       if (payload.isCurrent) {
@@ -30,6 +31,7 @@ const tabsSlice = createSlice({
       }
       state.tabsList = state.tabsList.filter(item => item.path !== payload.path);
     },
+    // todo 关闭左侧 ？ 关闭右侧
     closeTabsOnSide(state, { payload }: PayloadAction<{ path: string; type: "left" | "right" }>) {
       const currentIndex = state.tabsList.findIndex(item => item.path === payload.path);
       if (currentIndex !== -1) {
@@ -39,6 +41,7 @@ const tabsSlice = createSlice({
         });
       }
     },
+    // todo 关闭其他 ？ 关闭所有
     closeMultipleTab(state, { payload }: PayloadAction<{ path?: string }>) {
       state.tabsList = state.tabsList.filter(item => {
         return item.path === payload.path || !item.closable;

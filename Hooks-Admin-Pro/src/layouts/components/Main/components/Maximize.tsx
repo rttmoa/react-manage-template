@@ -6,7 +6,7 @@ import { setGlobalState } from "@/redux/modules/global";
 const Maximize: React.FC = () => {
   const dispatch = useDispatch();
   const maximize = useSelector((state: RootState) => state.global.maximize);
-
+  // console.log(maximize);
   return (
     <React.Fragment>
       {maximize && (

@@ -30,8 +30,8 @@ const MoreButton: React.FC<MoreButtonProps> = ({ path }) => {
 
   const { t } = useTranslation();
 
+  // 刷新当前页面
   const { updateOutletShow } = useContext(RefreshContext);
-
   const refreshCurrentPage = () => {
     updateOutletShow(false);
     setTimeout(() => updateOutletShow(true));

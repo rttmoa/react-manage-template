@@ -30,7 +30,7 @@ const PasswordModal = forwardRef<PasswordModalRef, {}>((_props, ref) => {
   useImperativeHandle(ref, () => ({ showModal }));
 
   const showModal = (params: ShowPassModalProps) => {
-    // console.log(params);
+    console.log(params);
     setIsModalOpen(true);
   };
 

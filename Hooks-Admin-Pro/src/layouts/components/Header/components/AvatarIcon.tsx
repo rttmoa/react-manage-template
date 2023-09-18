@@ -10,14 +10,17 @@ import { setAuthMenuList } from "@/redux/modules/auth";
 import { modal, message } from "@/hooks/useMessage";
 import InfoModal, { InfoModalRef } from "./InfoModal";
 import PasswordModal, { PasswordModalRef } from "./PasswordModal";
-import avatar from "@/assets/images/avatar.png";
+// import avatar from "@/assets/images/avatar.png";
+import avatar from "@/assets/images/3aea_xll.jpg";
 
+// todo
+// todo: InfoModal: forwardRef & useImperativeHandle
 const AvatarIcon: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const passRef = useRef<PasswordModalRef>(null);
-  const infoRef = useRef<InfoModalRef>(null);
+  const infoRef = useRef<InfoModalRef>(null); // 个人信息 Modal
+  const passRef = useRef<PasswordModalRef>(null); // 修改用户信息 Modal
 
   const logout = () => {
     modal.confirm({
@@ -28,38 +31,37 @@ const AvatarIcon: React.FC = () => {
       cancelText: "取消",
       maskClosable: true,
       onOk: async () => {
-        // Execute the logout interface
+        // todo 退出逻辑
+        //  todo 1.执行注销接口
+        //  todo 2.设置 Token 为空
+        //  todo 3.设置 Menu 为空
+        //  todo 4.跳转至 登录页面
+        //  todo 5.提示 退出成功
+        //  todo ? 要不要清除Redux持久化数据
         await logoutApi();
-
-        // Set token to empty
         dispatch(setToken(""));
-
-        // Set menu list empty
         dispatch(setAuthMenuList([]));
-
-        // Jump to login page
         navigate(LOGIN_URL, { replace: true });
         // navigate("/login?to=/personal", { replace: true });
-
         message.success("退出登录成功！");
       }
     });
   };
 
-  const style = { fontSize: "16px" };
+  const style = { style: { fontSize: "16px" } };
 
   const items: MenuProps["items"] = [
     {
       key: "1",
       label: <span className="dropdown-item">首页</span>,
-      icon: <HomeOutlined style={style} />,
+      icon: <HomeOutlined {...style} />,
       onClick: () => navigate(HOME_URL)
     },
     {
       key: "2",
       label: <span className="dropdown-item">个人信息</span>,
-      icon: <UserOutlined style={style} />,
-      onClick: () => infoRef.current?.showModal({ name: "hooks" })
+      icon: <UserOutlined {...style} />,
+      onClick: () => infoRef.current?.showModal({ name: "个人信息 showModal" })
     },
     {
       type: "divider"
@@ -67,7 +69,7 @@ const AvatarIcon: React.FC = () => {
     {
       key: "3",
       label: <span className="dropdown-item">{"修改用户信息"}</span>,
-      icon: <FormOutlined style={style} />,
+      icon: <FormOutlined {...style} />,
       onClick: () => passRef.current?.showModal({ name: "hooks" })
     },
     {
@@ -76,7 +78,7 @@ const AvatarIcon: React.FC = () => {
     {
       key: "4",
       label: <span className="dropdown-item">退出登录</span>,
-      icon: <LoginOutlined style={style} />,
+      icon: <LoginOutlined {...style} />,
       onClick: logout
     }
   ];
@@ -86,7 +88,9 @@ const AvatarIcon: React.FC = () => {
       <Dropdown menu={{ items }} trigger={["click"]} placement="bottom" arrow>
         <Avatar className="avatar" size={42} src={avatar} />
       </Dropdown>
+
       <InfoModal ref={infoRef} />
+
       <PasswordModal ref={passRef} />
     </React.Fragment>
   );

@@ -7,6 +7,9 @@ import { RootState, useSelector } from "@/redux";
 import { useDebounce } from "ahooks";
 import { Icon } from "@/components/Icon";
 
+// todo
+//  todo 搜索框 （搜索侧边栏中内容）
+//  todo 华炎中 （搜索所有内容）
 const SearchMenu: React.FC = () => {
   const navigate = useNavigate();
 
@@ -15,50 +18,63 @@ const SearchMenu: React.FC = () => {
   const inputRef = useRef<InputRef>(null);
   const menuListRef = useRef<HTMLDivElement>(null);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 弹窗的显示与隐藏
   const [activePath, setActivePath] = useState("");
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(""); // 搜索框 Value
 
   const debouncedSearchValue = useDebounce(searchValue, { wait: 300 });
 
+  // 显示与隐藏 Modal
   const showModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // 搜索框 onChange
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
+  // 搜索值匹配路由关键字
   const searchList = useMemo(() => {
+    // console.log(flatMenuList); // (60)[{…}, {…}, {…}, .........................]
+    // console.log(debouncedSearchValue);
     return debouncedSearchValue
-      ? flatMenuList.filter(
-          item =>
-            (item.path!.toLowerCase().includes(debouncedSearchValue.toLowerCase()) ||
-              item.meta!.title!.toLowerCase().includes(debouncedSearchValue.toLowerCase())) &&
-            !item.meta?.isHide
-        )
+      ? flatMenuList.filter(item => {
+          let inputValue = debouncedSearchValue.toLowerCase(); // 输入框中的值
+          let pathStr = item.path!.toLowerCase().includes(inputValue); // path中是否包含字母
+          let metaTitleStr = item.meta!.title!.toLowerCase().includes(inputValue); // meta.title是否包含汉字
+          return (pathStr || metaTitleStr) && !item.meta?.isHide;
+        })
       : [];
   }, [debouncedSearchValue]);
 
+  // 设置 activePath
   useEffect(() => {
     searchList.length ? setActivePath(searchList[0].path!) : setActivePath("");
   }, [searchList]);
 
+  // 移动到 Div 身上， activePath为路径
   const mouseoverMenuItem = (item: RouteObjectType) => {
     setActivePath(item.path!);
   };
 
+  // TODO: 键盘：上下翻页
   const keyPressUpOrDown = (direction: number) => {
     const { length } = searchList;
     if (length === 0) return;
     const index = searchList.findIndex(item => item.path === activePath);
     const newIndex = (index + direction + length) % length;
+    // 设置 activePath
     setActivePath(searchList[newIndex].path!);
+
     if (menuListRef.current?.firstElementChild) {
       const menuItemHeight = menuListRef.current.firstElementChild.clientHeight + 12 || 0;
+      // console.log(menuItemHeight); // 57
+      // todo 设置滚动高度
       menuListRef.current.scrollTop = newIndex * menuItemHeight;
     }
   };
 
+  // 点击 Div
   const selectMenuItem = () => {
     const menu = searchList.find(item => item.path === activePath);
     if (!menu) return;
@@ -67,6 +83,7 @@ const SearchMenu: React.FC = () => {
     closeModal();
   };
 
+  // 键盘：Up、Down、Enter
   const keyboardOperation = (event: KeyboardEvent) => {
     if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -80,19 +97,41 @@ const SearchMenu: React.FC = () => {
     }
   };
 
+  // 弹窗开启：设置window监听键盘事件
   useEffect(() => {
     const handler = isModalOpen ? window.addEventListener : window.removeEventListener;
     handler("keydown", keyboardOperation);
     return () => window.removeEventListener("keydown", keyboardOperation);
   }, [isModalOpen, keyboardOperation]);
 
+  // 弹窗开启：设置聚焦
   useEffect(() => {
     if (isModalOpen) {
-      setTimeout(() => inputRef.current?.focus({ cursor: "start" }), 10);
+      setTimeout(() => inputRef.current?.focus({ cursor: "start" }), 100);
     } else {
       setSearchValue("");
     }
   }, [isModalOpen]);
+  // console.log(activePath);
+
+  function menuListStructure() {
+    return (
+      <div className="menu-list" ref={menuListRef}>
+        {searchList.map(item => (
+          <div
+            key={item.path}
+            className={`menu-item ${item.path === activePath && "menu-active"}`}
+            onMouseEnter={() => mouseoverMenuItem(item)}
+            onClick={() => selectMenuItem()}
+          >
+            <Icon className="menu-icon" name={item.meta!.icon!} />
+            <span className="menu-title">{item.meta?.title}</span>
+            <EnterOutlined className="menu-enter" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -107,24 +146,7 @@ const SearchMenu: React.FC = () => {
           value={searchValue}
           onChange={handleInputChange}
         />
-        {searchList.length ? (
-          <div className="menu-list" ref={menuListRef}>
-            {searchList.map(item => (
-              <div
-                key={item.path}
-                className={`menu-item ${item.path === activePath && "menu-active"}`}
-                onMouseEnter={() => mouseoverMenuItem(item)}
-                onClick={() => selectMenuItem()}
-              >
-                <Icon className="menu-icon" name={item.meta!.icon!} />
-                <span className="menu-title">{item.meta?.title}</span>
-                <EnterOutlined className="menu-enter" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <Empty className="mt40 mb30" description="暂无菜单" />
-        )}
+        {searchList.length ? menuListStructure() : <Empty className="mt40 mb30" description="暂无菜单" />}
       </Modal>
     </React.Fragment>
   );

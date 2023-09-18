@@ -14,6 +14,8 @@ interface LayoutMenuProps {
   menuSplit?: boolean;
 }
 
+// todo
+// todo 菜单逻辑
 const LayoutMenu: React.FC<LayoutMenuProps> = ({ mode, menuList, menuSplit }) => {
   const matches = useMatches();
   const navigate = useNavigate();
@@ -116,7 +118,9 @@ const LayoutMenu: React.FC<LayoutMenuProps> = ({ mode, menuList, menuSplit }) =>
 
   return (
     <Menu
+      // Menu主题是 Dark
       theme={isDarkTheme ? "dark" : "light"}
+      // Props: "inline" || "horizontal" || "vertical"
       mode={mode}
       selectedKeys={menuSplit ? splitSelectedKeys : selectedKeys}
       onClick={clickMenu}
