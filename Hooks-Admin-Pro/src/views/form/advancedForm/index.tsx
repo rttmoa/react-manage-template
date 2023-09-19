@@ -29,17 +29,17 @@ const AdvancedForm: React.FC = () => {
         <Card title="仓库管理" className="mb10">
           <Row gutter={50} justify="space-between">
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="name" label="仓库名" rules={[{ required: true }]}>
+              <Form.Item name="name" label="仓库名" rules={[{ required: false }]}>
                 <Input placeholder="请输入仓库名称" />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="url" label="仓库域名" rules={[{ required: true }]}>
+              <Form.Item name="url" label="仓库域名" rules={[{ required: false }]}>
                 <Input placeholder="请输入仓库域名" addonBefore="http://" addonAfter=".com" />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="owner" label="仓库管理员" rules={[{ required: true }]}>
+              <Form.Item name="owner" label="仓库管理员" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "付晓晓", value: "xiao" },
@@ -50,7 +50,7 @@ const AdvancedForm: React.FC = () => {
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="approver" label="审批人" rules={[{ required: true }]}>
+              <Form.Item name="approver" label="审批人" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "付晓晓", value: "xiao" },
@@ -61,12 +61,12 @@ const AdvancedForm: React.FC = () => {
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="dateRange" label="生效日期" rules={[{ required: true }]}>
+              <Form.Item name="dateRange" label="生效日期" rules={[{ required: false }]}>
                 <RangePicker style={{ width: "100%" }} />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="type" label="仓库类型" rules={[{ required: true }]}>
+              <Form.Item name="type" label="仓库类型" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "私密", value: "private" },
@@ -82,17 +82,17 @@ const AdvancedForm: React.FC = () => {
         <Card title="任务管理" className="mb10">
           <Row gutter={50} justify="space-between">
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="task" label="任务名" rules={[{ required: true }]}>
+              <Form.Item name="task" label="任务名" rules={[{ required: false }]}>
                 <Input placeholder="请输入任务名" />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="describe" label="任务描述" rules={[{ required: true }]}>
+              <Form.Item name="describe" label="任务描述" rules={[{ required: false }]}>
                 <Input placeholder="请输入任务描述" />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="executor" label="执行人" rules={[{ required: true }]}>
+              <Form.Item name="executor" label="执行人" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "付晓晓", value: "xiao" },
@@ -103,7 +103,7 @@ const AdvancedForm: React.FC = () => {
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="responsible" label="责任人" rules={[{ required: true }]}>
+              <Form.Item name="responsible" label="责任人" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "付晓晓", value: "xiao" },
@@ -114,12 +114,12 @@ const AdvancedForm: React.FC = () => {
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="dateRange2" label="生效日期" rules={[{ required: true }]}>
+              <Form.Item name="dateRange2" label="生效日期" rules={[{ required: false }]}>
                 <TimePicker style={{ width: "100%" }} />
               </Form.Item>
             </Col>
             <Col xxl={7} md={11} xs={24}>
-              <Form.Item name="type2" label="任务类型" rules={[{ required: true }]}>
+              <Form.Item name="type2" label="任务类型" rules={[{ required: false }]}>
                 <Select
                   options={[
                     { label: "私密", value: "private" },
@@ -133,7 +133,7 @@ const AdvancedForm: React.FC = () => {
         </Card>
 
         <Card title="填写备注">
-          <Form.Item name="remark" label="备注信息" rules={[{ required: true }]}>
+          <Form.Item name="remark" label="备注信息" rules={[{ required: false }]}>
             <Input.TextArea rows={4} showCount maxLength={300} placeholder="请输入备注信息" />
           </Form.Item>
         </Card>

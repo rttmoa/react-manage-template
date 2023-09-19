@@ -39,6 +39,10 @@ const basicProgress: BasicProgress[] = [
   { key: "5", time: "2019-11-07 07:10", rate: "发起退货申请", status: "processing", operator: "用户", cost: "5mins" }
 ];
 
+// todo
+// todo <Descriptions /> https://ant.design/components/descriptions-cn
+// todo <Step /> https://ant.design/components/steps-cn
+// todo <Badge /> https://ant.design/components/badge-cn
 const BasicDetails: React.FC = () => {
   return (
     <React.Fragment>

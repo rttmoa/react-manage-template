@@ -48,7 +48,14 @@ const FirstContent = ({ next }: any) => {
       }}
     >
       <Form.Item label="付款账户" name="payAccount" rules={[{ required: true }]}>
-        <Select options={[{ value: "antd", label: "ant-design@alipay.com" }]} placeholder="请选择付款账户" allowClear />
+        <Select
+          options={[
+            { value: "antd", label: "ant-design@alipay.com" },
+            { value: "antd222", label: "ant-design@alipay.com222" }
+          ]}
+          placeholder="请选择付款账户"
+          allowClear
+        />
       </Form.Item>
       <Form.Item label="收款账户" className="mb0">
         <Form.Item

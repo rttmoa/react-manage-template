@@ -19,6 +19,7 @@ interface BasicFormProps {
 }
 
 const BasicForm: React.FC = () => {
+  // get Form Value
   const onFinish = async (values: BasicFormProps) => {
     message.success("提交的数据为 : " + JSON.stringify(values));
     console.log(values);
@@ -105,9 +106,9 @@ const BasicForm: React.FC = () => {
           <Form.Item>
             <Space>
               <Button type="primary" htmlType="submit">
-                提交
+                {"提交"}
               </Button>
-              <Button htmlType="button">重置</Button>
+              <Button htmlType="button">{"重置"}</Button>
             </Space>
           </Form.Item>
         </Form>

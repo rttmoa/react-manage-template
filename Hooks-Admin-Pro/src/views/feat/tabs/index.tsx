@@ -29,10 +29,9 @@ const Tabs: React.FC = () => {
 
   const [value, setValue] = useState("");
 
-  const { updateOutletShow } = useContext(RefreshContext);
-
   const maximize = useSelector((state: RootState) => state.global.maximize);
 
+  const { updateOutletShow } = useContext(RefreshContext);
   const refreshCurrentPage = () => {
     updateOutletShow(false);
     setTimeout(() => updateOutletShow(true));
@@ -111,8 +110,8 @@ const Tabs: React.FC = () => {
       </Card>
 
       <Card>
-        <Typography.Title level={4} className="mb20">
-          Tab 跳转
+        <Typography.Title level={4} className="mb20" style={{ color: "red" }}>
+          Tab 跳转 （Tabs Detail中接收参数处理）
         </Typography.Title>
         <Space className="text">
           <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("1")}>
@@ -131,7 +130,12 @@ const Tabs: React.FC = () => {
             打开详情页5 + Query 参数
           </Button>
         </Space>
-        <Divider />
+      </Card>
+
+      <Card className="mb10">
+        <Typography.Title level={4} className="mb20" style={{ color: "red" }}>
+          跳转 空白页
+        </Typography.Title>
         <Button type="primary" icon={<SmileOutlined />} onClick={() => navigate("/noLayout/index")}>
           No layout 空白页
         </Button>

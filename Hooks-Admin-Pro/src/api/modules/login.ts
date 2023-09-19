@@ -11,26 +11,26 @@ import loginJSON from "@/assets/json/login.json";
 // 用户登陆
 export const loginApi = (params: ReqLogin) => {
   // console.log(http.post<ResLogin>(PORT1 + `/login`, params).then(res => console.log('login2', res)));
-  // return http.post<ResLogin>(PORT1 + `/login`, params);
+  return http.post<ResLogin>(PORT1 + `/login`, params);
   // return http.post<ResLogin>(PORT1 + `/login`, params, { loading: false });
   // return http.post<ResLogin>(PORT1 + `/login`, {}, { params });
   // return http.post<ResLogin>(PORT1 + `/login`, qs.stringify(params));
   // return http.get<ResLogin>(PORT1 + `/login?${qs.stringify(params, { arrayFormat: "repeat" })}`);
-  return loginJSON;
+  // return loginJSON;
 };
 
 // todo 获取菜单列表
 export const getAuthMenuListApi = () => {
   // console.log(http.get<AuthState["authMenuList"]>(PORT1 + `/menu/list`).then(res => console.log("菜单列表", res)));
-  // return http.get<AuthState["authMenuList"]>(PORT1 + `/menu/list`);
-  return authMenuList;
+  return http.get<AuthState["authMenuList"]>(PORT1 + `/menu/list`);
+  // return authMenuList;
 };
 
 // 获取按钮权限
 export const getAuthButtonListApi = () => {
   // console.log(http.get<AuthState["authButtonList"]>(PORT1 + `/auth/buttons`).then(res => console.log("res", res)));
-  // return http.get<AuthState["authButtonList"]>(PORT1 + `/auth/buttons`);
-  return authButtonList;
+  return http.get<AuthState["authButtonList"]>(PORT1 + `/auth/buttons`);
+  // return authButtonList;
 };
 
 // 用户退出
