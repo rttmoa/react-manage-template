@@ -5,10 +5,7 @@ import { RequestData } from "@ant-design/pro-components";
 
 const mode = import.meta.env.VITE_ROUTER_MODE;
 
-/**
- * @description Get the corresponding greeting for the current time.
- * @returns {String}
- */
+/** #### 获取当前时间对应的问候语。  */
 export function getTimeState() {
   let timeNow = new Date();
   let hours = timeNow.getHours();
@@ -19,39 +16,24 @@ export function getTimeState() {
   if (hours >= 0 && hours <= 6) return `凌晨好 🌛`;
 }
 
-/**
- * @description Generate random numbers
- * @param {Number} min minimum value
- * @param {Number} max Maximum value
- * @return {Number}
- */
+/** #### 生成随机数  */
 export function randomNum(min: number, max: number): number {
   let num = Math.floor(Math.random() * (min - max) + max);
   return num;
 }
 
-/**
- * @description Set style properties
- * @param {String} key - The key name of the style property
- * @param {String} val - The value of the style attribute
- */
+/** #### 设置样式属性  */
 export function setStyleProperty(key: string, val: string) {
   document.documentElement.style.setProperty(key, val);
 }
 
-/**
- * @description Convert a 3-digit HEX color code to a 6-digit code.
- * @returns {String}
- */
+/** #### 将 3 位 HEX 颜色代码转换为 6 位的 HEX 颜色代码  */
 export function convertToSixDigitHexColor(str: string) {
   if (str.length > 4) return str.toLocaleUpperCase();
   else return (str[0] + str[1] + str[1] + str[2] + str[2] + str[3] + str[3]).toLocaleUpperCase();
 }
 
-/**
- * @description 获取浏览器的默认语言。
- * @returns {String}
- */
+/** #### 获取浏览器的默认语言。  */
 export function getBrowserLang() {
   let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
   let defaultBrowserLang = "";
@@ -61,34 +43,23 @@ export function getBrowserLang() {
   return defaultBrowserLang;
 }
 
-/**
- * @description Flatten the menu using recursion for easier addition of dynamic routes.
- * @param {Array} menuList - The menu list.
- * @returns {Array}
- */
+/** #### 使用递归展平菜单，以便更轻松地添加动态路由。  */
 export function getFlatMenuList(menuList: RouteObjectType[]): RouteObjectType[] {
   let newMenuList: RouteObjectType[] = JSON.parse(JSON.stringify(menuList));
   return newMenuList.flatMap(item => [item, ...(item.children ? getFlatMenuList(item.children) : [])]);
 }
 
-/**
- * @description Use recursion to filter out the menu items that need to be rendered in the left menu (excluding menus with isHide == true).
- * @param {Array} menuList - The menu list.
- * @returns {Array}
- */
+/** #### 使用递归过滤掉左侧菜单中需要渲染的菜单项 > 去掉有isHide属性的（不包括 isHide == true 的菜单）。  */
 export function getShowMenuList(menuList: RouteObjectType[]) {
   let newMenuList: RouteObjectType[] = JSON.parse(JSON.stringify(menuList));
-  return newMenuList.filter(item => {
+  let getRemoveIsHide = newMenuList.filter(item => {
     item.children?.length && (item.children = getShowMenuList(item.children));
     return !item.meta?.isHide;
   });
+  return getRemoveIsHide;
 }
 
-/**
- * @description Obtain the first level menu
- * @param {RouteObjectType[]} menuList - The menu list.
- * @returns {RouteObjectType[]}
- */
+/** #### 获取一级菜单  */
 export function getFirstLevelMenuList(menuList: RouteObjectType[]) {
   return menuList.map(item => {
     return { ...item, children: undefined };
@@ -96,17 +67,17 @@ export function getFirstLevelMenuList(menuList: RouteObjectType[]) {
 }
 
 /**
- * @description Get a menu object with a path
- * @param {Array} menulist - The list of menu objects to search through.
- * @param {string} path - The path to match with the menu objects' paths.
- * @returns {Object} The matched menu object or null if no match is found.
+ * @description 获取带有路径的菜单对象
+ * @param {Array} menulist - 要搜索的菜单对象列表。
+ * @param {string} path - 与菜单对象的路径匹配的路径。
+ * @returns {Object} 匹配的菜单对象，如果没有找到匹配则返回 null。
  */
 export function getMenuByPath(
   menulist: RouteObjectType[] = store.getState().auth.flatMenuList,
   path: string = getUrlWithParams()
 ) {
   const menuItem = menulist.find(menu => {
-    // Match Dynamic routing through regular
+    // 通过常规匹配动态路由
     const regex = new RegExp(`^${menu.path?.replace(/:.[^/]*/, ".*")}$`);
     return regex.test(path);
   });
@@ -114,7 +85,7 @@ export function getMenuByPath(
 }
 
 /**
- * @description Use recursion to find all breadcrumbs and store them in redux.
+ * @description 使用递归查找所有面包屑并将其存储在 redux 中.
  * @param {Array} menuList - The menu list.
  * @param {Array} parent - The parent menu.
  * @param {Object} result - The processed result.
@@ -132,10 +103,7 @@ export function getAllBreadcrumbList(
   return result;
 }
 
-/**
- * @description Get relative url with params
- * @returns {String}
- */
+/** #### 使用参数获取相对网址  */
 export function getUrlWithParams() {
   const url = {
     hash: location.hash.substring(1),
@@ -144,12 +112,9 @@ export function getUrlWithParams() {
   return url[mode];
 }
 
-/**
- * @description Get the subMenu keys that need to be expanded.
- * @param {String} path - The current path.
- * @returns {Array}
- */
+/** #### 获取需要展开的子菜单按键  */
 export function getOpenKeys(path: string): string[] {
+  // @param {String} path - The current path.
   let currentKey: string = "";
   let openKeys: string[] = [];
   let pathSegments: string[] = path.split("/").map((segment: string) => "/" + segment);
@@ -160,11 +125,7 @@ export function getOpenKeys(path: string): string[] {
   return openKeys;
 }
 
-/**
- * @description Format the data returned by the server for the ProTable component.
- * @param {Object} data - The data returned by the server.
- * @returns {Object}
- */
+/** #### 为 ProTable 组件格式化服务器返回的数据  */
 export function formatDataForProTable<T>(data: ResPage<T>): Partial<RequestData<T>> {
   return {
     success: true,
@@ -173,14 +134,11 @@ export function formatDataForProTable<T>(data: ResPage<T>): Partial<RequestData<
   };
 }
 
-/**
- * @description A function to execute a block of code and prevent debugging in the browser.
- * @returns {number} - The ID of the setInterval, which can be used to stop the execution later.
- */
+/** #### 执行代码块并防止在浏览器中进行调试的函数  */
 export function blockDebugger() {
   function innerFunction() {
     try {
-      // Prevent debugging by invoking the "debugger" statement using unconventional syntax
+      // 通过使用非常规语法调用“debugger”语句来防止调试
       (function () {
         return false;
       })
@@ -190,6 +148,6 @@ export function blockDebugger() {
       console.log("Debugger is blocked");
     }
   }
-  // Start the execution using setInterval and return the interval ID
+  // 使用 setInterval 开始执行，并返回时间间隔 ID
   return setInterval(innerFunction, 50);
 }

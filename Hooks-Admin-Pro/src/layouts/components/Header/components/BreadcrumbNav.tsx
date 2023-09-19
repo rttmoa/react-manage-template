@@ -28,10 +28,10 @@ const BreadcrumbNav: React.FC = () => {
   const renderTitle = (item: RouteObjectType, isLink: boolean) => {
     const { icon, title } = item.meta || {};
     const content = (
-      <>
+      <React.Fragment>
         <span className="mr5">{breadcrumbIcon && <Icon name={icon!} />}</span>
         <span>{title}</span>
-      </>
+      </React.Fragment>
     );
     return isLink ? <Link to={item.path!}>{content}</Link> : content;
   };
@@ -80,7 +80,7 @@ const BreadcrumbNav: React.FC = () => {
   // console.log("当前访问页面包屑数组：", curBreadcrumbList);
   // console.log("==============================");
   // Typescript Breadcrumb || https://ant.design/components/breadcrumb-cn#api
-  return <>{breadcrumb && <Breadcrumb items={curBreadcrumbList}></Breadcrumb>}</>;
+  return <React.Fragment>{breadcrumb && <Breadcrumb items={curBreadcrumbList}></Breadcrumb>}</React.Fragment>;
 };
 
 export default BreadcrumbNav;

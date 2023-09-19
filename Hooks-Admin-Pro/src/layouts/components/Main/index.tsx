@@ -57,7 +57,7 @@ const LayoutMain: React.FC = () => {
   const { nodeRef } = menuList.find(route => route.path === pathname) ?? {};
 
   return (
-    <>
+    <React.Fragment>
       <Maximize />
       <LayoutTabs />
       <SwitchTransition>
@@ -66,7 +66,7 @@ const LayoutMain: React.FC = () => {
         </CSSTransition>
       </SwitchTransition>
       <LayoutFooter />
-    </>
+    </React.Fragment>
   );
 };
 

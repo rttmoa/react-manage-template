@@ -92,15 +92,14 @@ const LayoutMenu: React.FC<LayoutMenuProps> = ({ mode, menuList, menuSplit }) =>
     if (latestOpenKey.includes(openKeys[0])) return setOpenKeys(openKeys);
     setOpenKeys([latestOpenKey]);
   };
-
+  const handleMenuNavigation = (path: string) => {
+    const menuItem = flatMenuList.find(item => item.path === path);
+    if (menuItem?.meta?.isLink) window.open(menuItem.meta.isLink, "_blank");
+    navigate(path);
+  };
   // todo Menu['onClick']: 点击事件
   const clickMenu: MenuProps["onClick"] = ({ key }) => {
     // console.log("clickMenu", key);
-    const handleMenuNavigation = (path: string) => {
-      const menuItem = flatMenuList.find(item => item.path === path);
-      if (menuItem?.meta?.isLink) window.open(menuItem.meta.isLink, "_blank");
-      navigate(path);
-    };
     if (menuSplit) {
       // 菜单分割：经典模式下
       const children = showMenuList.find(item => item.path === key)?.children;

@@ -1,83 +1,68 @@
-/**
- * @description: Check if a value is of a certain type.
- */
+/* eslint-disable prettier/prettier */
+
+
+
+
+
+// todo 检查值是否属于某种类型
 export function is(val: unknown, type: string) {
   return Object.prototype.toString.call(val) === `[object ${type}]`;
 }
 
-/**
- * @description:  Check if a value is a function.
- */
+
+// todo 检查值是否是 Function
 export function isFunction<T = Function>(val: unknown): val is T {
   return is(val, "Function");
 }
 
-/**
- * @description: Check if a value is defined.
- */
+
+// todo 检查值是否是 undefined
 export const isDef = <T = unknown>(val?: T): val is T => {
   return typeof val !== "undefined";
 };
 
-/**
- * @description: Check if a value is undefined.
- */
+// todo 检查值是否是 undefined
 export const isUnDef = <T = unknown>(val?: T): val is T => {
   return !isDef(val);
 };
 
-/**
- * @description: Check if a value is an object.
- */
+
+// todo 检查值是否是 Object
 export const isObject = (val: any): val is Record<any, any> => {
   return val !== null && is(val, "Object");
 };
 
-/**
- * @description: Check if a value is a date.
- */
+// todo 检查值是否是 Date
 export function isDate(val: unknown): val is Date {
   return is(val, "Date");
 }
 
-/**
- * @description: Check if a value is a number.
- */
+// todo 检查值是否是 Number
 export function isNumber(val: unknown): val is number {
   return is(val, "Number");
 }
 
-/**
- * @description: Check if a value is an AsyncFunction.
- */
+// todo 检查值是否是 AsyncFunction
 export function isAsyncFunction<T = any>(val: unknown): val is Promise<T> {
   return is(val, "AsyncFunction");
 }
 
-/**
- * @description: Check if a value is a promise.
- */
+// todo 检查值是否是 Promise
 export function isPromise<T = any>(val: unknown): val is Promise<T> {
   return is(val, "Promise") && isObject(val) && isFunction(val.then) && isFunction(val.catch);
 }
 
-/**
- * @description: Check if a value is a string.
- */
+// todo 检查值是否是 String
 export function isString(val: unknown): val is string {
   return is(val, "String");
 }
 
-/**
- * @description: Checks if the value is of boolean type.
- */
+// todo 检查值是否是 Boolean
 export function isBoolean(val: unknown): val is boolean {
   return is(val, "Boolean");
 }
 
-/**
- * @description: Checks if the value is an array.
- */
+// todo 检查值是否是 Array
 export function isArray(val: any): val is Array<any> {
   return val && Array.isArray(val);
 }

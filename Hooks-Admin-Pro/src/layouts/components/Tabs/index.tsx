@@ -103,10 +103,10 @@ const LayoutTabs: React.FC = () => {
     let tabsItem = {
       key: item.path,
       label: (
-        <>
+        <React.Fragment>
           {tabsIcon && <Icon name={item.icon} />}
           {item.title}
-        </>
+        </React.Fragment>
       ),
       closable: item.closable
     };
@@ -123,7 +123,7 @@ const LayoutTabs: React.FC = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       {tabs && (
         <Tabs
           // Tabs-Api：https://ant.design/components/tabs-cn#api
@@ -154,7 +154,7 @@ const LayoutTabs: React.FC = () => {
           })}
         />
       )}
-    </>
+    </React.Fragment>
   );
 };
 
