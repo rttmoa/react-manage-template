@@ -75,7 +75,7 @@ const LayoutTabs: React.FC = () => {
     });
   };
 
-  // todo 监听路由变化 》 addTab()
+  // todo 监听路由变化 > addTab()
   useEffect(() => {
     const meta = matches[matches.length - 1].data as MetaProps & { redirect: boolean };
     if (!meta?.redirect) {
@@ -103,17 +103,17 @@ const LayoutTabs: React.FC = () => {
     let tabsItem = {
       key: item.path,
       label: (
-        <React.Fragment>
+        <>
           {tabsIcon && <Icon name={item.icon} />}
           {item.title}
-        </React.Fragment>
+        </>
       ),
       closable: item.closable
     };
     return tabsItem;
   });
 
-  // Tabs['onEdit']：删除 tabs
+  // Tabs['onEdit']： removeTab()
   const onEdit = (targetKey: TargetKey, action: "add" | "remove") => {
     // console.log(action); // add 被隐藏
     if (action === "remove" && typeof targetKey === "string") {
@@ -123,7 +123,7 @@ const LayoutTabs: React.FC = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {tabs && (
         <Tabs
           // Tabs-Api：https://ant.design/components/tabs-cn#api
@@ -154,7 +154,7 @@ const LayoutTabs: React.FC = () => {
           })}
         />
       )}
-    </React.Fragment>
+    </>
   );
 };
 

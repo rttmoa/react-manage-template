@@ -26,9 +26,9 @@ const LayoutMain: React.FC = () => {
   const { pathname } = useLocation();
   const { outletShow } = useContext(RefreshContext);
 
-  const maximize = useSelector((state: RootState) => state.global.maximize);
-  const isCollapse = useSelector((state: RootState) => state.global.isCollapse);
-  const flatMenuList = useSelector((state: RootState) => state.auth.flatMenuList);
+  const maximize = useSelector((state: RootState) => state.global.maximize); // 是否 最大化
+  const isCollapse = useSelector((state: RootState) => state.global.isCollapse); // 是否 折叠
+  const flatMenuList = useSelector((state: RootState) => state.auth.flatMenuList); // 菜单权限列表 (扁平化数组)
 
   // 监视窗口变化，折叠菜单
   const { run } = useDebounceFn(
@@ -57,7 +57,7 @@ const LayoutMain: React.FC = () => {
   const { nodeRef } = menuList.find(route => route.path === pathname) ?? {};
 
   return (
-    <React.Fragment>
+    <>
       <Maximize />
       <LayoutTabs />
       <SwitchTransition>
@@ -66,7 +66,7 @@ const LayoutMain: React.FC = () => {
         </CSSTransition>
       </SwitchTransition>
       <LayoutFooter />
-    </React.Fragment>
+    </>
   );
 };
 

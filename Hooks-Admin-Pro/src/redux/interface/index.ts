@@ -53,7 +53,8 @@ export interface UserState {
 
 /* AuthState */
 export interface AuthState {
-  authMenuList: RouteObjectType[];
+  // 从接口获取的 Array
+  authMenuList: RouteObjectType[]; // (14)[{…}, {…}, {…}, {…}, ..................]
   showMenuList: RouteObjectType[];
   flatMenuList: RouteObjectType[]; // (60)Array: [{…}, {…}, {…}, {…}, {…}, ...............]
   authButtonList: {

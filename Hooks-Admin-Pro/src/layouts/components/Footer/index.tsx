@@ -8,7 +8,6 @@ const APP_TITLE = import.meta.env.VITE_GLOB_APP_TITLE;
 
 const LayoutFooter: React.FC = () => {
   const footer = useSelector((state: RootState) => state.global.footer);
-
   return (
     <React.Fragment>
       {footer && (

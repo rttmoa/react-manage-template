@@ -1,9 +1,13 @@
+/* eslint-disable prettier/prettier */
 // ? Global default configuration items
 
-// Home address
+
+
+
+
 export const HOME_URL: string = "/home/index";
 
-// login page address
+
 export const LOGIN_URL: string = "/login";
 
 // default theme color

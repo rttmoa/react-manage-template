@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import { Input } from "antd";
 import { HexColorPicker } from "react-colorful";
@@ -33,15 +34,15 @@ const ColorPicker = () => {
   const changePrimary = (value: string) => {
     dispatch(setGlobalState({ key: "primary", value }));
   };
-
+  const onChageEvent = (params: any) => {
+    changePrimary(params);
+    setInputPrimary(params);
+  };
   return (
     <div className="color-picker">
       <HexColorPicker
         color={primary}
-        onChange={e => {
-          changePrimary(e.toLocaleUpperCase());
-          setInputPrimary(e.toLocaleUpperCase());
-        }}
+        onChange={e => { onChageEvent(e.toLocaleUpperCase()) }}
       />
       <Input
         value={inputPrimary}
@@ -63,10 +64,7 @@ const ColorPicker = () => {
             className="picker-swatch"
             key={presetColor}
             style={{ background: presetColor }}
-            onClick={() => {
-              changePrimary(presetColor);
-              setInputPrimary(presetColor);
-            }}
+            onClick={() => { onChageEvent(presetColor) }}
           />
         ))}
       </div>

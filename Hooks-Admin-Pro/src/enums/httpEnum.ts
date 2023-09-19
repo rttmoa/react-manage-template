@@ -1,6 +1,4 @@
-/**
- * @description：request configuration
- */
+/** #### 请求配置  */
 export enum ResultEnum {
   SUCCESS = 200,
   ERROR = 500,
@@ -9,9 +7,7 @@ export enum ResultEnum {
   TYPE = "success"
 }
 
-/**
- * @description：request method
- */
+/** #### 请求方法  */
 export enum RequestEnum {
   GET = "GET",
   POST = "POST",
@@ -20,9 +16,7 @@ export enum RequestEnum {
   DELETE = "DELETE"
 }
 
-/**
- * @description：Commonly used contentTyp types
- */
+/** ####  常用的 contentType 类型 */
 export enum ContentTypeEnum {
   // json
   JSON = "application/json;charset=UTF-8",

@@ -4,7 +4,6 @@ import zhCnTrans from "./modules/zh";
 import { getBrowserLang } from "@/utils";
 import { initReactI18next } from "react-i18next";
 
-// .TODO: 国际化
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -22,3 +21,8 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
+
+// todo 使用
+//    todo：import { useTranslation } from 'react-i18next'
+//    todo：const { t } = useTranslation()
+//    todo：<span>{t("tabs.refresh")}</span>

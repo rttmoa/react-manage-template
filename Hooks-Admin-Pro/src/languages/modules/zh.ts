@@ -1,4 +1,7 @@
 export default {
+  user: {
+    username: "悲伤"
+  },
   home: {
     welcome: "欢迎使用"
   },

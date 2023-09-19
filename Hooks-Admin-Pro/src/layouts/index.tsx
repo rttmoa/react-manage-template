@@ -13,7 +13,6 @@ import ThemeDrawer from "@/layouts/components/ThemeDrawer"; // todo 侧边 主�
 const LayoutIndex: React.FC = () => {
   const layout = useSelector((state: RootState) => state.global.layout); // vertical | classic | transverse | columns
   const watermark = useSelector((state: RootState) => state.global.watermark);
-  // console.log(layout); // vertical | classic | transverse | columns
 
   const LayoutComponents = {
     vertical: <LayoutVertical />, //------ 纵向

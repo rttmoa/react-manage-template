@@ -6,7 +6,7 @@ import { getMenuByPath } from "@/utils";
  */
 const useAuthButton = () => {
   const authButtonList = useSelector((state: RootState) => state.auth.authButtonList);
-
+  console.log(authButtonList);
   const meta = getMenuByPath()?.meta ?? {};
 
   let currentPageAuthButton: { [key: string]: boolean } = {};

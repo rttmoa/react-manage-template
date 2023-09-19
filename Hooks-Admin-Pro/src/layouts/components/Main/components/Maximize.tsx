@@ -8,13 +8,13 @@ const Maximize: React.FC = () => {
   const maximize = useSelector((state: RootState) => state.global.maximize);
   // console.log(maximize);
   return (
-    <React.Fragment>
+    <>
       {maximize && (
         <div className="maximize-icon" onClick={() => dispatch(setGlobalState({ key: "maximize", value: false }))}>
           <i className="iconfont icon-tuichu"></i>;
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 };
 

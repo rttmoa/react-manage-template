@@ -134,6 +134,7 @@ const ThemeDrawer: React.FC = () => {
         <FireOutlined />
         全局主题
       </Divider>
+      {/* FIXME: 修改主题颜色 */}
       <div className="theme-item">
         <span>主题颜色</span>
         <Popover placement="left" trigger="click" content={ColorPicker}>
