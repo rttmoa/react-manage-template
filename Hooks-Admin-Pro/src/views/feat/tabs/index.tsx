@@ -37,9 +37,24 @@ const Tabs: React.FC = () => {
     setTimeout(() => updateOutletShow(true));
   };
 
+  // todo：react-routerV6 路由传递参数的三种方式
+  // State 传参：注意：此时路由上不能有params 传参时的参数占位，否则无法跳转；
   const handleToDetail = (id: string, query: string = "") => {
+    // iD: params传参 （使用useParams接收参数）
     navigate(`/feat/tabs/detail/${id}${query}`);
+    // State 传参：
+    // navigate("/feat/tabs/", { state: { name: "Eula", age: "18" } });
   };
+
+  const stateDetail = () => {
+    const obj = {
+      id: 3,
+      name: "san",
+      age: 36
+    };
+    navigate("/feat/tabs/", { state: obj });
+  };
+  // console.log("/feat/tabs页：", useLocation());
 
   return (
     <React.Fragment>
@@ -113,21 +128,19 @@ const Tabs: React.FC = () => {
         <Typography.Title level={4} className="mb20" style={{ color: "red" }}>
           Tab 跳转 （Tabs Detail中接收参数处理）
         </Typography.Title>
+        <Typography.Title level={5}>详情页："path":"/feat/tabs/detail/:id"</Typography.Title>
         <Space className="text">
           <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("1")}>
             打开详情页1
           </Button>
           <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("2")}>
-            打开详情页2
+            Params 传参（打开详情页2）
           </Button>
-          <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("3")}>
-            打开详情页3
+          <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("5", "?params=详情文章&pageSize=30")}>
+            Search 传参
           </Button>
-          <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("4")}>
-            打开详情页4
-          </Button>
-          <Button type="primary" icon={<SmileOutlined />} onClick={() => handleToDetail("5", "?params=detail-page")}>
-            打开详情页5 + Query 参数
+          <Button type="primary" icon={<SmileOutlined />} onClick={() => stateDetail()}>
+            State 传参（传递本页）
           </Button>
         </Space>
       </Card>

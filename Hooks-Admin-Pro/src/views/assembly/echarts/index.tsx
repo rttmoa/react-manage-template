@@ -6,6 +6,11 @@ import "./index.less";
 
 const { Link } = Typography;
 
+// todo
+// todo <Descriptions /> https://ant.design/components/descriptions-cn
+// todo <Row /> https://ant.design/components/grid-cn
+// todo 响应式栅格 <Col />
+// todo <Col /> https://ant.design/components/grid-cn#col
 const EChartsPage: React.FC = () => {
   const isDark = useSelector((state: RootState) => state.global.isDark);
 

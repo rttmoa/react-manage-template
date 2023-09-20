@@ -13,9 +13,8 @@ type ClipboardHook = ClipboardFunctions & {
   textareaRef: TextareaRef;
 };
 
-/**
- * @description  use Hooks 设置剪切版
- */
+// todo：use Hooks 设置剪切版
+// todo：常用功能： 剪切板
 const useClipboard = (): ClipboardHook => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isCopied, setIsCopied] = useState<IsCopiedState>(false);

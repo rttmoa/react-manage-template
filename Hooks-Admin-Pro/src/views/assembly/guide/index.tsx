@@ -61,9 +61,7 @@ const GuidePage: React.FC = () => {
 
       <Space>
         <Button ref={ref1}> Upload</Button>
-        <Button ref={ref2} type="primary">
-          Save
-        </Button>
+        <Button ref={ref2}>Save</Button>
         <Button ref={ref3} icon={<EllipsisOutlined />} />
       </Space>
 

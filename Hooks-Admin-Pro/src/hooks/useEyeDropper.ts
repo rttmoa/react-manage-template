@@ -7,9 +7,8 @@ interface EyeDropperResult {
   cancelEyeDropper: () => void;
 }
 
-/**
- * @description  use Hooks 设置EyeDropper
- */
+// todo use Hooks 设置 取色器
+// todo 常用功能：取色器
 const useEyeDropper = (): EyeDropperResult => {
   const [color, setColor] = useState<string>("");
   const [isEnabled, setIsEnabled] = useState<boolean>(true);

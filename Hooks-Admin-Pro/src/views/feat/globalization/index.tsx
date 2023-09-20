@@ -4,6 +4,7 @@ import { Card, DatePicker, Divider, Pagination, Radio, Space, Table, TimePicker,
 import { RootState, useDispatch, useSelector } from "@/redux";
 import { setGlobalState } from "@/redux/modules/global";
 import { useTranslation } from "react-i18next";
+import Title from "antd/lib/typography/Title";
 
 const { Text } = Typography;
 const { RangePicker } = DatePicker;
@@ -37,7 +38,7 @@ const Globalization: React.FC = () => {
       </Radio.Group>
 
       <Divider />
-
+      <Title level={4}>关于Home、分页器、日期选择、时间选择、日期时间选择、Transfer、Table的中英文切换</Title>
       <Text>{t("home.welcome")}</Text>
 
       <Divider />

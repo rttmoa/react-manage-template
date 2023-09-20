@@ -22,12 +22,16 @@ const ColorPicker: React.FC = () => {
       <Divider />
 
       {isEnabled ? (
-        <Space.Compact style={{ width: "350px" }}>
-          <Input placeholder="The color picked up by the color picker" value={color} />
-          <Button type="primary" onClick={openEyeDropper}>
-            Open
-          </Button>
-        </Space.Compact>
+        <>
+          <Space.Compact style={{ width: "350px" }}>
+            <Input placeholder="The color picked up by the color picker" value={color} />
+            <Button type="primary" onClick={openEyeDropper}>
+              Open
+            </Button>
+          </Space.Compact>
+          <br />
+          <div style={{ width: 200, height: 200, backgroundColor: color, margin: "0 auto" }}></div>
+        </>
       ) : (
         <Button type="primary" disabled>
           当前浏览器不支持 EyeDropper API，请切换到 Chrome / Edge
