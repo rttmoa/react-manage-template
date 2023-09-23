@@ -1,0 +1,67 @@
+
+
+
+  umi + dva + store
+
+  
+  /mock -> Mockjs 创建Mock数据
+
+  /src/components/
+
+  /src/pages/ 
+    /page/
+      + @connect(({ app, dashboard, loading }) => ({ dashboard, loading }))
+      + class Dashboard extends PureComponent {}
+    /login -> 登陆页：
+      + 切换国际化语言
+        + dvajs 使用
+    /editor -> 富文本编辑器
+      + 封装文本域编辑器 （react-draft-wysiwyg）
+      + 编辑器值转换为 HTML （draftjs-to-html）
+      + 编辑器值转换为 MarkDown （draftjs-to-markdown）
+      + 编辑器值转换为 JSON （JSON.stringify）
+    /chart -> 图表
+      + ECharts
+      + hightCharts
+      + Recharts
+    /request -> 测试 request模块
+      功能：
+        + 左侧渲染 api 中请求列表
+        + 右侧 渲染 api 的请求列表 
+        + 添加参数的按钮：添加 / 不添加
+        + 发送按钮：发情请求
+        + 结果在页面中显示
+    /post -> 文章发布管理
+      + Switch Tab；路由地址变化，dvajs中监听路由变化，并做相应的处理  history.push({pathname, search: qs.stringify({status: key})})
+      + dvajs；post继承app： export default modelExtend(pageModel, {namespace: 'post'}
+    /dashboard -> 面板
+      + dvajs模块 监听路由
+      + dvajs中处理请求处理发送给 /utils/modal/reducers 处理
+    todo /user -> 用户的 增删改查
+      +
+
+      
+  /src/layouts/
+    @/BaseLayout.js
+    @/index.js
+    @/PrimaryLayout.js
+    @/PublicLayout.js
+
+  /src/locales/
+    @/en 
+    @/pt-br 
+    @/zh
+
+  /src/models/
+    @/app.js
+      + 总Modal： export default { namespace: 'app' }
+
+  /src/services/
+    @/api.js/
+      + export default { ... 请求路径 }
+    @/index.js
+      + const APIFunction = {}   封装APIFunction处理
+  /src/themes/
+
+  /src/utils/
+    @/

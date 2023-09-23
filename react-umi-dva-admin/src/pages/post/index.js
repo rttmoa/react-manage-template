@@ -23,7 +23,7 @@ class Post extends PureComponent {
     const { pathname } = this.props.location;
     // console.log("handleTabClick", key, pathname) // handleTabClick 2 /post
 
-    // TODO: 切换tab，路由地址变化
+    // TODO: 切换 Tab，路由地址变化，dvajs中监听路由变化，并做相应的处理
     history.push({
       pathname,
       search: stringify({

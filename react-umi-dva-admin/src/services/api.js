@@ -7,8 +7,9 @@ export default {
   queryRouteList: '/routes',
 
   queryUserInfo: '/user',
-  logoutUser: '/user/logout',
-  loginUser: 'POST /user/login',
+  
+  logoutUser: '/user/logout', // 用户退出
+  loginUser: 'POST /user/login', // 用户登陆
 
   queryUser: '/user/:id',
   queryUserList: '/users',

@@ -8,7 +8,7 @@ const { queryDashboard, queryWeather } = api
 const avatar = '//cdn.antd-admin.zuiidea.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236.jpeg'
 
 
-
+// dashboard 继承 model
 export default modelExtend(model, {
   namespace: 'dashboard',
   state: {
@@ -52,11 +52,12 @@ export default modelExtend(model, {
       })
     },
     *queryWeather({ payload = {} }, { call, put }) {
-      // console.log(queryWeather)
+      // console.log('queryWeather')
       try {
         payload.location = 'shenzhen'
         const result = yield call(queryWeather, payload)
         // console.log(result)
+        console.log(222)
         const { success } = result
         if (success) {
           const data = result.results[0]
@@ -72,7 +73,7 @@ export default modelExtend(model, {
           })
         }
       } catch (error) {
-        // console.log("queryWeather error", error) // {success: false, statusCode: 403, message: 'Forbidden'}
+        console.log("queryWeather error", error) // {success: false, statusCode: 403, message: 'Forbidden'}
       }
     },
   },

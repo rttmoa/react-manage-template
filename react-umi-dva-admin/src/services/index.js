@@ -1,21 +1,22 @@
 import request from 'utils/request'
-import { apiPrefix } from 'utils/config'
+import { apiPrefix } from '../utils/config'
 import api from './api'
+// console.log(api)
 
-
-
+// todo  api: resolve(__dirname, './src/services/')
 
 const gen = params => {
   let url = apiPrefix + params
   let method = 'GET'
 
+  // 默认为GET、如果是其他POST、PATCH、DELETE请求  将method和url重新赋值
   const paramsArray = params.split(' ')
   if (paramsArray.length === 2) {
     method = paramsArray[0]
     url = apiPrefix + paramsArray[1]
   }
 
-  return function(data) {
+  return function(data) { // 闭包：等待 传参
     return request({
       url,
       data,
@@ -26,7 +27,8 @@ const gen = params => {
 
 const APIFunction = {}
 for (const key in api) {
-  APIFunction[key] = gen(api[key])
+  const apiValue = api[key]
+  APIFunction[key] = gen(apiValue)
 }
 
 APIFunction.queryWeather = params => {
@@ -36,5 +38,6 @@ APIFunction.queryWeather = params => {
     data: params,
   })
 }
+// console.log(APIFunction)
 
 export default APIFunction

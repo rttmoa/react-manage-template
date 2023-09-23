@@ -40,8 +40,7 @@ export default function request(options) {
     })
   })
 
-  return axios(options)
-    .then((response) => {
+  return axios(options).then((response) => {
       const { statusText, status, data } = response
 
       let result = {}

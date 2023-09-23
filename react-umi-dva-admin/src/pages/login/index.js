@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'umi'
@@ -6,7 +7,7 @@ import { GlobalFooter } from 'components'
 import { GithubOutlined } from '@ant-design/icons'
 import { t, Trans } from "@lingui/macro"
 import { setLocale } from '../../utils'
-import config from 'utils/config'
+import config from '../../utils/config'
 import styles from './index.less'
 const FormItem = Form.Item
 
@@ -21,6 +22,8 @@ class Login extends PureComponent {
     const { dispatch, loading } = this.props
 
     const handleOk = values => {
+      // console.log(values) // {username: 'admin', password: 'admin'}
+      // return
       dispatch({ type: 'login/login', payload: values })
     }
 

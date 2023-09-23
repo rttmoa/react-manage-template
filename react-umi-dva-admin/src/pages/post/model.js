@@ -1,11 +1,11 @@
 import modelExtend from 'dva-model-extend'
 import api from 'api'
-import { pageModel } from 'utils/model'
+import { pageModel } from '../../utils/model'
 const { pathToRegexp } = require("path-to-regexp")
 const { queryPostList } = api
 
 
-
+// todo post继承model
 export default modelExtend(pageModel, {
   namespace: 'post',
 
@@ -24,10 +24,11 @@ export default modelExtend(pageModel, {
       })
     },
   },
-
+  // dispatch
   effects: {
     *query({ payload }, { call, put }) {
       const data = yield call(queryPostList, payload)
+      // console.log(data)
       if (data.success) {
         yield put({
           type: 'querySuccess',
