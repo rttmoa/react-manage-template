@@ -23,8 +23,8 @@ class User extends PureComponent {
   handleRefresh = newQuery => {
     const { location } = this.props
     const { query, pathname } = location
-    history.push({  pathname,
-      // search: ({...query,...newQuery}, {arrayFormat: 'repeat'}),
+    history.push({  
+      pathname,
       search: stringify({...query,...newQuery}, {arrayFormat: 'repeat'}),
     })
     // http://localhost:40003/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=userName
@@ -34,7 +34,7 @@ class User extends PureComponent {
   handleDeleteItems = () => {
     const { dispatch, user } = this.props;
     const { list, pagination, selectedRowKeys } = user;
-    dispatch({ type: 'user/multiDelete', payload: {ids: selectedRowKeys} }).then(() => {
+    dispatch({ type: 'user/multiDelete', payload: { ids: selectedRowKeys } }).then(() => {
       this.handleRefresh({
         page: list.length === selectedRowKeys.length && pagination.current > 1 ? pagination.current - 1 : pagination.current,
       })

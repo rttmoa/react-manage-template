@@ -73,7 +73,7 @@ export default modelExtend(model, {
           })
         }
       } catch (error) {
-        console.log("queryWeather error", error) // {success: false, statusCode: 403, message: 'Forbidden'}
+        // console.log("queryWeather error", error) // {success: false, statusCode: 403, message: 'Forbidden'}
       }
     },
   },

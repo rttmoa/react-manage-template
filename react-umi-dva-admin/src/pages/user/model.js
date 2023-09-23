@@ -13,6 +13,7 @@ const {
   removeUserList,
 } = api
 
+// todo user 继承 modal
 export default modelExtend(pageModel, {
   namespace: 'user',
 
@@ -41,6 +42,7 @@ export default modelExtend(pageModel, {
     *query({ payload = {} }, { call, put }) {
       const data = yield call(queryUserList, payload)
       if (data) {
+        // dispatch({type: 'querySuccess'})
         yield put({
           type: 'querySuccess',
           payload: {

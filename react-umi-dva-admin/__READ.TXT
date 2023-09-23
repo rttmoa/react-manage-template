@@ -1,7 +1,7 @@
 
 
 
-  umi + dva + store
+  umi3 + dva + store + mockjs + qs + antd5 
 
   
   /mock -> Mockjs 创建Mock数据
@@ -12,6 +12,7 @@
     /page/
       + @connect(({ app, dashboard, loading }) => ({ dashboard, loading }))
       + class Dashboard extends PureComponent {}
+      +  get modalProps() {}
     /login -> 登陆页：
       + 切换国际化语言
         + dvajs 使用
@@ -21,9 +22,9 @@
       + 编辑器值转换为 MarkDown （draftjs-to-markdown）
       + 编辑器值转换为 JSON （JSON.stringify）
     /chart -> 图表
-      + ECharts
-      + hightCharts
-      + Recharts
+      + ECharts （3个）
+      + hightCharts （21个）
+      + Recharts （3个）
     /request -> 测试 request模块
       功能：
         + 左侧渲染 api 中请求列表
@@ -38,7 +39,13 @@
       + dvajs模块 监听路由
       + dvajs中处理请求处理发送给 /utils/modal/reducers 处理
     todo /user -> 用户的 增删改查
-      +
+      + 查询用户列表
+      + 创建用户
+      + 删除用户
+      + 修改用户
+      + 查看用户详情
+      + i18n 表头可中文、英文、葡萄牙文
+      + 组件封装； <Filter {...this.filterProps} />  /  <List {...this.listProps} />  /  <Modal {...this.modalProps} />
 
       
   /src/layouts/
