@@ -4,9 +4,16 @@
   umi3 + dva + store + mockjs + qs + antd5 
 
   
+
   /mock -> Mockjs 创建Mock数据
 
   /src/components/
+
+  /src/models/
+    @/app.js
+      + 总Modal： export default { namespace: 'app' }
+      + 全局 Store
+      todo 路由权限处理：admin / user / develop 等
 
   /src/pages/ 
     /page/
@@ -28,7 +35,7 @@
     /request -> 测试 request模块
       功能：
         + 左侧渲染 api 中请求列表
-        + 右侧 渲染 api 的请求列表 
+        + 右侧 渲染 api 的请求列表
         + 添加参数的按钮：添加 / 不添加
         + 发送按钮：发情请求
         + 结果在页面中显示
@@ -59,9 +66,6 @@
     @/pt-br 
     @/zh
 
-  /src/models/
-    @/app.js
-      + 总Modal： export default { namespace: 'app' }
 
   /src/services/
     @/api.js/
@@ -70,5 +74,6 @@
       + const APIFunction = {}   封装APIFunction处理
   /src/themes/
 
+  TODO 工具类
   /src/utils/
     @/

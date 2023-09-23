@@ -4,9 +4,9 @@ import { history } from 'umi'
 import { stringify } from 'qs'
 import store from 'store'
 const { pathToRegexp } = require("path-to-regexp")
-import { ROLE_TYPE } from 'utils/constant'
+import { ROLE_TYPE } from '../utils/constant'
 import { queryLayout } from 'utils'
-import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
+import { CANCEL_REQUEST_MESSAGE } from '../utils/constant'
 import api from 'api'
 import config from 'config'
 
@@ -19,9 +19,11 @@ const goDashboard = () => {
 }
 
 
-
+console.log(window.location.pathname) 
 export default {
+
   namespace: 'app',
+
   state: {
     routeList: [
       {
@@ -47,6 +49,7 @@ export default {
       },
     ],
   },
+
   subscriptions: {
     setup({ dispatch }) {
       dispatch({ type: 'query' })
@@ -74,6 +77,7 @@ export default {
       })
     },
   },
+
   effects: {
     *query({ payload }, { call, put, select }) {
       // store isInit to prevent query trigger by refresh
@@ -128,6 +132,7 @@ export default {
       }
     },
   },
+
   reducers: {
     updateState(state, { payload }) {
       return {

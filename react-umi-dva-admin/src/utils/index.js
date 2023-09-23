@@ -12,10 +12,11 @@ const { pathToRegexp } = require("path-to-regexp")
 
 // todo  utils: resolve(__dirname, './src/utils/')
 
-export classnames from 'classnames'
-export config from './config'
-export request from './request'
 
+
+export { classnames } from 'classnames'
+export { config } from './config'
+export { request } from './request'
 export { Color } from './theme'
 
 
@@ -155,8 +156,11 @@ export function queryLayout(layouts, pathname) {
   return result
 }
 
+
 /** #### 获取store中的国际化语言  */
 export function getLocale() { return store.get('locale') || defaultLanguage }
+
+
 
 /** #### 设置store中的国际化语言  */
 export function setLocale(language) {
