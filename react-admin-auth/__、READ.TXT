@@ -34,4 +34,5 @@ copy：
     + react知识点，按需加载 （渲染HTML内容 dangerouslySetInnerHTML）
     + Github图标 （使用 <svg/> + <path/> 渲染图标）
     + iconfont图标
+    + react 动画（渐变、列表渐变、滑动）
     1.权限管理：utils和router下处理每个人登陆的信息显示不同的页面
