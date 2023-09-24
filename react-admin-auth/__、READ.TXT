@@ -22,3 +22,16 @@ record some url:
   谷歌搜索WebPack性能优化方案
     todo
     运行 npm run analyz 查看模块占的空间
+
+
+copy：
+  /components
+    1.
+
+
+
+  /page/
+    + react知识点，按需加载 （渲染HTML内容 dangerouslySetInnerHTML）
+    + Github图标 （使用 <svg/> + <path/> 渲染图标）
+    + iconfont图标
+    1.权限管理：utils和router下处理每个人登陆的信息显示不同的页面
