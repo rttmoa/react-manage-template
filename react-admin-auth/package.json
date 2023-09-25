@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --colors --config build/webpack.dev.js",
+    "dev": "webpack-dev-server --colors --config build/webpack.dev.js",
     "start": "npm run dev",
     "build": "cross-env NODE_ENV=production node build/webpack.prod.js",
     "dll": "webpack -p --progress --config build/webpack.dll.conf.js",

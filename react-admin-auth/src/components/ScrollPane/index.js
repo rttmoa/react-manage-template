@@ -4,7 +4,7 @@ import './index.less'
 const padding = 15
 
 
-/** #### TODO: 横向滚动的ScrollPane  */
+/** #### TODO: 横向滚动的 TabsView 滚动  */
 export default class extends React.Component {
     state = {
         left: 0

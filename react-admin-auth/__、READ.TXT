@@ -22,7 +22,7 @@ record some url:
   谷歌搜索WebPack性能优化方案
     todo
     运行 npm run analyz 查看模块占的空间
-
+    "scripts": { "dev": "webpack-dev-server --inline --progress --colors --config build/webpack.dev.js" }
 
 copy：
   /components
@@ -36,3 +36,7 @@ copy：
     + iconfont图标
     + react 动画（渐变、列表渐变、滑动）
     1.权限管理：utils和router下处理每个人登陆的信息显示不同的页面
+    + TabsView 滚动的处理
+    + Router 的封装 （路由鉴权，子路由，白名单，路由权限）
+      + asyncComponent / authComponent
+    + Storeage 的封装 （cookie、sessionStoreage、localStoreage）

@@ -15,13 +15,13 @@ export const filterRoutes = pathname => {
     let filter = (arr, index) => {
         if (index < paths.length) {
             let p = paths[index]
-            index ++
+            index++
             let route = arr.find(route => route.path === p)
             return route ? [route].concat(route.children ? filter(route.children, index) : []) : []
         }
         return []
     }
-    let handleRoutes = [allRoutes.find( route => route.path === '/')].concat(filter(allRoutes, 0))
+    let handleRoutes = [allRoutes.find(route => route.path === '/')].concat(filter(allRoutes, 0))
     // console.log(handleRoutes) // 处理后的路由：首页 + 当前访问的模块 + 当前访问的路由
     return handleRoutes
 }
@@ -29,24 +29,31 @@ export const filterRoutes = pathname => {
 /*
     判断对象是否相等 ??
  */
-export const diff_obj = (obj1,obj2) => {
+export const diff_obj = (obj1, obj2) => {
     let o1 = obj1 instanceof Object
     let o2 = obj2 instanceof Object
-    if(!o1 || !o2){
+    if (!o1 || !o2) {
         return obj1 === obj2
     }
-    if(Object.keys(obj1).length !== Object.keys(obj2).length) return false
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) return false
 
-    for(let attr in obj1){
+    for (let attr in obj1) {
         let t1 = obj1[attr] instanceof Object
         let t2 = obj2[attr] instanceof Object
-        if(t1 && t2){
-            return diff_obj(obj1[attr],obj2[attr])
-        }else if(obj1[attr] !== obj2[attr]){
+        if (t1 && t2) {
+            return diff_obj(obj1[attr], obj2[attr])
+        } else if (obj1[attr] !== obj2[attr]) {
             return false
         }
     }
     return true
 }
+// const res1 = { name: "zhangsan", age: 99 }
+// const res2 = { name: "zhangsan", age: 99 }
+
+const res1 = { name: "zhangsan", age: 99, info: { eat: "吃", do: "做"} }
+const res2 = { name: "zhangsan", age: 99, info: { eat: "吃", do: "做"} }
 
 
+
+console.log('判断对象是否相等', diff_obj(res1, res2))

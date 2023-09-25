@@ -6,7 +6,7 @@ import './index.less'
 
 
 export default class Draft extends React.Component {
-	state = {
+    state = {
         editorContent: '',
         contentState: null,
         editorState: ''
@@ -15,8 +15,8 @@ export default class Draft extends React.Component {
         this.setState({
             editorContent,
         }, () => {
-            let {editorState, editorContent} = this.state
-            this.props.callback && this.props.callback({content: editorContent})
+            let { editorState, editorContent } = this.state
+            this.props.callback && this.props.callback({ content: editorContent })
         })
     }
     onEditorStateChange = (editorState) => {
@@ -24,20 +24,20 @@ export default class Draft extends React.Component {
             editorState,
         })
     }
-    imageUploadCallBack = file => new Promise( (resolve, reject) => {
-    	console.log(file)
-    	setTimeout(() => {
-			resolve(file)
-    	}, 1000)
+    imageUploadCallBack = file => new Promise((resolve, reject) => {
+        console.log(file)
+        setTimeout(() => {
+            resolve(file)
+        }, 1000)
     })
-    componentWillUnmount () {
+    componentWillUnmount() {
         this.setState = (state, callback) => null
     }
-	render () {
-		let {editorState} = this.state
-		return (
-			<div id="draft">
-				<Editor
+    render() {
+        let { editorState } = this.state
+        return (
+            <div id="draft">
+                <Editor
                     editorState={editorState}
                     toolbarClassName="draft-toolbar"
                     wrapperClassName="draft-wrapper"
@@ -52,10 +52,10 @@ export default class Draft extends React.Component {
                     onContentStateChange={this.onEditorChange}
                     placeholder="@某人哦！！"
                     spellCheck
-                    onFocus={() => {console.log('focus')}}
-                    onBlur={() => {console.log('blur')}}
-                    onTab={() => {console.log('tab'); return true;}}
-                    localization={{ locale: 'zh', translations: {'generic.add': 'Add'} }}
+                    onFocus={() => { console.log('focus') }}
+                    onBlur={() => { console.log('blur') }}
+                    onTab={() => { console.log('tab'); return true }}
+                    localization={{ locale: 'zh', translations: { 'generic.add': 'Add' } }}
                     mention={{
                         separator: ' ',
                         trigger: '@',
@@ -71,8 +71,8 @@ export default class Draft extends React.Component {
                         ],
                     }}
                 />
-			</div>
-		)
-	}
+            </div>
+        )
+    }
 }
 

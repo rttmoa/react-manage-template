@@ -12,10 +12,10 @@ import {diff_obj, filterRoutes} from '../utils'
 import {Cookie, Local} from '../utils/storage'
 import actions from 'actions'
 
-  
-
+    
 
 // TODO: 在组件外部的变量保证变量不会改变的
+
 
 /** #### TODO: route start  */
 class MainComponents extends React.Component {
@@ -53,6 +53,7 @@ class MainComponents extends React.Component {
     async getUserInfo (cb){
         try {
             const { getUser } = this.props;
+            // console.log(getUser)
             await getUser(Cookie.get('Auth_Token'))
             // 这里是将获取Cookie中的Token传递过去，重新设置User信息 
             cb && cb();
@@ -100,7 +101,7 @@ class MainComponents extends React.Component {
 
     //------------------------> render 
     render () {
-        let {location: { pathname }, user} = this.props;
+        let { location: { pathname }, user } = this.props;
 
         const isExistPath = (routes, pathname) => {
             return routes.some(route => { 
@@ -109,7 +110,7 @@ class MainComponents extends React.Component {
                 return false
             })
         }
-        /** #### FIXME: 一、routes 是否存在 pathname  */ 
+        /** #### 一、routes 是否存在 pathname  */ 
         if (!isExistPath(allRoutes, pathname)) return <Redirect to='/error/404'/>;
         
 
@@ -123,12 +124,13 @@ class MainComponents extends React.Component {
             return fn(routes).find(route => route)
         }
         const getRouteName = (routes, pathname) => getRoute(routes, pathname).name
-        /** #### FIXME: 二、根据pathname获取当前route （当前路径路由信息）  */
+
+        /** #### 二、根据pathname获取当前route （当前路径路由信息）  */
         let currRoute = getRoute(allRoutes, pathname)
-        // console.log(currRoute)
+        console.log(currRoute)
 
 
-        /** #### FIXME: 三、非白名单验证 - 存在的路由下  */
+        /** #### 三、非白名单验证 - 存在的路由下  */
         if (!whiteList.some(path => path === pathname)) { // whiteList = ['/login', '/error/404', '/error/401']
             // 登录验证 （获取不到本地的Cookie：重定向）
             if (!Cookie.get('Auth_Token')) { return <Redirect to={{ pathname: '/login' }} /> }
@@ -143,7 +145,7 @@ class MainComponents extends React.Component {
 
 
 
-        /** #### FIXME: 四、根据role判断 是否有权限进入某页面  */
+        /** #### 四、根据role判断 是否有权限进入某页面 （根据网址也不行）  */
         if (user && currRoute) { 
             const isAuth = (role, user) => { 
                 if (!role || (user && user.roles.indexOf('admin') >= 0)) return true;
@@ -156,34 +158,33 @@ class MainComponents extends React.Component {
         
 
 
- 
+        
         const isRedirectPath = (routes, pathname) => {
             return routes.find(route => {
                 return route.path === pathname && route.redirect && route.redirect !== route.path
             })
         }
-        /** #### FIXME: 五、重定向子路径  */
+        /** #### 五、重定向子路径  */
         let route = isRedirectPath(allRoutes, pathname)
         if (route) return <Redirect to={route.redirect} />
- 
+        
+
         document.title = currRoute.name;
 
 
         
         // 路由渲染
-        const RouteComponent = route => {
-            return <Route key={route.path} exact={route.exact || false} path={route.path} component={route.component} /> 
-        }
-        // 路由表渲染
+        const RouteComponent = route => <Route key={route.path} exact={route.exact || false} path={route.path} component={route.component} /> 
+
+        // 路由表渲染 
         const renderRouteComponent = routes => {
             return routes.map((route, index) => {
-                return route.children 
-                ? route.children.map(route => RouteComponent(route)) 
-                : RouteComponent(route)
+                return route.children ? route.children.map(route => RouteComponent(route)) : RouteComponent(route)
             })
         }
+
         // 带有layout的路由
-        const ComponentByLayout = ({history}) => (
+        const ComponentByLayout = ({ history }) => (
             <Layout history={history}>
                 <Switch>
                     {renderRouteComponent(allRoutes.filter(route => route.layout))}

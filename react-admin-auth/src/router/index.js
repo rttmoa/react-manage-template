@@ -18,4 +18,3 @@ export default () => (
         <Route path="/" component={MainComponents} />
     </HashRouter>
 )
-

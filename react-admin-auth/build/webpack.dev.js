@@ -32,7 +32,7 @@ const dev = merge(webpackBaseConf, {
     module: {
         rules: styleLoader.styleLoader({ extract: false, sourceMap: true })
     },
-     
+
     // 生成sourceMaps(方便调试) 
     devtool: devConf.devtoolType, 
 
@@ -94,13 +94,13 @@ const dev = merge(webpackBaseConf, {
         }),
 
         // 开启 happyPack 的线程池
-        new HappyPack({
-          id: 'happybabel',
-          loaders: ['babel-loader?cacheDirectory=true'],
-          threadPool: happyThreadPool,
-          // cache: true,
-          verbose: true,
-        }),
+        // new HappyPack({
+        //   id: 'happybabel',
+        //   loaders: ['babel-loader?cacheDirectory=true'],
+        //   threadPool: happyThreadPool,
+        //   // cache: true,
+        //   verbose: true,
+        // }),
 
         // 构建过程中复制文件和文件夹的功能。将某些静态资源复制到目标目录下
         // new CopyWebpackPlugin({
@@ -124,12 +124,12 @@ const dev = merge(webpackBaseConf, {
 
         new webpack.BannerPlugin('版权所有，翻版必究'),
 
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
 
     ]
 });
