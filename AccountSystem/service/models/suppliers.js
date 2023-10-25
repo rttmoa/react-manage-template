@@ -4,7 +4,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
-// 供应商
+// ? 供应商
 let supplierSchema = new Schema({
     supplierName: String,
     contactPeople: String,

@@ -3,13 +3,12 @@ let router = express.Router()
 let User = require('../models/user')
 let utils = require('../utils/utils')
 
+    
 
-/* GET users listing. */
-// TODO: 用户管理：system.js
-    // 实现功能：
-        // 用户登陆
-        // 用户注册
-        // 用户退出
+// ? 系统用户管理  
+    // 用户登陆
+    // 用户注册
+    // 用户退出
 
     // User.findByUserName(userInfo['username'], function (err, userList) { }
 
@@ -22,7 +21,7 @@ let utils = require('../utils/utils')
 
 
 // 用户登陆；
-router.post('/login', function (req, res, next) { // 用户登陆；
+router.post('/login', function (req, res, next) { // !用户登陆  （与数据库对比 & 处理session）
     let userInfo = req.body
     User.findByUserName(userInfo['username'], function (err, userList) {
         if (err) {
@@ -39,7 +38,7 @@ router.post('/login', function (req, res, next) { // 用户登陆；
             if (userInfo['password'] == userList[0]['password']) {
                 let { _id, username, admin } = userList[0]
                 let authToken = utils.getAuthToken(10)
-                //登录成功将用户信息写入 session
+                //!登录成功将用户信息写入 session
                 req.session.userInfo = {
                     _id,
                     username,
@@ -53,13 +52,11 @@ router.post('/login', function (req, res, next) { // 用户登陆；
                     }
                 })
                 // global[Symbol.for('currentUser')] = userList[0];
-                // if(global[Symbol.for('authObject')]){
-                // 	//以token的值作为键
-                // 	global[Symbol.for('authObject')][`${authToken}`] = userList[0]['_id'];
+                // if(global[Symbol.for('authObject')]){ 
+                // 	global[Symbol.for('authObject')][`${authToken}`] = userList[0]['_id']; //以token的值作为键
                 // }else {
-                // 	global[Symbol.for('authObject')] = {
-                // 		//以token的值作为键
-                // 		[`${authToken}`]: userList[0]['_id']
+                // 	global[Symbol.for('authObject')] = { 
+                // 		[`${authToken}`]: userList[0]['_id'] //以token的值作为键
                 // 	}
                 // }
             } else {
@@ -74,7 +71,7 @@ router.post('/login', function (req, res, next) { // 用户登陆；
 })
 
 // 用户注册：
-router.post('/logup', function (req, res, next) { // 用户注册：
+router.post('/logup', function (req, res, next) { // !用户注册 （存储用户信息 User）
     let userInfo = req.body;
     User.findByUserName(userInfo['username'], (err, userList) => {
         if (err) {
@@ -115,22 +112,20 @@ router.post('/logup', function (req, res, next) { // 用户注册：
                                 username: userInfo['username'],
                                 authToken: authToken,
                             }
-                        })
-                        // {
-                        //     "success": true,
-                        //     "userInfo": {
-                        //         "username": "zhangsan",
-                        //         "authToken": "f33ouw0wa7"
-                        //     }
-                        // }
+                            // {
+                            //     "success": true,
+                            //     "userInfo": {
+                            //         "username": "zhangsan",
+                            //         "authToken": "f33ouw0wa7"
+                            //     }
+                            // }
+                        }) 
                         // global[Symbol.for('currentUser')] = user;
-                        // if(global[Symbol.for('authObject')]){
-                        // 	//以token的值作为键
-                        // 	global[Symbol.for('authObject')][`${authToken}`] = user['_id'];
+                        // if(global[Symbol.for('authObject')]){ 
+                        // 	global[Symbol.for('authObject')][`${authToken}`] = user['_id']; //以token的值作为键
                         // }else {
-                        // 	global[Symbol.for('authObject')] = {
-                        // 		//以token的值作为键
-                        // 		[`${authToken}`]: userList[0]['_id']
+                        // 	global[Symbol.for('authObject')] = { 
+                        // 		[`${authToken}`]: userList[0]['_id'] //以token的值作为键
                         // 	}
                         // }
                     }
@@ -141,11 +136,11 @@ router.post('/logup', function (req, res, next) { // 用户注册：
 })
 
 // 退出登录
-router.post('/logout', function (req, res, next) { // 退出登录
+router.post('/logout', function (req, res, next) { // !用户退出 (销毁session)
     let currentUser = req.session.userInfo
     console.log('logout' + JSON.stringify(currentUser))
     if (currentUser && currentUser._id) {
-        // TODO: 销毁session
+        // !销毁session
         req.session.destroy(function (err) {
             res.send({
                 success: true,

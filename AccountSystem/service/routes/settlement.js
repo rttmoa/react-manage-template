@@ -10,7 +10,7 @@ let constants = require('../constants/constants')
 
 
 router.route('/')
-    .get((req, res, next) => { // 通过参数查询结算订单（有参数过滤，无参数查所有）
+    .get((req, res, next) => { // !结算查询
         let { page, productName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -46,7 +46,7 @@ router.route('/')
     })
 
 router.route('/:settlementId')
-    .get((req, res, next) => { // 通过参数settlementId查询结算的订单信息
+    .get((req, res, next) => { // !结算详情信息
         let settlementId = req.params.settlementId
         Settlement.find({ _id: settlementId }, (err, settlement) => {
             if (err) {

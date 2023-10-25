@@ -1,0 +1,8 @@
+
+
+
+
+Model; https://mongoosejs.com/docs/api/model.html
+Query; https://mongoosejs.com/docs/api/query.html
+
+

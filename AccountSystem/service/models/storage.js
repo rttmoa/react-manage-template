@@ -4,7 +4,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
-// 库存
+// ? 库存
 let storageSchema = new Schema({
     createInstance: Date,
     sequence: Number,

@@ -9,9 +9,8 @@ let constants = require('../constants/constants')
 
 
 
-// 查询所有供应商
 router.route('/all')
-    .get((req, res, next) => { // 查询所有供应商
+    .get((req, res, next) => { // !供应商列表
         let currentUser = req.session.userInfo
         let queryCondition = {
             userId: currentUser['_id']
@@ -32,7 +31,7 @@ router.route('/all')
     })
 
 router.route('/')
-    .get((req, res, next) => { // 条件查询供应商 （有参数过滤，无参数查所有）
+    .get((req, res, next) => { // !供应商查询
         let { page, supplierName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -66,7 +65,7 @@ router.route('/')
                 })
         })
     })
-    .post((req, res, next) => { // 新增供应商
+    .post((req, res, next) => { // !供应商增加
         let supplier = req.body
         let currentUser = req.session.userInfo
         let newSupplier = new Supplier(Object.assign({}, supplier, { userId: currentUser['_id'] }))
@@ -86,13 +85,13 @@ router.route('/')
     })
 
 router.route('/:supplierId')
-    .put((req, res, next) => {  // 修改供应商信息
+    .put((req, res, next) => {  // !供应商详情修改
         let supplierId = req.params.supplierId
         let supplier = req.body
         let newSupplier = Object.assign({}, supplier)
-        console.log(supplierId)
+        // console.log(supplierId)
         Supplier.findOneAndUpdate({ _id: supplierId }, newSupplier, { new: true }, (err, supplier) => {
-            console.log(supplier['_id'])
+            // console.log(supplier['_id'])
             if (err) {
                 res.send({
                     success: false,
@@ -106,7 +105,7 @@ router.route('/:supplierId')
             }
         })
     })
-    .delete((req, res, next) => { // 删除供应商
+    .delete((req, res, next) => { // !供应商删除
         let supplierId = req.params.supplierId
         Supplier.remove({ _id: supplierId }, (err) => {
             if (err) {

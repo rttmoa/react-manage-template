@@ -7,9 +7,10 @@ let Product = require('../models/products')
 let constants = require('../constants/constants')
 
 
+// 管理 > 商品
 
 router.route('/')
-    .get((req, res, next) => { // 通过请求参数查询产品数据 （请求参数 + 过滤条件）
+    .get((req, res, next) => { // !商品查询 (Product)
         let { page, productName } = req.query
         let limit = constants.PAGE_SIZE
         let skip = (page - 1) * limit
@@ -43,10 +44,20 @@ router.route('/')
                 })
         })
     })
-    .post((req, res, next) => { // 新增产品数据
+    .post((req, res, next) => { // !商品增加
         let product = req.body
         let currentUser = req.session.userInfo
         let newProduct = new Product(Object.assign({}, product, { userId: currentUser['_id'] }))
+        // console.log('新商品', newProduct)
+        // _doc: {
+        //     _id: 653276f167054f4510f16a5e,
+        //     userId: '633302db7d3ce44bdcab8da2',
+        //     productImg: 'http://localhost:4000/uploadfiles/2264106934104524.jpg',
+        //     productUnit: '戴尔',
+        //     productType: '戴尔',
+        //     productName: '戴尔电脑',
+        //     productCode: 'AA34234'
+        // }
         newProduct.save((err, product) => {
             if (err) {
                 res.send({
@@ -63,7 +74,7 @@ router.route('/')
     })
 
 router.route('/:productId')
-    .put((req, res, next) => { // 通过参数productId修改产品信息
+    .put((req, res, next) => { // !商品详情修改
         let productId = req.params.productId;
         let product = req.body;
         let newProduct = Object.assign({}, product)
@@ -81,7 +92,7 @@ router.route('/:productId')
             }
         })
     })
-    .delete((req, res, next) => { // 通过参数productId删除产品信息
+    .delete((req, res, next) => { // !商品详情删除
         let productId = req.params.productId
         Product.remove({ _id: productId }, (err) => {
             if (err) {

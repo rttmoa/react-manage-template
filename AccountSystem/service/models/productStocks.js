@@ -4,7 +4,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
-// 商品库存
+// ? 商品库存
 let productStocksSchema = new Schema({
     productId: String,
     productName: String,

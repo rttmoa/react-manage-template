@@ -7,11 +7,21 @@ let ProductStocks = require('../models/productStocks')
 let utils = require('../utils/utils')
 let constants = require('../constants/constants')
 
-/* GET storage listing. */
-// 实现功能：
-    // TODO: 查询产品库存
+
+
+/* 实现功能： */ 
+    // ? 入库列表 (Storage & Supplier)
+    // ? 入库增加
+
+    // ? 获取订单序列号
+
+    // ? 库存详情信息
+    // ? 库存详情修改
+    // ? 库存详情删除
+
+    
 router.route('/')
-    .get(function (req, res, next) { // TODO: 查询库存信息
+    .get(function (req, res, next) { // ! 入库列表
         let queryData = req.query
         let { page, timeRange, supplierId, noteNumber } = queryData
         let limit = constants.PAGE_SIZE
@@ -56,6 +66,12 @@ router.route('/')
                                     })
                                 }
                                 suppliers.map(supplier => supplierMap[supplier['_id']] = supplier['supplierName'])
+                                // console.log(supplierMap)
+                                // {
+                                //     '642f7a7c0f672825c06161c6': '济南瑞博牧业有限公司',
+                                //     '642f7b130f672825c06161c7': '成都海科机械设备制造有限公司'
+                                // }
+                                // 增加一个新属性；supplierName = '成都海科机械设备制造有限公司'
                                 storage.map(item => item['supplierName'] = supplierMap[item['supplierId']])
                                 res.send({
                                     success: true,
@@ -80,18 +96,16 @@ router.route('/')
                 })
         })
     })
-    .post(function (req, res, next) { // 新增库存数据
+    .post(function (req, res, next) { // !入库增加
         let storage = req.body
         let currentUser = req.session.userInfo
         let newStorage = new Storage(Object.assign({}, storage, { userId: currentUser['_id'], createInstance: new Date() }))
         let products = storage['products']
-        let productStocks = products
-            .filter(product => product.productId && product.productId != '')
-            .map(product => {
-                product['userId'] = currentUser['_id']
-                product['type'] = 'in'
-                return new ProductStocks(product)
-            })
+        let productStocks = products.filter(product => product.productId && product.productId != '').map(product => {
+            product['userId'] = currentUser['_id']
+            product['type'] = 'in'
+            return new ProductStocks(product)
+        })
         newStorage.save(function (err, storage) {
             if (err) {
                 res.send({
@@ -124,7 +138,7 @@ router.route('/')
     })
 
 router.route('/getNoteNumber')
-    .get(function (req, res, next) { // 获取记录号/序列号
+    .get(function (req, res, next) { // !获取订单序列号
         let currentUser = req.session.userInfo
         Storage.find({ userId: currentUser['_id'] }, function (error, storages) {
             if (error) {
@@ -151,7 +165,7 @@ router.route('/getNoteNumber')
     })
 
 router.route('/:storageId')
-    .get(function (req, res, next) { // 获取库存详情
+    .get(function (req, res, next) { // !库存详情信息
         let storageId = req.params.storageId
         Storage.findById(storageId, function (err, storage) {
             if (err) {
@@ -167,7 +181,7 @@ router.route('/:storageId')
             }
         })
     })
-    .put(function (req, res, next) { // 修改库存详情
+    .put(function (req, res, next) { // !库存详情修改
         let storageId = req.params.storageId
         let storage = req.body
         let newStorage = Object.assign({}, storage, { modifyInstance: new Date() })
@@ -184,7 +198,7 @@ router.route('/:storageId')
             })
         })
     })
-    .delete(function (req, res, next) { // 删除库存详情
+    .delete(function (req, res, next) { // !库存详情删除
         let storageId = req.params.storageId
         Storage.remove({ _id: storageId }, function (err) {
             if (err) {

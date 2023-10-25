@@ -6,17 +6,21 @@ let router = express.Router()
 let ProductStocks = require('../models/productStocks')
 
 
+
+
 router.route('/')
-    .get((req, res, next) => { // TODO: 查询产品库存
+    .get((req, res, next) => { // !商品库存
         let currentUser = req.session.userInfo
         let queryCondition = {
             userId: currentUser['_id'],
             type: 'in'
         }
         ProductStocks.find(queryCondition, (err, productStocks) => {
-            if (err) {res.send({ success: false, error: err })} else {
+            if (err) {res.send({ success: false, error: err })} 
+            else {
                 let productDuplicates = []
-                let products = []
+                let products = [] // 返回处理结果
+                // ProductStocks 表中的 type = “in” 所有数据
                 productStocks.map(product => {
                     if (productDuplicates.indexOf(product['productId']) == -1) {
                         let newProduct = {
@@ -28,6 +32,7 @@ router.route('/')
                         products.push(newProduct)
                     }
                 })
+
                 res.send({
                     success: true,
                     products: products

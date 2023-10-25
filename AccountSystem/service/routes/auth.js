@@ -19,7 +19,6 @@ router.route('/').get(function (req, res, next) {
     } else {
         res.send({ isAuth: false })
     }
-
 })
 
 module.exports = router

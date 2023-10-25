@@ -1,13 +1,15 @@
 let express = require('express')
 let router = express.Router()
+let moment = require('moment')
+let utils = require('../utils/utils')
+let constants = require('../constants/constants')
+
 let Order = require('../models/orders')
 let Storage = require('../models/storage')
 let Product = require('../models/products')
 let ProductStocks = require('../models/productStocks')
 let Settlement = require('../models/settlement')
-let moment = require('moment')
-let utils = require('../utils/utils')
-let constants = require('../constants/constants')
+
 
 function compute (dataSource, computeKey) {
     return dataSource
@@ -24,14 +26,15 @@ function compute (dataSource, computeKey) {
 function getResource (queryCondition, callback) {
     Order.find(queryCondition, (err, orders) => {
         const productGroup = {}
-        /*得到出库的所有商品的集合， 并对集合进行分组， 获得商品分组对象， 结构如下
+        /*
+         * 得到出库的所有商品的集合， 并对集合进行分组， 获得商品分组对象， 结构如下
          * productGroup = {
          * 	'id3242134324': [
-         *		{商品，商品}
-         *  	],
-         *  	'id3242476764': [
-         *		{商品，商品}
-         *  	]
+         *	  {商品，商品}
+         *   ],
+         *   'id3242476764': [
+         *	  {商品，商品}
+         *   ]
          * }
          * */
         orders
@@ -44,8 +47,11 @@ function getResource (queryCondition, callback) {
                     productGroup[product['productId']] = [product]
                 }
             })
-        /*对商品分组对象进行合并操作， 将商品数量和金额进行汇总，得到如下对象数组，
-         *computeProducts = [
+        // console.log("productGroup", productGroup)
+
+        /*
+         * 对商品分组对象进行合并操作， 将商品数量和金额进行汇总，得到如下对象数组，
+         * computeProducts = [
          * 	{
          * 		_id: 'id3242134324',
          * 		outAmount: 300,
@@ -116,22 +122,25 @@ function getResource (queryCondition, callback) {
                     }
                 })
 
-                console.log(concatProductGroup)
-                const productMapResult = Object.keys(concatProductGroup)
-                    .map(key => {
+                // console.log(concatProductGroup)
+                const productMapResult = Object.keys(concatProductGroup).map(key => {
                         return concatProductGroup[key].reduce((assignObj, product) => Object.assign({}, assignObj, product), {})
                     })
                     .map(product => {
+                        // 商品名称、商品编码、商品类别
                         product['productName'] = productNameMap[product['_id']]
                         product['productCode'] = productCodeMap[product['_id']]
                         product['productType'] = productTypeMap[product['_id']]
 
+                        // 出库量、库存量
                         product['outAmount'] = product['outAmount'] ? product['outAmount'] : 0
                         product['amount'] = product['inAmount'] - product['outAmount']
-
+                        
+                        // 销售均价、库存资金
                         product['averagePrice'] = product['averagePrice'] ? product['averagePrice'] : product['storageAveragePrice']
                         product['stockFunds'] = product['amount'] * product['averagePrice']
 
+                        // 销售金额、利润额
                         product['salePrice'] = product['salePrice'] ? product['salePrice'] : 0
                         product['profitPrice'] = product['salePrice'] - product['purchasePrice']
 
@@ -147,15 +156,13 @@ function getResource (queryCondition, callback) {
     })
 }
 
-/* GET orders listing. */
 
-
-// TODO: 此接口 业务逻辑处理！！！
+// TODO 物资
 
 router.route('/')
     .get(function (req, res, next) {
         let currentUser = req.session.userInfo
-        let { productId } = req.query
+        let { productId } = req.query // 商品名称：三星手机、苹果手机、联想电脑....
         Settlement.find({ userId: currentUser['_id'] })
             .sort('-createInstance')
             .exec(function (err, settlements) {
@@ -212,6 +219,7 @@ router.route('/')
                         }
                     }
                     getResource(queryCondition, (productMapResult) => {
+
                         Order.find({ userId: currentUser['_id'] }, function (error, orders) {
                             if (error) {
                                 res.send({
@@ -232,6 +240,7 @@ router.route('/')
                                         key: index
                                     }
                                 })
+                                // 生成序列号
                                 let sequence
                                 if (orders.length == 0) {
                                     sequence = 1
@@ -251,13 +260,11 @@ router.route('/')
                                     products: products,
                                     userId: currentUser['_id']
                                 })
-                                let productStocks = products
-                                    .filter(product => product.productId != '')
-                                    .map(product => {
-                                        product['userId'] = currentUser['_id']
-                                        product['type'] = 'out'
-                                        return new ProductStocks(product)
-                                    })
+                                let productStocks = products.filter(product => product.productId != '').map(product => {
+                                    product['userId'] = currentUser['_id']
+                                    product['type'] = 'out'
+                                    return new ProductStocks(product)
+                                })
                                 order.save((err, order) => {
                                     if (err) {
                                         res.send({
@@ -309,6 +316,7 @@ router.route('/')
                                                                         key: index
                                                                     };
                                                                 });*/
+                                                                // 生成序列号
                                                                 let sequence
                                                                 if (storages.length == 0) {
                                                                     sequence = 1
@@ -328,13 +336,11 @@ router.route('/')
                                                                     products: products,
                                                                     userId: currentUser['_id']
                                                                 })
-                                                                let productStocks = products
-                                                                    .filter(product => product.productId != '')
-                                                                    .map(product => {
-                                                                        product['userId'] = currentUser['_id']
-                                                                        product['type'] = 'in'
-                                                                        return new ProductStocks(product)
-                                                                    })
+                                                                let productStocks = products.filter(product => product.productId != '').map(product => {
+                                                                    product['userId'] = currentUser['_id']
+                                                                    product['type'] = 'in'
+                                                                    return new ProductStocks(product)
+                                                                })
                                                                 storage.save((err, storage) => {
                                                                     if (err) {
                                                                         res.send({
@@ -370,5 +376,6 @@ router.route('/')
                 }
             })
     })
+
 
 module.exports = router
