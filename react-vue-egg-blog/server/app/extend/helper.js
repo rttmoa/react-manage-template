@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 
 /** #### 注册到ctx中 ---*/
 module.exports = {
+  // updateTime: ctx.helper.moment().unix()
   moment,
   /** #### TODO: 加密：加密密码 生成盐 */
   genSaltPassword(password) {
@@ -21,7 +22,7 @@ module.exports = {
         });
       });
     });
-  }, 
+  },
   /** #### TODO: 解密：与数据库中密码相比较 返回Boolean  */
   comparePassword(_password, password) {
     return new Promise((resolve, reject) => {

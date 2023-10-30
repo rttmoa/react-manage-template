@@ -25,13 +25,14 @@ class AdminController extends Controller {
   // 登陆
   async adminLogin() {
     const { ctx, service } = this;
+    // console.log('this', this); // AdminController { ctx: {}, service: {} }
+    // console.log('service', service.admin.adminLogin); // this中服务都可以 点 出来
+
     const data = ctx.request.body;
     ctx.validate(this.createRule, data);
+    // ! 通过校验后， 调用服务层时，先经过  /middleware/auth.js 中间件权限拦截  (/config/config.default.js)
     const res = await service.admin.adminLogin(data);
-    ctx.helper.success({
-      ctx,
-      res,
-    });
+    ctx.helper.success({ ctx, res });
   }
 
   // 退出

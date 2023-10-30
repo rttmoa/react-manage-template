@@ -12,7 +12,7 @@ class CommentService extends Service {
     console.log('评论管理 - 查询', params);
 
     let mustCon = {};
-    if (params.auditStatus != '0') {
+    if (params.auditStatus !== '0') {
       mustCon = {
         auditStatus: params.auditStatus,
       };

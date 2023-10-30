@@ -5,8 +5,10 @@ module.exports = app => {
   const { router, controller, jwt } = app;
   const baseRouter = app.config.baseRouter; //  -->  /api/v1   -->  前台 /web
   router.post(baseRouter + '/upload', jwt, controller.utils.uploadFiles); // 上传文件到七牛云
+
   router.post(baseRouter + '/admin/login', controller.admin.adminLogin);
   router.post(baseRouter + '/admin/logout', controller.admin.adminLogout);
+
   router.resources('articles', baseRouter + '/articles', jwt, controller.articles); // 文章
   router.put(baseRouter + '/articles/status/:id', jwt, controller.articles.changeStatus); // 启用，停用
   router.put(baseRouter + '/articles/publishStatus/:id', jwt, controller.articles.changePublishStatus); // 修改发布状态

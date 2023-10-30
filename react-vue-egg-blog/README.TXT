@@ -5,33 +5,66 @@ Document：https://www.showdoc.com.cn/1520731920996915/
  
 
 
-web:
+? web:
 安装：npm install
 启动: npm run serve
 前台访问地址：http://localhost:8081/  
 
 
 
-admin:
+? admin:
 安装：npm install
 启动：npm run dev
 后台访问地址：http://127.0.0.1:8080/ 
 登录用户名密码: admin 123456
 
-server:
+? server:
 安装：npm install
 启动：npm run dev
 数据库：mongodb://127.0.0.1/blog
-后台访问地址：http://127.0.0.1:7001/
+后台访问地址：http://127.0.0.1:7002/
 数据库连接：  mongodb://127.0.0.1/blog
 
 
 
-项目概括
+? 项目概括
 vue：vue2 + vue-router3 + muse-ui
 react：react16 + react-router5 + redux4 + typescript3 + arco-design
-egg：egg + egg-mongoose
+egg：egg + mongoose
 前台渲染假数据，后台调用服务端
+
+
+
+! server
+Egg + MongoDb
+app
+  /controller
+    admin.js
+  /extend
+    application.js
+    helper.js
+  /middleware
+    auth.js
+    error_handler.js
+  /model
+    admin.js
+  /schedule
+    audit.js
+    console.js
+  /service
+    admin.js
+  router.js
+config
+  一、测试 Admin 模块 （登陆与退出）
+    1、Navicat数据库blog 表admin 找到用户名和密码
+    2、Admin模块的登陆与退出功能包含的部分
+    3、app/controller/admin.js
+    4、ctx.validate(this.createRule, ctx.request.body) （config/plugin.js）
+    5、auth.js (config.middleware = [ 'errorHandler', 'auth' ];  拦截路由)
+    6、const res = await service.admin.adminLogin(ctx.request.body);
+    7、ctx.helper.success({ ctx, res });
+    8、使用 Apifox 创建请求并发送
+
 
 
 

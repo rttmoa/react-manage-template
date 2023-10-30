@@ -5,7 +5,7 @@ const userConfig = require('./config.user');
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-// TODO: 环境配置：https://www.eggjs.org/zh-CN/basics/config#%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE
+// ! 环境配置：https://www.eggjs.org/zh-CN/basics/config#%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE
 module.exports = appInfo => {
   /**
    * built-in config
@@ -16,7 +16,7 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1640431712552_1460';
 
-  // add your middleware config here
+  // ! 在这里添加您的中间件配置
   config.middleware = [ 'errorHandler', 'auth' ];
 
   // 模板
