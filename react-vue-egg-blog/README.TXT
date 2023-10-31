@@ -36,38 +36,53 @@ egg：egg + mongoose
 
 
 ! server
-Egg + MongoDb
-结构；
-app
-  /controller && 获取客户端参数、校验客户端参数、获取服务、调用服务、获取调用服务结果、将服务结果返回给客户端
-    admin.js
+? Egg + MongoDb
+? 项目布局
+  @app
+    /controller && 获取客户端参数、校验客户端参数、获取服务、调用服务、获取调用服务结果、将服务结果返回给客户端
+      admin.js
 
-  /extend && 绑定到 ctx 中的一些功能复用函数
-    application.js
-    helper.js
+    /extend && 绑定到 ctx 中的一些功能复用函数
+      application.js
+      helper.js
 
-  /middleware && 拦截请求并处理请求中间件、错误处理返回状态中间件 
-    auth.js
-    error_handler.js
+    /middleware && 拦截请求并处理请求中间件、错误处理返回状态中间件 
+      auth.js
+      error_handler.js
 
-  /model && 模块中声明 字段的类型  string、number、boolean
-    admin.js
+    /model && 模块中声明 字段的类型  string、number、boolean
+      admin.js
 
-  /schedule
-    audit.js
-    console.js
+    /schedule
+      audit.js
+      console.js
 
-  TODO /service && 增删改查数据库业务逻辑  egg-mongodb
-    admin.js
+    TODO /service && 增删改查数据库业务逻辑  egg-mongodb
+      admin.js
 
-  !router.js && 路由配置
+    !router.js && 路由配置 (项目所有功能)
+  @config && config文件、config.default.js、plugin
 
-config && config文件、config.default.js、plugin
+? 问题点；
+  POINT1:  node_modules/index.d.ts 声明文件 mongodb、mongoose
+  POINT2:  service/service.js 增删改查方法的使用
+  POINT3:  此服务中 各个模块的 增删改查数据库业务逻辑 ad、home、about、admin、articles、categories、comment、tags、user、utils
 
-
-POINT1:  node_modules/index.d.ts 声明文件 mongodb、mongoose
-POINT2:  service/service.js 增删改查方法的使用
-POINT3:  此服务中 各个模块的 增删改查数据库业务逻辑 ad、home、about、admin、articles、categories、comment、tags、user、utils
+? 功能模块
+  router 路由中包含
+  + 登陆
+  + 退出
+  + 文章
+  + 分类
+  + 标签
+  + 关于
+  + 用户管理
+  + 评论管理
+  + 网页配置-首页配置
+  + 网页配置-Header/Footer配置
+  + 网页配置-侧栏配置-个人简介
+  + 网页配置-侧栏配置-广告设置
+  + 网页配置-侧栏配置-推荐设置
 
 
   ModelProcess -->   router ->  controller -> validate ->  auth ->  service -> model -> helper -> error_handler

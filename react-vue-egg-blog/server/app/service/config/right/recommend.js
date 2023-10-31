@@ -1,8 +1,8 @@
 /* eslint-disable strict */
 const Service = require('egg').Service;
 
-class RightRecommendService extends Service {
 
+class RightRecommendService extends Service {
 
   async index(params) {
     const { ctx } = this;

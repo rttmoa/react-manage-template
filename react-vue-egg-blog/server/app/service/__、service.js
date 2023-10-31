@@ -9,6 +9,7 @@ class findDocsService extends Service {
 
   async FIND(params = {}) {
     const { ctx } = this;
+    
     // ? 查询
     const page = params.page * 1;
     const pageSize = params.pageSize * 1;
@@ -18,6 +19,7 @@ class findDocsService extends Service {
       // 2、{name: params.name} 通过名称过滤
       // 3、queryCon
     ).countDocuments();
+
     const findConfig = await ctx.model.Config.Right.Recommend.find(queryCon).sort({ createTime: -1 }).skip((page - 1) * pageSize)
       .limit(pageSize);
     
@@ -44,7 +46,6 @@ class findDocsService extends Service {
         },
       ],
     };
-
     const totalCount = await ctx.model.Articles.find(queryCon2).countDocuments();
 
     // ? 创建
@@ -53,7 +54,9 @@ class findDocsService extends Service {
 
     
     // ? 更新
-    const findByIdAndUpdate = await ctx.model.Config.Right.Ad.findByIdAndUpdate({ _id: params._id }, {/* 要更新的对象参数信息 */}, { new: true, runValidators: true });
+    const findByIdAndUpdate = await ctx.model.Config.Right.Ad.findByIdAndUpdate(
+      { _id: params._id }, {/* 要更新的对象参数信息 */}, { new: true, runValidators: true }
+    );
     
     await ctx.model.Articles.updateOne({ _id: params.id }, { /* 更新对象信息 */});
     await ctx.model.Articles.updateOne({ _id: params.id }, { status: params.status });
