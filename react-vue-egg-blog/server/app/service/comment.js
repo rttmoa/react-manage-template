@@ -60,7 +60,7 @@ class CommentService extends Service {
   async update(params) {
     const { ctx } = this;
     if (params.id == 0) {
-      await ctx.model.Comment.updateMany({}, { auditStatus: params.auditStatus,auditTime: ctx.helper.moment().unix() });
+      await ctx.model.Comment.updateMany({}, { auditStatus: params.auditStatus, auditTime: ctx.helper.moment().unix() });
       return {
         msg: `评论一键${params.auditStatus === 1 ? '审核通过' : '驳回'}成功`,
       };

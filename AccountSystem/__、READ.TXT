@@ -10,7 +10,7 @@
 Mongoose v4.5.3； https://mongoose.shujuwajue.com/
 Mongoose v7.6.3； https://mongoosejs.com/docs/index.html
 参考；
-  !关于 mongoose 使用，这一篇就够了； https://www.jianshu.com/p/210d3f55af17
+!关于 mongoose 使用，这一篇就够了； https://www.jianshu.com/p/210d3f55af17
 
 
 

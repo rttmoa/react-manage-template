@@ -26,7 +26,7 @@ module.exports = app => {
   router.resources('right_recommend', baseRouter + '/config/right/recommend', jwt, controller.config.right.recommend); // 网页配置-侧栏配置-推荐设置
 };
 
-// model -> router -> controller -> service -> model
+// ModelProcess -->   router ->  controller -> validate ->  auth ->  service -> model -> helper -> error_handler
 // 数据库 mySql mongodb  模型 Model
 // user
 // name sex age job

@@ -2,6 +2,7 @@
 const Controller = require('egg').Controller;
 
 
+// 上传图片
 class UtilsController extends Controller {
   async uploadFiles() {
     const { ctx, service } = this;

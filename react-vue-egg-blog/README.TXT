@@ -37,24 +37,40 @@ egg：egg + mongoose
 
 ! server
 Egg + MongoDb
+结构；
 app
-  /controller
+  /controller && 获取客户端参数、校验客户端参数、获取服务、调用服务、获取调用服务结果、将服务结果返回给客户端
     admin.js
-  /extend
+
+  /extend && 绑定到 ctx 中的一些功能复用函数
     application.js
     helper.js
-  /middleware
+
+  /middleware && 拦截请求并处理请求中间件、错误处理返回状态中间件 
     auth.js
     error_handler.js
-  /model
+
+  /model && 模块中声明 字段的类型  string、number、boolean
     admin.js
+
   /schedule
     audit.js
     console.js
-  /service
+
+  TODO /service && 增删改查数据库业务逻辑  egg-mongodb
     admin.js
-  router.js
-config
+
+  !router.js && 路由配置
+
+config && config文件、config.default.js、plugin
+
+
+POINT1:  node_modules/index.d.ts 声明文件 mongodb、mongoose
+POINT2:  service/service.js 增删改查方法的使用
+POINT3:  此服务中 各个模块的 增删改查数据库业务逻辑 ad、home、about、admin、articles、categories、comment、tags、user、utils
+
+
+  ModelProcess -->   router ->  controller -> validate ->  auth ->  service -> model -> helper -> error_handler
   一、测试 Admin 模块 （登陆与退出）
     1、Navicat数据库blog 表admin 找到用户名和密码
     2、Admin模块的登陆与退出功能包含的部分
@@ -64,6 +80,8 @@ config
     6、const res = await service.admin.adminLogin(ctx.request.body);
     7、ctx.helper.success({ ctx, res });
     8、使用 Apifox 创建请求并发送
+ 
+
 
 
 
