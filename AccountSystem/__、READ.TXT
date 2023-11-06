@@ -2,7 +2,9 @@
 
 前端URL；http://localhost:8000/
 
-后端技术；
+
+前台技术；react15 + dva + antd2
+后端技术；express4 + mongoose4
 数据库名；
 
 
