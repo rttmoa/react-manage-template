@@ -47,6 +47,6 @@ module.exports = {
     defaultOptions: debug ? defaultOptionsDev : defaultOptionsProd,
     mongooseConnect: debug ? mongooseConnectDev : mongooseConnectPro,
     uploadImgServer: debug ? uploadImgServerDev : uploadImgServerPro,
-    //是否支持注册功能
+    // 是否支持注册功能
     register: debug
 }
