@@ -35,8 +35,8 @@ class Sider extends PureComponent {
         <div className={styles.brand}>
           <a href="https://antd-admin.zuiidea.com/" target='_black'>
             <div className={styles.logo} >
-              <img alt="logo" src={config.logoPath} />
-              {!collapsed && <h1>{config.siteName}</h1>}
+              <img alt="logo" src={config && config.logoPath} />
+              {!collapsed && <h1>{config && config.siteName}</h1>}
             </div>
           </a>
         </div>

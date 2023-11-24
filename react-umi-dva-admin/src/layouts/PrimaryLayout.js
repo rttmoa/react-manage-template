@@ -6,7 +6,7 @@ import { connect } from 'umi'
 import { MyLayout, GlobalFooter } from '../components'
 import { Drawer, FloatButton, Layout } from 'antd';
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-import { config, getLocale } from 'utils'
+import { config, getLocale } from '../utils'
 import Error from '../pages/failure/404'
 import styles from './PrimaryLayout.less'
 import store from 'store'
@@ -81,7 +81,7 @@ class PrimaryLayout extends PureComponent {
       onCollapseChange,
       avatar: user.avatar,
       username: user.username,
-      fixed: config.fixedHeader,
+      fixed: config ? config.fixedHeader : true,
       onAllNotificationsRead() {
         dispatch({ type: 'app/allNotificationsRead' })
       },
@@ -120,14 +120,14 @@ class PrimaryLayout extends PureComponent {
               <Sider {...siderProps} collapsed={false} />
             </Drawer>
           ) : <Sider {...siderProps} />}
-          <div className={styles.container} style={{ paddingTop: config.fixedHeader ? 72 : 0 }} id="primaryLayout">
+          <div className={styles.container} style={{ paddingTop: config && config.fixedHeader ? 72 : 0 }} id="primaryLayout">
             <Header {...headerProps} />
             <Content className={styles.content}>
               <Bread routeList={newRouteList} />
               {hasPermission ? children : <Error />}
             </Content>
             <FloatButton.BackTop className={styles.backTop} target={() => document.querySelector('#primaryLayout')}/>
-            <GlobalFooter className={styles.footer} copyright={config.copyright} />
+            <GlobalFooter className={styles.footer} copyright={config && config.copyright} />
           </div>
         </Layout>
       </>

@@ -1,10 +1,15 @@
 
 
 
-  umi3 + dva + store + mockjs + qs + antd5 
+  umi3 + dva + store + mockjs + qs + antd5
+ 
+  搭建 Mock 环境，Mock语法 |  来自mockjs包
+  CLI 命令构建 | 来自.umirc.js配置
+  umi 打包配置
+  Auto 目录下页面样式
+  dist 目录下umi打包后的所有文件
 
-  
-
+目录
   /mock -> Mockjs 创建Mock数据
 
   /src/components/

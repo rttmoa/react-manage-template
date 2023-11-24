@@ -24,7 +24,9 @@ const languages = { zh: zhCN, en: enUS, 'pt-br': ptBR }
 @withRouter
 class Layout extends Component {
   state = {}
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(12)
+  }
 
   loadCatalog = async (lan) => {
     const catalog = await import(`../locales/${lan}/messages.json`)
@@ -43,7 +45,7 @@ class Layout extends Component {
     return (
       <ConfigProvider locale={languages[language]}>
         <I18nProvider i18n={i18n}>
-          {/* TODO: 界面结构 */}
+          {/* TODO: 界面结构 */} 
           <BaseLayout>{children || "内容区域"}</BaseLayout>
         </I18nProvider>
       </ConfigProvider>
