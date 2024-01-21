@@ -23,4 +23,4 @@ export default () => (
             <Tooltip />
         </RadialBarChart>
     </ResponsiveContainer>
-)
+)   

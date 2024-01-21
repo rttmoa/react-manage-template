@@ -15,7 +15,7 @@ class Markdown extends React.Component {
         }
         marked.setOptions({
             renderer: new marked.Renderer(),
-            gfm: true, //允许 Git Hub标准的markdown.
+            gfm: true, //允许 GitHub标准的markdown.
             tables: true, //允许支持表格语法。该选项要求 gfm 为true。
             breaks: true, //允许回车换行。该选项要求 gfm 为true。
             pedantic: false, //尽可能地兼容 markdown.pl的晦涩部分。不纠正原始模型任何的不良行为和错误。
@@ -131,58 +131,58 @@ class Markdown extends React.Component {
                     {/* 使用 JavaScript:; 被 # 替代 */}
                     <ul className="cf">
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '****', 2)}}>
-                            <a href="#" title="粗体"><IconSvg iconName="bold"/></a>
+                            <a href="javascript:;" title="粗体"><IconSvg iconName="bold"/></a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '**', 1)}}>
-                            <a href="#" title="斜体"><IconSvg iconName="italic"/></a>
+                            <a href="javascript:;" title="斜体"><IconSvg iconName="italic"/></a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '# ', 2)}}>
-                            <a href="#" title="h1">h1</a>
+                            <a href="javascript:;" title="h1">h1</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '## ', 3)}}>
-                            <a href="#" title="h2">h2</a>
+                            <a href="javascript:;" title="h2">h2</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '### ', 4)}}>
-                            <a href="#" title="h3">h3</a>
+                            <a href="javascript:;" title="h3">h3</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '#### ', 5)}}>
-                            <a href="#" title="h4">h4</a>
+                            <a href="javascript:;" title="h4">h4</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '##### ', 6)}}>
-                            <a href="#" title="h5">h5</a>
+                            <a href="javascript:;" title="h5">h5</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '##### ', 7)}}>
-                            <a href="#" title="h6">h6</a>
+                            <a href="javascript:;" title="h6">h6</a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '~~~~', 2)}}>
-                            <a href="#" title="中划线"><IconSvg iconName="strikethrough"/></a>
+                            <a href="javascript:;" title="中划线"><IconSvg iconName="strikethrough"/></a>
                         </li>
                         {/*<li onClick={e=>{this.setCursorPosition(this.refs.text, '<u></u>', 3)}}>
-                            <a href="#" title="下划线"><IconSvg iconName="underline"/></a>
+                            <a href="javascript:;" title="下划线"><IconSvg iconName="underline"/></a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '* ', 2)}}>
-                            <a href="#" title="无序列表"><IconSvg iconName="unorderedlist"/></a>
+                            <a href="javascript:;" title="无序列表"><IconSvg iconName="unorderedlist"/></a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '1. ', 3)}}>
-                            <a href="#" title="有序列表"><IconSvg iconName="orderedlist"/></a>
+                            <a href="javascript:;" title="有序列表"><IconSvg iconName="orderedlist"/></a>
                         </li>*/}
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '> ', 2)}}>
-                            <a href="#" title="引用"><IconSvg iconName="quote"/></a>
+                            <a href="javascript:;" title="引用"><IconSvg iconName="quote"/></a>
                         </li>
                         <li>
-                            <a href="#" title="图片"><IconSvg iconName="image"/></a>
+                            <a href="javascript:;" title="图片"><IconSvg iconName="image"/></a>
                             <input type="file" className="uploadFile"/>
                         </li>
                         <li onClick={e => {this.setState({
                             linkMask: true
                         })}}>
-                            <a href="#" title="链接"><IconSvg iconName="link"/></a>
+                            <a href="javascript:;" title="链接"><IconSvg iconName="link"/></a>
                         </li>
                         <li onClick={this.insertCode.bind(this)}>
-                            <a href="#" title="代码块"><IconSvg iconName="code"/></a>
+                            <a href="javascript:;" title="代码块"><IconSvg iconName="code"/></a>
                         </li>
                         <li onClick={e=>{this.setCursorPosition(this.refs.text, '---')}}>
-                            <a href="#" title="分割线"><IconSvg iconName="758bianjiqi_fengexian"/></a>
+                            <a href="javascript:;" title="分割线"><IconSvg iconName="758bianjiqi_fengexian"/></a>
                         </li>
                     </ul>
                 </div>
