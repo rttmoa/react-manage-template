@@ -7,6 +7,7 @@ export default class Axios {
     return axios;
   }
   static jsonp(options) {
+    // console.log(222)
     return new Promise((resolve, reject) => {
       JsonP(
         options.url,
@@ -14,6 +15,7 @@ export default class Axios {
           param: "callback",
         },
         function (err, response) {
+          console.log("jsonp", response)
           if (response && response.status === "success") {
             resolve(response);
           } else {
@@ -22,6 +24,10 @@ export default class Axios {
         }
       );
     });
+  }
+
+  static getReq(option) {
+    
   }
 
   static ajax(options) {
@@ -33,7 +39,7 @@ export default class Axios {
     }
     // let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
     let baseApi =
-      " https://mock.mengxuegu.com/mock/6420434ee24b4b4cfeaca0ea/api";
+      "https://mock.mengxuegu.com/mock/6420434ee24b4b4cfeaca0ea/api";
     return new Promise((resolve, reject) => {
       axios({
         url: options.url,

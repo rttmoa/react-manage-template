@@ -4,6 +4,8 @@ import "./index.less";
 import Util from "../../utils/utils";
 import axios from "../../axios";
 import { connect } from "react-redux";
+
+
 class Header extends React.Component {
   state = {};
   componentWillMount() {
@@ -21,15 +23,15 @@ class Header extends React.Component {
 
   getWeatherAPIData() {
     let city = "北京"; // TODO: 调用百度地图接口
+    console.log(123)
+    let url = "http://api.map.baidu.com/telematics/v3/weather?location=" + encodeURIComponent(city) + "&output=json&ak=MZeWz8OvsvjcSyAkuEtaK0MEKglSxy0r"
     axios
       .jsonp({
-        url:
-          "http://api.map.baidu.com/telematics/v3/weather?location=" +
-          encodeURIComponent(city) +
-          "&output=json&ak=mI3Cb3oIBjdSYW9A74s5qi0GNrmmhiYS",
+        url: url,
         // url: "http://api.map.baidu.com/geocoder/v2/?address=百度大厦&output=json&ak=yourak&sn=7de5a22212ffaa9e326444c75a58f9a0"
       })
       .then((res) => {
+        console.log(res)
         if (res.status === "success") {
           let data = res.results[0].weather_data[0];
           this.setState({
@@ -37,7 +39,8 @@ class Header extends React.Component {
             weather: data.weather,
           });
         }
-      });
+      }) 
+      // axios({url: url, method: "get",}).then((res) => console.log(res))
   }
   render() {
     const { menuName, menuType } = this.props;
