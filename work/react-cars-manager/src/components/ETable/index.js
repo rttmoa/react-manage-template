@@ -6,9 +6,12 @@ import "./index.less";
 
 /** #### TODO: 封装 <Table /> 表格  */
 export default class ETable extends React.Component {
+
   state = {};
-  //处理行点击事件
-  onRowClick = (record, index) => {
+ 
+
+  onRowClick = (record, index) => { // ! 处理行点击事件
+    console.log("处理行点击事件 onRowClick")
     let rowSelection = this.props.rowSelection;
     if (rowSelection === "checkbox") {
       let selectedRowKeys = this.props.selectedRowKeys;
@@ -16,7 +19,7 @@ export default class ETable extends React.Component {
       let selectedItem = this.props.selectedItem || [];
       if (selectedIds) {
         const i = selectedIds.indexOf(record.id);
-        if (i == -1) {
+        if (i === -1) {
           //避免重复添加
           selectedIds.push(record.id);
           selectedRowKeys.push(index);
@@ -39,21 +42,24 @@ export default class ETable extends React.Component {
     } else {
       let selectKey = [index];
       const selectedRowKeys = this.props.selectedRowKeys;
-      if (selectedRowKeys && selectedRowKeys[0] == index) {
+      if (selectedRowKeys && selectedRowKeys[0] === index) {
         return;
       }
       this.props.updateSelectedItem(selectKey, record || {});
     }
   };
 
-  // 选择框变更
-  onSelectChange = (selectedRowKeys, selectedRows) => {
+  
+  onSelectChange = (selectedRowKeys, selectedRows) => { // ! 选择框变更
+    console.log("选择框变更事件 onSelectChange")
+    // console.log("selectedRowKeys", selectedRowKeys) //  (4) [1, 2, 3, 4]
+    // console.log('selectedRows', selectedRows) // (4) [{…}, {…}, {…}, {…}] 
     let rowSelection = this.props.rowSelection;
     const selectedIds = [];
-    if (rowSelection == "checkbox") {
-      selectedRows.map((item) => {
+    if (rowSelection === "checkbox") { 
+      selectedRows.forEach(item => {
         selectedIds.push(item.id);
-      });
+      })
       this.setState({
         selectedRowKeys,
         selectedIds: selectedIds,
@@ -67,13 +73,19 @@ export default class ETable extends React.Component {
     );
   };
 
-  onSelectAll = (selected, selectedRows, changeRows) => {
+  onSelectAll = (selected, selectedRows, changeRows) => { // ! 左上角 复选框选择所有
+    console.log("复选框选择所有 onSelectAll")
     let selectedIds = [];
     let selectKey = [];
     selectedRows.forEach((item, i) => {
       selectedIds.push(item.id);
       selectKey.push(i);
     });
+    // console.log('selectedIds[]', selectedIds) // id: (10) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    // console.log('selectKey[]', selectKey) // index: (10) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    // console.log('selectedRows', selectedRows) // (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+    // console.log('selected', selected) // boolean
+    // console.log('changeRows', changeRows) // (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
     this.props.updateSelectedItem(
       selectKey,
       selectedRows[0] || {},
@@ -82,37 +94,32 @@ export default class ETable extends React.Component {
   };
 
   getOptions = () => {
-    let p = this.props;
-    const name_list = {
-      订单编号: 170,
-      车辆编号: 80,
-      手机号码: 96,
-      用户姓名: 70,
-      密码: 70,
-      运维区域: 300,
-      车型: 42,
-      故障编号: 76,
-      代理商编码: 97,
-      角色ID: 64,
-    };
-    if (p.columns && p.columns.length > 0) {
-      p.columns.forEach((item) => {
+
+    // 设置表格 列宽 
+    if (this.props.columns && this.props.columns.length > 0) {
+      const name_list = {
+        订单编号: 170,
+        车辆编号: 80,
+        手机号码: 96,
+        用户姓名: 70,
+        密码: 70,
+        运维区域: 300,
+        车型: 42,
+        故障编号: 76,
+        代理商编码: 97,
+        角色ID: 64,
+      };
+      this.props.columns.forEach((item) => {
         //开始/结束 时间
         if (!item.title) {
           return;
         }
         if (!item.width) {
-          if (
-            item.title.indexOf("时间") > -1 &&
-            item.title.indexOf("持续时间") < 0
-          ) {
+          if (item.title.indexOf("时间") > -1 && item.title.indexOf("持续时间") < 0) {
             item.width = 132;
           } else if (item.title.indexOf("图片") > -1) {
             item.width = 86;
-          } else if (
-            item.title.indexOf("权限") > -1 ||
-            item.title.indexOf("负责城市") > -1
-          ) {
+          } else if (item.title.indexOf("权限") > -1 || item.title.indexOf("负责城市") > -1) {
             item.width = "40%";
             item.className = "text-left";
           } else {
@@ -121,9 +128,11 @@ export default class ETable extends React.Component {
             }
           }
         }
-        item.bordered = true;
+        item.bordered = false;
       });
     }
+
+    // 设置类型：单选框 or 复选框
     const { selectedRowKeys } = this.props;
     const rowSelection = {
       type: "radio",
@@ -138,19 +147,27 @@ export default class ETable extends React.Component {
     // 当属性未false或者null时，说明没有单选或者复选列
     if (row_selection === false || row_selection === null) {
       row_selection = false;
-    } else if (row_selection == "checkbox") {
+    } else if (row_selection === "checkbox") {
       //设置类型未复选框
       rowSelection.type = "checkbox";
     } else {
       //默认未单选
       row_selection = "radio";
     }
+
+    // 返回　<Table />
     return (
       <Table
+        filterIcon
+        // size="small"
         className="card-wrap page-table"
         bordered
         {...this.props}
-        rowSelection={row_selection ? rowSelection : null}
+        rowSelection={row_selection ? rowSelection : null} 
+        scroll={{
+          x: 2000, 
+          // y: 700 
+        }}
         onRow={(record, index) => ({
           onClick: () => {
             if (!row_selection) {
@@ -162,6 +179,7 @@ export default class ETable extends React.Component {
       />
     );
   };
+
   render = () => {
     return <div>{this.getOptions()}</div>;
   };

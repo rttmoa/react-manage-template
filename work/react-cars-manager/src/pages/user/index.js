@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Table, Form, Input, Checkbox, Select, Radio, Icon, message,Popconfirm, Modal, DatePicker } from 'antd';
+import { Card, Button, Table, Form, Input, Checkbox, Tag, Select, Badge, Radio, Icon, message, Popconfirm, Modal, DatePicker } from 'antd';
 import axios from '../../axios/index';
 import Utils from '../../utils/utils';
 import ETable from '../../components/ETable/index';
@@ -48,7 +48,7 @@ export default class User extends React.Component {
         //     });
 
         ax.get('https://mock.mengxuegu.com/mock/6517714296175e3c6ac1c6b7/table/lists').then(res => {
-            console.log(res);
+            // console.log(res);
             let _this = this;
             this.setState({
                 list: res.data.result.list.map((item, index) => {
@@ -71,37 +71,37 @@ export default class User extends React.Component {
     }
 
     // ! 操作员工： 新建、编辑、详情、删除  弹窗显示
-    handleOperator = type => {
-        let item = this.state.selectedItem;
-        if (type == 'create') {
+    handleOperator = (type = '', item = {}) => {
+        // let item = this.state.selectedItem;
+        if (type === 'create') {
             this.setState({
                 title: '创建员工',
                 isVisible: true,
                 type,
             });
-        } else if (type == 'edit' || type == 'detail') {
-            if (!item) {
-                Modal.info({
-                    title: '信息',
-                    content: '请选择一个用户',
-                });
-                return;
-            }
+        } else if (type === 'edit' || type === 'detail') {
+            // if (!item) {
+            //     Modal.info({
+            //         title: '信息',
+            //         content: '请选择一个用户',
+            //     });
+            //     return;
+            // }
             this.setState({
-                title: type == 'edit' ? '编辑用户' : '查看详情',
+                title: type === 'edit' ? '编辑用户' : '查看详情',
                 isVisible: true,
                 userInfo: item,
                 type,
             });
-        } else if (type == 'delete') {
-            if (!item) {
-                Modal.info({
-                    title: '信息',
-                    content: '请选择一个用户',
-                });
-                return;
-            } 
-            message.success(`删除用户成功！ id:${item.id}`) 
+        } else if (type === 'delete') {
+            // if (!item) {
+            //     Modal.info({
+            //         title: '信息',
+            //         content: '请选择一个用户',
+            //     });
+            //     return;
+            // }
+            message.success(`删除用户成功！ id:${item.id}`);
 
             // Popconfirm.confirm({
             //     text: '确定要删除此用户吗？',
@@ -125,7 +125,8 @@ export default class User extends React.Component {
             //             });
             //     },
             // });
- 
+        }else if(type === "moreDelete"){
+            message.success(`删除更多用户成功！ id:${JSON.stringify(this.state.selectedIds)}`);
         }
     };
 
@@ -135,7 +136,7 @@ export default class User extends React.Component {
         let data = this.userForm.props.form.getFieldsValue();
         axios
             .ajax({
-                url: type == 'create' ? '/user/add' : '/user/edit',
+                url: type === 'create' ? '/user/add' : '/user/edit',
                 data: {
                     params: {
                         ...data,
@@ -143,7 +144,7 @@ export default class User extends React.Component {
                 },
             })
             .then(res => {
-                if (res.code == 0) {
+                if (res.code === 0) {
                     this.setState({
                         isVisible: false,
                     });
@@ -157,10 +158,12 @@ export default class User extends React.Component {
             {
                 title: 'id',
                 dataIndex: 'id',
+                // fixed: 'left'
             },
             {
                 title: '用户名',
                 dataIndex: 'username',
+                // fixed: 'left'
             },
             {
                 title: '性别',
@@ -174,11 +177,11 @@ export default class User extends React.Component {
                 dataIndex: 'state',
                 render(state) {
                     let config = {
-                        1: '咸鱼一条',
-                        2: '风华浪子',
-                        3: '北大才子一枚',
-                        4: '百度FE',
-                        5: '创业者',
+                        1: <Tag color="green">大学生</Tag>,
+                        2: <Tag color="blue">求职中...</Tag>,
+                        3: <Tag color="orange">职员</Tag>,
+                        4: <Tag color="red">项目经理</Tag>,
+                        5: <Tag color="purple">总经理</Tag>,
                     };
                     return config[state];
                 },
@@ -201,16 +204,30 @@ export default class User extends React.Component {
                 },
             },
             {
-                title: '爱好',
+                title: '婚姻状态',
                 dataIndex: 'isMarried',
                 render(isMarried) {
-                    return isMarried ? '已婚' : '未婚';
+                    // return isMarried ? '已婚' : '未婚';
+                    // success | error | default | processing | warning
+                    return isMarried ? <Badge status="success" text="已婚" /> : <Badge status="error" text="未婚" />;
                 },
             },
             {
                 title: '生日',
                 dataIndex: 'birthday',
             },
+            {
+                title: "手机号",
+                render: () => {
+                    return <span>{Utils.formatPhone("15303663375")}</span>
+                }
+            }, 
+            {
+                title: "身份证号",
+                render: () => {
+                    return <span>{Utils.formatIdentity("231085199811011415")}</span>
+                }
+            }, 
             {
                 title: '联系地址',
                 dataIndex: 'address',
@@ -219,10 +236,30 @@ export default class User extends React.Component {
                 title: '早起时间',
                 dataIndex: 'time',
             },
+            {
+                title: '操作',
+                fixed: 'right',
+                render: record => {
+                    return (
+                        <div> 
+                            <Button icon="edit" size="small" onClick={() => this.handleOperator('edit', record)}>
+                                编辑
+                            </Button>
+                            <Button icon="rocket" size="small" onClick={() => this.handleOperator('detail', record)}>
+                                详情
+                            </Button>
+                            <Button type="danger" icon="delete" size="small" onClick={() => this.handleOperator('delete', record)}>
+                                删除
+                            </Button>
+                        </div>
+                    );
+                },
+            },
         ];
-        console.log(this.state.list);
-        console.log(this.state.pagination);
-
+        // console.log(this.state.list);
+        // console.log(this.state.pagination);
+        // console.log(this.state.selectedRowKeys)
+        console.log(this.state.selectedIds)
         return (
             <div>
                 <Card>
@@ -238,27 +275,24 @@ export default class User extends React.Component {
                         </FormItem>
                     </Form>
                 </Card>
+
                 <Card style={{ marginTop: 10 }}>
-                    <Button type="primary" icon="plus" size='small' onClick={() => this.handleOperator('create')}>
-                        新建
-                    </Button>
-                    <Button icon="edit" size='small' onClick={() => this.handleOperator('edit')}>
-                        编辑
-                    </Button>
-                    <Button icon='rocket' size='small' onClick={() => this.handleOperator('detail')}>详情</Button>
-                    <Button type="danger" icon="delete"  size='small' onClick={() => this.handleOperator('delete')}>
-                        删除 
-                    </Button>
+                    <Button type="primary" icon="plus" size="middle" onClick={() => this.handleOperator('create')}>新建</Button> 
+                    <Button type="danger" icon="delete" size="middle" onClick={() => this.handleOperator('moreDelete')}>多选删除</Button>
                 </Card>
+
                 <div className="content-wrap">
                     <ETable 
-                        columns={columns} 
-                        updateSelectedItem={Utils.updateSelectedItem.bind(this)} 
-                        selectedRowKeys={this.state.selectedRowKeys} 
+                        rowSelection="checkbox"
+                        columns={columns}
+                        updateSelectedItem={Utils.updateSelectedItem.bind(this)}
+                        selectedRowKeys={this.state.selectedRowKeys}
                         dataSource={this.state.list}
-                        pagination={this.state.pagination} 
+                        pagination={this.state.pagination}
+                        // scroll
                     />
                 </div>
+
                 {/* TODO: 新建、编辑、详情 弹窗 */}
                 <Modal
                     title={this.state.title}
@@ -272,26 +306,26 @@ export default class User extends React.Component {
                             userInfo: '',
                         });
                     }}>
-                    <UserForm userInfo={this.state.userInfo} type={this.state.type} wrappedComponentRef={inst => (this.userForm = inst)} />
+                    <UserFormModal userInfo={this.state.userInfo} type={this.state.type} wrappedComponentRef={inst => (this.userForm = inst)} />
                 </Modal>
             </div>
         );
     }
 }
-class UserForm extends React.Component {
+class UserFormModal extends React.Component {
     getState = state => {
         return {
-            1: '咸鱼一条',
-            2: '风华浪子',
-            3: '北大才子一枚',
-            4: '百度FE',
-            5: '创业者',
+            1: '大学生',
+            2: '求职中...',
+            3: '职员',
+            4: '项目经理',
+            5: '总经理',
         }[state];
     };
     // this.getState('2')
 
     render() {
-        console.log("新建 / 编辑")
+        console.log('新建 / 编辑');
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
             labelCol: { span: 5 },
@@ -302,15 +336,15 @@ class UserForm extends React.Component {
         return (
             <Form layout="horizontal">
                 <FormItem label="姓名" {...formItemLayout}>
-                    {userInfo && type == 'detail'
+                    {userInfo && type === 'detail'
                         ? userInfo.username
                         : getFieldDecorator('user_name', {
                               initialValue: userInfo.username,
                           })(<Input type="text" placeholder="请输入姓名" />)}
                 </FormItem>
                 <FormItem label="性别" {...formItemLayout}>
-                    {userInfo && type == 'detail'
-                        ? userInfo.sex == 1
+                    {userInfo && type === 'detail'
+                        ? userInfo.sex === 1
                             ? '男'
                             : '女'
                         : getFieldDecorator('sex', {
@@ -323,29 +357,29 @@ class UserForm extends React.Component {
                           )}
                 </FormItem>
                 <FormItem label="状态" {...formItemLayout}>
-                    {userInfo && type == 'detail'
+                    {userInfo && type === 'detail'
                         ? this.getState(userInfo.state)
                         : getFieldDecorator('state', {
                               initialValue: userInfo.state,
                           })(
                               <Select>
-                                  <Option value={1}>咸鱼一条</Option>
-                                  <Option value={2}>风华浪子</Option>
-                                  <Option value={3}>北大才子一枚</Option>
-                                  <Option value={4}>百度FE</Option>
-                                  <Option value={5}>创业者</Option>
+                                  <Option value={1}>大学生</Option>
+                                  <Option value={2}>求职中...</Option>
+                                  <Option value={3}>职员</Option>
+                                  <Option value={4}>项目经理</Option>
+                                  <Option value={5}>总经理</Option>
                               </Select>
                           )}
                 </FormItem>
                 <FormItem label="生日" {...formItemLayout}>
-                    {userInfo && type == 'detail'
+                    {userInfo && type === 'detail'
                         ? userInfo.birthday
                         : getFieldDecorator('birthday', {
                               initialValue: Moment(userInfo.birthday),
                           })(<DatePicker />)}
                 </FormItem>
                 <FormItem label="联系地址" {...formItemLayout}>
-                    {userInfo && type == 'detail'
+                    {userInfo && type === 'detail'
                         ? userInfo.address
                         : getFieldDecorator('address', {
                               initialValue: userInfo.address,
@@ -355,4 +389,4 @@ class UserForm extends React.Component {
         );
     }
 }
-UserForm = Form.create({})(UserForm);
+UserFormModal = Form.create({})(UserFormModal);

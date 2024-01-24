@@ -11,16 +11,27 @@ export default {
     // 调用（res是接口结果）： Utils.pagination(res, (current) => { this.params.page = current; this.requestList(); })
     pagination(data, callback) {
         return {
-            onChange: current => {
-                callback(current);
+            // 页码改变的回调，参数是改变后的页码及每页条数
+            onChange: (page, pageSize) => {
+                console.log("change", page, pageSize)
+                callback(page);
             },
+            // pageSize 变化的回调
+            onShowSizeChange: (current, size) => {
+                console.log("onShowSizeChange", current, size)
+            },
+            // defaultCurrent: 1,
+            // defaultPageSize: 10,
+            hideOnSinglePage: true, // 只有一个隐藏分页器
             current: data.result.page,
             pageSize: data.result.page_size,
+            pageSizeOptions: ['10', '20', '30', '50', '100'],
             total: data.result.total_count,
             showTotal: () => {
-                return `共${data.result.total_count}条`;
+                return `共 ${data.result.total_count} 条`;
             },
             showQuickJumper: true,
+            showSizeChanger: true,
         };
     },
     // 格式化金额,单位:分(eg:430分=4.30元)
