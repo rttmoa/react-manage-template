@@ -5,6 +5,7 @@ import Utils from '../../utils/utils';
 import ETable from '../../components/ETable/index';
 import Moment from 'moment';
 import ax from 'axios';
+import BaseForm from '../../components/BaseForm';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -47,7 +48,19 @@ export default class User extends React.Component {
         //         });
         //     });
 
-        ax.get('https://mock.mengxuegu.com/mock/6517714296175e3c6ac1c6b7/table/lists').then(res => {
+        ax.get(
+            'https://mock.mengxuegu.com/mock/6517714296175e3c6ac1c6b7/table/lists',
+            {
+                method: 'get', 
+                headers: null, 
+                params: this.state.params,
+                timeout: 5000,
+                data: {
+                    params: this.state.params
+                }
+            }
+            // axios ts 配置 AxiosRequestConfig
+        ).then(res => {
             // console.log(res);
             let _this = this;
             this.setState({
@@ -153,7 +166,48 @@ export default class User extends React.Component {
             });
     };
 
+
+    handleFilter = (filterParams = {}) => {
+        // console.log('filterParams', filterParams) // {user_name: 'Lin7duy', sex: 0, begin_time: undefined, end_time: undefined, isMarried: '1'}
+        this.params = filterParams;
+        this.requestList(); // 重新获取数据，根据 过滤参数去查询
+    }
+
     render() {
+
+        const formList = [ 
+            {
+                type:'INPUT',
+                label:'用户名',
+                field:'user_name',
+                placeholder:'请输入用户名',
+                initialValue:'',
+                width:80,
+            },
+            {
+                type:'SELECT',
+                label:'性别',
+                field:'sex',
+                placeholder:'全部',
+                initialValue: 3,
+                width:80,
+                list: [{ id: 3, name: '全部' }, { id: 0, name: '女' }, { id: 1, name: '男' }]
+            },
+            {
+                label: '出生日期',
+                type: '时间查询'
+            }, 
+            {
+                type: 'SELECT',
+                label: '婚姻状态',
+                field:'isMarried',
+                placeholder: '全部',
+                initialValue: '0',
+                width: 80,
+                list: [{ id: '0', name: '全部' }, { id: '1', name: '未婚' }, { id: '2', name: '已婚' }]
+            }
+        ]
+
         const columns = [
             {
                 title: 'id',
@@ -206,7 +260,7 @@ export default class User extends React.Component {
             {
                 title: '婚姻状态',
                 dataIndex: 'isMarried',
-                render(isMarried) {
+                render(isMarried) { 
                     // return isMarried ? '已婚' : '未婚';
                     // success | error | default | processing | warning
                     return isMarried ? <Badge status="success" text="已婚" /> : <Badge status="error" text="未婚" />;
@@ -259,24 +313,14 @@ export default class User extends React.Component {
         // console.log(this.state.list);
         // console.log(this.state.pagination);
         // console.log(this.state.selectedRowKeys)
-        console.log(this.state.selectedIds)
+        // console.log(this.state.selectedIds)
         return (
-            <div>
-                <Card>
-                    <Form layout="inline">
-                        <FormItem>
-                            <Input placeholder="请输入用户名" />
-                        </FormItem>
-                        <FormItem>
-                            <Input type="password" placeholder="请输入密码" />
-                        </FormItem>
-                        <FormItem>
-                            <Button type="primary">登 录</Button>
-                        </FormItem>
-                    </Form>
+            <div> 
+                <Card> 
+                    <BaseForm formList={formList} filterSubmit={this.handleFilter}/>
                 </Card>
 
-                <Card style={{ marginTop: 10 }}>
+                <Card style={{ marginTop: 10, display:'flex', justifyContent: 'flex-end' }}>
                     <Button type="primary" icon="plus" size="middle" onClick={() => this.handleOperator('create')}>新建</Button> 
                     <Button type="danger" icon="delete" size="middle" onClick={() => this.handleOperator('moreDelete')}>多选删除</Button>
                 </Card>

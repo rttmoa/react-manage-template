@@ -15,6 +15,22 @@ export default class Order extends React.Component{
     }
     formList = [
         {
+            type:'INPUT',
+            label:'订单编号',
+            field:'order_sn',
+            placeholder:'请输入订单编号',
+            initialValue:'',
+            width:80,
+        },
+        {
+            type:'INPUT',
+            label:'用户名',
+            field:'user_name',
+            placeholder:'请输入用户名',
+            initialValue:'',
+            width:80,
+        },
+        {
             type:'SELECT',
             label:'城市',
             field:'city',
@@ -41,6 +57,7 @@ export default class Order extends React.Component{
     }
 
     handleFilter = (params)=>{
+        console.log("params", params) // {city: '1', begin_time: undefined, end_time: undefined, order_status: '1'}
         this.params = params;
         this.requestList();
     }

@@ -26,9 +26,9 @@ class FilterForm extends React.Component {
         let initialValue = item.initialValue || "";
         let placeholder = item.placeholder;
         let width = item.width;
-        if (item.type == "时间查询") {
+        if (item.type === "时间查询") {
           const begin_time = (
-            <FormItem label="订单时间" key={field}>
+            <FormItem label={label ? label : "订单时间"} key={field}>
               {getFieldDecorator("begin_time")(
                 <DatePicker
                   showTime={true}
@@ -51,7 +51,7 @@ class FilterForm extends React.Component {
             </FormItem>
           );
           formItemList.push(end_time);
-        } else if (item.type == "INPUT") {
+        } else if (item.type === "INPUT") {
           const INPUT = (
             <FormItem label={label} key={field}>
               {getFieldDecorator([field], {
@@ -60,7 +60,7 @@ class FilterForm extends React.Component {
             </FormItem>
           );
           formItemList.push(INPUT);
-        } else if (item.type == "SELECT") {
+        } else if (item.type === "SELECT") {
           const SELECT = (
             <FormItem label={label} key={field}>
               {getFieldDecorator([field], {
@@ -73,7 +73,7 @@ class FilterForm extends React.Component {
             </FormItem>
           );
           formItemList.push(SELECT);
-        } else if (item.type == "CHECKBOX") {
+        } else if (item.type === "CHECKBOX") {
           const CHECKBOX = (
             <FormItem label={label} key={field}>
               {getFieldDecorator([field], {
@@ -90,16 +90,17 @@ class FilterForm extends React.Component {
   };
   render() {
     return (
-      <Form layout="inline">
-        {this.initFormList()}
+      <Form layout="inline" style={{
+        display:'flex', 
+        flexDirection: 'column', 
+        // alignItems: 'flex-start', 
+      }}>
+        <div>
+          {this.initFormList()}
+        </div>
+        {/* <br /> */}
         <FormItem>
-          <Button
-            type="primary"
-            style={{ margin: "0 20px" }}
-            onClick={this.handleFilterSubmit}
-          >
-            查询
-          </Button>
+          <Button type="primary" onClick={this.handleFilterSubmit} style={{ margin: "0 10px" }}>查询</Button>
           <Button onClick={this.reset}>重置</Button>
         </FormItem>
       </Form>
