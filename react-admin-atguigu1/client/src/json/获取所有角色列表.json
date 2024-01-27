@@ -1,0 +1,141 @@
+{
+  "status": 0,
+  "data": [
+      {
+          "menus": [
+              "/category",
+              "/product",
+              "/products",
+              "/user",
+              "/role",
+              "/charts",
+              "/charts/bar",
+              "/charts/line",
+              "/charts/pie"
+          ],
+          "_id": "5e0d7292bd72914ee8e714d4",
+          "name": "测试",
+          "auth_time": 1706185240103,
+          "auth_name": "admin",
+          "create_time": 1554639521749
+      },
+      {
+          "menus": [
+              "/home",
+              "/products",
+              "/category",
+              "/product",
+              "/user",
+              "/charts/bar",
+              "/charts/line",
+              "/role"
+          ],
+          "_id": "5e175a134bce5e36d48fb4db",
+          "name": "管理员",
+          "create_time": 1578588691768,
+          "auth_name": "admin",
+          "auth_time": 1678797093262
+      },
+      {
+          "menus": [
+              "/home",
+              "/role"
+          ],
+          "_id": "5e188bb874c89321209fedda",
+          "name": "普通职员",
+          "create_time": 1578666936202,
+          "auth_name": "admin",
+          "auth_time": 1666595750806
+      },
+      {
+          "menus": [
+              "/home"
+          ],
+          "_id": "5fcdcb428e518d46807aa485",
+          "name": "前端开发",
+          "create_time": 1607322434116,
+          "auth_name": "admin",
+          "auth_time": 1667817958278
+      },
+      {
+          "menus": [
+              "/category"
+          ],
+          "_id": "5fcdca798e518d46807aa484",
+          "name": "后端开发",
+          "create_time": 1607322233401,
+          "auth_time": 1607411041057,
+          "auth_name": "admin"
+      },
+      {
+          "menus": [
+              "/home",
+              "/products",
+              "/category",
+              "/product",
+              "/user"
+          ],
+          "_id": "5fcdcb528e518d46807aa486",
+          "name": "WCS",
+          "create_time": 1607322450051,
+          "auth_name": "admin",
+          "auth_time": 1706185213536
+      },
+      {
+          "menus": [
+              "/home",
+              "/products",
+              "/category",
+              "/product",
+              "/charts/pie",
+              "/user"
+          ],
+          "_id": "5e171d55d59eb648d4ed66a8",
+          "name": "MES",
+          "create_time": 1578573141547,
+          "auth_name": "admin",
+          "auth_time": 1667817902825
+      },
+      {
+          "menus": [
+              "/home",
+              "/products",
+              "/category",
+              "/product",
+              "/user",
+              "/role",
+              "/charts/line",
+              "/charts/pie",
+              "/charts/bar",
+              "/charts"
+          ],
+          "_id": "63563676cae96b2f4093b0af",
+          "name": "WMS",
+          "create_time": 1666594422071,
+          "__v": 0,
+          "auth_name": "admin",
+          "auth_time": 1678786945741
+      },
+      {
+          "menus": [],
+          "_id": "6368e21be85aff31e8bb08eb",
+          "name": "ERP",
+          "create_time": 1667818011868,
+          "__v": 0
+      },
+      {
+          "menus": [],
+          "_id": "6410416a7634202144b73cd0",
+          "name": "维护者",
+          "create_time": 1678786922881,
+          "__v": 0
+      },
+      {
+          "menus": [],
+          "_id": "641062e07634202144b73d4f",
+          "name": "BOSS",
+          "create_time": 1678795488484,
+          "__v": 0
+      }
+  ]
+}
