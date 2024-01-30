@@ -126,6 +126,7 @@ export default class User extends Component {
 
     getUsers = async () => {
         const result = await reqUsers();
+        // console.log(result)
         if (result.status === 0) {
             const { users, roles } = result.data;
             this.initRoleNames(roles);
@@ -145,7 +146,7 @@ export default class User extends Component {
     }
 
     render() {
-        console.log('start',  this.state)
+        // console.log('start',  this.state)
         const { users, roles, isShow } = this.state;
         const user = this.user || {};
 
@@ -157,8 +158,7 @@ export default class User extends Component {
 
         return (
             <Card title={title}>
-                <Table bordered rowKey="_id" dataSource={users} columns={this.columns} pagination={{ defaultPageSize: 10 }} />
-
+                <Table bordered rowKey="_id" dataSource={users} columns={this.columns} pagination={{defaultPageSize: 10 }} />
                 <Modal
                     title={user._id ? '修改用户' : '添加用户'}
                     visible={isShow}
