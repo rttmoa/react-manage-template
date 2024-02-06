@@ -59,7 +59,7 @@ export default class app extends Component {
       this.setState({ userRoleSetResult: res.data });
     });
     fetchUserDepttList({}, (res) => {
-      // console.log(res)
+      console.log(res)
       if (res.data.list.length > 0) {
         this.setState({
             userDeptResult: res.data,
@@ -438,8 +438,10 @@ export default class app extends Component {
                   </Form>
                 </div>
               </div>
-              {/* <div className="page-content has-pagination table-flex table-scrollfix" >
-                <TableList
+              <div
+                className="page-content has-pagination table-flex table-scrollfix"
+              >
+                <TableList  
                   style={{ maxHeight: 800 }}
                   rowKey="id"
                   columns={this.renderColumn()}
@@ -452,22 +454,7 @@ export default class app extends Component {
                   onShowSizeChange={this.pageSizeChange}
                   totalCount={userListResult.totalCount}
                 />
-              </div> */}
-              <div>
-                <TableList
-                  style={{ maxHeight: 800 }}
-                  rowKey="id"
-                  columns={this.renderColumn()}
-                  dataSource={userListResult.list}
-                  currentPage={this.state.searchKey.pageNo}
-                  pageSize={this.state.searchKey.pageSize}
-                  loading={userListResult.loading}
-                  // scroll={{ y: true }}
-                  onChange={this.pageChange}
-                  onShowSizeChange={this.pageSizeChange}
-                  totalCount={userListResult.totalCount}
-                />
-              </div>
+              </div> 
               {/* 新增人员 / 同步人员 */}
               <div className="page-footer">
                 <div className="page-footer-buttons">

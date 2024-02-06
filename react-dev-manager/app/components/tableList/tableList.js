@@ -36,7 +36,7 @@ export default class TableList extends Component {
     render() {
         const { currentPage, pageSize, totalCount, onShowSizeChange, onChange, columns } = this.props;
         const hasMultiHead = columns.filter(one => !!one.children).length > 0;
-        console.log("tableData", this.props); // {columns, dataSource, loading, currentPage, onChange, onShowSizeChange, pageSize, scroll}
+        // console.log("tableData", this.props); // {columns, dataSource, loading, currentPage, onChange, onShowSizeChange, pageSize, scroll}
 
         return (
             <div className={`table-content ${hasMultiHead ? 'clear-overlap-border' : ''}`}>

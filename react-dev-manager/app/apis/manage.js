@@ -26,6 +26,8 @@ export const fetchUpdateRoleRes = createApi(`${path}/${prefix}/role/updateRes`, 
 export const fetchRoleDeletePeople = createApi(`${path}/${prefix}/user/removeRole`, option)
 export const fetchUpdateButton = createApi(`${path}/${prefix}/role/updateButton`, option)
 export const fetchTreeList = createApi(`${path}/${prefix}/role/resTree`, option)
+
+
 // 用户管理
 export const fetchUserDepttList = createApi(`${path}/${prefix}/dept/list`, option) // 获取用户管理左侧分类列表
 export const fetchUserList = createApi(`${path}/${prefix}/user/list`, option) // 获取用户列表
