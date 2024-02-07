@@ -407,8 +407,7 @@ export default class app extends Component {
         className="page page-scrollfix page-usermanage"
       >
         <Layout>
-          <Layout className="page-body">
-
+          <Layout className="page-body"> 
             {/* 左侧 杭州市 + 下城区 + 文一路 */}
             <Sider width={240} style={{ display: "flex", flexDirection: "column" }}>
               <Spin spinning={this.state.spinloading}>
@@ -474,7 +473,7 @@ export default class app extends Component {
           </Layout>
         </Layout>
 
-        {/* 允许新增的判断 */}
+        {/* 弹窗 */}
         {this.state.PoliceAddVisible ? (
           <AddPolice
             visible={this.state.PoliceAddVisible}
