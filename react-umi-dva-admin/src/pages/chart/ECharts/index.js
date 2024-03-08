@@ -3,9 +3,7 @@ import { Radio } from 'antd'
 import { Page } from 'components'
 import EchartsComponent from './EchartsComponent'
 import styles from './index.less'
-const RadioGroup = Radio.Group;
-
-
+const RadioGroup = Radio.Group
 
 const chartList = [
   {
@@ -79,7 +77,6 @@ const chartList = [
 ]
 
 class Chart extends React.Component {
-
   state = {
     type: '',
   }
@@ -94,12 +91,19 @@ class Chart extends React.Component {
     // const { handleRadioGroupChange } = this
     return (
       <Page inner id="EChartsMain">
-        <RadioGroup options={chartList} defaultValue="dynamic" onChange={this.handleRadioGroupChange.bind(this)}/>
+        <RadioGroup
+          options={chartList}
+          defaultValue="dynamic"
+          onChange={this.handleRadioGroupChange.bind(this)}
+        />
         <div className={styles.chart}>
           <EchartsComponent type={this.state.type} />
         </div>
         <div className={styles.demoFrom}>
-          All demos from{' '} <a href="https://github.com/hustcc/echarts-for-react" target='_black'>echarts-for-react</a>
+          All demos from{' '}
+          <a href="https://github.com/hustcc/echarts-for-react" target="_black">
+            echarts-for-react
+          </a>
         </div>
       </Page>
     )

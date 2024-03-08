@@ -3,7 +3,7 @@
 import { history } from 'umi'
 import { stringify } from 'qs'
 import store from 'store'
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 import { ROLE_TYPE } from '../utils/constant'
 import { queryLayout } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from '../utils/constant'
@@ -18,10 +18,8 @@ const goDashboard = () => {
   }
 }
 
-
-console.log(window.location.pathname) 
+// console.log(window.location.pathname)
 export default {
-
   namespace: 'app',
 
   state: {
@@ -55,7 +53,7 @@ export default {
       dispatch({ type: 'query' })
     },
     setupHistory({ dispatch, history }) {
-      history.listen(location => {
+      history.listen((location) => {
         dispatch({
           type: 'updateState',
           payload: {
@@ -86,22 +84,27 @@ export default {
         goDashboard()
         return
       }
-      const { locationPathname } = yield select(_ => _.app)
+      const { locationPathname } = yield select((_) => _.app)
       const { success, user } = yield call(queryUserInfo, payload)
       if (success && user) {
         const { list } = yield call(queryRouteList)
         const { permissions } = user
         let routeList = list
-        if (permissions.role === ROLE_TYPE.ADMIN || permissions.role === ROLE_TYPE.DEVELOPER) {
-          permissions.visit = list.map(item => item.id)
+        if (
+          permissions.role === ROLE_TYPE.ADMIN ||
+          permissions.role === ROLE_TYPE.DEVELOPER
+        ) {
+          permissions.visit = list.map((item) => item.id)
         } else {
-          routeList = list.filter(item => {
+          routeList = list.filter((item) => {
             const cases = [
               permissions.visit.includes(item.id),
-              item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
+              item.mpid
+                ? permissions.visit.includes(item.mpid) || item.mpid === '-1'
+                : true,
               item.bpid ? permissions.visit.includes(item.bpid) : true,
             ]
-            return cases.every(_ => _)
+            return cases.every((_) => _)
           })
         }
         store.set('routeList', routeList)

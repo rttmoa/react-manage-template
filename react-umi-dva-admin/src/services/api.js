@@ -1,13 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
 
-
-
 /***--- 供 Request 模块使用 ---**/
 export default {
   queryRouteList: '/routes',
 
   queryUserInfo: '/user',
-  
+
   logoutUser: '/user/logout', // 用户退出
   loginUser: 'POST /user/login', // 用户登陆
 

@@ -1,11 +1,11 @@
-import {request} from 'utils/request'
+import { request } from 'utils/request'
 import { apiPrefix } from '../utils/config'
 import api from './api'
 // console.log(api)
 
 // todo  api: resolve(__dirname, './src/services/')
 
-const gen = params => {
+const gen = (params) => {
   let url = apiPrefix + params
   let method = 'GET'
 
@@ -16,7 +16,8 @@ const gen = params => {
     url = apiPrefix + paramsArray[1]
   }
 
-  return function(data) { // 闭包：等待 传参
+  return function (data) {
+    // 闭包：等待 传参
     return request({
       url,
       data,
@@ -31,7 +32,7 @@ for (const key in api) {
   APIFunction[key] = gen(apiValue)
 }
 
-APIFunction.queryWeather = params => {
+APIFunction.queryWeather = (params) => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/weather/now.json`,

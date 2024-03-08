@@ -4,23 +4,20 @@ import { connect } from 'umi'
 import { Tabs } from 'antd'
 import { history } from 'umi'
 import { stringify } from 'qs'
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro'
 import { Page } from 'components'
 import List from './components/List'
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
 const EnumPostStatus = {
   UNPUBLISH: 1,
   PUBLISHED: 2,
 }
 
-
-
 @connect(({ post, loading }) => ({ post, loading }))
 class Post extends PureComponent {
-
-  handleTabClick = key => {
-    const { pathname } = this.props.location;
+  handleTabClick = (key) => {
+    const { pathname } = this.props.location
     // console.log("handleTabClick", key, pathname) // handleTabClick 2 /post
 
     // TODO: 切换 Tab，路由地址变化，dvajs中监听路由变化，并做相应的处理
@@ -55,16 +52,19 @@ class Post extends PureComponent {
     }
   }
 
-
-
   render() {
-    const { location } = this.props;
-    const { query } = location;
+    const { location } = this.props
+    const { query } = location
     return (
       <Page inner>
         <h3>Tabs切换页面 history.push() 到路由中 获取到参数放到Table中</h3>
-        <Tabs onTabClick={this.handleTabClick}
-          activeKey={ query.status === String(EnumPostStatus.UNPUBLISH) ? String(EnumPostStatus.UNPUBLISH) : String(EnumPostStatus.PUBLISHED)}
+        <Tabs
+          onTabClick={this.handleTabClick}
+          activeKey={
+            query.status === String(EnumPostStatus.UNPUBLISH)
+              ? String(EnumPostStatus.UNPUBLISH)
+              : String(EnumPostStatus.PUBLISHED)
+          }
         >
           <TabPane tab={t`Publised`} key={String(EnumPostStatus.PUBLISHED)}>
             <List {...this.listProps} />

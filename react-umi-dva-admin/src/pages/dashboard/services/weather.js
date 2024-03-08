@@ -2,9 +2,6 @@ import { request, config } from 'utils'
 
 const { APIV1 } = config
 
-
-
-
 export function query(params) {
   // console.log("天气 query", params)
 

@@ -1,13 +1,27 @@
 
 
+! 参考链接：
+  umi.js: https://umijs.org/
+  docsify生成文档网站教程： https://www.jianshu.com/p/bac7e84adf21
+  docsify基本使用：https://blog.csdn.net/m0_56542349/article/details/125451229
+  lingui国际化框架：https://lingui.dev/introduction
+  前端工程化：Prettier+ESLint+lint-staged+commitlint+Hooks+CI： https://zhuanlan.zhihu.com/p/487898449?utm_id=0
 
-  umi3 + dva + store + mockjs + qs + antd5
- 
-  搭建 Mock 环境，Mock语法 |  来自mockjs包
-  CLI 命令构建 | 来自.umirc.js配置
-  umi 打包配置
-  Auto 目录下页面样式
-  dist 目录下umi打包后的所有文件
+
+! 技术：umi3 + dva + store + mockjs + qs + antd5 + @lingui + 前端工程化
+
+! Nodejs版本：v14.20.0
+
+! 项目功能：
+  + @lingui/macro: 项目国际化
+  + docsify：文档网站
+  + 搭建 Mock 环境，Mock语法 |  来自mockjs包
+  + CLI 命令构建 | 来自.umirc.js配置
+  + umi 打包配置
+  + Auto 目录下页面样式
+  + dist 目录下umi打包后的所有文件
+
+
 
 目录
   /mock -> Mockjs 创建Mock数据
@@ -20,7 +34,7 @@
       + 全局 Store
       todo 路由权限处理：admin / user / develop 等
 
-  /src/pages/ 
+  /src/pages/
     /page/
       + @connect(({ app, dashboard, loading }) => ({ dashboard, loading }))
       + class Dashboard extends PureComponent {}
@@ -59,7 +73,7 @@
       + i18n 表头可中文、英文、葡萄牙文
       + 组件封装； <Filter {...this.filterProps} />  /  <List {...this.listProps} />  /  <Modal {...this.modalProps} />
 
-      
+
   /src/layouts/
     @/BaseLayout.js
     @/index.js
@@ -67,8 +81,8 @@
     @/PublicLayout.js
 
   /src/locales/
-    @/en 
-    @/pt-br 
+    @/en
+    @/pt-br
     @/zh
 
 

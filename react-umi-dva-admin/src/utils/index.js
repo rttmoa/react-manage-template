@@ -8,19 +8,16 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
 dayjs.extend(relativeTime)
 
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 
 // todo  utils: resolve(__dirname, './src/utils/')
-
-
 
 export { classnames } from 'classnames'
 export { config } from './config'
 export { request } from './request'
 export { Color } from './theme'
 
-
-export const languages = i18n ? i18n.languages.map(item => item.key) : []
+export const languages = i18n ? i18n.languages.map((item) => item.key) : []
 
 export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
 
@@ -35,7 +32,7 @@ export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
     return
   }
-  return array.find(_ => _[key] === value)
+  return array.find((_) => _[key] === value)
 }
 
 /**
@@ -46,7 +43,12 @@ export function queryArray(array, key, value) {
  * @param   {string}    children  The alias of children of the object in the array.
  * @return  {array}    Return a tree-structured array.
  */
-export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'children') {
+export function arrayToTree(
+  array,
+  id = 'id',
+  parentId = 'pid',
+  children = 'children'
+) {
   const result = []
   const hash = {}
   const data = cloneDeep(array)
@@ -55,7 +57,7 @@ export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'chil
     hash[data[index][id]] = data[index]
   })
 
-  data.forEach(item => {
+  data.forEach((item) => {
     const hashParent = hash[item[parentId]]
     if (hashParent) {
       !hashParent[children] && (hashParent[children] = [])
@@ -66,8 +68,6 @@ export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'chil
   })
   return result
 }
-
-
 
 /**
  * In an array object, traverse all parent IDs based on the value of an object.
@@ -80,9 +80,9 @@ export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'chil
 export function queryPathKeys(array, current, parentId, id = 'id') {
   const result = [current]
   const hashMap = new Map()
-  array.forEach(item => hashMap.set(item[id], item))
+  array.forEach((item) => hashMap.set(item[id], item))
 
-  const getPath = current => {
+  const getPath = (current) => {
     const currentParentId = hashMap.get(current)[parentId]
     if (currentParentId) {
       result.push(currentParentId)
@@ -105,8 +105,8 @@ export function queryPathKeys(array, current, parentId, id = 'id') {
 export function queryAncestors(array, current, parentId, id = 'id') {
   const result = [current]
   const hashMap = new Map()
-  array.forEach(item => hashMap.set(item[id], item))
-  const getPath = current => {
+  array.forEach((item) => hashMap.set(item[id], item))
+  const getPath = (current) => {
     const currentParentId = hashMap.get(current[id])[parentId]
     if (currentParentId) {
       result.push(hashMap.get(currentParentId))
@@ -125,8 +125,10 @@ export function queryAncestors(array, current, parentId, id = 'id') {
  */
 export function queryLayout(layouts, pathname) {
   let result = 'public'
-  const isMatch = regepx => {
-    return regepx instanceof RegExp ? regepx.test(pathname) : pathToRegexp(regepx).exec(pathname)
+  const isMatch = (regepx) => {
+    return regepx instanceof RegExp
+      ? regepx.test(pathname)
+      : pathToRegexp(regepx).exec(pathname)
   }
   for (const item of layouts) {
     let include = false
@@ -156,11 +158,10 @@ export function queryLayout(layouts, pathname) {
   return result
 }
 
-
 /** #### 获取store中的国际化语言  */
-export function getLocale() { return store.get('locale') || defaultLanguage }
-
-
+export function getLocale() {
+  return store.get('locale') || defaultLanguage
+}
 
 /** #### 设置store中的国际化语言  */
 export function setLocale(language) {

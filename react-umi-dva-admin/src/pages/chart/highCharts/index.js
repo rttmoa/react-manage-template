@@ -5,7 +5,6 @@ import HighChartsComponent from './HighChartsComponent'
 import styles from './index.less'
 const RadioGroup = Radio.Group
 
-
 const chartList = [
   {
     label: 'Highstock',
@@ -24,7 +23,7 @@ const chartList = [
 class Chart extends React.Component {
   constructor() {
     super()
-    this.state = {type: ''}
+    this.state = { type: '' }
     this.handleRadioGroupChange = this.handleRadioGroupChange.bind(this)
   }
   handleRadioGroupChange(e) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
-import { i18n } from "@lingui/core"
+import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { getLocale } from 'utils'
 import { zh, en, pt } from 'make-plural/plurals'
@@ -14,12 +14,11 @@ import BaseLayout from './BaseLayout'
 i18n.loadLocaleData({
   en: { plurals: en },
   zh: { plurals: zh },
-  'pt-br': { plurals: pt }
+  'pt-br': { plurals: pt },
 })
 const { defaultLanguage } = i18n
 // antd
 const languages = { zh: zhCN, en: enUS, 'pt-br': ptBR }
-
 
 @withRouter
 class Layout extends Component {
@@ -35,7 +34,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children } = this.props
 
     // TODO: 处理项目语言类型
     let language = getLocale()
@@ -45,8 +44,8 @@ class Layout extends Component {
     return (
       <ConfigProvider locale={languages[language]}>
         <I18nProvider i18n={i18n}>
-          {/* TODO: 界面结构 */} 
-          <BaseLayout>{children || "内容区域"}</BaseLayout>
+          {/* TODO: 界面结构 */}
+          <BaseLayout>{children || '内容区域'}</BaseLayout>
         </I18nProvider>
       </ConfigProvider>
     )

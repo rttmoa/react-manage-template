@@ -2,9 +2,6 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import './theme/macarons.js'
 
-
-
-
 const SimpleChartComponent = () => {
   const option = {
     title: {

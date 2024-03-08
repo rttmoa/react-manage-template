@@ -3,11 +3,4 @@ import Menu from './Menu'
 import Bread from './Bread'
 import Sider from './Sider'
 
-
-
-export {
-  Header,
-  Menu,
-  Bread,
-  Sider
-}
+export { Header, Menu, Bread, Sider }

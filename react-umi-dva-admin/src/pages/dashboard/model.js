@@ -2,11 +2,11 @@ import { parse } from 'qs'
 import modelExtend from 'dva-model-extend'
 import api from 'api'
 import { model } from 'utils/model'
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 // console.log("api", api)
 const { queryDashboard, queryWeather } = api
-const avatar = '//cdn.antd-admin.zuiidea.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236.jpeg'
-
+const avatar =
+  '//cdn.antd-admin.zuiidea.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236.jpeg'
 
 // dashboard 继承 model
 export default modelExtend(model, {
@@ -35,7 +35,10 @@ export default modelExtend(model, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (pathToRegexp('/dashboard').exec(pathname) || pathToRegexp('/').exec(pathname)) {
+        if (
+          pathToRegexp('/dashboard').exec(pathname) ||
+          pathToRegexp('/').exec(pathname)
+        ) {
           dispatch({ type: 'query' })
           dispatch({ type: 'queryWeather' })
         }

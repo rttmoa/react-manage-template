@@ -1,4 +1,3 @@
-
 // todo  config: resolve(__dirname, './src/config/')
 module.exports = {
   siteName: 'AntD Admin',

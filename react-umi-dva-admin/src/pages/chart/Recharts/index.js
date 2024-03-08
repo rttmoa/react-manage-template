@@ -36,13 +36,15 @@ class Chart extends React.Component {
   render() {
     return (
       <Page inner>
-
-        <RadioGroup options={chartList} defaultValue="lineChart" onChange={this.handleRadioGroupChange}/>
+        <RadioGroup
+          options={chartList}
+          defaultValue="lineChart"
+          onChange={this.handleRadioGroupChange}
+        />
 
         <div className={styles.chart}>
           <ReChartsComponent type={this.state.type} />
         </div>
-
       </Page>
     )
   }

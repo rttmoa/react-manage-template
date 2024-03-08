@@ -2,18 +2,14 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal, Avatar } from 'antd'
 import { DropOption } from 'components'
-import { t } from "@lingui/macro"
-import { Trans } from "@lingui/macro"
+import { t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { Link } from 'umi'
 import styles from './List.less'
 
 const { confirm } = Modal
 
-
-
-
 class List extends PureComponent {
-
   handleMenuClick = (record, e) => {
     const { onDeleteItem, onEditItem } = this.props
 
@@ -39,7 +35,7 @@ class List extends PureComponent {
         key: 'avatar',
         width: '7%',
         fixed: 'left',
-        render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
+        render: (text) => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
       {
         title: <Trans>Name</Trans>,
@@ -51,7 +47,7 @@ class List extends PureComponent {
         title: <Trans>NickName</Trans>,
         dataIndex: 'nickName',
         key: 'nickName',
-        render: text => <b>{text}</b>
+        render: (text) => <b>{text}</b>,
       },
       {
         title: <Trans>Age</Trans>,
@@ -64,7 +60,7 @@ class List extends PureComponent {
         dataIndex: 'isMale',
         key: 'isMale',
         width: '7%',
-        render: text => <span>{text ? 'Male' : 'Female'}</span>,
+        render: (text) => <span>{text ? 'Male' : 'Female'}</span>,
       },
       {
         title: <Trans>Phone</Trans>,
@@ -94,7 +90,7 @@ class List extends PureComponent {
         render: (text, record) => {
           return (
             <DropOption
-              onMenuClick={e => this.handleMenuClick(record, e)}
+              onMenuClick={(e) => this.handleMenuClick(record, e)}
               menuOptions={[
                 { key: '1', name: t`Update` },
                 { key: '2', name: t`Delete` },
@@ -110,14 +106,14 @@ class List extends PureComponent {
         {...tableProps}
         pagination={{
           ...tableProps.pagination,
-          showTotal: total => t`Total ${total} Items`,
+          showTotal: (total) => t`Total ${total} Items`,
         }}
         className={styles.table}
         bordered
         scroll={{ x: 1200 }}
         columns={columns}
         simple
-        rowKey={record => record.id}
+        rowKey={(record) => record.id}
       />
     )
   }

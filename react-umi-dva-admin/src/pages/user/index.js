@@ -4,47 +4,47 @@ import PropTypes from 'prop-types'
 import { history } from 'umi'
 import { connect } from 'umi'
 import { Row, Col, Button, Popconfirm } from 'antd'
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro'
 import { Page } from 'components'
 import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
 import Modal from './components/Modal'
 
-
-
-
-
-
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
-
   /** #### TODO: 将变化的Filter添加到地址栏中  */
-  handleRefresh = newQuery => {
+  handleRefresh = (newQuery) => {
     const { location } = this.props
     const { query, pathname } = location
-    history.push({  
+    history.push({
       pathname,
-      search: stringify({...query,...newQuery}, {arrayFormat: 'repeat'}),
+      search: stringify({ ...query, ...newQuery }, { arrayFormat: 'repeat' }),
     })
     // http://localhost:40003/user?address=%E6%B5%B7%E5%A4%96&address=%E6%B5%B7%E5%A4%96&createTime=2023-05-18&createTime=2023-05-19&name=userName
   }
 
   // 未使用属性
   handleDeleteItems = () => {
-    const { dispatch, user } = this.props;
-    const { list, pagination, selectedRowKeys } = user;
-    dispatch({ type: 'user/multiDelete', payload: { ids: selectedRowKeys } }).then(() => {
+    const { dispatch, user } = this.props
+    const { list, pagination, selectedRowKeys } = user
+    dispatch({
+      type: 'user/multiDelete',
+      payload: { ids: selectedRowKeys },
+    }).then(() => {
       this.handleRefresh({
-        page: list.length === selectedRowKeys.length && pagination.current > 1 ? pagination.current - 1 : pagination.current,
+        page:
+          list.length === selectedRowKeys.length && pagination.current > 1
+            ? pagination.current - 1
+            : pagination.current,
       })
     })
   }
 
   /** #### 弹出框属性 ModelProps  */
   get modalProps() {
-    const { dispatch, user, loading } = this.props;
-    const { currentItem, modalOpen, modalType } = user;
+    const { dispatch, user, loading } = this.props
+    const { currentItem, modalOpen, modalType } = user
 
     return {
       item: modalType === 'create' ? {} : currentItem,
@@ -54,13 +54,13 @@ class User extends PureComponent {
       confirmLoading: loading.effects[`user/${modalType}`],
       title: `${modalType === 'create' ? t`Create User` : t`Update User`}`,
       centered: true,
-      onOk: data => {
+      onOk: (data) => {
         dispatch({ type: `user/${modalType}`, payload: data }).then(() => {
           this.handleRefresh()
         })
       },
       onCancel() {
-        dispatch({type: 'user/hideModal'})
+        dispatch({ type: 'user/hideModal' })
       },
     }
   }
@@ -75,19 +75,22 @@ class User extends PureComponent {
       dataSource: list,
       loading: loading.effects['user/query'],
       pagination,
-      onChange: page => {
+      onChange: (page) => {
         this.handleRefresh({
           page: page.current,
           pageSize: page.pageSize,
         })
       },
-      onDeleteItem: id => {
+      onDeleteItem: (id) => {
         dispatch({
           type: 'user/delete',
           payload: id,
         }).then(() => {
           this.handleRefresh({
-            page: list.length === 1 && pagination.current > 1 ? pagination.current - 1 : pagination.current,
+            page:
+              list.length === 1 && pagination.current > 1
+                ? pagination.current - 1
+                : pagination.current,
           })
         })
       },
@@ -102,7 +105,7 @@ class User extends PureComponent {
       },
       rowSelection: {
         selectedRowKeys,
-        onChange: keys => {
+        onChange: (keys) => {
           dispatch({
             type: 'user/updateState',
             payload: {
@@ -116,14 +119,14 @@ class User extends PureComponent {
 
   /** #### 过滤条件属性 FitlerProps  */
   get filterProps() {
-    const { location, dispatch } = this.props;
-    const { query } = location;
+    const { location, dispatch } = this.props
+    const { query } = location
 
     return {
       filter: {
         ...query,
       },
-      onFilterChange: value => {
+      onFilterChange: (value) => {
         // console.log("onFilterChange", value) // {address: ['北京', '北京市', '西城区'], createTime: ['2023-04-13', '2023-04-15'], name: "zhangsan"}
         this.handleRefresh({
           ...value,
@@ -140,21 +143,25 @@ class User extends PureComponent {
     }
   }
 
-
-
   render() {
-    const { user } = this.props;
-    const { selectedRowKeys } = user;
+    const { user } = this.props
+    const { selectedRowKeys } = user
 
     return (
       <Page inner>
-        <h3>将Form表单中参数使用Ref获取到后，用history.push()到地址栏后，用dvajs(redux)获取最近数据传到组件中</h3>
+        <h3>
+          将Form表单中参数使用Ref获取到后，用history.push()到地址栏后，用dvajs(redux)获取最近数据传到组件中
+        </h3>
         <Filter {...this.filterProps} />
         {selectedRowKeys.length > 0 && (
           <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
             <Col>
               {`Selected ${selectedRowKeys.length} items `}
-              <Popconfirm title="Are you sure delete these items?" placement="left" onConfirm={this.m}>
+              <Popconfirm
+                title="Are you sure delete these items?"
+                placement="left"
+                onConfirm={this.m}
+              >
                 <Button type="primary" style={{ marginLeft: 8 }}>
                   Remove
                 </Button>
@@ -162,7 +169,10 @@ class User extends PureComponent {
             </Col>
           </Row>
         )}
-        <h3>Table中可查看详情，可更新，可删除用户信息  可用dvajs控制数据，Loading，pagination，Model等</h3>
+        <h3>
+          Table中可查看详情，可更新，可删除用户信息
+          可用dvajs控制数据，Loading，pagination，Model等
+        </h3>
         <List {...this.listProps} />
         <Modal {...this.modalProps} />
       </Page>

@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './FilterItem.less'
 
-
-
-
 const FilterItem = ({ label = '', children }) => {
   const labelArray = label.split('')
   return (

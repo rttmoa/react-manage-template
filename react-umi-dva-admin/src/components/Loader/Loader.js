@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styles from './Loader.less'
 
-
-
-
 /** #### 加载效果  */
 const Loader = ({ spinning = false, fullScreen }) => {
   return (
-    <div className={classNames(styles.loader, {
+    <div
+      className={classNames(styles.loader, {
         [styles.hidden]: !spinning,
         [styles.fullScreen]: fullScreen,
       })}

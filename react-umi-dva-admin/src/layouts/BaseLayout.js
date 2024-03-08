@@ -12,20 +12,16 @@ import PublicLayout from './PublicLayout'
 import PrimaryLayout from './PrimaryLayout'
 import './BaseLayout.less'
 
-
 // TODO: 主要布局 ? 公共布局
 const LayoutMap = {
   primary: PrimaryLayout,
   public: PublicLayout,
 }
 
-
-
-
 @withRouter
 @connect(({ loading }) => ({ loading }))
 class BaseLayout extends PureComponent {
-  previousPath = '';
+  previousPath = ''
   render() {
     const { loading, children, location } = this.props
     const Container = LayoutMap[queryLayout(config.layouts, location.pathname)]
@@ -39,7 +35,6 @@ class BaseLayout extends PureComponent {
       this.previousPath = currentPath
     }
     // console.log(config.layouts)
-
 
     return (
       <Fragment>

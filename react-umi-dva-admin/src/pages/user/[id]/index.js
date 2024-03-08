@@ -4,15 +4,11 @@ import { connect } from 'umi'
 import { Page } from 'components'
 import styles from './index.less'
 
-
-
-
-
 @connect(({ userDetail }) => ({ userDetail }))
 class UserDetail extends PureComponent {
   render() {
-    const { userDetail } = this.props;
-    const { data } = userDetail;
+    const { userDetail } = this.props
+    const { data } = userDetail
     console.log('用户详情：', data)
     const content = []
     for (let key in data) {

@@ -3,15 +3,13 @@ import PropTypes from 'prop-types'
 import { BarsOutlined, DownOutlined } from '@ant-design/icons'
 import { Dropdown, Button, Menu } from 'antd'
 
-
-
 const DropOption = ({
   onMenuClick,
   menuOptions = [],
   buttonStyle,
   dropdownProps,
 }) => {
-  const menu = menuOptions.map(item => (
+  const menu = menuOptions.map((item) => (
     <Menu.Item key={item.key}>{item.name}</Menu.Item>
   ))
   return (

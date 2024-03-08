@@ -1,0 +1,30 @@
+
+
+
+
+Nodejs：v14.20.0
+启动：yarn start
+
+
+"start": {
+  umi
+  "check:model": "umi dva list model",      -- 查看项目中哪些文件包含 dva-model
+
+  umi 打包项目
+  "analyze": "cross-env ANALYZE=1 umi build",
+  "build": "umi build",
+
+
+  前端工程化
+  "lint:js": "eslint --ext .js src",      -- eslint 检查js代码语法
+  "lint:style": "stylelint \"src/**/*.less\" --syntax less",     -- stylelint 检查less代码语法
+  "prettier": "prettier --write ./src/**/*.{js,less}",      -- prettier 格式化项目js,less代码
+
+  项目国际化
+  "add-locale": "lingui add-locale",    -- lingui 项目国际化
+  "extract": "lingui extract",
+  "trans": "lingui extract --clean && node ./scripts/translate.js",
+
+  文档网站
+  "doc": "docsify serve docs"   -- docsify 是一个动态生成文档网站的工具
+}

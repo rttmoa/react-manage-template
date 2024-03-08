@@ -4,10 +4,11 @@ import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 const { parse, compile } = require('path-to-regexp')
 
-const { CancelToken } = axios
+const { CancelToken } = axios;
 window.cancelRequest = new Map()
 
-export  function request(options) {
+export function request(options) {
+  console.log('options', options)
   let { data, url } = options
   const cloneData = cloneDeep(data)
 
@@ -40,7 +41,8 @@ export  function request(options) {
     })
   })
 
-  return axios(options).then((response) => {
+  return axios(options)
+    .then((response) => {
       const { statusText, status, data } = response
 
       let result = {}

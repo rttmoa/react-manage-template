@@ -1,4 +1,4 @@
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 
 describe('test pathToRegexp', () => {
   it('get right', () => {

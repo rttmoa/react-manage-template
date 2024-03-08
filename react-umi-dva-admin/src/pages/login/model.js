@@ -4,7 +4,7 @@ import api from 'api' // todo post请求  查看封转的axios
 import allApi from '../../services'
 // console.log(allApi)
 
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 
 const { loginUser } = api
 
@@ -22,13 +22,13 @@ export default {
   // },
   effects: {
     // todo 登陆页中： dispatch({ type: "login/login", payload: {username: 'admin', password: 'admin'}})
-    *login({ payload }, { put, call, select }) { 
+    *login({ payload }, { put, call, select }) {
       // test
       // console.log(yield call(loginUser, payload)) // todo  yield call 发起请求
       // console.log(yield select(v => console.log(v))) // todo yield select 获取所有 state 数据
       // return
       const data = yield call(loginUser, payload)
-      const { locationQuery } = yield select(_ => _.app)
+      const { locationQuery } = yield select((_) => _.app)
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' }) // todo yield put ->  dispatch地址 namespace: "app"   effects: "query"

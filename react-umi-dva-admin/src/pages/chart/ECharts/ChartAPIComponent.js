@@ -108,7 +108,7 @@ class ChartAPIComponent extends React.Component {
             echarts.)
           </label>
           <ReactEcharts
-            ref={e => {
+            ref={(e) => {
               this.echarts_react = e
             }}
             option={option}

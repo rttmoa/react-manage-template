@@ -41,6 +41,7 @@ let DICT = {
   110228: '密云县',
   110229: '延庆县',
   110230: '其它区',
+
   120000: '天津',
   120100: '天津市',
   120101: '和平区',
@@ -60,6 +61,7 @@ let DICT = {
   120223: '静海县',
   120225: '蓟县',
   120226: '其它区',
+
   130000: '河北省',
   130100: '石家庄市',
   130102: '长安区',
@@ -86,6 +88,7 @@ let DICT = {
   130184: '新乐市',
   130185: '鹿泉市',
   130186: '其它区',
+
   130200: '唐山市',
   130202: '路南区',
   130203: '路北区',
@@ -4020,13 +4023,11 @@ let DICT = {
   990100: '海外',
 }
 
-
-
-const tree = list => {
+const tree = (list) => {
   let hashTable = Object.create(null)
-  list.forEach(aData => (hashTable[aData.id] = { ...aData, children: [] }))
+  list.forEach((aData) => (hashTable[aData.id] = { ...aData, children: [] }))
   let dataTree = []
-  list.forEach(aData => {
+  list.forEach((aData) => {
     if (aData.pid) {
       if (hashTable[aData.pid]) {
         hashTable[aData.pid].children.push(hashTable[aData.id])
@@ -4036,14 +4037,17 @@ const tree = list => {
   return dataTree
 }
 
-let DICT_FIXED = (function() {
+let DICT_FIXED = (function () {
   let fixed = []
   for (let id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {
       let pid
       const tmpObj = { id, value: DICT[id], label: DICT[id] }
       if (id.slice(2, 6) !== '0000') {
-        pid = id.slice(4, 6) === '00' ? `${id.slice(0, 2)}0000` : `${id.slice(0, 4)}00`
+        pid =
+          id.slice(4, 6) === '00'
+            ? `${id.slice(0, 2)}0000`
+            : `${id.slice(0, 4)}00`
       }
       if (pid) tmpObj.pid = pid
       fixed.push(tmpObj)
