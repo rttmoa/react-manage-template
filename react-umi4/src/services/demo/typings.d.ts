@@ -2,18 +2,14 @@
 // 该文件由 OneAPI 自动生成，请勿手动修改！
 
 declare namespace API {
-  interface PageInfo {
-    /** 
-1 */
+  interface PageInfo { 
     current?: number;
     pageSize?: number;
     total?: number;
     list?: Array<Record<string, any>>;
   }
 
-  interface PageInfo_UserInfo_ {
-    /** 
-1 */
+  interface PageInfo_UserInfo_ { 
     current?: number;
     pageSize?: number;
     total?: number;

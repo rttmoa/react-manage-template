@@ -16,7 +16,11 @@
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
     "trans": "lingui extract --clean && node ./scripts/translate.js",
-    "doc": "docsify serve docs"
+    "doc": "docsify serve docs",
+    "foo": "umi g page foo",
+    "deadcode": "umi deadcode",
+    "postinstall": "umi setup",
+    "preview": "umi preview --port 9527"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",

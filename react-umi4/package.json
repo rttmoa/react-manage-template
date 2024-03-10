@@ -2,9 +2,9 @@
   "private": true,
   "author": "rttmoa <rttmoa@gmail.com>",
   "scripts": {
-    "dev": "max dev",
-    "dev:pre": "cross-env UMI_ENV=pre umi dev",
-    "build": "max build",
+    "dev": "cross-env NODE_ENV=development max dev",
+    "dev:pre": "cross-env UMI_ENV=pre NODE_ENV=development umi dev",
+    "build": "cross-env NODE_ENV=production max build",
     "format": "prettier --cache --write .",
     "prepare": "husky install",
     "postinstall": "max setup",

@@ -8,6 +8,7 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { Button, Divider, Drawer, message } from 'antd';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
@@ -103,6 +104,7 @@ const TableList: React.FC<unknown> = () => {
           },
         ],
       },
+      
     },
     {
       title: '昵称',
@@ -139,15 +141,16 @@ const TableList: React.FC<unknown> = () => {
     },
   ];
 
-  useEffect(() => {
-    fetch("/typicode/todos/1").then((res) => {
-      console.log('fetch', res);
-      return res.json();
-    }).then((json: any) => {
-      console.log('json', json);
-    })
-  })
-
+  // useEffect(() => {
+  //   fetch('/typicode/todos/1')
+  //     .then((res) => {
+  //       console.log('fetch', res);
+  //       return res.json();
+  //     })
+  //     .then((json: any) => {
+  //       console.log('json', json);
+  //     });
+  // });
 
   return (
     <PageContainer
@@ -172,13 +175,14 @@ const TableList: React.FC<unknown> = () => {
           </Button>,
         ]}
         request={async (params, sorter, filter) => {
+          console.log(params, sorter, filter);
           const { data, success } = await queryUserList({
             ...params,
-            // FIXME: remove @ts-ignore
             // @ts-ignore
             sorter,
             filter,
           });
+          console.log("queryUserList", data);
           return {
             data: data?.list || [],
             success,
