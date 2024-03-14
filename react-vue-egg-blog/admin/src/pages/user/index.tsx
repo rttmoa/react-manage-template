@@ -5,7 +5,10 @@ import {  UPDATE_FORM_PARAMS,  UPDATE_LIST,  UPDATE_LOADING,  UPDATE_PAGINATION,
 import useLocale from '../../utils/useLocale';
 import { ReducerState } from '../../redux';
 import styles from './style/index.module.less';
-import { getList, remove } from '../../api/user';
+import { 
+  // getList, 
+  remove
+ } from '../../api/user';
 
 
  
@@ -24,12 +27,12 @@ function Categories() {
   async function fetchData(current = 1, pageSize = 20, params = {}) {
     dispatch({ type: UPDATE_LOADING, payload: { loading: true } });
     try {
-      const postData = {
-        page: current,
-        pageSize,
-        ...params,
-      }; 
-      const res2: any = await getList(postData); 
+      // const postData = {
+      //   page: current,
+      //   pageSize,
+      //   ...params,
+      // }; 
+      // const res2: any = await getList(postData); 
       const res = {data: {list: [{nickName: "zhangsan", avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F3a2f9e13-ac28-467f-8ccc-e024f5e81c0a%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693356065&t=c0330b052df2ee9d7051ce570a19b4ba", provider: "假数据", email: "908240440@qq.com", articleIds: [], introduction: "暂无",registerTime: "2023-07-31", }], totalCount: 20}}
       if (res) {
         dispatch({ type: UPDATE_LIST, payload: { data: res.data.list } });

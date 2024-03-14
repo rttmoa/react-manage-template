@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "rimraf": "rimraf node_modules"
   },
   "dependencies": {
     "clipboard": "^2.0.8",
@@ -48,8 +49,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "vue/no-unused-components": "off",  
-      "no-unused-vars":"off"  
+      "vue/no-unused-components": "off",
+      "no-unused-vars": "off"
     }
   },
   "browserslist": [

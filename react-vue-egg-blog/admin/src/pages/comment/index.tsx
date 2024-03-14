@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  Table,  Button,  Input,  Breadcrumb,  Card,  Message,  Popconfirm,  Select,  Badge,  Modal,  Form,  Radio,} from '@arco-design/web-react';
+import {  Table,  Button,  Input,  Breadcrumb,  Card,  Message,  Popconfirm,  Select,  Modal,  Form,  Radio,} from '@arco-design/web-react';
 import { useSelector, useDispatch } from 'react-redux';
 import {  UPDATE_FORM_PARAMS,  UPDATE_LIST,  UPDATE_LOADING,  UPDATE_PAGINATION, } from './redux/actionTypes';
 import useLocale from '../../utils/useLocale';
@@ -135,16 +135,16 @@ function Categories() {
     {
       title: '审核状态',
       dataIndex: 'auditStatus',
-      render: (text) => {
-        // const current = auditStatusOptions.filter((item) => item.value === +text);
-        // const obj = current[0];
-        // const enums = {
-        //   1: 'success',
-        //   2: 'error',
-        //   3: 'warning',
-        // };
-        // return <Badge status={enums[obj.value]} text={obj.label} />;
-      },
+      // render: (text) => {
+      //   // const current = auditStatusOptions.filter((item) => item.value === +text);
+      //   // const obj = current[0];
+      //   // const enums = {
+      //   //   1: 'success',
+      //   //   2: 'error',
+      //   //   3: 'warning',
+      //   // };
+      //   // return <Badge status={enums[obj.value]} text={obj.label} />;
+      // },
     },
     {
       title: '评论时间',

@@ -7,7 +7,10 @@
  * history.goForward()
  * history.listen(func) // listen for changes to the current location
  */
-import { createHashHistory } from 'history';
+import { 
+  createHashHistory, 
+  // createBrowserHistory
+ } from 'history';
 
 
 

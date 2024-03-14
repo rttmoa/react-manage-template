@@ -43,6 +43,8 @@ function Index() {
   // }
 
   useEffect(() => {
+    // console.log(checkLogin());
+    // console.log(localStorage.getItem('token')); // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2Vs
     if (checkLogin()) {
       // fetchUserInfo();
     } else {
@@ -61,7 +63,7 @@ function Index() {
     }
   }
   const contextValue = { locale };
-
+  // console.log(123);
   return locale ? (
     <Router history={history}>
       <ConfigProvider locale={getArcoLocale()}>

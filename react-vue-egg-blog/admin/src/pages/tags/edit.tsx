@@ -12,7 +12,7 @@ export const EditableRow = (props) => {
   const { children, record, className, ...rest } = props;
   const refForm = useRef(null);
   const getForm = () => refForm.current;
-  let cont = <span>表格行</span>
+  // let cont = <span>表格行</span>
   return (
     <EditableContext.Provider value={{ getForm }}>
       <Form

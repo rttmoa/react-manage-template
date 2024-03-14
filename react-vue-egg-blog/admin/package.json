@@ -4,10 +4,11 @@
   "description": "Arco Design Pro",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "dev": "arco-scripts dev:site --port 8080",
+    "start": "arco-scripts dev:site --port 8080",
     "build": "arco-scripts build:site",
     "eslint": "eslint src/ --fix --cache --quiet --ext .js,.jsx,.ts,.tsx",
-    "stylelint": "stylelint 'components/**/*.less' --fix --cache"
+    "stylelint": "stylelint 'components/**/*.less' --fix --cache",
+    "rimraf": "rimraf node_modules"
   },
   "devDependencies": {
     "@arco-design/arco-scripts": "^1.13.3",

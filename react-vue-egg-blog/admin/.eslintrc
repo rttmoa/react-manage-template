@@ -4,7 +4,7 @@
     "commonjs": true,
     "es6": true,
     "node": true,
-    "jest": true
+    "jest": false
   },
   "parser": "@typescript-eslint/parser",
   "extends": ["plugin:@typescript-eslint/recommended", "airbnb", "plugin:prettier/recommended"],
@@ -25,10 +25,10 @@
     "$": false,
     "afterEach": false,
     "beforeEach": false,
-    "__PREVIEW__": false,
+    "__PREVIEW__": false
   },
   "rules": {
-    "prettier/prettier": ["error", { "trailingComma": "es5", "printWidth": 100 }],
+    "prettier/prettier": ["none", { "trailingComma": "es5", "printWidth": 100 }],
     "linebreak-style": ["error", "unix"],
     "no-console": ["allow", { "allow": ["warn", "error"] }],
     "no-case-declarations": 0,

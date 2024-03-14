@@ -6,20 +6,20 @@ Document：https://www.showdoc.com.cn/1520731920996915/
 
 
 ? web:
-安装：npm install
+安装：npm i
 启动: npm run serve
 前台访问地址：http://localhost:8081/  
 
 
 
 ? admin:
-安装：npm install
-启动：npm run dev
+安装：npm i
+启动：npm start
 后台访问地址：http://127.0.0.1:8080/ 
 登录用户名密码: admin 123456
 
 ? server:
-安装：npm install
+安装：npm i
 启动：npm run dev
 数据库：mongodb://127.0.0.1/blog
 后台访问地址：http://127.0.0.1:7002/
