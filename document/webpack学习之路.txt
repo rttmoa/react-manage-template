@@ -1,0 +1,113 @@
+
+知乎链接地址：https://www.zhihu.com/people/yi-ge-qian-duan-de-zhui-qiu-zhe/posts
+
+* webpack学习之路4 - 打包/性能优化总结
+
+一、webpack学习之路1 -  https://zhuanlan.zhihu.com/p/373751539
+  webpack核心概念
+    1.入口（entry）
+    2.输出（output）
+    3.module,各种loader配置
+    4.模式（mode）
+    5.插件（plugins）
+
+  1、解析普通的css/less文件编译
+    配置 css-loader、less-loader
+
+  2、在js中分离css
+    2.1、分离css,使用插件mini-css-extract-plugin
+
+  3、解决css在不同浏览器的兼容性问题
+    3.1、为了解决大多数css样式兼容性问题，我们需要用postcss postcss-loader postcss-preset-env；
+    3.2、webpack.common.js 中配置：loader: "postcss-loader",
+    3.2、并在package.json配置browserslist;
+
+  4、实现css文件压缩，减小包的体积
+    4.1、下载 nmp i css-minimizer-webpack-plugin -D
+    4.2、在webpack.config.js文件配置optimization对象 optimization: { minimizer:[ new CssMinimizerWebpackPlugin() ] }
+
+
+二、webpack学习之路2 - https://zhuanlan.zhihu.com/p/373832104
+  1、webpack实现图片加载
+    test: /\.(png|jpg|gif)$/,
+      1.1、通过webpck --config webpack.config.js构建项目后，当我们完成了url-loader配置后，我们在css、less文件中引入图片时没有问题，图片能正常得被引入，但是在html中使用img引用图片，就不会成功，因此，我们还需要配置html-loader,实现img引入图片成功
+      1.2、下载：npm i html-loader -D 并配置 loader: 'html-loader',
+
+  2、其它文件加载
+      除去哪些资源后,剩余的通过file-loader解析
+      exclude:/\.(html|js|css|less|png|jpg|gif)$/,
+      loader:'file-loader'
+
+  3、webpack-dev-server自动化构建工具，开发爽到爆
+    devServer:{ prot, compress, open }
+      目的：每次修改完代码，都需要使用webpack --config webpack.config.js构建一次项目，有朋友觉得太繁琐了，为了解决这种重复性工作，我们将使用webpack-dev-server自动化构建项目。
+      配置完成后，启动webpack serve就可以启动项目了，然后我们修改代码，界面就会自动刷新了。
+
+
+三、webpack学习之路3 - https://zhuanlan.zhihu.com/p/374118102
+  1、css代码配置及优化处理
+    问题： 1.此时css和js混合在build.js文件里面
+          2.css样式在加载html文件时，会在html文件中生成style标签，加载时，出现闪频。
+          3.样式兼容性不好，在不同浏览器上差异较大，特别是IE里面，有些样式不起作用
+          针对以上问题，我们通过下面几种方式进行优化
+
+    解决：1、css分离  2、css压缩  3、css兼容处理
+          图片配置url-loader、html-loader
+          其它文件加载配置 file-laoder
+
+  2、js配置
+    test: /\.(js|jsx|ts|tsx)$/,
+    npm i babel-laoder  @babel/core @babel/preset-env -D
+    npm i core-js -D
+
+
+四、webpack学习之路4 - 打包/性能优化总结： https://zhuanlan.zhihu.com/p/374954158
+  1、HMR模块热更新
+     HMR作用：HMR模块热更新，比如有100个文件，修改1个文件，只从新构建这一个文件，其它的99个就不用从新构建了，是不是大大优化了构建时间，
+     HMR使用前提是：必须开启devServer:{ hot:true }
+      if(module.hot) { module.hot.accept('./prity.js',function(){ }) }
+      意思是，比如你修改了prity.js文件，只重新构建该文件，其它文件照旧
+
+  2、oneOf
+
+  3、source-map 跟踪代码调试 （devtool配置）
+    开发环境配置: devtool: eval-source-map; 构建速度快，并且可以快速定位错误信息
+    生产环节配置：cheap-source-map； 构建速度快
+
+  4、缓存
+    4.1、hash   4.2、chunkhash   4.3、contenthash
+
+  5、tree-shaking： 去除代码中的无用代码
+
+  6、splitChunk, 代码分割
+      1.对node_module代码单独打包，减小主文件包体积，配置如下
+      2.通过import方式引入，例如import (/*webpackChunkName:'test'*/,'./test.js')方式引入代码，也可以单独打包，一般用在路由，类似react、vue
+
+  7、lazy loading 懒加载、预加载
+      懒加载：在文件需要时，才加载，例如点击个按钮在加载一个文件，处理一个事物
+      预加载：在主文件加载完毕后，浏览器空闲时，自动加载后面的文件，性能更好，但是兼容性差，配置，和懒加载写法类似，许多一个参数webpackPrefetch:true
+
+  8、PWA离线加载
+
+  9、多线程打包，根据项目自身情况是否开启多线程，当代码量很大时，多线程能大大提高构建速度
+      下载： npm i thead-loader -D
+
+  10、externals, 忽略文件打包，外部手动CDN方式引入；完全忽略
+
+  11、Dll动态打包
+
+  总结：https://zhuanlan.zhihu.com/p/374954158
+
+
+
+五、webpack学习之路5，静态资源public配置 - https://zhuanlan.zhihu.com/p/375170659
+  1、静态资源文件管理public，以及js方式加载图片
+
+
+
+六、webpack之Dll动态代码分割优化6 - https://zhuanlan.zhihu.com/p/375833496
+  1、webpack.dll.js
+  2、"dll": "webpack --config webpack.dll.js"
+  3、告诉webpack,哪些第三方库。不需要打包了
+  4、将dll打包的文件输出出去，并自动在html中引入
+  5、在运行npm run build 会发现main.js文件很小了，并且dist文件里面多了vendor.dll.js文件。也就是说dll已经配置完成了，希望对大家有用！！！（注意：此时publicPath:"./"）

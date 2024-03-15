@@ -1,0 +1,66 @@
+{
+   "types": [
+    {
+      "type": "feat",
+      "section": "需求列表"
+    },
+    {
+      "type": "fix",
+      "section": "Bug修复"
+    },
+    {
+      "type": "perf",
+      "section": "优化列表"
+    },
+    {
+      "type": "chore",
+      "hidden": true,  // hide==true的提交记录不显示在changelog中
+      "section": "构建过程或辅助工具的变动"
+    },
+    {
+      "type": "docs",
+      "hidden": true,
+      "section": "文档"
+    },
+    {
+      "type": "style",
+      "hidden": true,
+      "section": "格式(不影响代码运行的变动)"
+    },
+    {
+      "type": "refactor",
+      "hidden": true,
+      "section": "重构(即不是新增功能，也不是修改bug的代码变动)"
+    },
+    {
+      "type": "test",
+      "hidden": true,
+      "section": "测试用例"
+    },
+    {
+      "type": "conflict",
+      "hidden": true,
+      "section": "解决冲突"
+    },
+    {
+      "type": "revert",
+      "hidden": true,
+      "section": "回退"
+    },
+    {
+      "type": "release",
+      "hidden": true,
+      "section": "发布"
+    },
+    {
+      "type": "merge",
+      "hidden": true,
+      "section": "合并"
+    },
+    {
+      "type": "repair",
+      "hidden": true,
+      "section": "修补"
+    }
+  ]
+}

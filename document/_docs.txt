@@ -1,0 +1,49 @@
+
+? Nodejs: V18.18.0  |  安装：pnpm install  |  启动：pnpm start
+
+description:
+  安装包使用：cnpm install ora
+  性能监控 sentry for react: https://blog.csdn.net/wolffei/article/details/129852368
+  创建husky规范前端项目： https://blog.csdn.net/weixin_46533577/article/details/132760167
+
+
+TODO: 目录
+  src/*
+    ! components/*
+      container/*  容器
+      hooks/*      封装Hooks
+      stateful/*   有状态的
+      stateless/*  无状态的
+    ! pages
+      chatpgt: SSE、chat
+      home: chat
+      layout
+      Music
+      √ Mermaid
+      √ Tilt
+      √ Video
+    √ routers | useRoutes(rootRouter) | 路由拦截、Token拦截、权限拦截、403、404
+      /authRouter.jsx
+    √ service  | 二次封装axios请求
+      √ /axios.js
+      √ /fetch.js
+      √ /index.js
+      √ useAsyncFetch.js
+      √ useFetch.js
+    √ theme  | 入口文件useProThemeContext创建上下文主题
+      √ /hook.tsx
+    √ utils
+    √ App.tsx
+    √ index.tsx
+    √ theme.tsx
+  √ typings/*  | d.ts
+    webpack/*  | webpack配置 开发、生产模式
+      webpack.common.js
+      webpack.dev.js
+      webpack.prod.js
+  √ tsconfig.json  | ts 配置文件
+  √ vite.config.js | Vite配置 | 是否使用了viteconfigjs
+  ? package.json  | "scripts command" | package.txt
+  √ package.json  | standard-version 自动化版本控制
+
+
