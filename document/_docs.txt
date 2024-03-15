@@ -1,5 +1,8 @@
 
-? Nodejs: V18.18.0  |  安装：pnpm install  |  启动：pnpm start
+! Nodejs: V18.18.0  |  安装：npm install  |  启动：npm start
+// npm install --legacy-peer-deps
+npm install --force
+
 
 description:
   安装包使用：cnpm install ora

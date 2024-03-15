@@ -2,7 +2,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin")
+// const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin")
 
 // webpack之Dll动态代码分割优化： https://zhuanlan.zhihu.com/p/375833496
 // dll：dist里面只有两个文件，一个index.html和main.js, 会发现main.js里面把react和react.dom都构建进去了，导致main.js包文件很大，且每次打包都需从新打包进去，我们知道，第三方库，我们肯定都不会去修改，能不能一次打包后，后面就不再去打包呢，这就是我们要说的dll。
@@ -67,6 +67,6 @@ module.exports = {
     }),
 
     // 文件路径与 DllPlugin 输出的位置要一致
-    new AddAssetHtmlPlugin([{ filepath: path.resolve(__dirname, '../build/dll/*.dll.js') }]),
+    // new AddAssetHtmlPlugin([{ filepath: path.resolve(__dirname, '../build/dll/*.dll.js') }]),
   ],
 }

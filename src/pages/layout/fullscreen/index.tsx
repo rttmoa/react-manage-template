@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
 import screenfull from 'screenfull'
 import { message, Space, Tooltip } from 'antd'
-import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons'
+// import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons'
 
 const FullScreen = ({ ele, tips = '全屏', placement = 'bottom' }: any) => {
+  // eslint-disable-next-line no-unused-vars
   const [fullScreen, setFullScreen] = useState<boolean>(screenfull.isFullscreen)
 
   useEffect(() => {
@@ -23,9 +25,11 @@ const FullScreen = ({ ele, tips = '全屏', placement = 'bottom' }: any) => {
     <Tooltip placement={placement} title={tips}>
       <Space style={{ cursor: 'pointer' }} onClick={handleFullScreen}>
         {fullScreen ? (
-          <FullscreenExitOutlined style={{ fontSize: 16 }} />
+          <div>1</div>
+          // <FullscreenExitOutlined style={{ fontSize: 16 }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
         ) : (
-          <FullscreenOutlined style={{ fontSize: 16 }} />
+          <div>1</div>
+          // <FullscreenOutlined style={{ fontSize: 16 }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
         )}
       </Space>
     </Tooltip>
