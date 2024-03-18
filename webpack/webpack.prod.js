@@ -46,7 +46,7 @@ const prodWebpackConfig = merge(baseConfig, {
 
   // ? 插件
   plugins: [
-    // 自动清理文件夹，就不用 rimraf 删除文件夹了 （清除dist和dist3目录）
+    // 自动清理文件夹 (dist)，就不用 rimraf 删除文件夹了 （清除dist和dist3目录）
     new CleanWebpackPlugin().removeFiles([resolveDir('../dist'), resolveDir('../dist3')]),
 
     // 定义环境变量为开发环境（可以在模块中直接使用这些变量，无需任何声明 console.log(process.env.NODE_ENV)）

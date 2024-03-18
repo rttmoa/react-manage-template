@@ -1,7 +1,11 @@
 
-! Nodejs: V18.18.0  |  安装：npm install  |  启动：npm start
-// npm install --legacy-peer-deps
-npm install --force
+Nodejs:
+  V18.18.0
+安装：
+  npm install --legacy-peer-deps
+  npm install --force
+启动：
+  npm start
 
 
 description:

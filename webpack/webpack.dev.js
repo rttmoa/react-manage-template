@@ -14,7 +14,7 @@ const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const commonConfig = require('./webpack.common.js')
 const devProxy = require('./dev.proxy')
 // 速度分析：https://tsejx.github.io/webpack-guidebook/best-practice/optimization/build-analyze#%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90
-const smp = new SpeedMeasurePlugin()
+const SMP = new SpeedMeasurePlugin()
 
 // 精确的获取本机ip地址
 function getIpAddress() {
@@ -181,7 +181,8 @@ const baseConfig = {
   },
 }
 
-const webpackConfig = smp.wrap(baseConfig) // 速度分析：从输出报告可以看到每个 loader 和 plugin 的执行耗时。
+// 速度分析：可以看到每个 Loader 和 Plugin 执行耗时 (整个打包耗时、每个 Plugin 和 Loader 耗时)
+const webpackConfig = SMP.wrap(baseConfig)
 
 const devWebpackConfig = merge(commonConfig, webpackConfig)
 

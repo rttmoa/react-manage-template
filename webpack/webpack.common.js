@@ -106,7 +106,7 @@ const config = {
     new Dotenv({
       path: path.resolve(__dirname, '..', dotEnv), //* 根据哪个环境去读取 env文件
     }),
-    // 在js中分离css (该插件应该只用在生产环境配置，并且 loaders 链中使用 style-loader，而且这个插件暂时不支持 HMR)
+    // 在js中分离css提取为独立文件，支持按需加载 (该插件应该只用在生产环境配置，并且 loaders 链中使用 style-loader，而且这个插件暂时不支持 HMR)
     new MiniCssExtractPlugin({
       // 分离出的文件重新命名
       filename: isDev ? 'static/css/[name].css' : 'static/css/[name].[contenthash:6].css',
@@ -344,7 +344,7 @@ const config = {
          * */
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /(node_modules|bower_components)/, // 业务代码里面可能会引入node_modules外部js，这些js不需要babel-loader编译，因此需要排除掉
-        // 只命中 src 目录里的 JavaScript 文件，加快 Webpack 的搜索速度
+        // 优化：缩小文件搜索范围 = 只命中 src 目录里的 JavaScript 文件，加快 Webpack 的搜索速度
         // include: path.resolve(__dirname, 'src'),
         use: [
           {
@@ -424,7 +424,7 @@ const config = {
 }
 // ! 使用：yarn analyze:build
 if (USE_ANALYZE) {
-  console.log('打包分析')
+  // 打包分析: 可视化 Webpack 输出文件的体积 (业务组件、依赖第三方模块)
   config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }))
 }
 
