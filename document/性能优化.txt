@@ -1,0 +1,50 @@
+@官方文档：webpack5 - https://www.webpackjs.com/concepts/
+
+@面试：掘金：❬前端❭ 优化实战（性能、安全、架构、算法、面试）  https://juejin.cn/column/7001715712922222623
+@面试：前端面试必备|webpack篇: https://zhuanlan.zhihu.com/p/657136030
+
+
+插件配置：56 webpack中常用的插件 -- 文件处理相关,优化相关    (https://blog.csdn.net/sinat_41212418/article/details/121984904)
+
+插件配置：51博客：18个常用 webpack插件，总会有适合你的！：https://blog.51cto.com/u_15809510/5968219
+
+开发配置：webpack-dev-server【devServer属性配置】: https://blog.csdn.net/qq_37833745/article/details/121289187
+
+@优化：前端性能优化之首屏加载：https://zhuanlan.zhihu.com/p/448087825
+
+优化：优化编译速度&包优化 -- 优化lodash,moment    (https://blog.csdn.net/u010753613/article/details/125479116)
+
+优化：Webpack实战-构建离线应用 -- sw.js     (https://zhuanlan.zhihu.com/p/32292695)
+
+优化：Webpack5 实践 - 构建效率倍速提升！ -- 压缩及缓存     (https://www.51cto.com/article/670178.html)
+
+优化：学习 Webpack5 之路（优化篇） -- 目录：一二三四五六七节内容    https://blog.csdn.net/qq_41903941/article/details/120067486
+
+优化：玩转 webpack，使你的打包速度提升 90%：  https://juejin.cn/post/6844904071736852487
+
+Blog: webpack_render-ydb的CSDN博客 -- 1-57节csdn文章    (https://blog.csdn.net/sinat_41212418/category_11481142_2.html)
+Blog：lin_fightin的博客 -- webpack相关配置    https://blog.csdn.net/lin_fightin/category_11481353.html
+Blog：小墨鱼的面试笔记    https://cchroot.github.io/interview/
+
+
+【腾讯云前端性能优化大赛】前端首屏性能优化 -- 下面为优化内容    (https://cloud.tencent.com/developer/article/1925885)
+  1、腾讯 应用性能监控    https://cloud.tencent.com/product/apm?from_column=20065&from=20065
+  2、文件压缩：资源文件的压缩（CSS，JS，html等）、图片压缩、字体文件压缩    图片压缩：https://tinify.cn/
+  3、异步加载，按需引入
+  4、CDN加速  （内容分发网络  利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。 --维基百科）
+  5、离线缓存（Service Worker）   其他缓存：协商缓存和强缓存
+
+
+@chatgpt给出的优化方案：
+    Webpack 是一个非常强大的模块打包工具，但在处理大型项目时可能会遇到性能问题。为了优化 Webpack 的性能，可以采取一些措施，包括：
+        1、减少 loader 和插件的使用：尽量减少不必要的 loader 和插件的使用，因为每个 loader 和插件都会增加打包时间。
+        2、使用多进程并行处理：可以使用 webpack-parallel-uglify-plugin 等插件来启用多进程并行处理，加快构建速度。
+        3、使用 Tree Shaking：通过配置 Webpack 来使用 Tree Shaking，消除项目中未使用的代码，减小打包体积。
+        4、压缩代码：开启代码压缩功能，如使用 UglifyJSPlugin 来压缩代码，减小文件大小。
+        5、合理使用缓存：使用缓存功能，避免重复构建，可以使用 webpack 的 cache-loader 和 hard-source-webpack-plugin。
+        6、拆分代码：通过代码拆分实现按需加载，减小初始加载时间，可以使用 Webpack 的 SplitChunksPlugin 来实现代码拆分。
+        7、使用 DLLPlugin：将第三方库打包为单独的文件，减小每次构建时的打包范围，提高构建速度。
+        8、配置合理的模块解析规则：通过配置 resolve.modules、resolve.extensions、resolve.alias 等来优化模块解析规则，减少查找时间。
+        9、使用 Webpack Bundle Analyzer：通过分析打包结果，找出体积较大的模块，并优化它们。
+        10、使用最新版本：始终使用最新版本的 Webpack 和相关插件，因为新版本通常会提供更好的性能和优化。
+        以上是一些常见的 Webpack 性能优化方法，通过合理配置和优化，可以提高 Webpack 的构建速度和性能。

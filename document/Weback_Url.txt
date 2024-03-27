@@ -1,18 +1,10 @@
-! CleanWebpackPlugin  typescript 测试
+@ CleanWebpackPlugin  typescript 测试
+@官方文档：webpack5 - https://www.webpackjs.com/concepts/
 
-CSDN：学习 Webpack5 之路（优化篇）  (七、总结)  https://blog.csdn.net/qq_41903941/article/details/120067486
 
 知乎：webpack5 新特性：https://zhuanlan.zhihu.com/p/56796027
 
-掘金：玩转 webpack，使你的打包速度提升 90%：  https://juejin.cn/post/6844904071736852487
-
-掘金：❬前端❭ 优化实战（性能、安全、架构、算法、面试）  https://juejin.cn/column/7001715712922222623
-
-知乎：前端面试必备|webpack篇: https://zhuanlan.zhihu.com/p/657136030
-
 知乎：webpack5.x 从零搭建 react17 项目： https://zhuanlan.zhihu.com/p/406514947
-
-51博客：18个常用 webpack插件，总会有适合你的！：https://blog.51cto.com/u_15809510/5968219
 
 ! 语雀 前端不外传的纸条： https://www.yuque.com/yuqueyonghua2m9wj/web_food/ler3mg32asyiodg8
 
@@ -23,20 +15,8 @@ CSDN：学习 Webpack5 之路（优化篇）  (七、总结)  https://blog.csdn.
 * 从零搭建完整的React项目模板webpack5x  https://juejin.cn/post/6844904035099623437
 
 Webpack核心原理：https://zhuanlan.zhihu.com/p/363928061?utm_medium=social&utm_oi=771340854718640128&utm_id=0
-
-webpack配置（google） https://www.google.com/search?q=webpack%E9%85%8D%E7%BD%AE&ie=UTF-8#ip=1
-
-CSDN：webpack-dev-server【devServer属性配置】: https://blog.csdn.net/qq_37833745/article/details/121289187
-
-知乎：前端性能优化之首屏加载：https://zhuanlan.zhihu.com/p/448087825
-
-官方：webpack 5: https://www.webpackjs.com/concepts/
-
-CSDN：lin_fightin的博客；webpack相关配置：https://blog.csdn.net/lin_fightin/category_11481353.html
-
-个人博客：小墨鱼的面试笔记：https://cchroot.github.io/interview/
-
-! 掘金：红尘炼心
+ 
+@掘金：红尘炼心
 『专栏』 https://juejin.cn/user/254742429175352/columns
 『Webpack系列』—— externals用法详解(做<link>引入)、SplitChunks插件用法详解(分割文件)、loader配置讲解：https://juejin.cn/column/6960560491504599070
 

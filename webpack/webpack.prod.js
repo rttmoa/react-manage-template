@@ -7,7 +7,8 @@ const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin') // 清除 xx 文件夹
 const CopyWebpackPlugin = require('copy-webpack-plugin') //* 将单个文件或整个目录复制到构建目录。
 
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') //* 这将仅在生产环境开启 CSS优化 和 CSS压缩
+//* 优化：CSS 代码压缩
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 // Tree Shaking: https://webpack.docschina.org/guides/tree-shaking
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin') // CSS Tree Shaking: 用于去除无用的样式
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin') // 该插件使用 html-minifier-terser 来优化和缩小您的 HTML
@@ -18,7 +19,8 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const SentryWebpackPlugin = require('@sentry/webpack-plugin') // Sentry 翻译过来是「哨兵」的意思，可以监控程序代码中出现的报错问题，生成issue
 const TerserJSPlugin = require('terser-webpack-plugin') // 多进程 js压缩
 
-const { EsbuildPlugin } = require('esbuild-loader') // esbuild 重点提到的就是构建速度方面，为什么会比 webpack 快呢？而且不在同一个数量级。
+const { EsbuildPlugin } = require('esbuild-loader') // esbuil
+
 
 const packageJson = require('../package.json')
 const baseConfig = require('./webpack.common.js')
@@ -109,17 +111,22 @@ const prodWebpackConfig = merge(baseConfig, {
     // 作用域提升,提升代码在浏览器执行速度
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.ids.HashedModuleIdsPlugin(),
+
   ],
   // ! 不过所有的优化还是可以手动配置和重写。
   optimization: {
-    // optimization.runtimeChunk = true，为运行时代码创建一个额外的 chunk，减少 entry chunk 体积，提高性能。
+    // runtimeChunk = true，为运行时代码创建一个额外的 chunk，减少 entry chunk 体积，提高性能。
     runtimeChunk: { name: 'runTime' },
+    // 长期缓存优化;;
+    moduleIds: 'deterministic',
+    chunkIds: 'deterministic',
+    mangleExports: 'deterministic',
+
     minimize: true,
     minimizer: [
       // 这将仅在生产环境开启 CSS优化 和 CSS压缩: https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
       new CssMinimizerPlugin({
-        // 使用多进程并发执行，提升构建速度:  https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/#parallel
-        parallel: 4,
+        parallel: 4, // 使用多进程并发执行，提升构建速度
       }),
       // 将 ES6 和 js 代码转换为 ES5代码；以便在旧版本浏览器中运行。
       new EsbuildPlugin({
@@ -128,11 +135,11 @@ const prodWebpackConfig = merge(baseConfig, {
 
       new HtmlMinimizerPlugin(),
 
-      // 多进程 js压缩
+      // 优化：多进程 压缩JavaScipt代码
       // TerserJSPlugin 插件, 替代 uglifyjs-webpack-plugin 插件， 它的作用依然是对构建输出的代码进行压缩
       // 除了 TerserWebpackPlugin，Webpack 5+ 官方维护的 HtmlMinimizerWebpackPlugin、CssMinimizerWebpackPlugin 和 ImageMinimizerWebpackPlugin 等插件均提供可缓存的配置项。
       new TerserJSPlugin({
-        // 并发运行的默认数量： 默认：os.cpus().length - 1 ，本文配置的 parallel 数量为 4，使用多进程并发运行压缩以提高构建速度。
+        // 并发运行的默认数量,使用多进程并发运行压缩以提高构建速度。默认：os.cpus().length - 1
         parallel: 4,
         // cache: true,
         terserOptions: {

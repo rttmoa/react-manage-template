@@ -20,7 +20,7 @@ const App = () => {
       .catch(() => setLoading(false))
     // ? 添加水印
     Watermark({
-      content: 'Pro React Admin', // 水印文本
+      content: 'React Admin', // 水印文本
       container: document.getElementById('root'), // 水印容器区域
     })
   }, [])

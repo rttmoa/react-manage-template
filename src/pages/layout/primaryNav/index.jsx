@@ -9,7 +9,8 @@ const PrimaryNav = () => {
     navigate(path)
   }
   const goToWkylin = () => {
-    window.open(`https://skyline.github.com/wkylin/${new Date().getFullYear() - 1}`, '_blank')
+    // window.open(`https://skyline.github.com/wkylin/${new Date().getFullYear() - 1}`, '_blank')
+    window.open(`https://github.com`, '_blank')
   }
 
   return (
@@ -19,7 +20,7 @@ const PrimaryNav = () => {
           多路由设置
         </Button>
         <Button type="link" icon={<TeamOutlined />} onClick={goToWkylin}>
-          Skyline for wkylin.w
+          跳转
         </Button>
       </Space>
     </>

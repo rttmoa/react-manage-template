@@ -7,7 +7,8 @@ const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin') // ! 优化 
 const Dotenv = require('dotenv-webpack') // ! 让程序在不同的环境下执行不同的命令。 代码中通过process.env.DB_HOST获取.env中数据
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin') // ! 如果路径有误则直接报错
 const CircularDependencyPlugin = require('circular-dependency-plugin') // ! 它可以检测并报告模块间的循环依赖问题。使用该插件可以帮助我们及时发现和修复循环依赖问题
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 可以把css代码打包到单独的css文件，且可以设置存放路径（通过设置插件的filename和chunkFilename）
+// 优化：CSS 文件分离; 把css代码打包到单独的css文件，且可以设置存放路径（通过设置插件的filename和chunkFilename）
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin') // ?
 const WebpackBar = require('webpackbar') // ! 进度条：https://blog.csdn.net/weixin_44691608/article/details/117558101
 const ProgressBarPlugin = require('progress-bar-webpack-plugin') // ! 进度条：https://blog.csdn.net/weixin_44691608/article/details/117558101
@@ -51,7 +52,6 @@ const srcDir = path.resolve(__dirname, '../src')
 // console.log('dirname', path.resolve(__dirname)) // E:\Project\REFERENCE\pro-react-admin\webpack
 
 // ? 开发环境和生产环境公共配置
-// ? 优化编译速度 & 包优化：https://blog.csdn.net/u010753613/article/details/125479116
 const config = {
   // 入口文件 （单页面）
   entry: {
@@ -106,7 +106,7 @@ const config = {
     new Dotenv({
       path: path.resolve(__dirname, '..', dotEnv), //* 根据哪个环境去读取 env文件
     }),
-    // 在js中分离css提取为独立文件，支持按需加载 (该插件应该只用在生产环境配置，并且 loaders 链中使用 style-loader，而且这个插件暂时不支持 HMR)
+    // 优化：用于从JavaScriptd代码中抽离css代码，通过DOM操作加载到页面中。 (该插件应该只用在生产环境配置，并且 loaders 链中使用 style-loader，而且这个插件暂时不支持 HMR)
     new MiniCssExtractPlugin({
       // 分离出的文件重新命名
       filename: isDev ? 'static/css/[name].css' : 'static/css/[name].[contenthash:6].css',
@@ -119,10 +119,10 @@ const config = {
     // 报错但不退出 webpack 进程，编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段，这样可以确保输出资源不会包含错误
     new webpack.NoEmitOnErrorsPlugin(),
 
-    // 作用: HtmlWebpackPlugin会在打包结束后，自动生成一个html文件，并把打包生成的js文件自动引入到这个html文件中
+    // 优化: HtmlWebpackPlugin会在打包结束后，自动生成一个html文件，并把打包生成的js文件自动引入到这个html文件中
     new HtmlWebpackPlugin({
       // 多页应用打包配置：https://blog.51cto.com/u_15809510/5968219
-      title: isDev ? 'Pro React Dev' : 'Pro React',
+      title: isDev ? 'ReactAdmin Dev' : 'ReactAdmin',
       template: `${paths.public}/index.html`, // 源文件的绝对路径
       favicon: `${paths.public}/favicon.ico`, // 配置网站图标
       filename: 'index.html', // 生成的文件名
@@ -289,8 +289,7 @@ const config = {
         // test: /\.(css|less)$/,
         exclude: path.resolve(__dirname, 'node_modules'),
         use: [
-          // 'style-loader',
-          // 在js中分离css：分离css,使用插件mini-css-extract-plugin，需要在plugins里面实例化以及用MiniCssExtractPlugin.loader取代style-loader
+          // 生产模式使用 mini-css-extract-plugin 插件 在js中分离css 文件实现并行加载，而开发环境选择 style-loader 它可以使用多个标签将 CSS 插入到 DOM 中，并且反应会更快
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 实现css代码分离
           {
             loader: 'css-loader',

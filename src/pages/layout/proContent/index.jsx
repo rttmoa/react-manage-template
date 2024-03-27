@@ -56,7 +56,7 @@ const ProContent = () => {
         <FloatButton.BackTop target={() => document.querySelector('#container')}>
           <VerticalAlignTopOutlined style={{ fontSize: 20 }} />
         </FloatButton.BackTop>
-        <Space>&copy; {new Date().getFullYear()} Pro React Admin</Space>
+        <Space>&copy; {new Date().getFullYear()} React Admin</Space>
       </Footer>
     </Layout>
   )

@@ -11,10 +11,12 @@ const portfinder = require('portfinder') // ! ”端口已被占用" 开放新�
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') // 一个编译提示的webpack插件！
 const notifier = require('node-notifier') // 发送系统通知的一个node模块！
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
 const commonConfig = require('./webpack.common.js')
 const devProxy = require('./dev.proxy')
 // 速度分析：https://tsejx.github.io/webpack-guidebook/best-practice/optimization/build-analyze#%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90
 const SMP = new SpeedMeasurePlugin()
+const packageJson = require('../package.json')
 
 // 精确的获取本机ip地址
 function getIpAddress() {
@@ -57,8 +59,12 @@ const baseConfig = {
 
   // cache：缓存生成的 webpack 模块和 chunk，来改善构建速度。
   cache: {
-    // type: 'memory', // 缓存生成的 webpack 模块和 chunk，来改善构建速度。cache 会在开发 模式被设置成 type: 'memory' 而且在 生产 模式 中被禁用。
-    type: 'filesystem', // 优化：使用文件缓存，大幅提升二次构建速度、打包速度  (第一次49s，第二次21s)
+    // type: 'memory', // 基于内存缓存;; 缓存生成的 webpack 模块和 chunk，来改善构建速度;;  在生产模式中被禁用。
+    type: 'filesystem', // 优化：使用文件缓存，大幅提升二次构建速度、打包速度  (第一次49s，第二次14s)
+    // 缓存失效
+    // 方法一：cache.buildDependencies
+    // version: `${packageJson.version}`, // 方法二：理论上每次升级工具包，就需要重新编译的，之前在一次本地测试时发现工具包升级后缓存没有失效
+    // name: `${process.env.NODE_ENV || 'development'}-cache`, // 方法三：name 属性比较好的是可以保存多个缓存目录，例如通过 process.env.NODE_ENV 区分不同的环境。
   },
 
   // webpack-dev-server 可用于快速开发应用程序
@@ -89,6 +95,8 @@ const baseConfig = {
     // 热更新:  指的是，在开发过程中，修改代码后，仅更新修改部分的内容，无需刷新整个页面。
     hot: true,
     proxy: devProxy, // 代理到后端服务器上
+    // Service Workers 依赖 HTTPS，使用 DevServer 提供的 HTTPS 功能。
+    // https: true,
   },
 
   // 文件监听：Webpack 可以使用两种方式开启文件监听：1、启动 Webpack 时配置 --watch 参数  2、在配置文件中设置 watch: true
@@ -168,6 +176,11 @@ const baseConfig = {
       },
     }),
     new webpack.BannerPlugin('版权所有，翻版必究'),
+
+    // // 优化：为网页应用增加离线缓存功能  (https://github.com/oliviertassinari/serviceworker-webpack-plugin)
+    // new ServiceWorkerWebpackPlugin({
+    //   entry: path.join(__dirname, 'sw.js'),
+    // }),
   ].filter(Boolean),
 
   // ! 从 webpack 4 开始，会根据你选择的 mode 来执行不同的优化， 不过所有的优化还是可以手动配置和重写。

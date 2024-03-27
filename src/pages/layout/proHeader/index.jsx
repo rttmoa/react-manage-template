@@ -24,7 +24,7 @@ const ProHeader = () => {
   }
 
   const redirectGithub = () => {
-    window.open('https://github.com/wkylin/promotion-web', '_blank')
+    window.open('https://github.com', '_blank')
   }
 
   const items = [
@@ -71,8 +71,8 @@ const ProHeader = () => {
       style={{ background: colorBgContainer, borderBottom: `1px solid ${colorBorder}` }}
     >
       <div aria-hidden="true" className={styles.logo} onClick={() => redirectTo('/')}>
-        {/* Pro React <Tag>{process.env.DEPLOYED_ENV}</Tag> */}
-        Pro React Admin
+        {/* React <Tag>{process.env.DEPLOYED_ENV}</Tag> */}
+        React Admin
       </div>
       <div className={styles.headerMeta}>
         <div className={styles.headerMenu}>
@@ -97,7 +97,7 @@ const ProHeader = () => {
             }}
           >
             <Space>
-              <span style={{ fontSize: 18 }}>wkylin.w</span>
+              <span style={{ fontSize: 18 }}>小倩</span>
               <DownOutlined />
             </Space>
           </Dropdown>
