@@ -1,9 +1,9 @@
-# Pro React Admin
+# React Admin
 
-![check-status](https://img.shields.io/github/checks-status/wkylin/pro-react-admin/main "check-status")
-![version-status](https://img.shields.io/github/package-json/v/wkylin/pro-react-admin "version-status")
-![license](https://img.shields.io/github/license/wkylin/pro-react-admin "license")
-![contributors](https://img.shields.io/github/contributors/wkylin/pro-react-admin "contributors")
+![check-status](https://img.shields.io/badge/check-status "check-status")
+![version-status](https://img.shields.io/github/package-json/v/rttmoa/ReactAdmin "version-status")
+![license](https://img.shields.io/aur/license/license "license")
+![contributors](https://img.shields.io/github/contributors/rttmoa/ReactAdmin "contributors")
 [![DeepScan grade](https://deepscan.io/api/teams/16370/projects/24083/branches/739580/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16370&pid=24083&bid=739580)
 
 ## 项目特性
@@ -25,11 +25,11 @@
 15. 集成 Bit，跨项目复用组件，支持在多个仓库间隔离和复用代码，简化协作过程，可以共享、维护和同步来自不同项目的隔离组件
 16. 集成 Bookstory, 方便生成组件文档
 
-## Antd 4.x.x 版本
+## Antd 4.x.x
 
 1. 基于 Antd 实现亮白及暗黑两套主题， 请参见 feature-antd4 分支
 
-## Technology Stack
+## 技术栈
 
 1. React: v18.x.x [React](https://reactjs.org/)
 2. React Router: v6.x.x [React Router](https://reactrouter.com/)
@@ -39,7 +39,7 @@
 6. TypeScript: v5.x.x[TypeScript](https://www.typescriptlang.org/)
 7. Vite: v4.x.x [Vite](https://vitejs.dev/)
 
-## Development
+## start
 
 ```bash
  
@@ -57,7 +57,7 @@
     - npm run storybook
 ```
 
-## 脚手架--白泽 baize
+## 脚手架；白泽 baize(开源后台管理)
 
 - 可以使用为此项目准备的脚手架开发--白泽 baize
 
@@ -66,7 +66,7 @@
      > baize
   ```
 
-## VSCode extension: 别名路径跳转
+## alias；别名
 
 ```bash
     "alias-skip.mappings": {
@@ -82,7 +82,7 @@
     }
 ```
 
-## WebStorm 别名跳转设置
+## WebStorm 别名
 
 1. Settings >> Languages & Frameworks >> Javascript >> Webpack: 指定 Configuration file: webpack\webpack.common.js
 
@@ -116,7 +116,7 @@
   "release": "standard-version --tag-prefix \"publish/\""
   ```
 
-## 约定式提交
+## [🚀](https://blog.csdn.net/Litt_White/article/details/124786509)约定式提交
 
 1. [Conventional Commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
 
@@ -156,12 +156,12 @@
      不会影响代码含义的更改（空格，格式缺少分号等）
    - test: 更新测试
      添加或者更新测试
-4. [https://www.npmjs.com/package/devmoji](https://www.npmjs.com/package/devmoji)
-5. [https://gitmoji.dev/](https://gitmoji.dev/)
+4. [Devmoji 提交库](https://www.npmjs.com/package/devmoji)
+5. [提交消息的表情符号Emojs](https://gitmoji.dev/)
 6. [git commit 工具链](https://juejin.cn/post/7067166468797890591)
 7. [https://theodorusclarence.com/library/conventional-commit-readme](https://theodorusclarence.com/library/conventional-commit-readme)
 
-## React Code Splitting Library
+## React 代码拆分库
 
 1. [Loadable Components](https://loadable-components.com/)
 
@@ -172,7 +172,7 @@
 npm run dev:faker
 ```
 
-## Deployment
+## [🚀](https://blog.csdn.net/Litt_White/article/details/124786509)部署
 
 1. Deployment: [Deployment] ([https://create-react-app.dev/docs/deployment](https://create-react-app.dev/docs/deployment))
 2. Deploy gh-pages:
@@ -182,11 +182,11 @@ npm run dev:faker
     "deploy": "gh-pages -d dist",
    ```
 
-## 架构
+## [🚀](https://blog.csdn.net/Litt_White/article/details/124786509)架构
 
 ![whiteboard_exported_image](https://github.com/wkylin/pro-react-admin/assets/1208330/c28852c2-7efe-407f-80f8-41d741ef3108)
 
-## 待解决
+## [🚀](https://blog.csdn.net/Litt_White/article/details/124786509)待解决
 
 1. 配备比较完善的脚手架：
    - [https://blog.kiradev.co/build-a-cli-using-nodejs](https://blog.kiradev.co/build-a-cli-using-nodejs)
@@ -232,7 +232,7 @@ npm run dev:faker
 5. React SVGR
    - [https://react-svgr.com/docs/webpack/](https://react-svgr.com/docs/webpack/)
 
-## 代码规范：ESLint Prettier Husky EditorConfig
+## [🚀]()代码规范：ESLint Prettier Husky EditorConfig
 
 1. ESLint: [ESLint](https://eslint.org/)
 
@@ -295,7 +295,7 @@ npm run dev:faker
 2. [Gitlab for Mac](https://juejin.cn/post/7210746685802397755)
 3. [Gitlab CI/CD for Mac](https://juejin.cn/post/7214686619097874491)
 
-## Sentry 接入
+## [🚀]()Sentry 接入
 
 1. [Sentry](https://sentry.io/)
 2. 遇到的问题：
@@ -304,25 +304,25 @@ npm run dev:faker
    - "sentry:check": "node check-sentry.js
 3. Self-Hosted Sentry nightly -[https://github.com/getsentry/self-hosted](https://github.com/getsentry/self-hosted)
 
-## VSCode Extensions
+## VSCode 扩展
 
 1. ErrorLens: [ErrorLens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 2. SonarLint: [https://www.sonarlint.org/](https://www.sonarlint.org/)
 
 ## CSS Modules
 
-A CSS Module is a CSS file in which all class names and animation names are scoped locally by default.
+CSS模块是一个CSS文件，其中的所有类名和动画名称默认都是本地作用域。
 
 1. PostCSS: [PostCSS](https://postcss.org/)
 2. StyleLint: [StyleLint](https://stylelint.io/)
    npx stylelint --help
 
-## ACSS
+## [🚀]()CSS Libary
 
 1. Windi CSS: [Windi CSS](https://windicss.org/)
 2. TailWind CSS: [TailWind CSS](https://tailwindcss.com/)
 
-## CI/CD 自动化构建
+## [🚀]()CI/CD 自动化构建
 
 1. GitHub Actions
 
@@ -345,15 +345,16 @@ A CSS Module is a CSS file in which all class names and animation names are scop
 1. [react-refresh-webpack-plugin](https://github.com/pmmmwh/react-refresh-webpack-plugin)
 2. [react-refresh](https://www.npmjs.com/package/react-refresh)
 
-## HTTP
+## [🚀]()HTTP
 
 1. HTTP: [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 ## Code Contributors
 
-## [Choose A License](https://choosealicense.com/)
+## [🚀]()许可证
 
 1. [MIT](https://choosealicense.com/licenses/mit/)
+2. [Choose A License](https://choosealicense.com/)
 
 ## Server: Dev, Test, UAT(Live), Staging, Demo, Production
 
@@ -372,7 +373,7 @@ npm version [| major | minor | patch | premajor | preminor | prepatch | prerelea
 2. git push origin v1.2.0
 3. git push origin --tags
 
-## Nginx
+## [🚀]()Nginx
 
 1. [Mac Nginx](https://newbedev.com/how-to-restart-nginx-on-mac-os-x)
 
@@ -429,7 +430,7 @@ npm version [| major | minor | patch | premajor | preminor | prepatch | prerelea
       5. nginx -s reopen
    ```
 
-## Tree Node Cli
+## [🚀]()Tree Node Cli（生成目录结构）
 
 1. npm install -g tree-node-cli
 2. Mac: tree -L 2 -I "node_modules" -r -F
@@ -437,7 +438,7 @@ npm version [| major | minor | patch | premajor | preminor | prepatch | prerelea
 4. tree node
 
    ```bash
-    pro-react-admin/
+    react-admin/
    ├── workspace.jsonc
    ├── webpack/
    │   ├── webpack.prod.js
@@ -514,7 +515,7 @@ npm version [| major | minor | patch | premajor | preminor | prepatch | prerelea
       npm run analyze:build
    ```
 
-## CRACO:Create React App Configuration Override
+## CRACO：创建React应用程序配置
 
 1. [https://github.com/gsoft-inc/craco](https://github.com/gsoft-inc/craco)
 
