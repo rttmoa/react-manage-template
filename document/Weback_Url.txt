@@ -1,4 +1,5 @@
-@ CleanWebpackPlugin  typescript 测试
+@ CleanWebpackPlugin-typescript 插件
+
 @官方文档：webpack5 - https://www.webpackjs.com/concepts/
 
 
@@ -15,7 +16,7 @@
 * 从零搭建完整的React项目模板webpack5x  https://juejin.cn/post/6844904035099623437
 
 Webpack核心原理：https://zhuanlan.zhihu.com/p/363928061?utm_medium=social&utm_oi=771340854718640128&utm_id=0
- 
+
 @掘金：红尘炼心
 『专栏』 https://juejin.cn/user/254742429175352/columns
 『Webpack系列』—— externals用法详解(做<link>引入)、SplitChunks插件用法详解(分割文件)、loader配置讲解：https://juejin.cn/column/6960560491504599070
