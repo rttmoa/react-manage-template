@@ -155,7 +155,7 @@
     "html-minimizer-webpack-plugin": "^4.4.0",
     "html-webpack-plugin": "^5.5.3",
     "http-server": "^14.1.1",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "inquirer": "^9.2.12",
     "install-pkg-lock": "^1.0.2",
     "isomorphic-fetch": "^3.0.0",

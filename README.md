@@ -360,7 +360,7 @@ CSS模块是一个CSS文件，其中的所有类名和动画名称默认都是�
 
 1. [Server Info](https://www.gratasoftware.com/what-is-each-server-for-development-test-uat-or-staging-demo-and-production/)
 
-Copyright (c) 2021 Promotion Web
+Promotion Web
 Licensed under the [Apache License](https://choosealicense.com/licenses/apache-2.0/).
 
 ## NPM version

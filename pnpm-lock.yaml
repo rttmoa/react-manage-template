@@ -252,6 +252,9 @@ dependencies:
   screenfull:
     specifier: ^6.0.2
     version: 6.0.2
+  serviceworker-webpack-plugin:
+    specifier: ^1.0.1
+    version: 1.0.1(webpack@5.90.3)
   speed-measure-webpack-plugin:
     specifier: ^1.5.0
     version: 1.5.0(webpack@5.90.3)
@@ -507,7 +510,7 @@ devDependencies:
     specifier: ^14.1.1
     version: 14.1.1
   husky:
-    specifier: ^8.0.3
+    specifier: ^8.0.0
     version: 8.0.3
   inquirer:
     specifier: ^9.2.12
@@ -19920,6 +19923,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /serviceworker-webpack-plugin@1.0.1(webpack@5.90.3):
+    resolution: {integrity: sha512-VgDEkZ3pA0HajsRaWtl5w6bLxAXx0Y+4dm7YeTcIxVmvC9YXvstex38HOBDuYETeDS5fUlBy/47gC0QYBrG0nw==}
+    peerDependencies:
+      webpack: ^4
+    dependencies:
+      minimatch: 3.1.2
+      webpack: 5.90.3(webpack-cli@5.1.4)
+    dev: false
 
   /set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}

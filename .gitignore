@@ -3,10 +3,13 @@
 /dist
 /node_modules
 /.eslintcache
+
+api/node_modules
+api/package-lock.json
 compilation-stats.json
 .yarn/cache
 /packagehash.txt
 public/bit
-api/node_modules
+
 webpack/profiling
 stats.html
