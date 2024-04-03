@@ -3,19 +3,20 @@
 @官方文档：webpack5 - https://www.webpackjs.com/concepts/
 
 
-知乎：webpack5 新特性：https://zhuanlan.zhihu.com/p/56796027
+搭建React：webpack5.x 从零搭建 react17 项目： https://zhuanlan.zhihu.com/p/406514947
+搭建React：从零搭建完整的React项目模板webpack5x  https://juejin.cn/post/6844904035099623437
 
-知乎：webpack5.x 从零搭建 react17 项目： https://zhuanlan.zhihu.com/p/406514947
+Blog webpack：语雀 前端不外传的纸条： https://www.yuque.com/yuqueyonghua2m9wj/web_food/ler3mg32asyiodg8
+Blog webpack：webpack-guidebook：https://tsejx.github.io/webpack-guidebook/basic/modularization
 
-! 语雀 前端不外传的纸条： https://www.yuque.com/yuqueyonghua2m9wj/web_food/ler3mg32asyiodg8
-
-! 指导书：webpack-guidebook：https://tsejx.github.io/webpack-guidebook/basic/modularization
-! 指导书：webpack-guidebook：https://tsejx.github.io/webpack-guidebook/best-practice/practical-application/
-* 三十分钟掌握Webpack性能优化: https://juejin.cn/post/6844903651291447309#heading-13
-* 二十张图片彻底讲明白 Webpack 设计理念，以看懂为目的  https://mp.weixin.qq.com/s/pqNeaOMwskJmRq_y1jdyiQ
-* 从零搭建完整的React项目模板webpack5x  https://juejin.cn/post/6844904035099623437
+二十张图片彻底讲明白 Webpack 设计理念，以看懂为目的  https://mp.weixin.qq.com/s/pqNeaOMwskJmRq_y1jdyiQ
 
 Webpack核心原理：https://zhuanlan.zhihu.com/p/363928061?utm_medium=social&utm_oi=771340854718640128&utm_id=0
+
+
+@优化：三十分钟掌握Webpack性能优化: https://juejin.cn/post/6844903651291447309#heading-13
+
+
 
 @掘金：红尘炼心
 『专栏』 https://juejin.cn/user/254742429175352/columns

@@ -116,8 +116,8 @@ const config = {
       ignoreOrder: true,
     }),
 
-    // 报错但不退出 webpack 进程，编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段，这样可以确保输出资源不会包含错误
-    new webpack.NoEmitOnErrorsPlugin(),
+    // 增加时间：报错但不退出 webpack 进程，编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段，这样可以确保输出资源不会包含错误
+    // new webpack.NoEmitOnErrorsPlugin(),
 
     // 优化: HtmlWebpackPlugin会在打包结束后，自动生成一个html文件，并把打包生成的js文件自动引入到这个html文件中
     new HtmlWebpackPlugin({
@@ -149,10 +149,10 @@ const config = {
             useShortDoctype: true,
           },
       // 这里列出要加入html中的js文件  注释不用dll
-      dlls: [
-        // './resource/dll/vendor.dll.js',
-        // './resource/dll/redux.dll.js',
-      ],
+      // dlls: [
+      // './resource/dll/vendor.dll.js',
+      // './resource/dll/redux.dll.js',
+      // ],
     }),
     // Antd moment.js打包体积优化之路: https://segmentfault.com/a/1190000041629544?utm_source=sf-similar-article
     new AntdDayjsWebpackPlugin(), // 优化 monmentjs和dayjs打包体积
@@ -421,7 +421,8 @@ const config = {
     ],
   },
 }
-// ! 使用：yarn analyze:build
+
+// 各个模块的大小和依赖关系
 if (USE_ANALYZE) {
   // 打包分析: 可视化 Webpack 输出文件的体积 (业务组件、依赖第三方模块)
   config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }))

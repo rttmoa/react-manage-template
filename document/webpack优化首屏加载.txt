@@ -1,0 +1,31 @@
+优化：从龟速 11s 到闪电 1s，详解前端性能优化之首屏加载            (https://zhuanlan.zhihu.com/p/448087825)
+  1、指标：白屏时间、首屏时间、第一次可交互的时间、lighthouse分析
+  2、调试工具：Newwork、k6、hiper、Lighthouse
+  3、dist分析、Webpack Bundle分析  （优化包体积、优化npm包等等）
+  4、压缩图片：工具压缩(tinify.cn)、使用webp格式、image-webpack-loader
+  5、优化SVG：引入svg-sprite-loader、优化svg
+      src/icons/index.js
+        const req = require.context('./svg', false, /\.svg$/)
+        const requireAll = requireContext => requireContext.keys().map(requireContext)
+        requireAll(req)
+
+      main.js
+        import '@/icons'
+  6、⚡优化Ant-design-icon体积
+  7、⚡优化moment、moment-timezone体积
+  8、⚡优化core-js体积：core-js实际上就是浏览器新API的polyfill，项目是PC端，所以主要是为了兼容IE...
+  传输优化：
+    ⚡优化分包策略：chunk-vendor分包、防止chunk-vendor过大
+    ⚡优化路由懒加载：异步加载
+    ⚡开启HTTP2
+    ⚡Gzip压缩传输
+    ⚡Prefetch、Preload
+    ⚡托管至OSS + CDN加速：OSS，对象存储、CDN，内容分发网络、
+  感知性能优化：
+    白屏时的loading动画
+    首屏骨架加载
+    渐进加载图片
+    渐进/交错格式图片
+    渐进加载图片
+    加载占位图
+    路由跳转Loading动画

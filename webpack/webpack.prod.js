@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 const webpack = require('webpack')
 const path = require('path')
@@ -40,13 +41,12 @@ const prodWebpackConfig = merge(baseConfig, {
   mode: 'production',
 
   //* 使用文件缓存，首次缓存时间和二次缓存时间对比
-  cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
+  // cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
 
-  // 真实报错文件指向,生产环境一般不开启sourcemap
-  // devTool：https://tsejx.github.io/webpack-guidebook/basic/core/other-options#devtool
-  devtool: 'source-map', // 推荐选择使用高质量 SourceMap 进行生产构建
+  devtool: 'source-map', // 生成完整的 source map 文件，有助于调试和定位问题，但会增加构建时间和文件大小
+  // devtool: 'hidden-source-map', // 生成 source map 文件但不暴露源代码路径，适用于生产环境中需要保护源代码的情况。
 
-  // ? 插件
+  // @插件
   plugins: [
     // 自动清理文件夹 (dist)，就不用 rimraf 删除文件夹了 （清除dist和dist3目录）
     new CleanWebpackPlugin().removeFiles([resolveDir('../dist'), resolveDir('../dist3')]),
@@ -86,34 +86,29 @@ const prodWebpackConfig = merge(baseConfig, {
     // 作用：开发环境我们可以正常的访问public里面的静态资源，但是在生产阶段，public里面的资源并没有构建到dist文件里面，丢失不见了，
     new CopyWebpackPlugin({
       patterns: [
-        // 配置plugins，就可以把 public 的资源复制到 dist 里面，就可以顺利解决生产环境静态资源缺失问题咯。
         {
-          // 从public中复制文件
           from: path.resolve(__dirname, '../public'),
-          // 把复制的文件存放到 dist 里面
           to: path.resolve(__dirname, '../dist'),
           globOptions: {
             ignore: ['**/index.html'],
           },
         },
-        // 从 xxx 复制到 /dist 下 （复制个svg）
         {
           from: path.resolve(__dirname, '../src/assets/svg/three-dots.svg'),
           to: 'copy-three-dots.svg',
         },
-        {
-          from: path.resolve(__dirname, '../src/resource/dll'),
-          to: 'resource/dll',
-          // ignore: [".*"]
-        },
+        // {
+        //   from: path.resolve(__dirname, '../src/resource/dll'),
+        //   to: 'resource/dll',
+        // },
       ],
     }),
     // 作用域提升,提升代码在浏览器执行速度
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.ids.HashedModuleIdsPlugin(),
-
+    // new webpack.ids.HashedModuleIdsPlugin(),
   ],
-  // ! 不过所有的优化还是可以手动配置和重写。
+
+  // @可以对打包过程进行优化，提高打包效率和最终生成的代码性能
   optimization: {
     // runtimeChunk = true，为运行时代码创建一个额外的 chunk，减少 entry chunk 体积，提高性能。
     runtimeChunk: { name: 'runTime' },
@@ -121,8 +116,9 @@ const prodWebpackConfig = merge(baseConfig, {
     moduleIds: 'deterministic',
     chunkIds: 'deterministic',
     mangleExports: 'deterministic',
-
+    // webpack会对打包后的代码进行压缩、减小文件大小
     minimize: true,
+    // 配置用于压缩代码插件：如`Terserplugin`、`OptimizeCSSAssetsPlugin`
     minimizer: [
       // 这将仅在生产环境开启 CSS优化 和 CSS压缩: https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
       new CssMinimizerPlugin({
@@ -133,7 +129,7 @@ const prodWebpackConfig = merge(baseConfig, {
         target: 'es2015',
       }),
 
-      new HtmlMinimizerPlugin(),
+      // new HtmlMinimizerPlugin(),
 
       // 优化：多进程 压缩JavaScipt代码
       // TerserJSPlugin 插件, 替代 uglifyjs-webpack-plugin 插件， 它的作用依然是对构建输出的代码进行压缩
@@ -272,12 +268,15 @@ const prodWebpackConfig = merge(baseConfig, {
       },
     },
   },
-  // ! 配置如何展示性能提示。
+  // Webpack在打包过程中对于资源大小的监控和警告输出
   performance: {
-    hints: false, // 关闭性能提示
-    maxEntrypointSize: 512000, // 根据入口起点的最大体积，控制 webpack 何时生成性能提示（默认 250000 bytes）
-    maxAssetSize: 512000, // 根据单个资源体积，控制 webpack 何时生成性能提示（默认 250000 bytes）
-    // assetFilter(assetFilename) { // 允许 webpack 控制用于计算性能提示的文件
+    hints: 'error', // 当资源大小超过阈值时，Webpack会输出一个错误  'error' | 'warning' | false
+    // 设置入口起点的最大体积，超过这个大小会触发性能提示（默认 250000 bytes）
+    maxEntrypointSize: 250000,
+    // 设置单个资源的最大体积，超过这个大小会触发性能提示（默认 250000 bytes）
+    maxAssetSize: 250000,
+    // 一个用于过滤资源的函数，只有返回 true 的资源会被计算在内
+    // assetFilter(assetFilename) {
     //   return assetFilename.endsWith('.js')
     // },
   },

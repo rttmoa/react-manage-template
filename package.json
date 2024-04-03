@@ -20,7 +20,7 @@
     "pre:run": "install-changed",
     "devs": "webpack-dev-server --config ./webpack/webpack.dev.js",
     "dev": "npm run start",
-    "dll": "webpack --progress --config ./webpack/vendor-dll.js",
+    "dll": "webpack --progress --config ./webpack/dll.js",
     "dev:faker": "concurrently -r \"npm run start\" \"npm run faker\"",
     "start": "npm run pre:run && cross-env BUILD_GOAL=development NODE_ENV=development webpack serve --config ./webpack/webpack.dev.js --stats-error-details",
     "buildProduction": "npm run && cross-env SENTRY_SOURCE_MAP=no BUILD_GOAL=production NODE_ENV=production webpack --config ./webpack/webpack.prod.js --stats-error-details",

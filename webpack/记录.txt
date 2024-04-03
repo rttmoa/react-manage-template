@@ -1,0 +1,6 @@
+build time：
+  49s       31.15M    16.46M   首次构建
+  17.866s   31.15M    16.46M   使用cache
+  35.896s   31.15M    16.46M   不使用cache
+  72.018s   31.15M    16.46M   禁用此插件会增加build时间：new EsbuildPlugin({ target: 'es2015' }),
+  
