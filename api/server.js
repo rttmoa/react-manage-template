@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const mongoose = require('mongoose')
+
 const { Schema } = mongoose
 const ApiSchema = new Schema({
   url: { type: String },
