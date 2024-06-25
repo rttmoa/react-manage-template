@@ -111,7 +111,7 @@
     "skipLibCheck": true                                 /* 跳过所有 .d.ts 文件的类型检查。 */
   },
   "include": ["src", "typings"],
-  "exclude": ["node_modules", "report（未优化）"],
+  "exclude": ["node_modules",],
   // ! rules: https://blog.csdn.net/qq_34532969/article/details/116483642
   "rules": {
     "indent": [true, "spaces", 2], // ts 强制2个空格缩进
