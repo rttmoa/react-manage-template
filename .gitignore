@@ -1,5 +1,8 @@
 .DS_Store
 /.idea
+
+
+# 打包生成的文件
 /dist
 /node_modules
 /.eslintcache
@@ -11,5 +14,9 @@ compilation-stats.json
 /packagehash.txt
 public/bit
 
+
+# webpack缓存
 webpack/profiling
+
+
 stats.html

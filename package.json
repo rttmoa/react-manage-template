@@ -17,6 +17,8 @@
   "main": "index.js",
   "sideEffects": true,
   "scripts": {
+    "init1": "rimraf node_modules package-lock.json",
+    "init2": "npm install --legacy-peer-deps",
     "pre:run": "install-changed",
     "devs": "webpack-dev-server --config ./webpack/webpack.dev.js",
     "dev": "npm run start",
@@ -236,7 +238,6 @@
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "fetch-intercept": "^2.4.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
     "happypack": "^5.0.1",
     "helmet": "^7.1.0",
     "html-to-image": "^1.11.11",

@@ -1,5 +1,10 @@
 
 
+package安装出现问题，
+  1、 删除以下脚本
+     "preinstall": "npx pm-keeper npm",
+
+
 
   "scripts": {
     ! cross-env 设置多个全局变量通过 process.env.BUILD_GOAL | process.env.NODE_ENV | process.env.USE_ANALYZE 获取
