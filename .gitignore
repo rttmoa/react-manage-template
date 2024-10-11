@@ -7,16 +7,18 @@
 /node_modules
 /.eslintcache
 
-api/node_modules
-api/package-lock.json
+/api/node_modules
+/api/package-lock.json
 compilation-stats.json
 .yarn/cache
-/packagehash.txt
+packagehash.txt
 public/bit
 
 
 # webpack缓存
 webpack/profiling
-
-
 stats.html
+
+
+pnpm-lock.yaml
+package-lock.json
