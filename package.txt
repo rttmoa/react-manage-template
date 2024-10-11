@@ -3,7 +3,8 @@
 package安装出现问题，
   1、 删除以下脚本
      "preinstall": "npx pm-keeper npm",
-
+  2、下载 node_modules
+      npm run init2
 
 
   "scripts": {
