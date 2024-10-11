@@ -11,7 +11,7 @@ const portfinder = require('portfinder') // ! ”端口已被占用" 开放新�
     // const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') // ! 错误： 一个编译提示的webpack插件！
 const notifier = require('node-notifier') // 发送系统通知的一个node模块！
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
+    // const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
 const commonConfig = require('./webpack.common.js')
 const devProxy = require('./dev.proxy')
     // 速度分析：https://tsejx.github.io/webpack-guidebook/best-practice/optimization/build-analyze#%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90
